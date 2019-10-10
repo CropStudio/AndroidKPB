@@ -51,6 +51,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -85,6 +86,9 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     EditText edPass;
     @BindView(R.id.edRePass)
     TextView edRepass;
+
+    @BindView(R.id.btnRegistrasi)
+    Button btnRegistrasi;
 
     @BindView(R.id.txtPoktan)
     TextView txtPoktan;
@@ -123,10 +127,10 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     private final int GALLERY_KTP = 11;
     private final int CameraR_KTP = 1111;
 
-    @BindView(R.id.imgKtp)
-    ImageView imgKtp;
-    @BindView(R.id.imgKK)
-    ImageView imgKk;
+//    @BindView(R.id.imgKtp)
+//    ImageView imgKtp;
+//    @BindView(R.id.imgKK)
+//    ImageView imgKk;
 
     Dialog myDialog;
 
@@ -157,67 +161,67 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         myDialog = new Dialog(Regist.this);
 
 
-        mSteppers[0] = findViewById(R.id.stepper_0);
-        mSteppers[1] = findViewById(R.id.stepper_1);
-        mSteppers[2] = findViewById(R.id.stepper_2);
-
-        VerticalStepperItemView.bindSteppers(mSteppers);
-
-        mNextBtn0 = findViewById(R.id.button_next_0);
-        mPrevBtn1 = findViewById(R.id.button_prev_1);
-        mPrevBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSteppers[1].prevStep();
-            }
-        });
-
-        mNextBtn1 = findViewById(R.id.button_next_1);
-        mNextBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSteppers[1].nextStep();
-            }
-        });
-
-        mPrevBtn2 = findViewById(R.id.button_prev_2);
-        mPrevBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSteppers[2].prevStep();
-            }
-        });
+//        mSteppers[0] = findViewById(R.id.stepper_0);
+//        mSteppers[1] = findViewById(R.id.stepper_1);
+//        mSteppers[2] = findViewById(R.id.stepper_2);
+//
+//        VerticalStepperItemView.bindSteppers(mSteppers);
+//
+//        mNextBtn0 = findViewById(R.id.button_next_0);
+//        mPrevBtn1 = findViewById(R.id.button_prev_1);
+//        mPrevBtn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mSteppers[1].prevStep();
+//            }
+//        });
+//
+//        mNextBtn1 = findViewById(R.id.button_next_1);
+//        mNextBtn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mSteppers[1].nextStep();
+//            }
+//        });
+//
+//        mPrevBtn2 = findViewById(R.id.button_prev_2);
+//        mPrevBtn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mSteppers[2].prevStep();
+//            }
+//        });
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        mNextBtn0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nik      = edNik.getText().toString();
-                String nama     = txtNama.getText().toString();
-                String poktan   = txtNama.getText().toString();
-                String telp     = edTlp.getText().toString();
-                String pass     = edPass.getText().toString();
-                String repass   = edRepass.getText().toString();
-                if(nik.isEmpty()){
-                    snacBars("Nik tidak boleh kosong");
-                }else if(nama.isEmpty()){
-                    snacBars("Tidak ada data");
-                }else if(poktan.isEmpty()){
-                    snacBars("Tidak ada data");
-                }else if(telp.isEmpty()){
-                    snacBars("Nomor telp tidak boleh kosong");
-                }else if(pass.isEmpty()){
-                    snacBars("Password tidak boleh kosong");
-                }else if(repass.isEmpty()){
-                    snacBars("Ulangi password");
-                }else if(!pass.equals(repass)){
-                    snacBars("Password tidak sesuai");
-                }else {
-                    mSteppers[0].nextStep();
-                }
-            }
-        });
+//        mNextBtn0.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String nik      = edNik.getText().toString();
+//                String nama     = txtNama.getText().toString();
+//                String poktan   = txtNama.getText().toString();
+//                String telp     = edTlp.getText().toString();
+//                String pass     = edPass.getText().toString();
+//                String repass   = edRepass.getText().toString();
+//                if(nik.isEmpty()){
+//                    snacBars("Nik tidak boleh kosong");
+//                }else if(nama.isEmpty()){
+//                    snacBars("Tidak ada data");
+//                }else if(poktan.isEmpty()){
+//                    snacBars("Tidak ada data");
+//                }else if(telp.isEmpty()){
+//                    snacBars("Nomor telp tidak boleh kosong");
+//                }else if(pass.isEmpty()){
+//                    snacBars("Password tidak boleh kosong");
+//                }else if(repass.isEmpty()){
+//                    snacBars("Ulangi password");
+//                }else if(!pass.equals(repass)){
+//                    snacBars("Password tidak sesuai");
+//                }else {
+//                    mSteppers[0].nextStep();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -272,50 +276,35 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                     if(status == true){
                         dataPetani.setVisibility(View.VISIBLE);
                         String msg = jObj.getString("message");
-                        JSONObject jsonObject = new JSONObject(msg);
+                        String res = jObj.getString("result");
+                        JSONArray jsonArray = new JSONArray(res);
+                        final JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String nama             = jsonObject.getString("nama");
-                        String poktan           = jsonObject.getString("nama_poktan");
-                        String kab              = jsonObject.getString("kabupaten");
-                        String kec              = jsonObject.getString("kecamatan");
-                        String des              = jsonObject.getString("desa");
-                        String jenis_kelamin    = jsonObject.getString("jenis_kelamin");
+
+                        String objPoktan           = jsonObject.getString("poktan");
+                        JSONArray jsonArrayPoktan = new JSONArray(objPoktan);
+                        final JSONObject jsonObjectPoktan = jsonArrayPoktan.getJSONObject(0);
+                        String poktan           = jsonObjectPoktan.getString("name");
+                        String dataarea             = jsonObjectPoktan.getString("area");
+                        JSONObject area         = new JSONObject(dataarea);
+                        String kab              = area.getString("city");
+                        String kec              = area.getString("district");
+                        String des              = area.getString("sub_district");
+//                        String jenis_kelamin    = area.getString("jenis_kelamin");
                         final String niks       = jsonObject.getString("nik");
 
-                        mNextBtn0.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String nik      = edNik.getText().toString();
-                                String nama     = txtNama.getText().toString();
-                                String poktan   = txtNama.getText().toString();
-                                String telp     = edTlp.getText().toString();
-                                String pass     = edPass.getText().toString();
-                                String repass   = edRepass.getText().toString();
-                                if(nik.isEmpty()){
-                                    snacBars("Nik tidak boleh kosong");
-                                }else if(nama.isEmpty()){
-                                    snacBars("Tidak ada data");
-                                }else if(poktan.isEmpty()){
-                                    snacBars("Tidak ada data");
-                                }else if(!nik.equals(niks)){
-                                    snacBars("Nik tidak sesuai");
-                                }else if(telp.isEmpty()){
-                                    snacBars("Nomor telp tidak boleh kosong");
-                                }else if(pass.isEmpty()){
-                                    snacBars("Password tidak boleh kosong");
-                                }else if(repass.isEmpty()){
-                                    snacBars("Ulangi password");
-                                }else if(!pass.equals(repass)){
-                                    snacBars("Password tidak sesuai");
-                                }else {
-                                    mSteppers[0].nextStep();
-                                }
-                            }
-                        });
+//                        mNextBtn0.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//
+//                            }
+//                        });
 
                         titik1.setVisibility(View.VISIBLE);
                         titik2.setVisibility(View.VISIBLE);
                         titik3.setVisibility(View.VISIBLE);
                         titik4.setVisibility(View.VISIBLE);
+                        btnRegistrasi.setVisibility(View.VISIBLE);
 
                         if(!nama.equals("null")){
                             txtNama.setText(" "+nama);
@@ -346,13 +335,13 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                             txtAlamat.setText(" -");
                         }
 
-                        if(!jenis_kelamin.equals("null")){
-                            txtJenisKelmain.setText(" "+jenis_kelamin);
-                        }else {
-                            txtJenisKelmain.setText(" -");
-                        }
+//                        if(!jenis_kelamin.equals("null")){
+//                            txtJenisKelmain.setText(" "+jenis_kelamin);
+//                        }else {
+//                            txtJenisKelmain.setText(" -");
+//                        }
 
-                        snacBarsGreen("Data ditemukan");
+                        snacBarsGreen(msg);
                     }else {
                         dataPetani.setVisibility(View.GONE);
                         snacBars("Nik petani tidak ditemukan");
@@ -379,48 +368,48 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     }
 
 
-    @OnClick(R.id.uploadKtp)
-    void uploadKtp(){
-        addPermission();
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Log.i("Tags", "IOException");
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(cameraIntent, CameraR_KTP);
-            }
-        }
-    }
-
-    @OnClick(R.id.uploadKk)
-    void uploadKk(){
-        addPermission();
-
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Log.i("Tags", "IOException");
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(cameraIntent, CameraR_KK);
-            }
-        }
-    }
+//    @OnClick(R.id.uploadKtp)
+//    void uploadKtp(){
+//        addPermission();
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            // Create the File where the photo should go
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//                Log.i("Tags", "IOException");
+//            }
+//            // Continue only if the File was successfully created
+//            if (photoFile != null) {
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+//                startActivityForResult(cameraIntent, CameraR_KTP);
+//            }
+//        }
+//    }
+//
+//    @OnClick(R.id.uploadKk)
+//    void uploadKk(){
+//        addPermission();
+//
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            // Create the File where the photo should go
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//                Log.i("Tags", "IOException");
+//            }
+//            // Continue only if the File was successfully created
+//            if (photoFile != null) {
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+//                startActivityForResult(cameraIntent, CameraR_KK);
+//            }
+//        }
+//    }
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -439,43 +428,43 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         return image;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Regist.this.RESULT_CANCELED) {
-            return;
-        }
-        if (requestCode == CameraR_KTP) {
-                try {
-
-                     bitmapktp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
-                    // imageView.setImageBitmap(bitmap);
-                    //getFileDataFromDrawable(bitmap);
-
-                    imgKtp.setVisibility(View.VISIBLE);
-                    imgKtp.setImageBitmap(bitmapktp);
-                    //uploadImage(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                }
-        }
-
-        if (requestCode == CameraR_KK) {
-                try {
-                     bitmapKk = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
-                    // imageView.setImageBitmap(bitmap);
-                    //getFileDataFromDrawable(bitmap);
-                    imgKk.setVisibility(View.VISIBLE);
-                    imgKk.setImageBitmap(bitmapKk);
-                    //uploadImage(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                }
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == Regist.this.RESULT_CANCELED) {
+//            return;
+//        }
+//        if (requestCode == CameraR_KTP) {
+//                try {
+//
+//                     bitmapktp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
+//                    // imageView.setImageBitmap(bitmap);
+//                    //getFileDataFromDrawable(bitmap);
+//
+//                    imgKtp.setVisibility(View.VISIBLE);
+//                    imgKtp.setImageBitmap(bitmapktp);
+//                    //uploadImage(bitmap);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+//                }
+//        }
+//
+//        if (requestCode == CameraR_KK) {
+//                try {
+//                     bitmapKk = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
+//                    // imageView.setImageBitmap(bitmap);
+//                    //getFileDataFromDrawable(bitmap);
+//                    imgKk.setVisibility(View.VISIBLE);
+//                    imgKk.setImageBitmap(bitmapKk);
+//                    //uploadImage(bitmap);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+//                }
+//        }
+//    }
 
 
     public void snacBars(String text){
@@ -549,14 +538,27 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         String telp     = edTlp.getText().toString();
         String pass     = edPass.getText().toString();
         String repass   = edRepass.getText().toString();
-        if(bitmapKk == null){
-            snacBars("Foto KK belum ada");
-        }else if(bitmapktp == null){
-            snacBars("Foto Ktp belum ada");
+        if(nik.isEmpty()){
+            snacBars("Nik tidak boleh kosong");
+        }else if(nama.isEmpty()){
+            snacBars("Tidak ada data");
+        }else if(poktan.isEmpty()){
+            snacBars("Tidak ada data");
+        }else if(!nik.equals(nik)){
+            snacBars("Nik tidak sesuai");
+        }else if(telp.isEmpty()){
+            snacBars("Nomor telp tidak boleh kosong");
+        }else if(pass.isEmpty()){
+            snacBars("Password tidak boleh kosong");
+        }else if(repass.isEmpty()){
+            snacBars("Ulangi password");
+        }else if(!pass.equals(repass)){
+            snacBars("Password tidak sesuai");
         }else {
             iRegisterPresenter.setProgressBarVisiblity(View.VISIBLE);
-            iRegisterPresenter.doRegistrasi(nik,nama,telp,"2",repass,bitmapktp,bitmapKk);
+            iRegisterPresenter.doRegistrasi(nik,nama,telp,"petani",repass);
         }
+
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -78,7 +79,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
 
         if (session.isLoggedIn()){
-            if (strRole.equals("2")){
+            if (strRole.equals("petani")){
                 Intent a = new Intent(Login.this, MenuUtama.class);
                 a.putExtra("id", strId);
                 a.putExtra("nik", strNik);
@@ -209,22 +210,24 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     @Override
     public void onLoginResult(Boolean result, String msg) {
         loginPresenter.setProgressBarVisiblity(View.GONE);
+        String data[] = msg.split("/");
+        Log.v("Nganu = ", data[1]);
         if (result){
             try {
-                JSONObject jObj     = new JSONObject(msg);
-                strId       = jObj.getString("id");
+                JSONObject jObj     = new JSONObject(data[1]);
+                strId       = jObj.getString("_id");
                 strNik      = jObj.getString("nik");
                 strNotelp   = jObj.getString("no_hp");
                 strNama     = jObj.getString("nama");
                 strRole     = jObj.getString("role");
-                strToken    = jObj.getString("token");
-                strKtp      = jObj.getString("ktp");
-                strKk       = jObj.getString("kartukeluarga");
-                strPotoPropil=jObj.getString("poto_profile");
+                strToken    = data[2];
+//                strKtp      = jObj.getString("ktp");
+//                strKk       = jObj.getString("kartukeluarga");
+//                strPotoPropil=jObj.getString("poto_profile");
 
-                storeRegIdinSharedPref(getApplicationContext(),strId,strNik,strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil);
-
-                if(strRole.equals("2")){
+                storeRegIdinSharedPref(getApplicationContext(),strId , strNik,strNotelp, strNama, strRole, strToken);
+//
+                if(strRole.equals("petani")){
                     session.setLogin(true);
                     Intent a = new Intent(Login.this, MenuUtama.class);
                     a.putExtra("id", strId);
@@ -233,9 +236,9 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                     a.putExtra("nama", strNama);
                     a.putExtra("role",strRole);
                     a.putExtra("token",strToken);
-                    a.putExtra("ktp", strKtp);
-                    a.putExtra("kk", strKk);
-                    a.putExtra("pp", strPotoPropil);
+//                    a.putExtra("ktp", strKtp);
+//                    a.putExtra("kk", strKk);
+//                    a.putExtra("pp", strPotoPropil);
                     startActivity(a);
                     finish();
                 }else {
@@ -256,7 +259,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     }
 
     private void storeRegIdinSharedPref(Context context, String strId, String strNik, String strNotelp, String strNama,
-                                        String strRole, String strToken, String strKtp, String strKk, String pp) {
+                                        String strRole, String strToken) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("id", strId);
         editor.putString("nik", strNik);
@@ -264,9 +267,9 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         editor.putString("nama", strNama);
         editor.putString("role", strRole);
         editor.putString("token", strToken);
-        editor.putString("ktp", strKtp);
-        editor.putString("kk", strKk);
-        editor.putString("pp", pp);
+//        editor.putString("ktp", strKtp);
+//        editor.putString("kk", strKk);
+//        editor.putString("pp", pp);
         editor.commit();
     }
 }

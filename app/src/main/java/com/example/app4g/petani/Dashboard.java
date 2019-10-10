@@ -2,36 +2,24 @@ package com.example.app4g.petani;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 
 import com.example.app4g.R;
-import com.example.app4g.petani.anak.ListDataAnak;
 import com.example.app4g.petani.jatah.ListDataPupuk;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
 import com.example.app4g.webview.ECommerce;
 import com.example.app4g.webview.InfoBeasiswa;
 import com.example.app4g.webview.InfoKur;
 import com.example.app4g.webview.KalenderTanam;
-import com.example.app4g.webview.KartuPetani;
 import com.example.app4g.webview.Kios;
 import com.example.app4g.webview.PortalInformasi;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -56,6 +44,13 @@ public class Dashboard extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_dashboard);
+    }
+
+    @OnClick(R.id.cardPupuk)
+    void infoPupuk(){
+        Intent i = new Intent(getActivity(), ListDataPupuk.class);
+        startActivity(i);
+        getActivity().finish();
     }
 
     //OnClick function

@@ -58,9 +58,9 @@ public class RegisterPresenter implements IRegisterPresenter {
     }
 
     @Override
-    public void doRegistrasi(String nik, String nama, String noHp, String role, String password, Bitmap ktp, Bitmap kk) {
-        user   = new RegisterModel(nik, nama, noHp, role, password, ktp, kk);
-        registrasi(nik, nama, noHp, role, password,ktp, kk);
+    public void doRegistrasi(String nik, String nama, String noHp, String role, String password) {
+        user   = new RegisterModel(nik, nama, noHp, role, password);
+        registrasi(nik, nama, noHp, role, password);
     }
 
     @Override
@@ -68,81 +68,72 @@ public class RegisterPresenter implements IRegisterPresenter {
         iRegisterView.onSetProgressBarVisibility(visiblity);
     }
 
-    public void registrasi(final String nik, final String nama, final String noHp, final String role, final String password, final Bitmap ktps, final Bitmap kk){
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Config_URL.registrasi,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        Log.d("ressssssoo",new String(response.data));
-                        rQueue.getCache().clear();
-                        try {
-                            final JSONObject jsonObject = new JSONObject(new String(response.data));
-                            final boolean status = jsonObject.getBoolean("status");
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if(status == true){
-                                        String msg = null;
-                                        try {
-                                            msg = jsonObject.getString("message");
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        iRegisterView.onRegisterResult(status, msg);
-                                    }else {
-                                        String msg = null;
-                                        try {
-                                            msg = jsonObject.getString("message");
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        iRegisterView.onRegisterResult(status, msg);
-                                    }
-                                }
-                            }, 1000);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        iRegisterView.onRegisterResult(false, "Maaf server tidak meresponse atau periksa koneksi internet anda");
-                    }
-                }) {
+    public void registrasi(final String nik, final String nama, final String noHp, final String role, final String password){
+        String tag_string_req = "req";
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                Config_URL.registrasi, new Response.Listener<String>() {
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
+            public void onResponse(String response) {
+                Log.d("msg", "Response: " + response.toString());
+
+                try {
+                    final JSONObject jObj = new JSONObject(response);
+                    final boolean status = jObj.getBoolean("status");
+
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(status == true){
+                                String msg = null;
+                                try {
+                                    msg = jObj.getString("message");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                iRegisterView.onRegisterResult(status, msg);
+                            }else {
+                                String msg = null;
+                                try {
+                                    msg = jObj.getString("message");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                iRegisterView.onRegisterResult(status, msg);
+                            }
+                        }
+                    }, 1000);
+
+                }catch (JSONException e){
+                    //JSON error
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error){
+                Log.e("msg", "Login Error : " + error.getMessage());
+                error.printStackTrace();
+                iRegisterView.onRegisterResult(false, "Maaf server tidak meresponse atau periksa koneksi internet anda");
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("nik", nik);
                 params.put("nama", nama);
-                params.put("notelp", noHp);
+                params.put("no_hp", noHp);
                 params.put("password", password);
                 params.put("role", role);
                 return params;
             }
-
-            /*
-             *pass files using below method
-             * */
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                params.put("fotoktp", new DataPart(imagename + ".jpg", getFileDataFromDrawable(ktps)));
-                params.put("fotokk", new DataPart(imagename + ".jpg", getFileDataFromDrawable(kk)));
-                return params;
-            }
         };
-
-        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        );
-        rQueue = Volley.newRequestQueue(activity);
-        rQueue.add(volleyMultipartRequest);
+        strReq.setRetryPolicy(policy);
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
+
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

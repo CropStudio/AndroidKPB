@@ -5,25 +5,25 @@ import android.graphics.Bitmap;
 public class RegisterModel implements IUserRegister {
 
     String nik, nama, noHp, role, password;
-    Bitmap ktp, kk;
+//    Bitmap ktp, kk;
 
-    public RegisterModel(String nik, String nama, String noHp, String role, String password, Bitmap ktp, Bitmap kk){
+    public RegisterModel(String nik, String nama, String noHp, String role, String password){
         this.nik = nik;
         this.nama= nama;
         this.noHp=noHp;
         this.role=role;
         this.password=password;
-        this.ktp = ktp;
-        this.kk=kk;
+//        this.ktp = ktp;
+//        this.kk=kk;
     }
 
-    public void setKtp(Bitmap ktp) {
-        this.ktp = ktp;
-    }
-
-    public void setKk(Bitmap kk) {
-        this.kk = kk;
-    }
+//    public void setKtp(Bitmap ktp) {
+//        this.ktp = ktp;
+//    }
+//
+//    public void setKk(Bitmap kk) {
+//        this.kk = kk;
+//    }
 
     public void setNik(String nik) {
         this.nik = nik;
@@ -71,14 +71,14 @@ public class RegisterModel implements IUserRegister {
         return password;
     }
 
-    @Override
-    public Bitmap getKtp() {
-        return ktp;
-    }
-
-    @Override
-    public Bitmap getKk() {
-        return kk;
-    }
+//    @Override
+//    public Bitmap getKtp() {
+//        return ktp;
+//    }
+//
+//    @Override
+//    public Bitmap getKk() {
+//        return kk;
+//    }
 
 }

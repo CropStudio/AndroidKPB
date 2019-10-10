@@ -10,10 +10,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Nama Pupuk"/>
+                android:text="Tahun"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,10 +30,32 @@
                 android:text=": "/>
 
             <TextView
-                android:id="@+id/namaPupuk"
+                android:id="@+id/thnRdkk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Npk"/>
+                android:text="2019"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="NIK"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=": "/>
+
+            <TextView
+                android:id="@+id/nikPetani"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1234567890"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +65,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Jenis Pupuk"/>
+                android:text="Nama"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,10 +73,10 @@
                 android:text=": "/>
 
             <TextView
-                android:id="@+id/jenisPupuk"
+                android:id="@+id/namaPetani"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Organik"/>
+                android:text="Suparmin"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +86,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Jumlah Pupuk"/>
+                android:text="Subsektor"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,11 +94,12 @@
                 android:text=": "/>
 
             <TextView
-                android:id="@+id/jmlhPupuk"
+                android:id="@+id/subsektor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2 Butir"/>
+                android:text="Panganan Tanam"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +108,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Komoditas"/>
+                android:text="Total Pupuk"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,10 +116,18 @@
                 android:text=": "/>
 
             <TextView
-                android:id="@+id/komoDitas"
+                android:id="@+id/totPupuk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kuaci"/>
+                android:text="200 KG"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="Ketuk untuk melihat detail"/>
     </LinearLayout>
+
 </android.support.v7.widget.CardView>

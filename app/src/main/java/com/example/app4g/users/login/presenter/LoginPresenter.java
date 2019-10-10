@@ -1,9 +1,12 @@
 package com.example.app4g.users.login.presenter;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,6 +22,7 @@ import com.example.app4g.users.model.LoginModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,7 @@ public class LoginPresenter implements ILoginPresenter{
         iLoginView.onClearText();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void doLogin(String nik, String passwd) {
         //if(email.isEmpty() && passwd.isEmpty()){
@@ -57,8 +62,13 @@ public class LoginPresenter implements ILoginPresenter{
         iLoginView.onSetProgressBarVisibility(visiblity);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void checkLogin(final String nik, final String password){
         user   = new LoginModel(nik, password);
+        String encoded = nik + ":" + password;
+        final String BasicBase64format
+                = Base64.getEncoder()
+                .encodeToString(encoded.getBytes());
 
         String tag_string_req = "req_login";
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -77,13 +87,16 @@ public class LoginPresenter implements ILoginPresenter{
                             if(status == true){
                                 String msg = null;
                                 String api_token = null;
+                                String res = null;
                                 try {
                                     msg         = jObj.getString("message");
-                                    api_token   = jObj.getString("token");
+                                    res         = jObj.getString("result");
+                                    JSONObject object = new JSONObject(res);
+                                    api_token   = object.getString("token");
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                iLoginView.onLoginResult(status, msg + "/"+ api_token);
+                                iLoginView.onLoginResult(status, msg + "/"+ res + "/" + api_token);
                             }else {
                                 String msg = null;
                                 try {
@@ -110,16 +123,23 @@ public class LoginPresenter implements ILoginPresenter{
                 iLoginView.onLoginResult(false, "Maaf server tidak meresponse atau periksa koneksi internet anda");
             }
         }){
-
             @Override
-            protected Map<String, String> getParams()
-            {
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
-                params.put("nik", nik);
-                params.put("password", password);
+//                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("Authorization", "Basic " + BasicBase64format);
                 return params;
             }
+
+//            @Override
+//            protected Map<String, String> getParams()
+//            {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/json");
+//                params.put("nik", nik);
+//                params.put("password", password);
+//                return params;
+//            }
         };
         strReq.setRetryPolicy(policy);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);

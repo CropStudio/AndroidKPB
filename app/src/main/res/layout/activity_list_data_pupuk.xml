@@ -59,9 +59,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical"
         android:layout_marginBottom="20dp"
         android:layout_height="match_parent">
@@ -77,7 +77,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="Tidak ada data :)"
             android:id="@+id/textNodata"/>
     </LinearLayout>
 

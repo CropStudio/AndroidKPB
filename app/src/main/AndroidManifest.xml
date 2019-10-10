@@ -20,32 +20,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".webview.KartuPetani"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".webview.ECommerce"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".webview.KalenderTanam"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".webview.Kios"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".webview.PortalInformasi"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".webview.InfoKur"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".webview.InfoBeasiswa"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".petani.EditPoktan"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".petani.EditProfile"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".petani.jatah.ListDataPupuk"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".petani.anak.InputDataAnak"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".petani.anak.ListDataAnak"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Testdoang"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".InformasiRekening"></activity>
+        <activity android:name=".petani.detailpupuk.DetailPupukActivity" />
+        <activity
+            android:name=".petani.KartuPetani"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".webview.ECommerce"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.KalenderTanam"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.Kios"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.PortalInformasi"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.InfoKur"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.InfoBeasiswa"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".petani.EditPoktan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".petani.EditProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".petani.jatah.ListDataPupuk"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".petani.anak.InputDataAnak"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".petani.anak.ListDataAnak"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Testdoang"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".petani.MenuUtama"
             android:screenOrientation="portrait" />
@@ -67,6 +82,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

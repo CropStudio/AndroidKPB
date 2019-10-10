@@ -8,6 +8,6 @@ public interface IUserRegister {
     String getNoHp();
     String getRole();
     String getPassword();
-    Bitmap getKtp();
-    Bitmap getKk();
+//    Bitmap getKtp();
+//    Bitmap getKk();
 }

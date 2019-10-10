@@ -65,19 +65,36 @@ public class AdapterPupuk extends BaseAdapter{
             convertView = inflater.inflate(R.layout.content_pupuk, null);//buat xml layout content
 
 
-        TextView namaPupuk = (TextView) convertView.findViewById(R.id.namaPupuk);
-        TextView jenisPupuk = (TextView) convertView.findViewById(R.id.jenisPupuk);
-        TextView jmlhPupuk = (TextView) convertView.findViewById(R.id.jmlhPupuk);
-        TextView komoDitas = (TextView) convertView.findViewById(R.id.komoDitas);
+        TextView thnRdkk = (TextView) convertView.findViewById(R.id.thnRdkk);
+        TextView nikPetani = (TextView) convertView.findViewById(R.id.nikPetani);
+        TextView namaPetani = (TextView) convertView.findViewById(R.id.namaPetani);
+        TextView subsektro = (TextView) convertView.findViewById(R.id.subsektor);
+        TextView totPupuk = (TextView) convertView.findViewById(R.id.totPupuk);
 
-        namaPupuk.setText(item.get(position).getNamaPupuk());
-        jenisPupuk.setText(item.get(position).getJenisPupuk());
-        jmlhPupuk.setText(item.get(position).getJmlhPupuk());
-        if (item.get(position).getKomoDitas().equals("null")) {
-            komoDitas.setText("-");
-        }else {
-            komoDitas.setText(item.get(position).getKomoDitas());
-        }
+        double urea1 = Double.parseDouble(item.get(position).getUreaMt1());
+        double urea2 = Double.parseDouble(item.get(position).getUreaMt2());
+        double urea3 = Double.parseDouble(item.get(position).getUreaMt3());
+        double sp361 = Double.parseDouble(item.get(position).getSp36Mt1());
+        double sp362 = Double.parseDouble(item.get(position).getSp36Mt2());
+        double sp363 = Double.parseDouble(item.get(position).getSp36Mt3());
+        double za1   = Double.parseDouble(item.get(position).getZaMt1());
+        double za2   = Double.parseDouble(item.get(position).getZaMt2());
+        double za3   = Double.parseDouble(item.get(position).getZaMt3());
+        double npk1  = Double.parseDouble(item.get(position).getNpkMt1());
+        double npk2  = Double.parseDouble(item.get(position).getNpkMt2());
+        double npk3  = Double.parseDouble(item.get(position).getNpkMt3());
+        double organik1  = Double.parseDouble(item.get(position).getOrganikMt1());
+        double organik2  = Double.parseDouble(item.get(position).getOrganikMt2());
+        double organik3  = Double.parseDouble(item.get(position).getOrganikMt3());
+
+        double totalPupuk = urea1 + urea2 + urea3 + sp361 + sp362 + sp363 + za1 +
+                             za2 + za3 + npk1 + npk2 + npk3 + organik1 + organik2 + organik3;
+
+        totPupuk.setText(String.valueOf(totalPupuk) + " Kg");
+        thnRdkk.setText(item.get(position).getTahunRdkk());
+        nikPetani.setText(item.get(position).getNikPetani());
+        namaPetani.setText(item.get(position).getNamaPetani());
+        subsektro.setText(item.get(position).getSubsektor());
         return convertView;
     }
 }
