@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -66,11 +67,12 @@ public class LoginPresenter implements ILoginPresenter{
     private void checkLogin(final String nik, final String password){
         user   = new LoginModel(nik, password);
         String encoded = nik + ":" + password;
-        final String BasicBase64format
-                = Base64.getEncoder()
-                .encodeToString(encoded.getBytes());
+//        final String BasicBase64format
+//                = Base64.getEncoder()
+//                .encodeToString(encoded.getBytes());
 
         String tag_string_req = "req_login";
+        Log.d("URLNYANIH" , Config_URL.login);
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 Config_URL.login, new Response.Listener<String>() {
             @Override
@@ -127,7 +129,7 @@ public class LoginPresenter implements ILoginPresenter{
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
 //                params.put("Content-Type", "application/json; charset=UTF-8");
-                params.put("Authorization", "Basic " + BasicBase64format);
+                params.put("Authorization", "Basic " + android.util.Base64.encodeToString(encoded.getBytes(), android.util.Base64.NO_WRAP));
                 return params;
             }
 

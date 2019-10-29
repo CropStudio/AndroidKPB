@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.app4g.R;
 import com.example.app4g.petani.jatah.ListDataPupuk;
+import com.example.app4g.rut.RutActivity;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.webview.ECommerce;
 import com.example.app4g.webview.InfoBeasiswa;
@@ -49,6 +50,13 @@ public class Dashboard extends Fragment {
     @OnClick(R.id.cardPupuk)
     void infoPupuk(){
         Intent i = new Intent(getActivity(), ListDataPupuk.class);
+        startActivity(i);
+        getActivity().finish();
+    }
+
+    @OnClick(R.id.mCardRut)
+    void goToRut(){
+        Intent i = new Intent(getActivity(), RutActivity.class);
         startActivity(i);
         getActivity().finish();
     }

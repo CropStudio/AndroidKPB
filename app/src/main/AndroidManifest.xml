@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.app4g">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,6 +13,7 @@
         android:required="true" />
 
     <application
+
         android:name=".server.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InformasiRekening"></activity>
+        <activity android:name=".cart.CartActivity"></activity>
+        <activity android:name=".InformasiRekening" />
         <activity android:name=".petani.detailpupuk.DetailPupukActivity" />
         <activity
             android:name=".petani.KartuPetani"
@@ -86,6 +89,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".rut.RutActivity"
+      />
+        <activity android:name=".rutDetail.RutDetailActivity" />
     </application>
 
 </manifest>

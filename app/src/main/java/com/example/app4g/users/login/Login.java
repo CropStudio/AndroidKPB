@@ -12,8 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.example.app4g.petani.MenuUtama;
 import com.example.app4g.R;
+import com.example.app4g.petani.MenuUtama;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.users.login.presenter.ILoginPresenter;
 import com.example.app4g.users.login.presenter.LoginPresenter;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 public class Login extends AppCompatActivity implements BaseSliderView.OnSliderClickListener,
         ViewPagerEx.OnPageChangeListener, ILoginview {
@@ -211,7 +212,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     public void onLoginResult(Boolean result, String msg) {
         loginPresenter.setProgressBarVisiblity(View.GONE);
         String data[] = msg.split("/");
-        Log.v("Nganu = ", data[1]);
+//        Log.v("Nganu = ", data[1]);
         if (result){
             try {
                 JSONObject jObj     = new JSONObject(data[1]);

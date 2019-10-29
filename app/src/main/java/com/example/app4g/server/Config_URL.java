@@ -2,11 +2,15 @@ package com.example.app4g.server;
 
 //This class is for storing all URLs as a model of URLs
 
+import com.example.app4g.App;
+import com.example.app4g.R;
+
 public class Config_URL
 {
-    public static String base_URL           = "http://172.32.1.93:5050";
+    //public static String base_URL           = "http://172.32.1.93:5050";
 //    public static String base_URL           = "http://103.230.48.151:5050";
-
+    public static String base_URL           = AppController.getApplication().getResources().getString(R.string.end_point);
+//
     public static String fotoProfilUrl      = "http://api.kartupetaniberjaya.com/potopropil/";
     //public static String fotoProfilUrl      = "http://192.168.43.156:8400/potopropil/";
     //users

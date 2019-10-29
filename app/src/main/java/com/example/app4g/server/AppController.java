@@ -1,6 +1,8 @@
 package com.example.app4g.server;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -20,12 +22,20 @@ public class AppController extends Application
     private ImageLoader mImageLoader;
 
     private static AppController mInstance;
+    private static Application sApplication;
+    public static Application getApplication() {
+        return sApplication;
+    }
 
+    public static Context getContext() {
+        return getApplication().getApplicationContext();
+    }
     @Override
     public void onCreate()
     {
         super.onCreate();
         mInstance = this;
+        sApplication = this;
     }
 
     public static synchronized AppController getInstance()
@@ -71,5 +81,10 @@ public class AppController extends Application
         {
             mRequestQueue.cancelAll(tag);
         }
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
