@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import com.example.app4g.petani.MenuUtama;
 import com.example.app4g.rut.RutActivity;
 import com.example.app4g.rut.RutAdapter;
 import com.example.app4g.rut.model.Item;
+import com.example.app4g.rut.model.Rut;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.users.login.Login;
@@ -29,20 +32,29 @@ import com.example.app4g.users.login.Login;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CartActivity extends AppCompatActivity implements ICartView {
+public class CartActivity extends AppCompatActivity implements ICartView , CartAdapter.OnItemSelected {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.loading_layout)
     RelativeLayout mLoadingIndicator;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     CartPresenter presenter;
     public SharedPreferences prefs;
     public SessionManager session;
     String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
+        mToolbar.setTitle("Keranjang Saya");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.c_white));
+        setSupportActionBar(mToolbar);
+        //getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         prefs = getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
         isLogin();
@@ -50,22 +62,23 @@ public class CartActivity extends AppCompatActivity implements ICartView {
         presenter.getCart(strNik);
         this.initViews();
     }
-    public void isLogin(){
+
+    public void isLogin() {
         // Session manager
         session = new SessionManager(this);
         //Session Login
-        if(session.isLoggedIn()){
-            strId       = prefs.getString("id","");
-            strNik      = prefs.getString("nik","");
-            strNotelp   = prefs.getString("notelp", "");
-            strNama     = prefs.getString("nama", "");
-            strRole     = prefs.getString("role", "");
-            strToken    = prefs.getString("token", "");
-            strKtp      = prefs.getString("ktp", "");
-            strKk       = prefs.getString("kk","");
-            strPotoPropil=prefs.getString("pp","");
+        if (session.isLoggedIn()) {
+            strId = prefs.getString("id", "");
+            strNik = prefs.getString("nik", "");
+            strNotelp = prefs.getString("notelp", "");
+            strNama = prefs.getString("nama", "");
+            strRole = prefs.getString("role", "");
+            strToken = prefs.getString("token", "");
+            strKtp = prefs.getString("ktp", "");
+            strKk = prefs.getString("kk", "");
+            strPotoPropil = prefs.getString("pp", "");
 
-        }else{
+        } else {
             Intent a = new Intent(getApplicationContext(), Login.class);
             startActivity(a);
             finish();
@@ -91,11 +104,11 @@ public class CartActivity extends AppCompatActivity implements ICartView {
 
     @Override
     public void onDataReady(Cart carts) {
-        if(carts != null) {
-            CartAdapter adapter = new CartAdapter(carts.getItem(), this);
+        if (carts != null) {
+            CartAdapter adapter = new CartAdapter(carts.getItem(), this,this);
             mRecyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-        }else{
+        } else {
             Toast.makeText(this, "Anda belum ada barang di keranjang", Toast.LENGTH_SHORT).show();
         }
     }
@@ -115,6 +128,7 @@ public class CartActivity extends AppCompatActivity implements ICartView {
     public void hideLoadingIndicator() {
         mLoadingIndicator.setVisibility(View.GONE);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -122,10 +136,29 @@ public class CartActivity extends AppCompatActivity implements ICartView {
     }
 
     @Override
-    public void goToDashboard(){
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            goToDashboard();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void goToDashboard() {
         Intent i = new Intent(this, RutActivity.class);
         startActivity(i);
         finish();
     }
 
+    @Override
+    public void onSelect(String rut) {
+        Toast.makeText(this, rut, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCartSelect(String rut) {
+        Toast.makeText(this, rut, Toast.LENGTH_SHORT).show();
+    }
 }

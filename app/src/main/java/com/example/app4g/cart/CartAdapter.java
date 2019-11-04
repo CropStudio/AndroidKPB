@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,22 +24,18 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private List<Item> ruts;
     private CartAdapter.OnItemSelected listener;
-    private CartAdapter.onCartSelected cartListiner;
     private String matkul ;
     Activity context ;
 
     public interface OnItemSelected {
-        void onSelect(Rut rut);
+        void onSelect(String rut);
+        void onCartSelect(String rut);
     }
 
-    public interface onCartSelected {
-        void onCartSelect(Item rut);
-    }
-
-    public CartAdapter(List<Item> data, Activity context) {
+    public CartAdapter(List<Item> data, Activity context, OnItemSelected listener ) {
         this.ruts = data;
         this.context = context ;
-        this.cartListiner = cartListiner ;
+        this.listener = listener ;
     }
 
 
@@ -54,12 +51,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(final CartAdapter.ViewHolder holder, final int position) {
         final Item rut = ruts.get(position);
         //holder.mkdmatkul.setText(laporan.get);
-
         holder.mHarga.setText(Utils.convertRupiah(String.valueOf(rut.getHarga())));
         holder.mNama.setText(rut.getNamaItem());
-//        holder.mToko.setText(rut.getDistributor().getNama());
+        holder.mToko.setText(rut.getDistributor().getNama());
 //        holder.mStok.setText(String.valueOf(rut.getStok()));
-        //holder.itemView.setOnClickListener(view -> listener.onSelect(rut));
+        holder.itemView.setOnClickListener(view -> listener.onSelect("ini itemview"));
         if(!rut.getFoto().equals(""))
             Glide.with(context)
                     .load(AppController.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
@@ -69,7 +65,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 .load(R.drawable.shopping_bag)
                 .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
                 .into(holder.mIconImage);
-//        holder.mCart.setOnClickListener(view -> cartListiner.onCartSelect(rut));
+        holder.mNama.setOnClickListener(view -> listener.onCartSelect("ini CartSelect"));
     }
 
 
@@ -79,8 +75,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
 
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        CheckBox mCheckbox ;
         TextView mNama, mHarga , mStok , mToko;
         LinearLayout mCart ;
         ImageView mIconImage;
@@ -88,6 +86,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         ViewHolder(View view) {
             super(view);
             mNama = view.findViewById(R.id.mNama);
+            mCheckbox = view.findViewById(R.id.mCheckbox);
 //            mCart = view.findViewById(R.id.mCart);
             //mStok = view.findViewById(R.id.mStok);
             mIconImage = view.findViewById(R.id.icon_image);

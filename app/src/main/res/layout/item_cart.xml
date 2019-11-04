@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -13,30 +14,38 @@
     app:cardUseCompatPadding="false"
     app:contentPadding="5dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/mCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_toRightOf="@id/mCheckbox"
+            android:id="@+id/icon_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="false"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/shopping_bag" />
 
-            <ImageView
-                android:id="@+id/icon_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/shopping_bag" />
-
-        </LinearLayout>
 
         <LinearLayout
+            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/icon_image"
+            android:gravity="center_vertical"
             android:orientation="vertical"
             android:padding="3dp">
 
@@ -46,88 +55,45 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="Nama barang yang di jual toko ini dana dapat anda beri"
-                android:textSize="17dp"
+                android:textSize="17dp" />
+
+
+            <TextView
+                android:id="@+id/mToko"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Nama Toko" />
+
+            <TextView
+                android:id="@+id/mHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="100.000"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:background="@drawable/background_rounded">
 
-                <TextView
-                    android:id="@+id/mToko"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="Nama Toko" />
-
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/number_button"
+                    android:textAlignment="center"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp"
+                    android:background="@color/float_transparent"
+                    app:backGroundColor="@color/float_transparent"
+                    app:initialNumber="1"
+                    app:textColor="@color/c_black" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/mJmlh"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="50"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-
-                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:backGroundColor="@color/black_trans80"
-                        android:background="@color/black_trans80"
-                        app:initialNumber="1">
-                    </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#3300574B" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/mHarga"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="100.000"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Harga Barang"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

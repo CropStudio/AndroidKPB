@@ -18,10 +18,40 @@ public class Item implements Serializable {
     private String namaItem;
     @SerializedName("harga")
     private long harga;
-    @SerializedName("stok")
-    private long stok;
+    @SerializedName("satuan")
+    private String satuan;
+    @SerializedName("kategori")
+    private String kategori;
     @SerializedName("foto")
     private String foto;
+    @SerializedName("keterangan")
+    private String keterangan;
+    @SerializedName("stok")
+    private long stok;
+
+    public String getSatuan() {
+        return satuan;
+    }
+
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
 
     public String get_id() {
         return _id;

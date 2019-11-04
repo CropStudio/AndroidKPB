@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,8 @@ public class RutActivity extends AppCompatActivity implements IRutView , RutAdap
     RelativeLayout mLoadingIndicator;
     @BindView(R.id.mCart)
     ImageView mCart;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     RutPresenter presenter;
     public SharedPreferences prefs;
     public SessionManager session;
@@ -59,6 +62,9 @@ public class RutActivity extends AppCompatActivity implements IRutView , RutAdap
         prefs = getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
         isLogin();
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new RutPresenter(this);
         presenter.getSkema(strKtp,strToken);
         this.initViews();
@@ -182,6 +188,16 @@ public class RutActivity extends AppCompatActivity implements IRutView , RutAdap
     public void onBackPressed() {
         super.onBackPressed();
         goToDashboard();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            goToDashboard();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
