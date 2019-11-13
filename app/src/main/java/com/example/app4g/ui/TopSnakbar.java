@@ -30,7 +30,7 @@ public class TopSnakbar {
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
 
-        snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.material_green_800));
+        snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
         TextView textView = snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
         textView.setTextColor(activity.getResources().getColor(R.color.c_white));
         snackbar.show();

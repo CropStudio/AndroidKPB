@@ -36,7 +36,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
     }
 
     public interface onCartSelected {
-        void onCartSelect(Item rut);
+        void onCartSelect(Item rut, ImageView image);
     }
 
     public RutAdapter(List<Item> data, Activity context, onCartSelected cartListiner) {
@@ -67,16 +67,21 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         holder.mToko.setText(rut.getDistributor().getNama());
         holder.mStok.setText(String.valueOf(rut.getStok()));
         //holder.itemView.setOnClickListener(view -> listener.onSelect(rut));
-        if(!rut.getFoto().equals(""))
+        if(!rut.getFoto().equals("")){
             Glide.with(context)
                     .load(AppController.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
                     .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
                     .into(holder.mIconImage);
+            Glide.with(context)
+                    .load(AppController.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
+                    .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                    .into(holder.mIconImageCopy);
+        }
         else Glide.with(context)
                 .load(R.drawable.shopping_bag)
                 .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
                 .into(holder.mIconImage);
-        holder.mCart.setOnClickListener(view -> cartListiner.onCartSelect(rut));
+        holder.mCart.setOnClickListener(view -> cartListiner.onCartSelect(rut, holder.mIconImageCopy));
     }
 
     public void setFilter(List<Item> newList){
@@ -102,7 +107,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
         TextView mNama, mHarga , mStok , mToko , mSubsidi;
         LinearLayout mCart ;
-        ImageView mIconImage;
+        ImageView mIconImage , mIconImageCopy;
 
         ViewHolder(View view) {
             super(view);
@@ -111,6 +116,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
             mCart = view.findViewById(R.id.mCart);
             mStok = view.findViewById(R.id.mStok);
             mIconImage = view.findViewById(R.id.icon_image);
+            mIconImageCopy = view.findViewById(R.id.icon_image_copy);
             mHarga = view.findViewById(R.id.mHarga);
             mToko = view.findViewById(R.id.mToko);
 //            mTime = view.findViewById(R.id.mTime);

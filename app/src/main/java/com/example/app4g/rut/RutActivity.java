@@ -1,5 +1,6 @@
 package com.example.app4g.rut;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app4g.R;
+import com.example.app4g.Utils.CircleAnimationUtil;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.cart.CartActivity;
 import com.example.app4g.petani.MenuUtama;
@@ -35,6 +37,7 @@ import com.example.app4g.rut.model.Saldo;
 import com.example.app4g.rutDetail.RutDetailActivity;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.ui.SweetDialogs;
+import com.example.app4g.ui.TopSnakbar;
 import com.example.app4g.users.login.Login;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
@@ -231,19 +234,40 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onCreateSuccess(RutResponse ruts) {
-        SweetDialogs.commonSuccessWithIntent(this, "Barang berhasil ditambahkan", string -> {
-            this.Refresh();
-        });
+    public void onAddTocartSuccess(RutResponse ruts, ImageView img) {
+        addItemToCart(img);
+
+    }
+    private void addItemToCart(ImageView targetView) {
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(500).setDestView(mCart).setAnimationListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                presenter.getSaldo(strNik);
+                NotificationBadge textView = (NotificationBadge) findViewById(R.id.badge);
+                textView.setNumber(totalCart);
+                //Toast.makeText(RutActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
+                TopSnakbar.showSuccess(RutActivity.this,"Barang berhasil ditambahkan");
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        }).startAnimation();
+
 
     }
 
-    @Override
-    public void Refresh() {
-        Intent i = new Intent(this, RutActivity.class);
-        startActivity(i);
-        finish();
-    }
 
     @Override
     public void showLoadingIndicator() {
@@ -303,8 +327,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onCartSelect(Item rut) {
-        presenter.createCart(strNik, rut);
+    public void onCartSelect(Item rut, ImageView img) {
+        presenter.createCart(strNik, rut , img);
     }
 
     @Override

@@ -31,6 +31,11 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/shopping_bag" />
+            <ImageView
+                android:id="@+id/icon_image_copy"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/shopping_bag" />
 
         </RelativeLayout>
 

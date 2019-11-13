@@ -1,6 +1,7 @@
 package com.example.app4g.rut;
 
 import android.app.Activity;
+import android.widget.ImageView;
 
 import com.example.app4g.rut.model.Rut;
 import com.example.app4g.rut.model.RutResponse;
@@ -25,9 +26,7 @@ public interface IRutView {
 
     void onNetworkError(String cause);
 
-    void onCreateSuccess(RutResponse ruts);
-
-    void Refresh();
+    void onAddTocartSuccess(RutResponse ruts, ImageView img);
 
     void showLoadingIndicator();
 

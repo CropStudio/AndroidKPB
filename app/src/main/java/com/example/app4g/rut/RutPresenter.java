@@ -1,7 +1,9 @@
 package com.example.app4g.rut;
 
 
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.app4g.network.NetworkService;
@@ -93,7 +95,7 @@ public class RutPresenter {
                     }
                 });
     }
-    void createCart(String nik , Item rut) {
+    void createCart(String nik , Item rut , ImageView img) {
         //Log.d("namaitem",rut.getNamaItem());
         HashMap<String, Object> params = new HashMap<>();
         params.put("nik",nik);
@@ -108,7 +110,7 @@ public class RutPresenter {
                 view.hideLoadingIndicator();
                 Log.i("MESSAGE" , ""+response.body());
                 if (response.body().getSuccess()) {
-                    view.onCreateSuccess(response.body());
+                    view.onAddTocartSuccess(response.body(),img);
                 }
             }
 
