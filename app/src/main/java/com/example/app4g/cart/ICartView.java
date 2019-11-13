@@ -3,6 +3,7 @@ package com.example.app4g.cart;
 import android.app.Activity;
 
 import com.example.app4g.cart.model.Cart;
+import com.example.app4g.common.CommonResponse;
 import com.example.app4g.rut.model.RutResponse;
 
 /**
@@ -16,6 +17,12 @@ public interface ICartView {
 
     void onDataReady(Cart carts);
 
+    void onCheckout();
+
+    void onCheckoutSuccess(CommonResponse response);
+
+    void onCheckoutFail(CommonResponse response);
+
     void onNetworkError(String cause);
 
     void showLoadingIndicator();
@@ -23,4 +30,6 @@ public interface ICartView {
     void hideLoadingIndicator();
 
     void goToDashboard();
+
+    void goToCart();
 }

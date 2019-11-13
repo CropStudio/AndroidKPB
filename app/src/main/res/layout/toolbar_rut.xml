@@ -30,8 +30,8 @@
                     android:background="@drawable/background_rounded"
                     android:layout_weight="2">
 
-                    <SearchView
-                        android:id="@+id/searchItem"
+                    <android.support.v7.widget.SearchView
+                        android:id="@+id/mSearch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:queryHint="Pilih barang anda ..."
@@ -41,19 +41,37 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/mCart"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="left|center">
+                    android:gravity="center"
+                    android:layout_weight="1.5">
 
+                    <RelativeLayout
+                        android:id="@+id/layout_cart"
+                        android:gravity="left|center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
                     <ImageView
-                        android:id="@+id/mCart"
-                        android:layout_width="match_parent"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:src="@drawable/ic_shoping_cart" />
+                    </RelativeLayout>
 
-                </LinearLayout>
+                    <com.nex3z.notificationbadge.NotificationBadge
+                        android:layout_marginLeft="-10dp"
+                        android:layout_toRightOf="@+id/layout_cart"
+                        android:layout_alignTop="@+id/layout_cart"
+                        android:id="@+id/badge"
+                        app:nbAnimationEnabled="true"
+                        app:nbAnimationDuration="50"
+                        app:nbMaxTextLength="2"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                       />
+                </RelativeLayout>
 
             </LinearLayout>
 

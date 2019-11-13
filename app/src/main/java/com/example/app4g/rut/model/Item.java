@@ -6,12 +6,14 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by omgimbot on 10/13/2019.
  */
 
 public class Item implements Serializable {
+    public boolean isSelected ;
     @SerializedName("_id")
     private String _id;
     @SerializedName("namaBarang")
@@ -28,6 +30,24 @@ public class Item implements Serializable {
     private String keterangan;
     @SerializedName("stok")
     private long stok;
+
+    public int qty;
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getSatuan() {
         return satuan;

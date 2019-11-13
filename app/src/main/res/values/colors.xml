@@ -14,7 +14,8 @@
     <color name="grey_80">#37474F</color>
     <color name="grey_90">#263238</color>
     <color name="strok">#e4e5ea</color>
-
+    <color name="material_green_800">#307d3d</color>
+    <color name="redCrimson">#af3c3c</color>
     <!--Indigo 500-->
     <color name="primary_500">#3F51B5</color>
     <!--Indigo 700-->
