@@ -1,3 +1,4 @@
+
 # Built application files
 /*/build/
 
@@ -34,8 +35,4 @@ local.properties
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-<<<<<<< HEAD
 Thumbs.db
-=======
-Thumbs.db
->>>>>>> origin/master
