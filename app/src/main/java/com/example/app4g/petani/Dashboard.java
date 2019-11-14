@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.app4g.R;
 import com.example.app4g.petani.jatah.ListDataPupuk;
@@ -20,6 +21,8 @@ import com.example.app4g.webview.InfoKur;
 import com.example.app4g.webview.KalenderTanam;
 import com.example.app4g.webview.Kios;
 import com.example.app4g.webview.PortalInformasi;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,6 +31,8 @@ public class Dashboard extends Fragment {
 
     public SharedPreferences prefs;
     public SessionManager session;
+    private int[] mImages = new int[]{R.drawable.slide_1, R.drawable.slide_2, R.drawable.slide_3, R.drawable.slide_4};
+    CarouselView carouselView;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -38,6 +43,16 @@ public class Dashboard extends Fragment {
         session = new SessionManager(getActivity());
         prefs = getActivity().getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
+
+        carouselView = view.findViewById(R.id.carousel);
+        carouselView.setPageCount(mImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(mImages[position]);
+            }
+        });
+
         return view;
     }
 

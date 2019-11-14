@@ -8,6 +8,8 @@
     <string name="section_format">Page %1$d</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Profile</string>
+    <string name="title_anak">Data anak</string>
+    <string name="title_exit">Keluar</string>
     <string name="next">LANJUT</string>
     <string name="skip">LEWATI</string>
     <string name="start">MULAI</string>

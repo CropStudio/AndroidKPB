@@ -35,10 +35,10 @@ public class MenuUtama extends AppCompatActivity {
 
     String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.appBar)
-    AppBarLayout appBarLayout;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
+//    @BindView(R.id.appBar)
+//    AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class MenuUtama extends AppCompatActivity {
         ButterKnife.bind(this);
         //getSupportActionBar().hide();
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -61,11 +61,11 @@ public class MenuUtama extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ProfileFragment()).commit();
             bottomNav.getMenu().findItem(R.id.profile).setChecked(true);
-            toolbar.setVisibility(View.GONE);
-            appBarLayout.setVisibility(View.GONE);
+//            toolbar.setVisibility(View.GONE);
+//            appBarLayout.setVisibility(View.GONE);
         }else {
-            toolbar.setVisibility(View.VISIBLE);
-            appBarLayout.setVisibility(View.VISIBLE);
+//            toolbar.setVisibility(View.VISIBLE);
+//            appBarLayout.setVisibility(View.VISIBLE);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Dashboard()).commit();
         }
@@ -85,13 +85,13 @@ public class MenuUtama extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.home:
-                            toolbar.setVisibility(View.VISIBLE);
-                            appBarLayout.setVisibility(View.VISIBLE);
+//                            toolbar.setVisibility(View.VISIBLE);
+//                            appBarLayout.setVisibility(View.VISIBLE);
                             selectedFragment = new Dashboard();
                             break;
                         case R.id.profile:
-                            toolbar.setVisibility(View.GONE);
-                            appBarLayout.setVisibility(View.GONE);
+//                            toolbar.setVisibility(View.GONE);
+//                            appBarLayout.setVisibility(View.GONE);
                             selectedFragment = new ProfileFragment();
                             break;
                     }

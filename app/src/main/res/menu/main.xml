@@ -6,25 +6,24 @@
 
     <item
         android:id="@+id/action_notification1"
-        android:icon="@drawable/menu"
+        android:icon="@drawable/ic_dashboard"
         android:title="action_notification"
         app:showAsAction="always">
         <menu>
             <group>
-            <item
-                android:id="@+id/dataAnak"
-                android:icon="@drawable/anak"
-                android:orderInCategory="100"
-                android:iconTint="@color/blues"
-                android:title="Data Anak" />
+                <item
+                    android:id="@+id/dataAnak"
+                    android:icon="@drawable/ic_boy_main"
+                    android:orderInCategory="100"
+                    android:title="Data Anak" />
             </group>
 
             <group>
-            <item
-                android:id="@+id/exit"
-                android:icon="@drawable/exit"
-                android:orderInCategory="100"
-                android:title="Keluar" />
+                <item
+                    android:id="@+id/exit"
+                    android:icon="@drawable/ic_exit_app"
+                    android:orderInCategory="100"
+                    android:title="Keluar" />
             </group>
         </menu>
     </item>
