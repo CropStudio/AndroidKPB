@@ -24,6 +24,7 @@ import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.SliderTypes.BaseSliderView;
 import com.glide.slider.library.SliderTypes.TextSliderView;
 import com.glide.slider.library.Tricks.ViewPagerEx;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     SharedPreferences prefs;
     private SessionManager session;
 
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
+    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,kabupaten,kota,provinsi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,17 +217,25 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         if (result){
             try {
                 JSONObject jObj     = new JSONObject(data[1]);
-                strId       = jObj.getString("_id");
+//                strId       = jObj.getString("_id");
                 strNik      = jObj.getString("nik");
-                strNotelp   = jObj.getString("no_hp");
                 strNama     = jObj.getString("nama");
+                strNotelp   = jObj.getString("no_hp");
+                namaPoktan     = jObj.getString("nama_poktan");
+                alamat     = jObj.getString("alamat");
+                mt1     = jObj.getString("mt1");
+                mt2     = jObj.getString("mt2");
+                mt3     = jObj.getString("mt3");
+                kecamatan     = jObj.getString("kecamatan");
+                kabupaten     = jObj.getString("kabupaten");
+                kota     = jObj.getString("kota");
+                provinsi     = jObj.getString("provinsi");
                 strRole     = jObj.getString("role");
                 strToken    = data[2];
-//                strKtp      = jObj.getString("ktp");
-//                strKk       = jObj.getString("kartukeluarga");
-//                strPotoPropil=jObj.getString("poto_profile");
 
-                storeRegIdinSharedPref(getApplicationContext(),strId , strNik,strNotelp, strNama, strRole, strToken);
+
+                storeRegIdinSharedPref(getApplicationContext(),strId , strNik,strNotelp, strNama, strRole, strToken,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,
+                        kabupaten,kota,provinsi);
 //
                 if(strRole.equals("petani")){
                     session.setLogin(true);
@@ -260,7 +269,8 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     }
 
     private void storeRegIdinSharedPref(Context context, String strId, String strNik, String strNotelp, String strNama,
-                                        String strRole, String strToken) {
+                                        String strRole, String strToken,String namaPoktan,String alamat,String mt1,String mt2,String mt3,String kecamatan,
+                                        String kabupaten,String kota,String provinsi) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("id", strId);
         editor.putString("nik", strNik);
@@ -268,9 +278,15 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         editor.putString("nama", strNama);
         editor.putString("role", strRole);
         editor.putString("token", strToken);
-//        editor.putString("ktp", strKtp);
-//        editor.putString("kk", strKk);
-//        editor.putString("pp", pp);
+        editor.putString("nama_poktan", namaPoktan);
+        editor.putString("alamat", alamat);
+        editor.putString("mt1", mt1);
+        editor.putString("mt2", mt2);
+        editor.putString("mt3", mt3);
+        editor.putString("kecamatan", kecamatan);
+        editor.putString("kabupaten", kabupaten);
+        editor.putString("kota", kota);
+        editor.putString("provinsi", provinsi);
         editor.commit();
     }
 }

@@ -68,9 +68,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     NotificationBadge mBadge;
     @BindView(R.id.mSearch)
     SearchView mSearch;
-
-
-
     RutPresenter presenter;
     public SharedPreferences prefs;
     public SessionManager session;
@@ -89,7 +86,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         this.initViews();
         prefs = getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
-
         isLogin();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));

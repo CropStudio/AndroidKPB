@@ -13,6 +13,8 @@
     <color name="grey_60">#666666</color>
     <color name="grey_80">#37474F</color>
     <color name="grey_90">#263238</color>
+    <color name="point_color">#141313</color>
+    <color name="point_status_color">#2b6e1e</color>
     <color name="strok">#e4e5ea</color>
     <color name="material_green_800">#307d3d</color>
     <color name="redCrimson">#af3c3c</color>

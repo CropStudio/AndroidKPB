@@ -8,4 +8,12 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin_half">8dp</dimen>
 
+    <dimen xmlns:tools="http://schemas.android.com/tools" name="design_bottom_navigation_text_size" tools:override="true">
+        11sp
+    </dimen>
+
+    <dimen xmlns:tools="http://schemas.android.com/tools" name="design_bottom_navigation_active_text_size" tools:override="true">
+        12sp
+    </dimen>
+
 </resources>
