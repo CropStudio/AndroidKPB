@@ -1,6 +1,4 @@
-package com.example.app4g.petani.anak.presenter;
-
-import android.graphics.Bitmap;
+package com.example.app4g.features.petani.anak.presenter;
 
 public interface IAnakPresenter {
     void clear();

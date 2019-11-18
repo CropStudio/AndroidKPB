@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/grey"
     android:orientation="vertical"
-    tools:context=".cart.CartActivity">
+    tools:context=".features.cart.CartActivity">
 
     <RelativeLayout
         android:id="@+id/Layouttoolbar"

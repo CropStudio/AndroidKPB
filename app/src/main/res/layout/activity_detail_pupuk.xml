@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/grey_3"
-    tools:context=".petani.detailpupuk.DetailPupukActivity">
+    tools:context=".features.petani.detailpupuk.DetailPupukActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"

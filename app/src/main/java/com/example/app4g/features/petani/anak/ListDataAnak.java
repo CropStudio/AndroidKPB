@@ -1,4 +1,4 @@
-package com.example.app4g.petani.anak;
+package com.example.app4g.features.petani.anak;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -38,23 +38,18 @@ import butterknife.OnClick;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.app4g.ListData;
 import com.example.app4g.R;
 import com.example.app4g.adapter.AdapterAnak;
 import com.example.app4g.data.DataAnak;
-import com.example.app4g.petani.MenuUtama;
-import com.example.app4g.petani.anak.model.AnakModel;
+import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,13 +59,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-
-import static java.security.AccessController.getContext;
 
 
 public class ListDataAnak extends AppCompatActivity {

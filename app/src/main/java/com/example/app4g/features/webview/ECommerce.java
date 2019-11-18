@@ -1,4 +1,4 @@
-package com.example.app4g.webview;
+package com.example.app4g.features.webview;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -19,7 +19,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.petani.MenuUtama;
+import com.example.app4g.features.petani.MenuUtama;
 
 import im.delight.android.webview.AdvancedWebView;
 
@@ -34,7 +34,7 @@ public class ECommerce extends AppCompatActivity implements AdvancedWebView.List
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecommerce);
+        setContentView(R.layout.activity_ecommerce2);
 
         requestAppPermissions();
 

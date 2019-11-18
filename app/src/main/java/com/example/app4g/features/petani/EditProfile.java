@@ -1,13 +1,9 @@
-package com.example.app4g.petani;
+package com.example.app4g.features.petani;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +26,7 @@ import com.example.app4g.R;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
-import com.example.app4g.users.model.LoginModel;
+import com.example.app4g.features.users.login.Login;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,6 +1,4 @@
-package com.example.app4g.users.registrasi.presenter;
-
-import android.graphics.Bitmap;
+package com.example.app4g.features.users.registrasi.presenter;
 
 public interface IRegisterPresenter {
     void clear();

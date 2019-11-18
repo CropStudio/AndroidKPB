@@ -1,4 +1,4 @@
-package com.example.app4g.users.registrasi.view;
+package com.example.app4g.features.users.registrasi.view;
 
 public interface IRegisterView {
     public void onClearText();

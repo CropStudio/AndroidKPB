@@ -1,4 +1,4 @@
-package com.example.app4g.rutDetail;
+package com.example.app4g.features.rutDetail;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.e_commerce.EcommerceActivity;
-import com.example.app4g.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.EcommerceActivity;
+import com.example.app4g.features.e_commerce.model.Item;
 
 import java.util.List;
 

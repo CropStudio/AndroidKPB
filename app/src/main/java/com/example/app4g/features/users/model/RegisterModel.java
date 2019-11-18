@@ -1,6 +1,4 @@
-package com.example.app4g.users.model;
-
-import android.graphics.Bitmap;
+package com.example.app4g.features.users.model;
 
 public class RegisterModel implements IUserRegister {
 

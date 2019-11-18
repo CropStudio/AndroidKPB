@@ -1,4 +1,4 @@
-package com.example.app4g.e_commerce;
+package com.example.app4g.features.e_commerce;
 
 
 import android.util.Log;
@@ -6,9 +6,9 @@ import android.widget.ImageView;
 
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
-import com.example.app4g.e_commerce.model.Item;
-import com.example.app4g.e_commerce.model.RutResponse;
-import com.example.app4g.e_commerce.model.Saldo;
+import com.example.app4g.features.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.RutResponse;
+import com.example.app4g.features.e_commerce.model.Saldo;
 
 import java.util.HashMap;
 

@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.example.app4g.session.Prefs;
 
 /*
  * 	We are creating a Application Singleton Object by extending Application, so it should be declared as a application in the "AndroidMainFests" file
@@ -20,7 +21,7 @@ public class AppController extends Application
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-
+    private static Prefs preferences;
     private static AppController mInstance;
     private static Application sApplication;
     public static Application getApplication() {
@@ -30,12 +31,16 @@ public class AppController extends Application
     public static Context getContext() {
         return getApplication().getApplicationContext();
     }
+    public static Prefs getPref() {
+        return preferences;
+    }
     @Override
     public void onCreate()
     {
         super.onCreate();
         mInstance = this;
         sApplication = this;
+        preferences = new Prefs(sApplication);
     }
 
     public static synchronized AppController getInstance()

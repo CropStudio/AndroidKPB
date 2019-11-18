@@ -13,9 +13,9 @@ public class Config_URL
 //
     public static String fotoProfilUrl      = "http://api.kartupetaniberjaya.com/potopropil/";
     //public static String fotoProfilUrl      = "http://192.168.43.156:8400/potopropil/";
-    //users
-    public static String login        = base_URL + "/users/signin";
-    public static String registrasi   = base_URL + "/users/signup";
+    //Users
+    public static String login        = base_URL + "/Users/signin";
+    public static String registrasi   = base_URL + "/Users/signup";
     public static String uploadFoto   = base_URL + "/potopropil/";
     public static String crudUser     = base_URL + "/user";
 

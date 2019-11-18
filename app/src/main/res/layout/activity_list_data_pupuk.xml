@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout"
     android:orientation="vertical"
-    tools:context=".petani.jatah.ListDataPupuk">
+    tools:context=".features.petani.jatah.ListDataPupuk">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="60dp"

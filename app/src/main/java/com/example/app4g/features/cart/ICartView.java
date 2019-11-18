@@ -1,8 +1,8 @@
-package com.example.app4g.cart;
+package com.example.app4g.features.cart;
 
 import android.app.Activity;
 
-import com.example.app4g.cart.model.Cart;
+import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.common.CommonResponse;
 
 /**

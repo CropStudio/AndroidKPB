@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">kpb</string>
-<!--        <string name="end_point">http://192.168.1.15:5050</string>-->
+    <!--        <string name="end_point">http://192.168.1.15:5050</string>-->
     <string name="img_end_point">http://testing.kartupetaniberjaya.com/admin/gambar_barang/</string>
     <string name="end_point">http://103.230.48.151:5050</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -13,7 +13,8 @@
     <string name="next">LANJUT</string>
     <string name="skip">LEWATI</string>
     <string name="start">MULAI</string>
-
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
     <!-- Donate dialog -->
     <string name="donate_dialog_title">Support me</string>
     <string name="donate_dialog_message">If you like this library project and you are willing to support me, you can donate me via Alipay or PayPal.\n\nAlipay: fythonx\@gmail.com\nPayPal: Click PAYPAL button to open a new tab.</string>

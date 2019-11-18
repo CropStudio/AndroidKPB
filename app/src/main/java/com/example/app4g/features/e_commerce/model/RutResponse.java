@@ -1,4 +1,4 @@
-package com.example.app4g.e_commerce.model;
+package com.example.app4g.features.e_commerce.model;
 
 import com.google.gson.annotations.SerializedName;
 

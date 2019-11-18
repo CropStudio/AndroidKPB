@@ -1,4 +1,4 @@
-package com.example.app4g.users.login;
+package com.example.app4g.features.users.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +13,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
-import com.example.app4g.petani.MenuUtama;
+import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.presenter.ILoginPresenter;
-import com.example.app4g.users.login.presenter.LoginPresenter;
-import com.example.app4g.users.login.view.ILoginview;
-import com.example.app4g.users.registrasi.Regist;
+import com.example.app4g.features.users.login.presenter.ILoginPresenter;
+import com.example.app4g.features.users.login.presenter.LoginPresenter;
+import com.example.app4g.features.users.login.view.ILoginview;
+import com.example.app4g.features.users.registrasi.Regist;
 import com.glide.slider.library.Animations.DescriptionAnimation;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.SliderTypes.BaseSliderView;
@@ -50,7 +51,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     ProgressBar prgBar;
 
     ILoginPresenter loginPresenter;
-    SharedPreferences prefs;
+    SharedPreferences prefs ;
     private SessionManager session;
 
     String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,kabupaten,kota,provinsi;
@@ -138,8 +139,6 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
             mDemoSlider.addSlider(sliderView);
         }
 
-        // set Slider Transition Animation
-        // mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
         mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
 
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
@@ -213,7 +212,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     public void onLoginResult(Boolean result, String msg) {
         loginPresenter.setProgressBarVisiblity(View.GONE);
         String data[] = msg.split("/");
-//        Log.v("Nganu = ", data[1]);
+        Log.v("Nganu = ", data[1]);
         if (result){
             try {
                 JSONObject jObj     = new JSONObject(data[1]);
@@ -236,19 +235,11 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
                 storeRegIdinSharedPref(getApplicationContext(),strId , strNik,strNotelp, strNama, strRole, strToken,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,
                         kabupaten,kota,provinsi);
+
 //
                 if(strRole.equals("petani")){
                     session.setLogin(true);
                     Intent a = new Intent(Login.this, MenuUtama.class);
-                    a.putExtra("id", strId);
-                    a.putExtra("nik", strNik);
-                    a.putExtra("notelp", strNotelp);
-                    a.putExtra("nama", strNama);
-                    a.putExtra("role",strRole);
-                    a.putExtra("token",strToken);
-//                    a.putExtra("ktp", strKtp);
-//                    a.putExtra("kk", strKk);
-//                    a.putExtra("pp", strPotoPropil);
                     startActivity(a);
                     finish();
                 }else {

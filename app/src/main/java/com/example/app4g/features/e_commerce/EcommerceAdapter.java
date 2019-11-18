@@ -1,4 +1,4 @@
-package com.example.app4g.e_commerce;
+package com.example.app4g.features.e_commerce;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +13,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
-import com.example.app4g.e_commerce.model.Item;
-import com.example.app4g.e_commerce.model.Rut;
+import com.example.app4g.features.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.Rut;
 import com.example.app4g.server.AppController;
 
 import java.util.ArrayList;

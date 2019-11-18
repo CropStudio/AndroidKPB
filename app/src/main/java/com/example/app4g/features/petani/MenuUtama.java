@@ -1,4 +1,4 @@
-package com.example.app4g.petani;
+package com.example.app4g.features.petani;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,46 +6,41 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.petani.anak.ListDataAnak;
+import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.petani.anak.ListDataAnak;
+import com.example.app4g.features.users.model.LoginModel;
+import com.example.app4g.features.users.model.Users;
+import com.example.app4g.server.AppController;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
+import com.example.app4g.ui.TopSnakbar;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MenuUtama extends AppCompatActivity {
-
     public SharedPreferences prefs;
     public SessionManager session;
-
+    private Users mProfile;
     String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_utama);
         ButterKnife.bind(this);
-        //getSupportActionBar().hide();
 
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -57,12 +52,7 @@ public class MenuUtama extends AppCompatActivity {
         if (hehe != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ProfileFragment()).commit();
-//            bottomNav.getMenu().findItem(R.id.profile).setChecked(true);
-//            toolbar.setVisibility(View.GONE);
-//            appBarLayout.setVisibility(View.GONE);
         }else {
-//            toolbar.setVisibility(View.VISIBLE);
-//            appBarLayout.setVisibility(View.VISIBLE);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Dashboard()).commit();
         }
@@ -148,9 +138,9 @@ public class MenuUtama extends AppCompatActivity {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 //                        keluar();
-                        session.setLogin(false);
-                        session.setSkip(false);
-                        session.setSessid(0);
+//                        session.setLogin(false);
+//                        session.setSkip(false);
+//                        session.setSessid(0);
                         Intent intent = new Intent(MenuUtama.this, Login.class);
                         startActivity(intent);
                         finish();

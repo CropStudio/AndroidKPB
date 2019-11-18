@@ -1,10 +1,10 @@
-package com.example.app4g.e_commerce;
+package com.example.app4g.features.e_commerce;
 
 import android.app.Activity;
 import android.widget.ImageView;
 
-import com.example.app4g.e_commerce.model.RutResponse;
-import com.example.app4g.e_commerce.model.Saldo;
+import com.example.app4g.features.e_commerce.model.RutResponse;
+import com.example.app4g.features.e_commerce.model.Saldo;
 
 /**
  * Created by omgimbot on 7/19/2019.

@@ -1,4 +1,4 @@
-package com.example.app4g.rutDetail;
+package com.example.app4g.features.rutDetail;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
-import com.example.app4g.e_commerce.model.Item;
-import com.example.app4g.e_commerce.model.Rut;
+import com.example.app4g.features.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.Rut;
 
 import java.util.List;
 

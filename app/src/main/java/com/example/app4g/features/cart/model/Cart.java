@@ -1,6 +1,6 @@
-package com.example.app4g.cart.model;
+package com.example.app4g.features.cart.model;
 
-import com.example.app4g.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.Item;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

@@ -7,7 +7,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#f0eff3"
-    tools:context=".users.registrasi.login.Login">
+    tools:context=".features.users.registrasi.login.Login">
 
     <TableLayout
         android:layout_width="match_parent"

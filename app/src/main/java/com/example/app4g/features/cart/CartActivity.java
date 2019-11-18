@@ -1,4 +1,4 @@
-package com.example.app4g.cart;
+package com.example.app4g.features.cart;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,14 +24,14 @@ import android.widget.TextView;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
-import com.example.app4g.cart.model.Cart;
-import com.example.app4g.cart.model.Checkout;
+import com.example.app4g.features.cart.model.Cart;
+import com.example.app4g.features.cart.model.Checkout;
 import com.example.app4g.common.CommonResponse;
-import com.example.app4g.e_commerce.EcommerceActivity;
-import com.example.app4g.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.EcommerceActivity;
+import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.ui.SweetDialogs;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
 import com.google.gson.Gson;
 
 import java.util.List;

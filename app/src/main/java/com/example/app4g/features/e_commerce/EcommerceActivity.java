@@ -1,4 +1,4 @@
-package com.example.app4g.e_commerce;
+package com.example.app4g.features.e_commerce;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
@@ -25,16 +25,16 @@ import android.widget.TextView;
 import com.example.app4g.R;
 import com.example.app4g.Utils.CircleAnimationUtil;
 import com.example.app4g.Utils.Utils;
-import com.example.app4g.cart.CartActivity;
-import com.example.app4g.petani.MenuUtama;
-import com.example.app4g.e_commerce.model.Item;
-import com.example.app4g.e_commerce.model.Rut;
-import com.example.app4g.e_commerce.model.RutResponse;
-import com.example.app4g.e_commerce.model.Saldo;
+import com.example.app4g.features.cart.CartActivity;
+import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.Rut;
+import com.example.app4g.features.e_commerce.model.RutResponse;
+import com.example.app4g.features.e_commerce.model.Saldo;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.ui.TopSnakbar;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -75,7 +75,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rut);
+        setContentView(R.layout.activity_ecommerce);
         ButterKnife.bind(this);
         this.initViews();
         prefs = getSharedPreferences("UserDetails",

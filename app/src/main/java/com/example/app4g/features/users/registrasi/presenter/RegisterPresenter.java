@@ -1,29 +1,23 @@
-package com.example.app4g.users.registrasi.presenter;
+package com.example.app4g.features.users.registrasi.presenter;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
-import com.example.app4g.server.VolleyMultipartRequest;
-import com.example.app4g.users.model.IUserRegister;
-import com.example.app4g.users.model.RegisterModel;
-import com.example.app4g.users.registrasi.view.IRegisterView;
+import com.example.app4g.features.users.model.IUserRegister;
+import com.example.app4g.features.users.model.RegisterModel;
+import com.example.app4g.features.users.registrasi.view.IRegisterView;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.example.app4g.petani.anak.model;
+package com.example.app4g.features.petani.anak.model;
 
 public class AnakModel implements IAnak{
     String nama, tglLahir, jenisKelain, idUser;

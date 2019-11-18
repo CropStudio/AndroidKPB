@@ -13,7 +13,6 @@
         android:required="true" />
 
     <application
-        tools:replace="android:theme"
         android:name=".server.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,61 +20,67 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".cart.CartActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".InformasiRekening" />
-        <activity android:name=".petani.detailpupuk.DetailPupukActivity" />
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
         <activity
-            android:name=".petani.KartuPetani"
+            android:name=".features.rut.RutActivity"
+            android:theme="@style/AppThemeMain" />
+        <activity
+            android:name=".features.cart.CartActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".InformasiRekening" />
+        <activity android:name=".features.petani.detailpupuk.DetailPupukActivity" />
+        <activity
+            android:name=".features.petani.KartuPetani"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".webview.ECommerce"
+            android:name=".features.webview.ECommerce"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".webview.KalenderTanam"
+            android:name=".features.webview.KalenderTanam"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".webview.Kios"
+            android:name=".features.webview.Kios"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".webview.PortalInformasi"
+            android:name=".features.webview.PortalInformasi"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".webview.InfoKur"
+            android:name=".features.webview.InfoKur"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".webview.InfoBeasiswa"
+            android:name=".features.webview.InfoBeasiswa"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.EditPoktan"
+            android:name=".features.petani.EditPoktan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.EditProfile"
+            android:name=".features.petani.EditProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.jatah.ListDataPupuk"
+            android:name=".features.petani.jatah.ListDataPupuk"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.anak.InputDataAnak"
+            android:name=".features.petani.anak.InputDataAnak"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.anak.ListDataAnak"
+            android:name=".features.petani.anak.ListDataAnak"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Testdoang"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".petani.MenuUtama"
-            android:screenOrientation="portrait" />
+            android:name=".features.petani.MenuUtama"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeMain" />
         <activity
             android:name=".ListData"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".users.registrasi.Regist"
+            android:name=".features.users.registrasi.Regist"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".users.login.Login"
+            android:name=".features.users.login.Login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"
@@ -91,9 +96,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity
-            android:name=".rut.RutActivity" />
-        <activity android:name=".rutDetail.RutDetailActivity" />
+        <activity android:name=".features.e_commerce.EcommerceActivity" />
+        <activity android:name=".features.rutDetail.RutDetailActivity" />
     </application>
 
 </manifest>

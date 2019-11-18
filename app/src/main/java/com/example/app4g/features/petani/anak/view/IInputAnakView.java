@@ -1,4 +1,4 @@
-package com.example.app4g.petani.anak.view;
+package com.example.app4g.features.petani.anak.view;
 
 public interface IInputAnakView {
     public void onClearText();

@@ -1,4 +1,4 @@
-package com.example.app4g.cart;
+package com.example.app4g.features.cart;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
-import com.example.app4g.e_commerce.model.Item;
+import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.server.AppController;
 
 import java.util.List;

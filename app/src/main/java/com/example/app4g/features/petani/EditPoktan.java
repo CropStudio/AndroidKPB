@@ -1,4 +1,4 @@
-package com.example.app4g.petani;
+package com.example.app4g.features.petani;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -10,23 +10,16 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.app4g.R;
-import com.example.app4g.adapter.AdapterAnak;
 import com.example.app4g.adapter.AdapterPoktan;
 import com.example.app4g.data.DataPoktan;
-import com.example.app4g.petani.anak.InputDataAnak;
-import com.example.app4g.petani.anak.ListDataAnak;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
 

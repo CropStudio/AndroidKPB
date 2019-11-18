@@ -1,4 +1,4 @@
-package com.example.app4g.users.login.view;
+package com.example.app4g.features.users.login.view;
 
 public interface ILoginview {
     public void onClearText();

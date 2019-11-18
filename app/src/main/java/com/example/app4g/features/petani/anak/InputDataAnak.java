@@ -1,11 +1,10 @@
-package com.example.app4g.petani.anak;
+package com.example.app4g.features.petani.anak;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,18 +20,13 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.app4g.MainActivity;
 import com.example.app4g.R;
-import com.example.app4g.petani.anak.presenter.AnakPresenter;
-import com.example.app4g.petani.anak.presenter.IAnakPresenter;
-import com.example.app4g.petani.anak.view.IInputAnakView;
+import com.example.app4g.features.petani.anak.presenter.AnakPresenter;
+import com.example.app4g.features.petani.anak.presenter.IAnakPresenter;
+import com.example.app4g.features.petani.anak.view.IInputAnakView;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
-import com.example.app4g.users.registrasi.Regist;
-import com.example.app4g.users.registrasi.presenter.IRegisterPresenter;
-import com.example.app4g.users.registrasi.presenter.RegisterPresenter;
+import com.example.app4g.features.users.login.Login;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

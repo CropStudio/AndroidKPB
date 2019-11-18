@@ -1,4 +1,4 @@
-package com.example.app4g.petani.jatah;
+package com.example.app4g.features.petani.jatah;
 
 
 import android.app.ProgressDialog;
@@ -17,21 +17,18 @@ import android.widget.Toast;
 import butterknife.BindView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.app4g.R;
 import com.example.app4g.adapter.AdapterPupuk;
 import com.example.app4g.data.DataPupuk;
-import com.example.app4g.petani.MenuUtama;
-import com.example.app4g.petani.detailpupuk.DetailPupukActivity;
+import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.petani.detailpupuk.DetailPupukActivity;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -220,7 +217,7 @@ public class ListDataPupuk extends AppCompatActivity {
 //
 //    @OnClick(R.id.btnTambahDataAnak)
 //    void btnTambahDataAnak() {
-//        Intent a = new Intent(com.example.app4g.petani.anak.ListDataAnak.this, InputDataAnak.class);
+//        Intent a = new Intent(com.example.app4g.features.petani.anak.ListDataAnak.this, InputDataAnak.class);
 //        startActivity(a);
 //        finish();
 //    }

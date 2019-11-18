@@ -1,4 +1,4 @@
-package com.example.app4g.petani.detailpupuk;
+package com.example.app4g.features.petani.detailpupuk;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.app4g.R;
-import com.example.app4g.petani.jatah.ListDataPupuk;
+import com.example.app4g.features.petani.jatah.ListDataPupuk;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

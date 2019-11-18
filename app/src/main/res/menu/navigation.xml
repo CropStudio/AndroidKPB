@@ -11,14 +11,14 @@
         android:icon="@drawable/ic_farmer_profile"
         android:title="@string/title_dashboard" />
 
-    <item
-        android:id="@+id/dataAnak"
-        android:icon="@drawable/ic_boy_main"
-        android:title="@string/title_anak" />
+<!--    <item-->
+<!--        android:id="@+id/dataAnak"-->
+<!--        android:icon="@drawable/ic_boy_main"-->
+<!--        android:title="@string/title_anak" />-->
 
-    <item
-        android:id="@+id/exit"
-        android:icon="@drawable/ic_exit_app"
-        android:title="@string/title_exit" />
+<!--    <item-->
+<!--        android:id="@+id/exit"-->
+<!--        android:icon="@drawable/ic_exit_app"-->
+<!--        android:title="@string/title_exit" />-->
 
 </menu>

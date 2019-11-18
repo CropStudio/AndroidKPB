@@ -1,11 +1,10 @@
-package com.example.app4g.users.login.presenter;
+package com.example.app4g.features.users.login.presenter;
 
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -14,16 +13,17 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.app4g.features.users.model.Users;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
-import com.example.app4g.users.login.view.ILoginview;
-import com.example.app4g.users.model.IUserLogin;
-import com.example.app4g.users.model.LoginModel;
+import com.example.app4g.features.users.login.view.ILoginview;
+import com.example.app4g.features.users.model.IUserLogin;
+import com.example.app4g.features.users.model.LoginModel;
+import com.example.app4g.session.Prefs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +41,19 @@ public class LoginPresenter implements ILoginPresenter{
     public LoginPresenter(ILoginview iLoginView) {
        this.iLoginView = iLoginView;
        handler = new Handler(Looper.getMainLooper());
+    }
+    @Override
+    public boolean isLoggedIn(){
+        return AppController.getPref().getBoolean(Prefs.PREF_IS_LOGEDIN, false);
+    }
+    @Override
+    public void storeAccessToken(String token){
+        AppController.getPref().put(Prefs.PREF_ACCESS_TOKEN, token);
+    }
+    @Override
+    public void storeProfile(String data){
+        AppController.getPref().put(Prefs.PREF_STORE_PROFILE, data);
+        AppController.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
     }
 
     @Override
@@ -72,7 +85,6 @@ public class LoginPresenter implements ILoginPresenter{
 //                .encodeToString(encoded.getBytes());
 
         String tag_string_req = "req_login";
-        Log.d("URLNYANIH" , Config_URL.login);
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 Config_URL.login, new Response.Listener<String>() {
             @Override
@@ -87,6 +99,7 @@ public class LoginPresenter implements ILoginPresenter{
                         @Override
                         public void run() {
                             if(status == true){
+
                                 String msg = null;
                                 String api_token = null;
                                 String res = null;
@@ -98,7 +111,7 @@ public class LoginPresenter implements ILoginPresenter{
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                iLoginView.onLoginResult(status, msg + "/"+ res + "/" + api_token);
+                                iLoginView.onLoginResult(status, msg + "/"+ res + "/" + api_token );
                             }else {
                                 String msg = null;
                                 try {

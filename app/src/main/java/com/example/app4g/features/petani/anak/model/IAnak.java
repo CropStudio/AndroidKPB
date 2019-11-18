@@ -1,4 +1,4 @@
-package com.example.app4g.petani.anak.model;
+package com.example.app4g.features.petani.anak.model;
 
 public interface IAnak {
     String getNama() ;

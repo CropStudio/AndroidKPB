@@ -1,4 +1,4 @@
-package com.example.app4g.users.model;
+package com.example.app4g.features.users.model;
 
 public class LoginModel implements IUserLogin {
     String nik, password;

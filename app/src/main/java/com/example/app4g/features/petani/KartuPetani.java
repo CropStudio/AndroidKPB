@@ -1,4 +1,4 @@
-package com.example.app4g.petani;
+package com.example.app4g.features.petani;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.app4g.R;
 import com.example.app4g.session.SessionManager;
-import com.example.app4g.users.login.Login;
+import com.example.app4g.features.users.login.Login;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
