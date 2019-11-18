@@ -1,311 +1,391 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!--image profile-->
-
-
-    <RelativeLayout
-        android:id="@+id/rellay1"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/grad"
-        android:padding="10dp">
+        android:layout_height="250dp">
 
         <RelativeLayout
-            android:id="@+id/RelativeImgProfile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:src="@drawable/user_default_farmer"
-                app:civ_border_width="1dp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background_profile" />
+
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/imgUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/RelativeImgProfile"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_farmer_profile"
+                    app:civ_border_color="#80FFFFFF"
+                    app:civ_border_width="5dp"
+                    app:civ_circle_background_color="@color/c_white" />
+
+                <ImageButton
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/rounded_left"
+                    android:padding="7dp"
+                    android:layout_marginLeft="-15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_cam" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_user"
+                android:layout_height="50dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/mNama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imgUser"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Joey Tribbiani"
+                    android:text="ADI PERMANA"
+                    android:textAllCaps="true"
                     android:textColor="@color/c_white"
-                    android:textSize="20sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/mNik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/mNik"
-                    android:fontFamily="sans-serif"
                     android:text="187110022124221025"
-                    android:textAllCaps="true"
                     android:textColor="@color/c_white"
-                    android:textSize="12sp" />
-
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rellay1"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/material_blue_grey_95"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="3">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/iconfinder_layers_grass_37644" />
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="2dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="8dp">
+                        android:padding="5dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="MT 1"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mMt1"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="0.750"
-                            android:textColor="@color/c_white"
-                            android:textSize="15sp" />
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mMt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="-5dp"
+                                android:text="ha"
+                                android:textSize="10dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Luas Tanah 1" />
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="65dp"
-                    android:background="@color/colorPrimary" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/iconfinder_layers_grass_37644" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="MT 2"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mMt2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="0.750"
-                            android:textColor="@color/c_white"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="65dp"
-                    android:background="@color/colorPrimary" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/iconfinder_layers_grass_37644" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="MT 3"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mMt3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="0.750"
-                            android:textColor="@color/c_white"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="2dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mMt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="-5dp"
+                                android:text="ha"
+                                android:textSize="10dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Luas Tanah 2" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="2dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mMt3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="-5dp"
+                                android:text="ha"
+                                android:textSize="10dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Luas Tanah 3" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:background="#F5F0F0"
+            android:gravity="center|left"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_details" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Details" />
+
+            <TextView
+                android:id="@+id/mPoktan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:gravity="right"
+                android:text="POKTAN"
+                android:textColor="#1ADE66" />
 
-                <android.support.design.widget.TextInputLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:clickable="true"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Alamat"
-                    android:textColorHint="@color/c_black">
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="2">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/mAddress"
-                        android:textAllCaps="true"
-                        android:textSize="12dp"
-                        android:maxLines="4"
-                        android:lines="2"
-                        android:inputType="textMultiLine"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_height="fill_parent"
-                        android:backgroundTint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="No. HP"
-                    android:textColorHint="@color/c_black">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/mPhone"
-                        android:layout_width="match_parent"
-                        android:textSize="12dp"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:inputType="textMultiLine"/>
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="7dp">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Poktan"
-                    android:textColorHint="@color/c_black">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Alamat Lengkap"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/mPoktan"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:inputType="textMultiLine"/>
-                </android.support.design.widget.TextInputLayout>
+                            <TextView
+                                android:id="@+id/mAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="3"
+                               />
 
+                        </LinearLayout>
 
-            </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#ECE8E8" />
 
-        </ScrollView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="7dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nomor Handphone"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0895389613806" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_edit_profile" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
