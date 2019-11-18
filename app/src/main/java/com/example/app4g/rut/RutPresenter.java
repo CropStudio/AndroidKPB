@@ -1,7 +1,9 @@
 package com.example.app4g.rut;
 
 
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.app4g.network.NetworkService;
@@ -9,6 +11,7 @@ import com.example.app4g.network.RestService;
 import com.example.app4g.rut.model.Item;
 import com.example.app4g.rut.model.Rut;
 import com.example.app4g.rut.model.RutResponse;
+import com.example.app4g.rut.model.Saldo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,8 +37,7 @@ public class RutPresenter {
         restService = RestService.getRetrofitInstance();
     }
 
-
-    void getSkema(String username, String token) {
+    void showProduct() {
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
 //            Request original = chain.request();
 //            Request request = original.newBuilder()
@@ -46,7 +48,8 @@ public class RutPresenter {
 //
 //            return chain.proceed(request);
 //        }).build();
-        restService.create(NetworkService.class).getSkema()
+        view.showLoadingIndicator();
+        restService.create(NetworkService.class).showProduct()
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
@@ -63,8 +66,36 @@ public class RutPresenter {
                     }
                 });
     }
+    void getSaldo(String nik) {
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+//            Request original = chain.request();
+//            Request request = original.newBuilder()
+//                    .header("x-access-token", token)
+//                    .header("username", username)
+//                    .method(original.method(), original.body())
+//                    .build();
+//
+//            return chain.proceed(request);
+//        }).build();
+        view.showLoadingIndicator();
+        restService.create(NetworkService.class).getSaldo(nik)
+                .enqueue(new Callback<Saldo>() {
+                    @Override
+                    public void onResponse(Call<Saldo> call, Response<Saldo> response) {
+                        view.hideLoadingIndicator();
+                        //Log.d("Messg", String.valueOf(response.body()));
+                        view.onDataSaldo(response.body());
 
-    void createCart(String nik , Item rut) {
+                    }
+
+                    @Override
+                    public void onFailure(Call<Saldo> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
+    }
+    void createCart(String nik , Item rut , ImageView img) {
         //Log.d("namaitem",rut.getNamaItem());
         HashMap<String, Object> params = new HashMap<>();
         params.put("nik",nik);
@@ -79,7 +110,7 @@ public class RutPresenter {
                 view.hideLoadingIndicator();
                 Log.i("MESSAGE" , ""+response.body());
                 if (response.body().getSuccess()) {
-                    view.onCreateSuccess(response.body());
+                    view.onAddTocartSuccess(response.body(),img);
                 }
             }
 

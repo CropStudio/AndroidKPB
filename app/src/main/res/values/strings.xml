@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">kpb</string>
-    <!--    <string name="end_point">http://192.168.1.2:5050</string>-->
+<!--        <string name="end_point">http://192.168.1.15:5050</string>-->
     <string name="img_end_point">http://testing.kartupetaniberjaya.com/admin/gambar_barang/</string>
     <string name="end_point">http://103.230.48.151:5050</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -8,8 +8,12 @@
     <string name="section_format">Page %1$d</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Profile</string>
-    <string name="title_anak">Data anak</string>
-    <string name="title_exit">Keluar</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="title_exit">Exit</string>
+    <string name="title_anak">Data Anak</string>
+
     <string name="next">LANJUT</string>
     <string name="skip">LEWATI</string>
     <string name="start">MULAI</string>

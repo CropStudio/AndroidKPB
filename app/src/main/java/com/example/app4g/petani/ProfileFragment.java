@@ -13,16 +13,22 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -79,48 +85,27 @@ public class ProfileFragment extends Fragment {
     public SharedPreferences prefs;
     public SessionManager session;
 
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
+    String strId, strNik, strNotelp, strNama, strRole, strToken, strPotoPropil, namaPoktan, alamat, mt1, mt2, mt3, kecamatan, kabupaten, kota, provinsi;
 
-    @BindView(R.id.nik)
-    TextView txtNik;
-    @BindView(R.id.namaLengkap)
-    TextView txtNama;
-    @BindView(R.id.nohp)
-    TextView txtTelp;
-    @BindView(R.id.alamat)
-    TextView alamat;
-    @BindView(R.id.poktan)
-    TextView poktan;
-    @BindView(R.id.fotoProfil)
-    CircleImageView fotoprofile;
-    @BindView(R.id.progress_login)
-    ProgressBar prgBar;
+    @BindView(R.id.mNama)
+    TextView mNama;
+    @BindView(R.id.mNik)
+    TextView mNik;
+    @BindView(R.id.mPhone)
+    TextView mPhone;
+    @BindView(R.id.mAddress)
+    TextView mAddress;
+    @BindView(R.id.mPoktan)
+    TextView mPoktan;
+    @BindView(R.id.mMt1)
+    TextView mMt1;
+    @BindView(R.id.mMt2)
+    TextView mMt2;
+    @BindView(R.id.mMt3)
+    TextView mMt3;
+    @BindView(R.id.profile_image)
+    CircleImageView mProfileImg;
 
-    @BindView(R.id.layout)
-    LinearLayout layout;
-
-    RetryPolicy policy = new DefaultRetryPolicy(5000,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-
-    private final int CameraR_PP = 1;
-    String mCurrentPhotoPath;
-
-    private RequestQueue rQueue;
-    Dialog myDialog;
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profile");
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -130,73 +115,17 @@ public class ProfileFragment extends Fragment {
 
         prefs = getActivity().getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
-        if(Build.VERSION.SDK_INT>=24){
-            try{
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
                 m.invoke(null);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        myDialog = new Dialog(getActivity());
         isLogin();
+
         return view;
-    }
-
-    @OnClick(R.id.linearEditProfile)
-    void editProfile(){
-        Intent i = new Intent(getActivity(), EditProfile.class);
-        i.putExtra("datanya", "hehe");
-        i.putExtra("namapoktan", poktan.getText().toString());
-        i.putExtra("alamat", alamat.getText().toString());
-        startActivity(i);
-        getActivity().finish();
-    }
-
-    @OnClick(R.id.relativeclick)
-    void clickDetailImage(){
-        myDialog.setContentView(R.layout.view_image);
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-
-        ImageView img = (ImageView) myDialog.findViewById(R.id.imageView);
-        final ProgressBar progressBar = (ProgressBar) myDialog.findViewById(R.id.progress_login);
-
-        if (strPotoPropil.length() == 4){
-            Picasso.get().load(Config_URL.fotoProfilUrl+"noimage.png").fit().centerCrop()
-                    .into(img, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            if (progressBar != null) {
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                        }
-
-                    });
-        }else {
-            Picasso.get().load(Config_URL.fotoProfilUrl+
-                    strPotoPropil).fit().centerCrop()
-                    .into(img, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            if (progressBar != null) {
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                        }
-
-                    });
-        }
-
-        myDialog.show();
-
     }
 
     @Override
@@ -205,331 +134,44 @@ public class ProfileFragment extends Fragment {
         //setContentView(R.layout.activity_profile_fragment);
     }
 
-    public void isLogin(){
+    public void isLogin() {
         // Session manager
         session = new SessionManager(getActivity());
         //Session Login
-        if(session.isLoggedIn()){
-            strId       = prefs.getString("id","");
-            strNik      = prefs.getString("nik","");
-            strNotelp   = prefs.getString("notelp", "");
-            strNama     = prefs.getString("nama", "");
-            strRole     = prefs.getString("role", "");
-            strToken    = prefs.getString("token", "");
-            strKtp      = prefs.getString("ktp", "");
-            strKk       = prefs.getString("kk","");
-            strPotoPropil=prefs.getString("pp","");
+        if (session.isLoggedIn()) {
+            strId = prefs.getString("id", "");
+            strNik = prefs.getString("nik", "");
+            strNotelp = prefs.getString("notelp", "");
+            strNama = prefs.getString("nama", "");
+            strRole = prefs.getString("role", "");
+            strToken = prefs.getString("token", "");
+            strPotoPropil = prefs.getString("pp", "");
+            namaPoktan = prefs.getString("nama_poktan", "");
+            alamat = prefs.getString("alamat", "");
+            mt1 = prefs.getString("mt1", "");
+            mt2 = prefs.getString("mt2", "");
+            mt3 = prefs.getString("mt3", "");
+            kecamatan = prefs.getString("kecamatan", "");
+            kabupaten = prefs.getString("kabupaten", "");
+            kota = prefs.getString("kota", "");
+            provinsi = prefs.getString("provinsi", "");
 
-            txtNik.setText(strNik);
-            txtNama.setText(strNama);
-            txtTelp.setText(strNotelp);
-            cekPetani(strNik);
-            ppCek();
+            mNik.setText(strNik);
+            mNama.setText(strNama);
+            mPhone.setText(strNotelp);
+            mAddress.setText(alamat + ", KEC. " + kecamatan + ", KAB. " + kabupaten + ", " + provinsi);
+            mPoktan.setText(namaPoktan);
+            mMt1.setText(mt1);
+            mMt2.setText(mt2);
+            mMt3.setText(mt3);
+            mAddress.setEnabled(false);
+            mPhone.setEnabled(false);
+            mPoktan.setEnabled(false);
 
-        }else{
+        } else {
             Intent a = new Intent(getActivity().getApplicationContext(), Login.class);
             startActivity(a);
             getActivity().finish();
         }
-    }
-
-    public void cekPetani(String nikPetani){
-        String tag_string_req = "req_login";
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                Config_URL.cekPetani+nikPetani, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("msg", "Data petani: " + response.toString());
-
-                try {
-                    final JSONObject jObj = new JSONObject(response);
-                    final boolean status = jObj.getBoolean("status");
-
-                    if(status == true){
-
-                        String msg = jObj.getString("message");
-                        JSONObject jsonObject = new JSONObject(msg);
-                        String nama             = jsonObject.getString("nama");
-                        String poktans           = jsonObject.getString("nama_poktan");
-                        String kab              = jsonObject.getString("kabupaten");
-                        String kec              = jsonObject.getString("kecamatan");
-                        String des              = jsonObject.getString("desa");
-                        String jenis_kelamin    = jsonObject.getString("jenis_kelamin");
-                        final String niks    = jsonObject.getString("nik");
-
-                        if(!poktans.equals("null")){
-                            poktan.setText(" "+poktans);
-                        }else {
-                            poktan.setText(" -");
-                        }
-                        if(!kab.equals("null") && !kec.equals("null") && !des.equals("null")){
-                            alamat.setText(" "+kab+", "+kec+", "+des);
-                        }else if(!kab.equals("null") && !kec.equals("null")){
-                            alamat.setText(" "+kab+", "+kec);
-                        }else if(!kec.equals("null") && !des.equals("null")){
-                            alamat.setText(" "+kec+", "+des);
-                        }else if(!kab.equals("null") && !des.equals("null")){
-                            alamat.setText(" "+kab+", "+des);
-                        }else if(!kab.equals("null")){
-                            alamat.setText(" "+kab);
-                        }else if(!kec.equals("null")){
-                            alamat.setText(" "+kec);
-                        }else if(!des.equals("null")){
-                            alamat.setText(" "+des);
-                        }else{
-                            alamat.setText(" -");
-                        }
-
-
-                    }else {
-
-                    }
-
-                }catch (JSONException e){
-
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-
-            @Override
-            public void onErrorResponse(VolleyError error){
-                Log.e("msg", "Login Error : " + error.getMessage());
-                error.printStackTrace();
-                snacBars("Ups server tidak meresponse");
-            }
-        });
-        strReq.setRetryPolicy(policy);
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
-
-    public void snacBars(String text){
-        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
-        View view = snackbar.getView();
-        FrameLayout.LayoutParams params=(FrameLayout.LayoutParams)view.getLayoutParams();
-        params.gravity = Gravity.TOP;
-        view.setBackgroundColor(layout.getResources().getColor(R.color.red));
-        view.setLayoutParams(params);
-        snackbar.show();
-    }
-
-    public void snacBarsGreen(String text){
-        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
-        View view = snackbar.getView();
-        FrameLayout.LayoutParams params= (FrameLayout.LayoutParams)view.getLayoutParams();
-        params.gravity = Gravity.TOP;
-        view.setBackgroundColor(layout.getResources().getColor(R.color.bg_screen3));
-        view.setLayoutParams(params);
-        snackbar.show();
-    }
-
-    public void ppCek(){
-        if (strPotoPropil.length() == 4){
-            Picasso.get().load(Config_URL.fotoProfilUrl+"noimage.png").fit().centerCrop()
-                    .into(fotoprofile, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            if (prgBar != null) {
-                                prgBar.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                        }
-
-                    });
-        }else {
-            Picasso.get().load(Config_URL.fotoProfilUrl+ strPotoPropil).fit().centerCrop()
-                    .into(fotoprofile, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            if (prgBar != null) {
-                                prgBar.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                        }
-
-                    });
-        }
-    }
-
-    @OnClick(R.id.addImg)
-    void ambilGambar(){
-        addPermission();
-
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Log.i("Tags", "IOException");
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(cameraIntent, CameraR_PP);
-            }
-        }
-    }
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  // prefix
-                ".jpg",         // suffix
-                storageDir      // directory
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        return image;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == getActivity().RESULT_CANCELED) {
-            return;
-        }
-        if (requestCode == CameraR_PP) {
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), Uri.parse(mCurrentPhotoPath));
-                fotoprofile.setImageBitmap(bitmap);
-                uploadPotoProfile(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(getActivity(), "Failed!", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
-    private void uploadPotoProfile(final Bitmap bitmap){
-
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Config_URL.uploadFoto+strId,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        Log.d("ressssssoo",new String(response.data));
-                        rQueue.getCache().clear();
-                        try {
-                            JSONObject jsonObject = new JSONObject(new String(response.data));
-
-                            if (jsonObject.getString("status").equals("true")) {
-
-                                strPotoPropil = jsonObject.getString("foto");
-                                getImageNew(getActivity().getApplicationContext(), strPotoPropil);
-                                //Picasso.get().load(Config_URL.base_URL+"/users/foto/"+
-                                Picasso.get().load(Config_URL.fotoProfilUrl+
-                                        strPotoPropil).fit().centerCrop()
-                                        .into(fotoprofile, new com.squareup.picasso.Callback() {
-                                            @Override
-                                            public void onSuccess() {
-                                                if (prgBar != null) {
-                                                    prgBar.setVisibility(View.GONE);
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onError(Exception e) {
-                                            }
-
-                                        });
-                                Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                return params;
-            }
-
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                params.put("poto_profile", new DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap)));
-                return params;
-            }
-        };
-
-        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        rQueue = Volley.newRequestQueue(getActivity());
-        rQueue.add(volleyMultipartRequest);
-    }
-
-    public void addPermission(){
-        Dexter.withActivity(getActivity())
-                .withPermissions(
-
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        // check if all permissions are granted
-                        if (report.areAllPermissionsGranted()) {
-                            //Toast.makeText(getActivity(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        // check for permanent denial of any permission
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).
-                withErrorListener(new PermissionRequestErrorListener() {
-                    @Override
-                    public void onError(DexterError error) {
-                        Toast.makeText(getActivity(), "Some Error! ", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .onSameThread()
-                .check();
-    }
-
-    private void getImageNew(Context context, String foto) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("pp", foto);
-        editor.commit();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.app4g.rut;
 
 import android.app.Activity;
+import android.widget.ImageView;
 
 import com.example.app4g.rut.model.Rut;
 import com.example.app4g.rut.model.RutResponse;
+import com.example.app4g.rut.model.Saldo;
 
 import java.util.List;
 
@@ -20,9 +22,11 @@ public interface IRutView {
 
     void onDataReady(RutResponse ruts);
 
+    void onDataSaldo(Saldo saldo);
+
     void onNetworkError(String cause);
 
-    void onCreateSuccess(RutResponse ruts);
+    void onAddTocartSuccess(RutResponse ruts, ImageView img);
 
     void showLoadingIndicator();
 

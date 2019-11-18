@@ -20,7 +20,8 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -30,13 +31,38 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/shopping_bag" />
+            <ImageView
+                android:id="@+id/icon_image_copy"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/shopping_bag" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="left"
+            android:id="@+id/mSubsidi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_charter_complete"
+            android:fontFamily="@font/nanum_regular"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:text="subsidi"
+            android:textAllCaps="true"
+            android:textSize="10dp"
+            android:textStyle="bold" />
 
         <LinearLayout
+            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:padding="3dp">
 

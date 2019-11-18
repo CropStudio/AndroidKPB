@@ -2,6 +2,7 @@ package com.example.app4g.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.Settings;
 
 import com.example.app4g.R;
@@ -114,6 +115,7 @@ public class SweetDialogs {
         dialog.setCancelable(false);
         dialog.setTitleText("Berhasil Memuat permintaan");
         dialog.setContentText(body);
+
         dialog.setConfirmText("OK");
         dialog.setConfirmClickListener(sweetAlertDialog -> {
             
@@ -123,7 +125,35 @@ public class SweetDialogs {
         dialog.show();
     }
 
-    public static void confirmDialog(Activity context, String Title , String body, onDialogClosed listener) {
+    public static void commonSuccessWithIntent(Activity context, String body, onDialogClosed listener) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE);
+        dialog.setCancelable(false);
+        dialog.setTitleText("Berhasil Memuat permintaan");
+        dialog.setContentText(body);
+        dialog.setConfirmText("OK");
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+                sweetAlertDialog.dismissWithAnimation();
+                listener.onClosed("Sukses");
+        });
+        dialog.show();
+    }
+
+    public static void Loading(Activity context, String body) {
+        SweetAlertDialog pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+    public static void Loading(Activity context) {
+        SweetAlertDialog pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.dismiss();
+    }
+
+    public static void confirmDialog(Activity context, String Title , String body, String suksesBody, onDialogClosed listener) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
         dialog.setTitleText(Title);
         dialog.setContentText(body);
@@ -131,11 +161,9 @@ public class SweetDialogs {
         dialog.setConfirmText("Yes");
         dialog.showCancelButton(true);
         dialog.setCancelable(false);
-
-
         dialog.setConfirmClickListener(sweetAlertDialog -> {
             sweetAlertDialog.dismissWithAnimation();
-            listener.onClosed("Berhasil Membuka Kelas");
+            listener.onClosed(suksesBody);
         });
         dialog.show();
     }
