@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
-            android:name=".features.rut.RutActivity"
+            android:name=".features.product.RutActivity"
             android:theme="@style/AppThemeMain" />
         <activity
             android:name=".features.cart.CartActivity"

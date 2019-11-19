@@ -26,9 +26,9 @@ import com.example.app4g.R;
 import com.example.app4g.Utils.CircleAnimationUtil;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.cart.CartActivity;
+import com.example.app4g.features.e_commerce.model.Product;
 import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.features.e_commerce.model.Rut;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
 import com.example.app4g.session.SessionManager;
@@ -322,9 +322,9 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     }
 
     @Override
-    public void onSelect(Rut rut) {
+    public void onSelect(Product product) {
 //        Intent i = new Intent(this, RutDetailActivity.class);;
-//        i.putExtra("item", (Serializable) rut.getmItem());
+//        i.putExtra("item", (Serializable) product.getmItem());
 //        startActivity(i);
 //        finish();
     }

@@ -10,25 +10,16 @@ import com.example.app4g.features.cart.model.Cart;
  */
 
 public interface IRutView {
-    void initViews();
 
-    void clearLightStatusBar(Activity activity);
+    void initView();
 
-    void onDataReady(Cart carts);
+    void onCreateRut();
 
-    void onCheckout();
-
-    void onCheckoutSuccess(CommonResponse response);
-
-    void onCheckoutFail(CommonResponse response);
-
-    void onNetworkError(String cause);
+    void onCreateRutSuccess();
 
     void showLoadingIndicator();
 
     void hideLoadingIndicator();
 
-    void goToDashboard();
-
-    void goToCart();
+    void onNetworkError(String cause);
 }

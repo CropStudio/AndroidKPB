@@ -1,5 +1,6 @@
 package com.example.app4g.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,6 +56,9 @@ public class DrawerHeader {
             strRole = prefs.getString("role", "");
             strToken = prefs.getString("token", "");
             strPotoPropil = prefs.getString("pp", "");
+        }else {
+            mContext.startActivity(new Intent(mContext, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            ((Activity)mContext).finish();
         }
         nameTxt.setText(strNama);
 

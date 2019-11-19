@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.rut.RutActivity">
+    tools:context=".features.product.RutActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -38,10 +38,11 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Alamat"
+            android:hint="Luas Lahan"
             android:textColorHint="@color/c_black">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/mLuasLahan"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:backgroundTint="@color/colorPrimaryDark"
@@ -53,47 +54,42 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+
+        <EditText
+            android:id="@+id/mUrea"
+            android:hint="UREA"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alamat"
-            android:textColorHint="@color/c_black">
+            android:layout_height="match_parent"/>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/mAddress"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:inputType="textMultiLine"
-                android:lines="2"
-                android:maxLines="4"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/mNpk"
+            android:hint="NPK"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alamat"
-            android:textColorHint="@color/c_black">
+            android:layout_height="match_parent"/>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/mAddress"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:inputType="textMultiLine"
-                android:lines="2"
-                android:maxLines="4"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
+        <EditText
+            android:id="@+id/mHci"
+            android:hint="HCI"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        </android.support.design.widget.TextInputLayout>
+        <EditText
+            android:id="@+id/mPhonska"
+            android:hint="PHONSKA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
+        <EditText
+            android:id="@+id/mOrganik"
+            android:hint="ORGANIK"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
+        <Button
+            android:id="@+id/mSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_rounded_green"
+            android:text="Simpan"/>
     </LinearLayout>
 </RelativeLayout>

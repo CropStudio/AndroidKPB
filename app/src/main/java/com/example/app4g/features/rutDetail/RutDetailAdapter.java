@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.features.e_commerce.model.Rut;
+import com.example.app4g.features.e_commerce.model.Product;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class RutDetailAdapter extends RecyclerView.Adapter<RutDetailAdapter.View
     private String matkul ;
     Activity context ;
     public interface OnItemSelected {
-        void onSelect(Rut rut);
+        void onSelect(Product product);
     }
 
     public RutDetailAdapter(List<Item> data, Activity context) {

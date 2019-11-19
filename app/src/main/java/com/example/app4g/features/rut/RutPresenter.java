@@ -9,6 +9,7 @@ import com.example.app4g.features.cart.ICartView;
 import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.features.e_commerce.model.RutResponse;
+import com.example.app4g.features.rut.model.Rut;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 
@@ -26,35 +27,37 @@ import retrofit2.Retrofit;
  */
 
 public class RutPresenter {
-    final ICartView view;
+    final IRutView view;
     public final Retrofit restService;
 
-    public RutPresenter(ICartView view) {
+    public RutPresenter(IRutView view) {
         this.view = view;
         restService = RestService.getRetrofitInstance();
     }
 
 
-    void onCreateRut(String nik , Item rut ) {
+    void createRut(String nik , Rut ruts ) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("nik",nik);
-        params.put("id", rut.get_id());
-        params.put("namaBarang", rut.getNamaItem());
-        params.put("harga", rut.getHarga());
-        params.put("foto", rut.getFoto());
+        params.put("id", ruts.getHci());
+        params.put("namaBarang", ruts.getNpk());
+        params.put("harga", ruts.getOrganik());
+        params.put("foto", ruts.getPhonska());
+        params.put("foto", ruts.getUrea());
+        params.put("foto", ruts.getLuas_lahan());
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).createCart(params).enqueue(new Callback<RutResponse>() {
+        restService.create(NetworkService.class).createRut(params).enqueue(new Callback<CommonResponse>() {
             @Override
-            public void onResponse(retrofit2.Call<RutResponse> call, Response<RutResponse> response) {
+            public void onResponse(retrofit2.Call<CommonResponse> call, Response<CommonResponse> response) {
                 view.hideLoadingIndicator();
                 Log.i("MESSAGE" , ""+response.body());
                 if (response.body().getSuccess()) {
-                    //view.onAddTocartSuccess(response.body(),img);
+                    view.onCreateRutSuccess();
                 }
             }
 
             @Override
-            public void onFailure(retrofit2.Call<RutResponse> call, Throwable t) {
+            public void onFailure(retrofit2.Call<CommonResponse> call, Throwable t) {
                 view.hideLoadingIndicator();
                 view.onNetworkError(t.getLocalizedMessage());
             }

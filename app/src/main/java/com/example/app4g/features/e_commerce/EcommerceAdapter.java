@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.features.e_commerce.model.Rut;
+import com.example.app4g.features.e_commerce.model.Product;
 import com.example.app4g.server.AppController;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
     Activity context ;
 
     public interface OnItemSelected {
-        void onSelect(Rut rut);
+        void onSelect(Product product);
     }
 
     public interface onCartSelected {

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by omgimbot on 10/12/2019.
  */
 
-public class Rut implements Serializable {
+public class Product implements Serializable {
     @SerializedName("name")
     private String mName;
 
