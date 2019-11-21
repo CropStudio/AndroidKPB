@@ -7,7 +7,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#f0eff3"
-    tools:context=".features.users.registrasi.login.Login">
+    tools:context=".features.users.registrasi.Regist">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -153,12 +153,6 @@
             android:textColor="@color/mainTextDark"
             android:textSize="14dp" />
 
-        <ProgressBar
-            android:id="@+id/progress_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.WhiteAccent"
-            android:layout_marginTop="5dp" />
     </LinearLayout>
     </TableLayout>
 </ScrollView>

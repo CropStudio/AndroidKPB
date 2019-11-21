@@ -1,30 +1,24 @@
 package com.example.app4g.features.petani;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
 import com.example.app4g.R;
 import com.example.app4g.features.petani.jatah.ListDataPupuk;
 import com.example.app4g.features.e_commerce.EcommerceActivity;
 import com.example.app4g.features.rut.RutActivity;
-import com.example.app4g.session.SessionManager;
 import com.example.app4g.ui.DrawerHeader;
 import com.example.app4g.ui.DrawerMenuItem;
-import com.example.app4g.ui.TopSnakbar;
 import com.example.app4g.features.webview.InfoBeasiswa;
 import com.example.app4g.features.webview.InfoKur;
 import com.example.app4g.features.webview.KalenderTanam;
@@ -39,8 +33,7 @@ import butterknife.OnClick;
 
 public class Dashboard extends Fragment {
 
-    public SharedPreferences prefs;
-    public SessionManager session;
+
     private int[] mImages = new int[]{R.drawable.slide_1, R.drawable.slide_2, R.drawable.slide_3, R.drawable.slide_4};
     CarouselView carouselView;
     @BindView(R.id.list_viewpager)
@@ -58,9 +51,6 @@ public class Dashboard extends Fragment {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
         this.setupDrawer();
-        session = new SessionManager(getActivity());
-        prefs = getActivity().getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
         carouselView = view.findViewById(R.id.carousel);
         carouselView.setPageCount(mImages.length);
         carouselView.setImageListener(new ImageListener() {

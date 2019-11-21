@@ -20,7 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.app4g.R;
 import com.example.app4g.adapter.AdapterPoktan;
 import com.example.app4g.data.DataPoktan;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 
 import org.json.JSONArray;
@@ -193,7 +193,7 @@ public class EditPoktan extends AppCompatActivity {
         }){
         };
 
-        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
+        App.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
 
     private void showDialog() {

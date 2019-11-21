@@ -1,10 +1,8 @@
 package com.example.app4g.features.petani;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,53 +12,28 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.features.petani.anak.ListDataAnak;
-import com.example.app4g.features.users.model.LoginModel;
-import com.example.app4g.features.users.model.Users;
-import com.example.app4g.server.AppController;
-import com.example.app4g.session.Prefs;
-import com.example.app4g.session.SessionManager;
 import com.example.app4g.features.users.login.Login;
-import com.example.app4g.ui.TopSnakbar;
 
 import butterknife.ButterKnife;
 
 public class MenuUtama extends AppCompatActivity {
-    public SharedPreferences prefs;
-    public SessionManager session;
-    private Users mProfile;
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_utama);
         ButterKnife.bind(this);
-
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        Intent a = getIntent();
-        String hehe = a.getStringExtra("datanya");
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new Dashboard()).commit();
 
-        //I added this if statement to keep the selected fragment when rotating the device
-        if (hehe != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ProfileFragment()).commit();
-        }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Dashboard()).commit();
-        }
-
-        prefs = getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-
-        isLogin();
     }
 
 
@@ -72,13 +45,9 @@ public class MenuUtama extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.home:
-//                            toolbar.setVisibility(View.VISIBLE);
-//                            appBarLayout.setVisibility(View.VISIBLE);
                             selectedFragment = new Dashboard();
                             break;
                         case R.id.profile:
-//                            toolbar.setVisibility(View.GONE);
-//                            appBarLayout.setVisibility(View.GONE);
                             selectedFragment = new ProfileFragment();
                             break;
                     }
@@ -89,28 +58,6 @@ public class MenuUtama extends AppCompatActivity {
                     return true;
                 }
             };
-
-    public void isLogin(){
-        // Session manager
-        session = new SessionManager(this);
-        //Session Login
-        if(session.isLoggedIn()){
-            strId       = prefs.getString("id","");
-            strNik      = prefs.getString("nik","");
-            strNotelp   = prefs.getString("notelp", "");
-            strNama     = prefs.getString("nama", "");
-            strRole     = prefs.getString("role", "");
-            strToken    = prefs.getString("token", "");
-            strKtp      = prefs.getString("ktp", "");
-            strKk       = prefs.getString("kk","");
-            strPotoPropil=prefs.getString("pp","");
-
-        }else{
-            Intent a = new Intent(getApplicationContext(), Login.class);
-            startActivity(a);
-            finish();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,29 +77,29 @@ public class MenuUtama extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
-        }else if (id == R.id.exit) {
+        } else if (id == R.id.exit) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(MenuUtama.this);
             builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>")).
-                setIcon(R.drawable.lampung_coa)
-                .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                    setIcon(R.drawable.lampung_coa)
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 //                        keluar();
 //                        session.setLogin(false);
 //                        session.setSkip(false);
 //                        session.setSessid(0);
-                        Intent intent = new Intent(MenuUtama.this, Login.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                builder.setCancelable(true);
-            }
-        })
-                .show();
+                            Intent intent = new Intent(MenuUtama.this, Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @SuppressLint("RestrictedApi")
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    builder.setCancelable(true);
+                }
+            })
+                    .show();
             return true;
         }
 

@@ -89,7 +89,7 @@ public class CartPresenter {
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 view.hideLoadingIndicator();
-                view.onNetworkError(t.getCause().toString());
+                view.onNetworkError(t.getLocalizedMessage().toString());
             }
         });
     }

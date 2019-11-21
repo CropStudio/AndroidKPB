@@ -3,15 +3,13 @@ package com.example.app4g.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.users.login.Login;
-import com.example.app4g.session.SessionManager;
+import com.example.app4g.server.App;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -34,8 +32,7 @@ public class DrawerMenuItem {
     public static final int DRAWER_MENU_ITEM_SETTINGS = 6;
     public static final int DRAWER_MENU_ITEM_TERMS = 7;
     public static final int DRAWER_MENU_ITEM_LOGOUT = 8;
-    public SharedPreferences prefs;
-    public SessionManager session;
+
     private int mMenuPosition;
     private Context mContext;
     private DrawerCallBack mCallBack;
@@ -117,10 +114,7 @@ public class DrawerMenuItem {
     }
 
     public void logout(){
-        session = new SessionManager(mContext);
-        session.setLogin(false);
-        session.setSkip(false);
-        session.setSessid(0);
+        App.getPref().clear();
         mContext.startActivity(new Intent(mContext, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         ((Activity)mContext).finish();
         Toast.makeText(mContext, "Signout berhasil", Toast.LENGTH_LONG).show();

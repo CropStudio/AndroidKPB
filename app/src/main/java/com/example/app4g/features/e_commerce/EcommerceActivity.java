@@ -3,9 +3,7 @@ package com.example.app4g.features.e_commerce;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
@@ -24,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.CircleAnimationUtil;
+import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.cart.CartActivity;
 import com.example.app4g.features.e_commerce.model.Product;
@@ -31,10 +30,11 @@ import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
-import com.example.app4g.session.SessionManager;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.ui.TopSnakbar;
-import com.example.app4g.features.users.login.Login;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -63,14 +63,11 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     @BindView(R.id.mSearch)
     SearchView mSearch;
     EcommercePresenter presenter;
-    public SharedPreferences prefs;
-    public SessionManager session;
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
     List<Item> product = null;
     int totalCart;
     SweetAlertDialog sweetAlertDialog;
     EcommerceAdapter adapter;
-//    private LoginResponse mProfile;
+    String nik ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +75,18 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
         setContentView(R.layout.activity_ecommerce);
         ButterKnife.bind(this);
         this.initViews();
-        prefs = getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-        isLogin();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         presenter = new EcommercePresenter(this);
         presenter.showProduct();
-        presenter.getSaldo(strNik);
+        presenter.getSaldo(nik);
 
     }
 
@@ -237,7 +237,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                presenter.getSaldo(strNik);
+                presenter.getSaldo(nik);
                 NotificationBadge textView = (NotificationBadge) findViewById(R.id.badge);
                 textView.setNumber(totalCart);
                 //Toast.makeText(EcommerceActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
@@ -271,27 +271,6 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     }
 
 
-    public void isLogin() {
-        // Session manager
-        session = new SessionManager(this);
-        //Session Login
-        if (session.isLoggedIn()) {
-            strId = prefs.getString("id", "");
-            strNik = prefs.getString("nik", "");
-            strNotelp = prefs.getString("notelp", "");
-            strNama = prefs.getString("nama", "");
-            strRole = prefs.getString("role", "");
-            strToken = prefs.getString("token", "");
-            strKtp = prefs.getString("ktp", "");
-            strKk = prefs.getString("kk", "");
-            strPotoPropil = prefs.getString("pp", "");
-
-        } else {
-            Intent a = new Intent(getApplicationContext(), Login.class);
-            startActivity(a);
-            finish();
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -318,7 +297,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 
     @Override
     public void onCartSelect(Item rut, ImageView img) {
-        presenter.createCart(strNik, rut , img);
+        presenter.createCart(nik, rut , img);
     }
 
     @Override

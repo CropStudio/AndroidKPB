@@ -2,9 +2,7 @@ package com.example.app4g.features.petani.jatah;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,14 +19,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.app4g.R;
+import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.adapter.AdapterPupuk;
 import com.example.app4g.data.DataPupuk;
 import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.petani.detailpupuk.DetailPupukActivity;
-import com.example.app4g.server.AppController;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
-import com.example.app4g.session.SessionManager;
-import com.example.app4g.features.users.login.Login;
+import com.example.app4g.session.Prefs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,12 +42,10 @@ public class ListDataPupuk extends AppCompatActivity {
     @BindView(R.id.main_list_pupuk)
     ListView list;
 
-    public SharedPreferences prefs;
-    public SessionManager session;
+
 
     ProgressDialog pDialog;
 
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
 //    ArrayList<DataAnak> newsList = new ArrayList<DataAnak>();
 //    AdapterAnak adapter;
     String strIdPupuk, strNamaPupuk, strJenisPupuk, strJmlhPupuk, strKomoditas;
@@ -57,6 +54,7 @@ public class ListDataPupuk extends AppCompatActivity {
 
     @BindView(R.id.textNodata)
     TextView noData;
+    String nik ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +62,12 @@ public class ListDataPupuk extends AppCompatActivity {
         setContentView(R.layout.activity_list_data_pupuk);
         ButterKnife.bind(this);
         //getSupportActionBar().hide(); //untuk menghilangkan action bar yg di atas
-
+        LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         newsList.clear();
@@ -72,10 +75,6 @@ public class ListDataPupuk extends AppCompatActivity {
         list.setAdapter(adapter);
         list.setEmptyView(noData);
 
-        prefs = getSharedPreferences(
-                "UserDetails",
-                Context.MODE_PRIVATE);
-        isLogin();
         getNamaPupuk();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,7 +114,7 @@ public class ListDataPupuk extends AppCompatActivity {
 
         String tag_json_obj = "json_obj_req";
         StringRequest strReq = new StringRequest(Request.Method.GET,
-                Config_URL.dataPupuk+strNik,
+                Config_URL.dataPupuk+nik,
                 new Response.Listener<String>() {
 
                     @Override
@@ -205,7 +204,7 @@ public class ListDataPupuk extends AppCompatActivity {
 //            }
 //        };
 
-        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
+        App.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
 
     @Override
@@ -222,28 +221,7 @@ public class ListDataPupuk extends AppCompatActivity {
 //        finish();
 //    }
 
-    public void isLogin(){
-        // Session manager
-        session = new SessionManager(this);
-        //Session Login
-        if(session.isLoggedIn()){
-            strId       = prefs.getString("id","");
-            strNik      = prefs.getString("nik","");
-            strNotelp   = prefs.getString("notelp", "");
-            strNama     = prefs.getString("nama", "");
-            strRole     = prefs.getString("role", "");
-            strToken    = prefs.getString("token", "");
-            strKtp      = prefs.getString("ktp", "");
-            strKk       = prefs.getString("kk","");
-            strPotoPropil=prefs.getString("pp","");
 
-        }else{
-            Intent a = new Intent(getApplicationContext(), Login.class);
-            startActivity(a);
-            finish();
-        }
-
-    }
 
     private void showDialog() {
         if (!pDialog.isShowing())

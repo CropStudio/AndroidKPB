@@ -10,7 +10,7 @@ public class Cart {
     private String nik;
     @SerializedName("created_at")
     private String created_at;
-    @SerializedName("data")
+    @SerializedName("cart")
     private List<Item> item;
 
     public String getNik() {

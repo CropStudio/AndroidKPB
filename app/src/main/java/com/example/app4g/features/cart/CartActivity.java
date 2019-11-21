@@ -1,9 +1,7 @@
 package com.example.app4g.features.cart;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -23,15 +21,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.app4g.R;
+import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.features.cart.model.Checkout;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.e_commerce.EcommerceActivity;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.session.SessionManager;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.SweetDialogs;
-import com.example.app4g.features.users.login.Login;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -63,11 +63,9 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
     @BindView(R.id.mCheckbox)
     CheckBox mCheckbox;
     CartPresenter presenter;
-    public SharedPreferences prefs;
-    public SessionManager session;
     public CartAdapter adapter;
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
     int CartSize = 0;
+    String nik ;
     public List<Item> items = null;
     long Subtotal;
 
@@ -82,36 +80,18 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
         //getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        prefs = getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-        isLogin();
+        LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+
         presenter = new CartPresenter(this);
-        presenter.getCart(strNik);
+        presenter.getCart(nik);
         mCheckout.setOnClickListener(this);
         this.initViews();
 
-    }
-
-    public void isLogin() {
-        // Session manager
-        session = new SessionManager(this);
-        //Session Login
-        if (session.isLoggedIn()) {
-            strId = prefs.getString("id", "");
-            strNik = prefs.getString("nik", "");
-            strNotelp = prefs.getString("notelp", "");
-            strNama = prefs.getString("nama", "");
-            strRole = prefs.getString("role", "");
-            strToken = prefs.getString("token", "");
-            strKtp = prefs.getString("ktp", "");
-            strKk = prefs.getString("kk", "");
-            strPotoPropil = prefs.getString("pp", "");
-
-        } else {
-            Intent a = new Intent(getApplicationContext(), Login.class);
-            startActivity(a);
-            finish();
-        }
     }
 
 
@@ -135,7 +115,7 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
 
     @Override
     public void onDataReady(Cart carts) {
-        CartSize = carts.getItem().size();
+        //CartSize = carts.getItem().size();
         items = carts.getItem();
         if (!carts.getItem().isEmpty()) {
             adapter = new CartAdapter(carts.getItem(), this, this);
@@ -157,18 +137,14 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
         List<Item> items = adapter.ruts.stream()
                 .filter(status -> status.isSelected == true)
                 .collect(Collectors.toList());
-        checkouts.setNik(strNik);
+        checkouts.setNik(nik);
         checkouts.setGrandtotal(Subtotal);
         checkouts.setItem(items);
         Gson gson = new Gson();
         String Data = gson.toJson(checkouts);
-//        JsonParser jsonParser = new JsonParser();
-//        JsonObject gsonObject = (JsonObject) jsonParser.parse(Data);
+
         presenter.onCheckout(Data);
-        // ubah string JSON menjadi Objek
-//        Gson gsonBuilder = new GsonBuilder().create();
-//        checkouts = gsonBuilder.fromJson(jsonUser, Checkout.class);
-//        System.out.println(checkouts.name);
+
     }
 
     @Override
@@ -295,18 +271,6 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
     public void onClick(View v) {
 //        boolean checked = ((CheckBox) v).isChecked();
         switch (v.getId()) {
-//            case R.id.mCheckbox:
-//                //adapter.onPilihAll();
-//                if (checked) {
-//                    for (Item x : adapter.ruts) {
-//                        x.setSelected(true);
-//                    }
-//                } else {
-//                    for (Item x : adapter.ruts) {
-//                        x.setSelected(false);
-//                    }
-//                }
-//                break;
             case R.id.mCheckout:
                 SweetDialogs.confirmDialog(this, "Apakah Anda Yakin !" , "Melakukan Checkout ?" , "Berhasil Melakukan Checkout!", string -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

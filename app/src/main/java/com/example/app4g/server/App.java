@@ -15,14 +15,14 @@ import com.example.app4g.session.Prefs;
  * 	We are creating a Application Singleton Object by extending Application, so it should be declared as a application in the "AndroidMainFests" file
  * */
 
-public class AppController extends Application
+public class App extends Application
 {
-    public static final String TAG = AppController.class.getSimpleName();
+    public static final String TAG = App.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private static Prefs preferences;
-    private static AppController mInstance;
+    private static App mInstance;
     private static Application sApplication;
     public static Application getApplication() {
         return sApplication;
@@ -43,7 +43,7 @@ public class AppController extends Application
         preferences = new Prefs(sApplication);
     }
 
-    public static synchronized AppController getInstance()
+    public static synchronized App getInstance()
     {
         return mInstance;
     }

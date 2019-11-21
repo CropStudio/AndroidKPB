@@ -14,7 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.app4g.features.petani.anak.model.AnakModel;
 import com.example.app4g.features.petani.anak.model.IAnak;
 import com.example.app4g.features.petani.anak.view.IInputAnakView;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 
 import org.json.JSONException;
@@ -119,6 +119,6 @@ public class AnakPresenter implements IAnakPresenter {
             }
         };
         strReq.setRetryPolicy(policy);
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        App.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }

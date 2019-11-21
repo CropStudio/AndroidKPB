@@ -13,8 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.app4g.features.users.model.Users;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.features.users.login.view.ILoginview;
 import com.example.app4g.features.users.model.IUserLogin;
@@ -44,16 +43,16 @@ public class LoginPresenter implements ILoginPresenter{
     }
     @Override
     public boolean isLoggedIn(){
-        return AppController.getPref().getBoolean(Prefs.PREF_IS_LOGEDIN, false);
+        return App.getPref().getBoolean(Prefs.PREF_IS_LOGEDIN, false);
     }
     @Override
     public void storeAccessToken(String token){
-        AppController.getPref().put(Prefs.PREF_ACCESS_TOKEN, token);
+        App.getPref().put(Prefs.PREF_ACCESS_TOKEN, token);
     }
     @Override
     public void storeProfile(String data){
-        AppController.getPref().put(Prefs.PREF_STORE_PROFILE, data);
-        AppController.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
+        App.getPref().put(Prefs.PREF_STORE_PROFILE, data);
+        App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
     }
 
     @Override
@@ -157,6 +156,6 @@ public class LoginPresenter implements ILoginPresenter{
 //            }
         };
         strReq.setRetryPolicy(policy);
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        App.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }

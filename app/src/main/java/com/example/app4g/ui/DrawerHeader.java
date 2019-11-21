@@ -1,15 +1,14 @@
 package com.example.app4g.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.app4g.R;
-import com.example.app4g.features.users.login.Login;
-import com.example.app4g.session.SessionManager;
+import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.NonReusable;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -22,8 +21,7 @@ import com.mindorks.placeholderview.annotations.View;
 @NonReusable
 @Layout(R.layout.drawer_header)
 public class DrawerHeader {
-    public SharedPreferences prefs;
-    public SessionManager session;
+    private LoginResponse mProfile;
     private Context mContext;
     String strId, strNik, strNotelp, strNama, strRole, strToken, strPotoPropil, namaPoktan, alamat, mt1, mt2, mt3, kecamatan, kabupaten, kota, provinsi;
 //    private LoginResponse mProfile;
@@ -44,23 +42,25 @@ public class DrawerHeader {
 
     @Resolve
     private void onResolved() {
-        prefs = mContext.getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-        session = new SessionManager(mContext);
-        //Session Login
-        if (session.isLoggedIn()) {
-            strId = prefs.getString("id", "");
-            strNik = prefs.getString("nik", "");
-            strNotelp = prefs.getString("notelp", "");
-            strNama = prefs.getString("nama", "");
-            strRole = prefs.getString("role", "");
-            strToken = prefs.getString("token", "");
-            strPotoPropil = prefs.getString("pp", "");
-        }else {
-            mContext.startActivity(new Intent(mContext, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            ((Activity)mContext).finish();
-        }
-        nameTxt.setText(strNama);
+        mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+//        String user_photo = (mProfile.getResult().getUser_photo().contains(" "))
+//                ? mProfile.getResult().getUser_photo() : mProfile.getResult().getUser_photo();
+        String nama = (mProfile.getResult().getNama().contains(" "))
+                ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
+        String no_hp = (mProfile.getResult().getNo_hp().contains(" "))
+                ? mProfile.getResult().getNo_hp() : mProfile.getResult().getNo_hp();
+        nameTxt.setText(nama);
+        emailTxt.setText(no_hp);
+//        if(!user_photo.equals(""))
+//            Glide.with(mContext)
+//                    .load(App.getApplication().getString(R.string.img_end_point))
+//                    .into(profileImage);
+//        else Glide.with(mContext)
+//                .load(R.drawable.user)
+//                .into(profileImage);
 
 
     }

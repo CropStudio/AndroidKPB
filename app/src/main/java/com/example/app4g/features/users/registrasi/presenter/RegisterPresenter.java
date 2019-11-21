@@ -13,7 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.features.users.model.IUserRegister;
 import com.example.app4g.features.users.model.RegisterModel;
@@ -125,7 +125,7 @@ public class RegisterPresenter implements IRegisterPresenter {
             }
         };
         strReq.setRetryPolicy(policy);
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        App.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
 

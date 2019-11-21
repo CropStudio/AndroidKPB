@@ -19,8 +19,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.app4g.session.PrefManager;
+import com.example.app4g.server.App;
 import com.example.app4g.features.users.login.Login;
+import com.example.app4g.session.Prefs;
 
 public class PagerActivity extends AppCompatActivity {
 
@@ -30,18 +31,22 @@ public class PagerActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
-    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // mengecek lauch activity - sebelum memanggil setContentView()
-        prefManager = new PrefManager(this);
-        if (!prefManager.isFirstTimeLaunch()) {
+//        prefManager = new PrefManager(this);
+//        if (!prefManager.isFirstTimeLaunch()) {
+//            launchHomeScreen();
+//            finish();
+//        }
+
+        if(App.getPref().getBoolean(Prefs.PREF_FIRST_TIME,false)){
             launchHomeScreen();
             finish();
         }
-
+        App.getPref().put(Prefs.PREF_FIRST_TIME,true);
         //getSupportActionBar().hide();
 
         // membuat transparan notifikasi
@@ -124,7 +129,7 @@ public class PagerActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        prefManager.setFirstTimeLaunch(false);
+//        prefManager.setFirstTimeLaunch(false);
         startActivity(new Intent(PagerActivity.this, Login.class));
         finish();
     }

@@ -4,6 +4,7 @@ import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
+import com.example.app4g.features.users.login.model.LoginResponse;
 
 import java.util.Map;
 
@@ -15,6 +16,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface NetworkService {
+
+    @POST("users/signin")
+    Call<LoginResponse>signin();
 
     @FormUrlEncoded
     @POST("cart/create")
@@ -36,5 +40,7 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("rut/create")
     Call<CommonResponse>createRut(@FieldMap Map<String, Object> params);
+
+
 
 }

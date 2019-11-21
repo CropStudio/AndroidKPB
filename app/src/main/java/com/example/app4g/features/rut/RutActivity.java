@@ -1,8 +1,5 @@
 package com.example.app4g.features.rut;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,9 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.app4g.R;
+import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.features.rut.model.Rut;
-import com.example.app4g.features.users.login.Login;
-import com.example.app4g.session.SessionManager;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.SweetDialogs;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -41,8 +40,7 @@ public class RutActivity extends AppCompatActivity implements IRutView {
     private Rut ruts;
     private RutPresenter presenter;
     SweetAlertDialog sweetAlertDialog;
-    public SharedPreferences prefs;
-    public SessionManager session;
+
     String nik;
 
     @Override
@@ -62,17 +60,12 @@ public class RutActivity extends AppCompatActivity implements IRutView {
 
     @Override
     public void initView() {
-        prefs = this.getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-        session = new SessionManager(this);
-        //Session Login
-        if (session.isLoggedIn()) {
-            nik = prefs.getString("nik", "");
-        }else {
-            Intent a = new Intent(this, Login.class);
-            startActivity(a);
-            finish();
-        }
+        LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText("Loading ...");
         mSubmit.setOnClickListener(view -> this.onCreateRut());

@@ -1,34 +1,27 @@
 package com.example.app4g.features.users.login;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
 import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
-import com.example.app4g.session.SessionManager;
-import com.example.app4g.features.users.login.presenter.ILoginPresenter;
-import com.example.app4g.features.users.login.presenter.LoginPresenter;
-import com.example.app4g.features.users.login.view.ILoginview;
 import com.example.app4g.features.users.registrasi.Regist;
+import com.example.app4g.ui.SweetDialogs;
 import com.glide.slider.library.Animations.DescriptionAnimation;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.SliderTypes.BaseSliderView;
 import com.glide.slider.library.SliderTypes.TextSliderView;
 import com.glide.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
 
@@ -38,7 +31,7 @@ import butterknife.OnClick;
 
 
 public class Login extends AppCompatActivity implements BaseSliderView.OnSliderClickListener,
-        ViewPagerEx.OnPageChangeListener, ILoginview {
+        ViewPagerEx.OnPageChangeListener, ILoginView {
 
     @BindView(R.id.slider)
     SliderLayout mDemoSlider;
@@ -47,59 +40,31 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     EditText edNik;
     @BindView(R.id.password)
     EditText edPassword;
-    @BindView(R.id.progress_login)
-    ProgressBar prgBar;
 
-    ILoginPresenter loginPresenter;
-    SharedPreferences prefs ;
-    private SessionManager session;
-
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,kabupaten,kota,provinsi;
+    com.example.app4g.features.users.login.LoginPresenter presenter;
+    SweetAlertDialog sweetAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        getSupportActionBar().hide();
         ButterKnife.bind(this);
-
-        loginPresenter = new LoginPresenter(this);
-        loginPresenter.setProgressBarVisiblity(View.GONE);
-
-        prefs = getSharedPreferences("UserDetails",
-                Context.MODE_PRIVATE);
-
-        session     = new SessionManager(getApplicationContext());
-        strId       = prefs.getString("id","");
-        strNik      = prefs.getString("nik","");
-        strNotelp   = prefs.getString("notelp", "");
-        strNama     = prefs.getString("nama", "");
-        strRole     = prefs.getString("role", "");
-        strToken    = prefs.getString("token", "");
-        strKtp      = prefs.getString("ktp", "");
-        strKk       = prefs.getString("kk","");
-        strPotoPropil=prefs.getString("pp","");
-
-
-        if (session.isLoggedIn()){
-            if (strRole.equals("petani")){
-                Intent a = new Intent(Login.this, MenuUtama.class);
-                a.putExtra("id", strId);
-                a.putExtra("nik", strNik);
-                a.putExtra("notelp", strNotelp);
-                a.putExtra("nama", strNama);
-                a.putExtra("role",strRole);
-                a.putExtra("token",strToken);
-                a.putExtra("ktp", strKtp);
-                a.putExtra("kk", strKk);
-                a.putExtra("pp", strPotoPropil);
-                startActivity(a);
-                finish();
-            }else {
-                Toast.makeText(getApplicationContext(), "Anda tidak diizinkan mengakses aplikasi ini", Toast.LENGTH_LONG).show();
+        presenter = new LoginPresenter(this);
+        if (presenter.isLoggedIn()) {
+            if (App.getPref().getString(Prefs.PREF_ROLE, "").equals("petani")) {
+                this.goToDashboardPetani();
             }
+            else if (App.getPref().getString(Prefs.PREF_ROLE, "").equals("gubernur")) {
+                this.goToDashboardGubernur();
+            }
+        } else {
+            this.initViews();
         }
 
+    }
+
+    @Override
+    public void initViews() {
         ArrayList<String> listUrl = new ArrayList<>();
         ArrayList<String> listName = new ArrayList<>();
 
@@ -116,24 +81,14 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         listName.add("Kesejahteraan Petani");
 
         RequestOptions requestOptions = new RequestOptions();
-        //requestOptions.centerCrop();
-        //.diskCacheStrategy(DiskCacheStrategy.NONE)
-        //.placeholder(R.drawable.placeholder)
-        //.error(R.drawable.placeholder);
-
         for (int i = 0; i < listUrl.size(); i++) {
             TextSliderView sliderView = new TextSliderView(this);
-            // if you want show image only / without description text use DefaultSliderView instead
-
-            // initialize SliderLayout
             sliderView
                     .image(listUrl.get(i))
                     .description(listName.get(i))
                     .setRequestOption(requestOptions)
                     .setProgressBarVisible(true)
                     .setOnSliderClickListener(this);
-
-            //add your extra information
             sliderView.bundle(new Bundle());
             sliderView.getBundle().putString("extra", "");
             mDemoSlider.addSlider(sliderView);
@@ -145,10 +100,12 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
         mDemoSlider.addOnPageChangeListener(this);
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading ...");
     }
 
     @OnClick(R.id.signup)
-    void signUp(){
+    void signUp() {
         Intent a = new Intent(Login.this, Regist.class);
         startActivity(a);
         finish();
@@ -187,97 +144,66 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     }
 
 
+    @Override
+    public void onSigninSuccess(LoginResponse response) {
+        presenter.storeProfile(new Gson().toJson(response));
+        presenter.storeAccessToken(response.getResult().getToken());
+        App.getPref().put(Prefs.PREF_ROLE, response.getResult().getRole());
+        if (presenter.isLoggedIn()) {
+            if (response.getResult().getRole().equals("petani")) {
+                this.goToDashboardPetani();
+            } else if (response.getResult().getRole().equals("gubernur")) {
+                this.goToDashboardGubernur();
+            }
+        }
+    }
 
     @Override
-    public void onClearText() {
+    public void onSigninFailed(String rm) {
 
+    }
+
+    @Override
+    public void onNetworkError(String cause) {
+        Log.e("errornya", cause);
+        SweetDialogs.endpointError(this);
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+
+        sweetAlertDialog.dismiss();
+    }
+
+    @Override
+    public void goToDashboardPetani() {
+        startActivity(new Intent(this, MenuUtama.class));
+        finish();
+    }
+
+    @Override
+    public void goToDashboardGubernur() {
+//        startActivity(new Intent(this, TrackerActivity.class));
+//        finish();
+        Toast.makeText(this, "Gubernur", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.signin)
-    void login(){
+    void login() {
         String nik = edNik.getText().toString();
         String pass = edPassword.getText().toString();
-
-        if(nik.isEmpty()){
+        if (nik.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Nik tidak boleh kosong", Toast.LENGTH_LONG).show();
-        }else if(pass.isEmpty()){
+        } else if (pass.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Password tidak boleh kosong", Toast.LENGTH_LONG).show();
-        }else {
-            loginPresenter.setProgressBarVisiblity(View.VISIBLE);
-            loginPresenter.doLogin(nik,pass);
+        } else {
+            presenter.login(nik, pass);
         }
     }
 
-    @Override
-    public void onLoginResult(Boolean result, String msg) {
-        loginPresenter.setProgressBarVisiblity(View.GONE);
-        String data[] = msg.split("/");
-        Log.v("Nganu = ", data[1]);
-        if (result){
-            try {
-                JSONObject jObj     = new JSONObject(data[1]);
-//                strId       = jObj.getString("_id");
-                strNik      = jObj.getString("nik");
-                strNama     = jObj.getString("nama");
-                strNotelp   = jObj.getString("no_hp");
-                namaPoktan     = jObj.getString("nama_poktan");
-                alamat     = jObj.getString("alamat");
-                mt1     = jObj.getString("mt1");
-                mt2     = jObj.getString("mt2");
-                mt3     = jObj.getString("mt3");
-                kecamatan     = jObj.getString("kecamatan");
-                kabupaten     = jObj.getString("kabupaten");
-                kota     = jObj.getString("kota");
-                provinsi     = jObj.getString("provinsi");
-                strRole     = jObj.getString("role");
-                strToken    = data[2];
-
-
-                storeRegIdinSharedPref(getApplicationContext(),strId , strNik,strNotelp, strNama, strRole, strToken,namaPoktan,alamat,mt1,mt2,mt3,kecamatan,
-                        kabupaten,kota,provinsi);
-
-//
-                if(strRole.equals("petani")){
-                    session.setLogin(true);
-                    Intent a = new Intent(Login.this, MenuUtama.class);
-                    startActivity(a);
-                    finish();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Anda tidak diizinkan mengakses aplikasi ini", Toast.LENGTH_LONG).show();
-                }
-
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }else {
-            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onSetProgressBarVisibility(int visibility) {
-        prgBar.setVisibility(visibility);
-    }
-
-    private void storeRegIdinSharedPref(Context context, String strId, String strNik, String strNotelp, String strNama,
-                                        String strRole, String strToken,String namaPoktan,String alamat,String mt1,String mt2,String mt3,String kecamatan,
-                                        String kabupaten,String kota,String provinsi) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("id", strId);
-        editor.putString("nik", strNik);
-        editor.putString("notelp", strNotelp);
-        editor.putString("nama", strNama);
-        editor.putString("role", strRole);
-        editor.putString("token", strToken);
-        editor.putString("nama_poktan", namaPoktan);
-        editor.putString("alamat", alamat);
-        editor.putString("mt1", mt1);
-        editor.putString("mt2", mt2);
-        editor.putString("mt3", mt3);
-        editor.putString("kecamatan", kecamatan);
-        editor.putString("kabupaten", kabupaten);
-        editor.putString("kota", kota);
-        editor.putString("provinsi", provinsi);
-        editor.commit();
-    }
 }

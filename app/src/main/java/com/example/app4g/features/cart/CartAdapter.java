@@ -17,7 +17,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 
 import java.util.List;
 
@@ -60,16 +60,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         final Item rut = ruts.get(position);
         holder.mHarga.setText(Utils.convertRupiah(String.valueOf(rut.getHarga())));
         holder.mNama.setText(rut.getNamaItem());
-        holder.mToko.setText(rut.getDistributor().getNama());
+//        holder.mToko.setText(rut.getDistributor().getNama());
         holder.itemView.setOnClickListener(view -> listener.onSelect("ini itemview"));
         if (!rut.getFoto().equals(""))
             Glide.with(context)
-                    .load(AppController.getApplication().getResources().getString(R.string.img_end_point) + rut.getFoto())
-                    .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point) + rut.getFoto())
+                    .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                     .into(holder.mIconImage);
         else Glide.with(context)
                 .load(R.drawable.shopping_bag)
-                .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                 .into(holder.mIconImage);
         holder.mNama.setOnClickListener(view -> listener.onCartSelect("ini CartSelect"));
         //holder.mCheckbox.setOnClickListener(view ->listener.onCheckbox(rut.getHarga()));

@@ -15,7 +15,7 @@ import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.features.e_commerce.model.Product;
-import com.example.app4g.server.AppController;
+import com.example.app4g.server.App;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,17 +67,17 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
         //holder.itemView.setOnClickListener(view -> listener.onSelect(rut));
         if(!rut.getFoto().equals("")){
             Glide.with(context)
-                    .load(AppController.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
-                    .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
+                    .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                     .into(holder.mIconImage);
             Glide.with(context)
-                    .load(AppController.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
-                    .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
+                    .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                     .into(holder.mIconImageCopy);
         }
         else Glide.with(context)
                 .load(R.drawable.shopping_bag)
-                .apply(new RequestOptions().placeholder(R.mipmap.loading_image))
+                .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                 .into(holder.mIconImage);
         holder.mCart.setOnClickListener(view -> cartListiner.onCartSelect(rut, holder.mIconImageCopy));
     }

@@ -11,11 +11,14 @@ import net.grandcentrix.tray.TrayPreferences;
  */
 public class Prefs extends TrayPreferences {
     /** Common **/
+    public static final String PREF_FIRST_TIME = "first.time";
     public static final String PREF_IS_LOGEDIN = "is.login";
+
     public static final String PREF_SELECTED_CITY = "pref_selected_city";
     public static String PREF_FIREBASE_TOKEN = "firebase.token";
     public static String PREF_FIREBASE_STORED = "firebase.is.stored";
     public static String PREF_ACCESS_TOKEN = "access.token";
+    public static String PREF_ROLE = "role.users";
     public static String PREF_CITY_ID = "city.id";
     public static String INTENT_TRACKER_TYPE = "intent.tracker.type";
 
@@ -55,4 +58,6 @@ public class Prefs extends TrayPreferences {
     public Prefs(@NonNull Context context) {
         super(context, "myAppPreferencesModule", 1);
     }
+
+
 }
