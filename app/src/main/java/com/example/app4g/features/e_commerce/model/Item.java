@@ -12,6 +12,8 @@ public class Item implements Serializable {
     public boolean isSelected ;
     @SerializedName("_id")
     private String _id;
+    @SerializedName("tipe")
+    private String tipe;
     @SerializedName("namaBarang")
     private String namaItem;
     @SerializedName("harga")
@@ -26,6 +28,27 @@ public class Item implements Serializable {
     private String keterangan;
     @SerializedName("stok")
     private long stok;
+    @SerializedName("distributor")
+    private Distributor distributor;
+
+    @SerializedName("kios")
+    private String kios;
+
+    public String getTipe() {
+        return tipe;
+    }
+
+    public void setTipe(String tipe) {
+        this.tipe = tipe;
+    }
+
+    public String getKios() {
+        return kios;
+    }
+
+    public void setKios(String kios) {
+        this.kios = kios;
+    }
 
     public int qty;
 
@@ -77,8 +100,7 @@ public class Item implements Serializable {
         this._id = _id;
     }
 
-    @SerializedName("distributor")
-    private Distributor distributor;
+
 
     public Distributor getDistributor() {
         return distributor;
