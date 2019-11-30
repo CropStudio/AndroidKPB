@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -44,10 +45,13 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -97,14 +101,17 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     @BindView(R.id.MySignUp)
     CoordinatorLayout layout;
 
-    @BindView(R.id.titik_1)
-    TextView titik1;
-    @BindView(R.id.titik_2)
-    TextView titik2;
-    @BindView(R.id.titik_3)
-    TextView titik3;
-    @BindView(R.id.titik_4)
-    TextView titik4;
+    private int[] mImages = new int[]{R.drawable.slide_login_1, R.drawable.slide_login_2, R.drawable.slide_login_3};
+    CarouselView carouselView;
+
+//    @BindView(R.id.titik_1)
+//    TextView titik1;
+//    @BindView(R.id.titik_2)
+//    TextView titik2;
+//    @BindView(R.id.titik_3)
+//    TextView titik3;
+//    @BindView(R.id.titik_4)
+//    TextView titik4;
 
 
     private DatePickerDialog datePickerDialog;
@@ -139,11 +146,11 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
         ButterKnife.bind(this);
-        if(Build.VERSION.SDK_INT>=24){
-            try{
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
                 m.invoke(null);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -151,6 +158,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         iRegisterPresenter.setProgressBarVisiblity(View.GONE);
 
         myDialog = new Dialog(Regist.this);
+        layout = (CoordinatorLayout) findViewById(R.id.MySignUp);
 
 
 //        mSteppers[0] = findViewById(R.id.stepper_0);
@@ -214,6 +222,15 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 //                }
 //            }
 //        });
+
+        carouselView = findViewById(R.id.carousel);
+        carouselView.setPageCount(mImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(mImages[position]);
+            }
+        });
     }
 
     @Override
@@ -228,7 +245,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 //        showDateDialog();
 //    }
 
-    private void showDateDialog(){
+    private void showDateDialog() {
         Calendar newCalendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -236,27 +253,27 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
-               //edTanggal.setText(dateFormatter.format(newDate.getTime()));
+                //edTanggal.setText(dateFormatter.format(newDate.getTime()));
             }
 
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
     @OnClick(R.id.btnCari)
-    void cariPetani(){
+    void cariPetani() {
         String nikPetani = edNik.getText().toString();
-        if(nikPetani.isEmpty()){
-            snacBars("Nik tidak boleh kosong");
-        }else {
+        if (nikPetani.isEmpty()) {
+            snacBars("NIK TIDAK BOLEH KOSONG");
+        } else {
             cekPetani(nikPetani);
         }
     }
 
-    public void cekPetani(String nikPetani){
+    public void cekPetani(String nikPetani) {
         String tag_string_req = "req_login";
         StringRequest strReq = new StringRequest(Request.Method.GET,
-                Config_URL.cekPetani+nikPetani, new Response.Listener<String>() {
+                Config_URL.cekPetani + nikPetani, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("msg", "Data petani: " + response.toString());
@@ -265,25 +282,25 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                     final JSONObject jObj = new JSONObject(response);
                     final boolean status = jObj.getBoolean("status");
 
-                    if(status == true){
+                    if (status == true) {
                         dataPetani.setVisibility(View.VISIBLE);
                         String msg = jObj.getString("message");
                         String res = jObj.getString("result");
                         JSONArray jsonArray = new JSONArray(res);
                         final JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        String nama             = jsonObject.getString("nama");
+                        String nama = jsonObject.getString("nama");
 
-                        String objPoktan           = jsonObject.getString("poktan");
+                        String objPoktan = jsonObject.getString("poktan");
                         JSONArray jsonArrayPoktan = new JSONArray(objPoktan);
                         final JSONObject jsonObjectPoktan = jsonArrayPoktan.getJSONObject(0);
-                        String poktan           = jsonObjectPoktan.getString("name");
-                        String dataarea             = jsonObjectPoktan.getString("area");
-                        JSONObject area         = new JSONObject(dataarea);
-                        String kab              = area.getString("city");
-                        String kec              = area.getString("district");
-                        String des              = area.getString("sub_district");
+                        String poktan = jsonObjectPoktan.getString("name");
+                        String dataarea = jsonObjectPoktan.getString("area");
+                        JSONObject area = new JSONObject(dataarea);
+                        String kab = area.getString("city");
+                        String kec = area.getString("district");
+                        String des = area.getString("sub_district");
 //                        String jenis_kelamin    = area.getString("jenis_kelamin");
-                        final String niks       = jsonObject.getString("nik");
+                        final String niks = jsonObject.getString("nik");
 
 //                        mNextBtn0.setOnClickListener(new View.OnClickListener() {
 //                            @Override
@@ -292,38 +309,38 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 //                            }
 //                        });
 
-                        titik1.setVisibility(View.VISIBLE);
-                        titik2.setVisibility(View.VISIBLE);
-                        titik3.setVisibility(View.VISIBLE);
-                        titik4.setVisibility(View.VISIBLE);
+//                        titik1.setVisibility(View.VISIBLE);
+//                        titik2.setVisibility(View.VISIBLE);
+//                        titik3.setVisibility(View.VISIBLE);
+//                        titik4.setVisibility(View.VISIBLE);
                         btnRegistrasi.setVisibility(View.VISIBLE);
 
-                        if(!nama.equals("null")){
-                            txtNama.setText(" "+nama);
-                        }else {
+                        if (!nama.equals("null")) {
+                            txtNama.setText(" " + nama);
+                        } else {
                             txtNama.setText(" -");
                         }
 
-                        if(!poktan.equals("null")){
-                            txtPoktan.setText(" "+poktan);
-                        }else {
+                        if (!poktan.equals("null")) {
+                            txtPoktan.setText(" " + poktan);
+                        } else {
                             txtPoktan.setText(" -");
                         }
-                        if(!kab.equals("null") && !kec.equals("null") && !des.equals("null")){
-                            txtAlamat.setText(" "+kab+", "+kec+", "+des);
-                        }else if(!kab.equals("null") && !kec.equals("null")){
-                            txtAlamat.setText(" "+kab+", "+kec);
-                        }else if(!kec.equals("null") && !des.equals("null")){
-                            txtAlamat.setText(" "+kec+", "+des);
-                        }else if(!kab.equals("null") && !des.equals("null")){
-                            txtAlamat.setText(" "+kab+", "+des);
-                        }else if(!kab.equals("null")){
-                            txtAlamat.setText(" "+kab);
-                        }else if(!kec.equals("null")){
-                            txtAlamat.setText(" "+kec);
-                        }else if(!des.equals("null")){
-                            txtAlamat.setText(" "+des);
-                        }else{
+                        if (!kab.equals("null") && !kec.equals("null") && !des.equals("null")) {
+                            txtAlamat.setText(" " + kab + ", " + kec + ", " + des);
+                        } else if (!kab.equals("null") && !kec.equals("null")) {
+                            txtAlamat.setText(" " + kab + ", " + kec);
+                        } else if (!kec.equals("null") && !des.equals("null")) {
+                            txtAlamat.setText(" " + kec + ", " + des);
+                        } else if (!kab.equals("null") && !des.equals("null")) {
+                            txtAlamat.setText(" " + kab + ", " + des);
+                        } else if (!kab.equals("null")) {
+                            txtAlamat.setText(" " + kab);
+                        } else if (!kec.equals("null")) {
+                            txtAlamat.setText(" " + kec);
+                        } else if (!des.equals("null")) {
+                            txtAlamat.setText(" " + des);
+                        } else {
                             txtAlamat.setText(" -");
                         }
 
@@ -334,25 +351,25 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 //                        }
 
                         snacBarsGreen(msg);
-                    }else {
+                    } else {
                         dataPetani.setVisibility(View.GONE);
-                        snacBars("Nik petani tidak ditemukan");
+                        snacBars("NIK PETANI TIDAK DITEMUKAN");
                         txtNama.setText(null);
                         txtPoktan.setText(null);
                     }
 
-                }catch (JSONException e){
+                } catch (JSONException e) {
 
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
 
             @Override
-            public void onErrorResponse(VolleyError error){
+            public void onErrorResponse(VolleyError error) {
                 Log.e("msg", "Login Error : " + error.getMessage());
                 error.printStackTrace();
-                snacBars("Ups server tidak meresponse");
+                snacBars("UPS !!! SERVER TIDAK MERESPON");
             }
         });
         strReq.setRetryPolicy(policy);
@@ -459,23 +476,29 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 //    }
 
 
-    public void snacBars(String text){
+    public void snacBars(String text) {
         Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
-        CoordinatorLayout.LayoutParams params=(CoordinatorLayout.LayoutParams)view.getLayoutParams();
-        params.gravity = Gravity.TOP;
         view.setBackgroundColor(layout.getResources().getColor(R.color.red));
-        view.setLayoutParams(params);
+        TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        } else {
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+        }
         snackbar.show();
     }
 
-    public void snacBarsGreen(String text){
+    public void snacBarsGreen(String text) {
         Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
-        CoordinatorLayout.LayoutParams params=(CoordinatorLayout.LayoutParams)view.getLayoutParams();
-        params.gravity = Gravity.TOP;
         view.setBackgroundColor(layout.getResources().getColor(R.color.bg_screen3));
-        view.setLayoutParams(params);
+        TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        } else {
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+        }
         snackbar.show();
     }
 
@@ -486,7 +509,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     }
 
 
-    public void addPermission(){
+    public void addPermission() {
         Dexter.withActivity(Regist.this)
                 .withPermissions(
 
@@ -523,32 +546,32 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     }
 
     @OnClick(R.id.btnRegistrasi)
-    void regis(){
-        String nik      = edNik.getText().toString();
-        String nama     = txtNama.getText().toString();
-        String poktan   = txtNama.getText().toString();
-        String telp     = edTlp.getText().toString();
-        String pass     = edPass.getText().toString();
-        String repass   = edRepass.getText().toString();
-        if(nik.isEmpty()){
-            snacBars("Nik tidak boleh kosong");
-        }else if(nama.isEmpty()){
-            snacBars("Tidak ada data");
-        }else if(poktan.isEmpty()){
-            snacBars("Tidak ada data");
-        }else if(!nik.equals(nik)){
-            snacBars("Nik tidak sesuai");
-        }else if(telp.isEmpty()){
-            snacBars("Nomor telp tidak boleh kosong");
-        }else if(pass.isEmpty()){
-            snacBars("Password tidak boleh kosong");
-        }else if(repass.isEmpty()){
-            snacBars("Ulangi password");
-        }else if(!pass.equals(repass)){
-            snacBars("Password tidak sesuai");
-        }else {
+    void regis() {
+        String nik = edNik.getText().toString();
+        String nama = txtNama.getText().toString();
+        String poktan = txtNama.getText().toString();
+        String telp = edTlp.getText().toString();
+        String pass = edPass.getText().toString();
+        String repass = edRepass.getText().toString();
+        if (nik.isEmpty()) {
+            snacBars("NIK TIDAK BOLEH KOSONG");
+        } else if (nama.isEmpty()) {
+            snacBars("TIDAK ADA DATA");
+        } else if (poktan.isEmpty()) {
+            snacBars("TIDAK ADA DATA");
+        } else if (!nik.equals(nik)) {
+            snacBars("NIK TIDAK SESUAI");
+        } else if (telp.isEmpty()) {
+            snacBars("NOMOR TELPHONE TIDAK BOLEH KOSONG");
+        } else if (pass.isEmpty()) {
+            snacBars("PASSWORD TIDAK BOLEH KOSONG");
+        } else if (repass.isEmpty()) {
+            snacBars("ULANGI PASSWORD");
+        } else if (!pass.equals(repass)) {
+            snacBars("PASSWORD TIDAK SESUAI");
+        } else {
             iRegisterPresenter.setProgressBarVisiblity(View.VISIBLE);
-            iRegisterPresenter.doRegistrasi(nik,nama,telp,"petani",repass);
+            iRegisterPresenter.doRegistrasi(nik, nama, telp, "petani", repass);
         }
 
     }
@@ -566,12 +589,12 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     @Override
     public void onRegisterResult(Boolean result, String msg) {
         iRegisterPresenter.setProgressBarVisiblity(View.GONE);
-        if (result){
+        if (result) {
             Intent a = new Intent(Regist.this, Login.class);
             startActivity(a);
             finish();
             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-        }else {
+        } else {
             snacBars(msg);
         }
     }

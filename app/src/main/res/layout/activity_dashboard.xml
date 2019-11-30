@@ -6,55 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".features.petani.Dashboard">
 
-    <RelativeLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent">
 
-        <android.support.v4.widget.DrawerLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/drawerLayout"
+        <LinearLayout
+            android:id="@+id/list_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/list_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3">
 
             <LinearLayout
-                android:id="@+id/list_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/list_viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="match_parent"
                     android:background="#ffffff">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="#0B1733">
 
                         <com.synnapps.carouselview.CarouselView
                             android:id="@+id/carousel"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="match_parent"
                             app:fillColor="#ffffff"
                             app:pageColor="#80ffffff"
                             app:radius="3dp"
@@ -81,11 +78,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/icon_kpb" />
 
@@ -110,7 +108,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
                                     android:scaleType="centerInside"
-                                    android:src="@drawable/ic_user" />
+                                    android:src="@drawable/user_default_farmer" />
 
                             </LinearLayout>
 
@@ -119,6 +117,13 @@
                     </LinearLayout>
 
                 </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -132,164 +137,289 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F5F0F0"
-                            android:gravity="center|left"
-                            android:orientation="horizontal"
-                            android:padding="8dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_wallet" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Saldo" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="Rp. 200.000,00"
-                                android:textColor="#1ADE66"
-                                android:visibility="gone" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:padding="5dp"
                             android:weightSum="3">
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
                                 android:layout_weight="1">
 
                                 <android.support.v7.widget.CardView
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp"
+                                    android:layout_height="80dp"
                                     android:layout_margin="2dp"
                                     android:clickable="true"
                                     app:cardCornerRadius="5dp"
                                     app:cardElevation="2dp">
 
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#4408AF" />
-
-                                    <LinearLayout
+                                    <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_wallet_dashboard" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Tambah Saldo"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/bg_dashboard_1" />
 
                                     <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#E20853" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_money" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Info Rekening"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/mCardRut"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
+                                        android:layout_width="5dp"
                                         android:layout_height="match_parent"
                                         android:background="#D1701A" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
                                         android:orientation="horizontal"
-                                        android:padding="8dp">
+                                        android:weightSum="3">
 
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_planing_farm" />
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
 
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Rencana Usaha Tani"
-                                            android:textSize="10dp" />
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_wallet" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saldo"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                android:src="@drawable/ic_wallet_dashboard" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:text="Tambah Saldo"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center|right"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_next_read" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </android.support.v7.widget.CardView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <android.support.v7.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_margin="2dp"
+                                    android:clickable="true"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="2dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/bg_dashboard_2" />
+
+                                    <View
+                                        android:layout_width="5dp"
+                                        android:layout_height="match_parent"
+                                        android:background="#0A4CB3" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_wallet" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saldo"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                android:src="@drawable/ic_info_money" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:text="Info Rekening"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center|right"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_next_read" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </android.support.v7.widget.CardView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <android.support.v7.widget.CardView
+                                    android:id="@+id/mCardRut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_margin="2dp"
+                                    android:clickable="true"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="2dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/bg_dashboard_3" />
+
+                                    <View
+                                        android:layout_width="5dp"
+                                        android:layout_height="match_parent"
+                                        android:background="#0BAF7F" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_wallet" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saldo"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                android:src="@drawable/ic_planing_farm" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:text="Rencana Usaha Tani"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center|right"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:padding="5dp"
+                                                android:src="@drawable/ic_next_read" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -301,7 +431,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:background="#F5F0F0"
                             android:gravity="center|left"
                             android:orientation="horizontal"
@@ -662,20 +792,34 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                </ScrollView>
-            </LinearLayout>
-            <FrameLayout
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="@android:color/white">
 
-                <com.mindorks.placeholderview.PlaceHolderView
-                    android:id="@+id/drawerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
-            </FrameLayout>
-        </android.support.v4.widget.DrawerLayout>
-    </RelativeLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@android:color/white">
+
+            <com.mindorks.placeholderview.PlaceHolderView
+                android:id="@+id/drawerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+
+        </FrameLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
 </android.support.constraint.ConstraintLayout>

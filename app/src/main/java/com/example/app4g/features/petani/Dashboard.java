@@ -75,8 +75,6 @@ public class Dashboard extends Fragment {
         getActivity().finish();
     }
 
-
-
     @OnClick(R.id.mCardRut)
     void goToRut(){
         Intent i = new Intent(getActivity(), RutActivity.class);
