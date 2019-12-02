@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="5dp"
-                            android:weightSum="3">
+                            android:weightSum="2">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -253,7 +253,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:scaleType="centerCrop"
-                                        android:src="@drawable/bg_dashboard_2" />
+                                        android:src="@drawable/bg_dashboard_3" />
 
                                     <View
                                         android:layout_width="5dp"
@@ -272,18 +272,6 @@
                                             android:layout_weight="1"
                                             android:orientation="horizontal"
                                             android:padding="8dp">
-
-                                            <ImageView
-                                                android:layout_width="20dp"
-                                                android:layout_height="20dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/ic_wallet" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Saldo"
-                                                android:textColor="@color/white" />
 
                                         </LinearLayout>
 
@@ -305,102 +293,6 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="8dp"
                                                 android:text="Info Rekening"
-                                                android:textColor="@color/white"
-                                                android:textSize="10dp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center|right"
-                                            android:padding="8dp">
-
-                                            <ImageView
-                                                android:layout_width="30dp"
-                                                android:layout_height="30dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/ic_next_read" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/mCardRut"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/bg_dashboard_3" />
-
-                                    <View
-                                        android:layout_width="5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#0BAF7F" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="horizontal"
-                                        android:weightSum="3">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:orientation="horizontal"
-                                            android:padding="8dp">
-
-                                            <ImageView
-                                                android:layout_width="20dp"
-                                                android:layout_height="20dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/ic_wallet" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Saldo"
-                                                android:textColor="@color/white" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="8dp">
-
-                                            <ImageView
-                                                android:layout_width="35dp"
-                                                android:layout_height="35dp"
-                                                android:src="@drawable/ic_planing_farm" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="8dp"
-                                                android:text="Rencana Usaha Tani"
                                                 android:textColor="@color/white"
                                                 android:textSize="10dp" />
 
@@ -781,6 +673,51 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="7dp"
                                             android:text="Kartu Petani"
+                                            android:textSize="10dp" />
+
+                                    </LinearLayout>
+
+                                </android.support.v7.widget.CardView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="1">
+
+                                <android.support.v7.widget.CardView
+                                    android:id="@+id/mCardRut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_margin="2dp"
+                                    android:clickable="true"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="2dp">
+
+                                    <View
+                                        android:layout_width="2.5dp"
+                                        android:layout_height="match_parent"
+                                        android:background="#76E20B" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:orientation="horizontal"
+                                        android:padding="8dp">
+
+                                        <ImageView
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp"
+                                            android:src="@drawable/ic_planing_farm" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="7dp"
+                                            android:text="Rencana Usaha Tani"
                                             android:textSize="10dp" />
 
                                     </LinearLayout>

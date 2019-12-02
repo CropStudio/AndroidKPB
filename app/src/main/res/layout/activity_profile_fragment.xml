@@ -64,7 +64,6 @@
 
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/mNama"
                     android:layout_width="match_parent"
@@ -84,7 +83,6 @@
                     android:text="187110022124221025"
                     android:textColor="@color/c_white"
                     android:textSize="15dp" />
-
 
             </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class ListDataPupuk extends AppCompatActivity {
     @BindView(R.id.textNodata)
     TextView noData;
     String nik ;
+    ImageButton backTomenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,16 @@ public class ListDataPupuk extends AppCompatActivity {
         list.setEmptyView(noData);
 
         getNamaPupuk();
+
+        backTomenu = (ImageButton)findViewById(R.id.backTo);
+        backTomenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(ListDataPupuk.this, MenuUtama.class);
+                startActivity(a);
+                finish();
+            }
+        });
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
