@@ -129,4 +129,5 @@ public class DrawerMenuItem {
 //        mContext.startActivity(new Intent(mContext, ContactActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 //        ((Activity)mContext).finish();
     }
+
 }

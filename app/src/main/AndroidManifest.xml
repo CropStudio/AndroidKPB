@@ -105,7 +105,9 @@
             android:name=".features.users.login.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain" />
-
+        <activity
+            android:name=".features.petani.profile.create_profile"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"
             android:screenOrientation="portrait">

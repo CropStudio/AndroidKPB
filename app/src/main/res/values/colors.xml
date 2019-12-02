@@ -18,8 +18,12 @@
     <color name="strok">#e4e5ea</color>
     <color name="material_green_800">#307d3d</color>
     <color name="redCrimson">#af3c3c</color>
+    <color name="completeColor">#27a139</color>
+    <color name="main_color_grey_800">@color/material_grey_800</color>
     <!--Indigo 500-->
     <color name="primary_500">#3F51B5</color>
+    <color name="fadeWhite">#fafafa</color>
+    <color name="fadeWhite2">#ededed</color>
     <!--Indigo 700-->
     <color name="primary_700">#303F9F</color>
     <!--Pink 500-->

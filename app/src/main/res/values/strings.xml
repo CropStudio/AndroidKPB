@@ -32,5 +32,100 @@
     <string name="content_step_2">This is the last step. You can finish steps now.</string>
 
     <string name="toggle_animation_button">Toggle Animation</string>
+    <string-array name="stepView">
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="anak">
+        <item>Anak ke 1</item>
+        <item>Anak ke 2</item>
+        <item>Anak ke 3</item>
+        <item>Anak ke 4</item>
+        <item>Anak ke 5</item>
+        <item>Anak ke 6</item>
+        <item>Anak ke 7</item>
+        <item>Anak ke 8</item>
+        <item>Anak ke 9</item>
+        <item>Anak ke 10</item>
+        <item>Anak ke 11</item>
+        <item>Anak ke 12</item>
+        <item>Anak ke 13</item>
+        <item>Anak ke 14</item>
+        <item>Anak ke 15</item>
+        <item>Anak ke 16</item>
+        <item>Anak ke 17</item>
+        <item>Anak ke 18</item>
+    </string-array>
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Kristen Protestan</item>
+        <item>Katolik</item>
+        <item>Hindu</item>
+        <item>Buddha</item>
+        <item>Kong Hu Cu</item>
+        <item>Lainnya</item>
+    </string-array>
+    <string-array name="pendidikan">
+        <item>SD / Sederajat</item>
+        <item>SMP / Sederajat</item>
+        <item>SMA / Sederajat</item>
+        <item>Lainnya</item>
+    </string-array>
 
+    <string-array name="PendidikanAnak">
+        <item>Belum Sekolah</item>
+        <item>TK/ PAUD</item>
+        <item>SD/ MI</item>
+        <item>SMP / MT</item>
+        <item>SMA/SMK/MA</item>
+        <item>Perguruan Tinggi</item>
+        <item>Berhenti Sekolah</item>
+        <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="perkawinan">
+        <item>Menikah</item>
+        <item>Belum Menikah</item>
+    </string-array>
+
+    <string-array name="HubKeluarga">
+        <item>Orang Tua Kandung/ Mertua</item>
+        <item>Saudara</item>
+    </string-array>
+
+    <string-array name="statusRumah">
+        <item>Milik Sendiri</item>
+        <item>Milik Keluarga</item>
+        <item>Sewa</item>
+        <item>Menumpang</item>
+    </string-array>
+
+    <string-array name="statusLahan">
+        <item>Milik Sendiri</item>
+        <item>Milik Keluarga</item>
+        <item>Sewa</item>
+        <item>Menumpang</item>
+        <item>Bekerja di lahan orang lain</item>
+    </string-array>
+
+    <string-array name="fasilitasListrik">
+        <item>Ada - PLN</item>
+        <item>Ada - Bukan PLN</item>
+        <item>Tidak Ada</item>
+    </string-array>
+
+    <string-array name="kendaraan">
+        <item>Sepeda</item>
+        <item>Sepeda Motor</item>
+        <item>Mobil</item>
+        <item>Tidak Ada</item>
+    </string-array>
+
+    <string-array name="ternak">
+        <item>Ikan - Kolam</item>
+        <item>Unggas</item>
+        <item>Sapi/ Kerbau/ Kambing</item>
+        <item>Tidak Ada</item>
+    </string-array>
 </resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="3dp"
+        app:cardMaxElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mAnakKe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="ANAK KE 1"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/statusbarColor">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/mNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/fadeWhite2"
+                    android:hint="Nama Anak"
+                    android:inputType="text"
+                    android:nextFocusDown="@id/mNik"
+                    android:textColor="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/statusbarColor">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/mTglLahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/fadeWhite2"
+                    android:hint="Tanggal Lahir"
+                    android:inputType="text"
+                    android:nextFocusDown="@id/mNik"
+                    android:textColor="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/statusbarColor">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/mTmptLahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/fadeWhite2"
+                    android:hint="Tempat Lahir"
+                    android:inputType="text"
+                    android:nextFocusDown="@id/mNik"
+                    android:textColor="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/statusbarColor">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/mHubKeluarga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/fadeWhite2"
+                    android:hint="Hubungan dengan Kepala Keluarga"
+                    android:inputType="text"
+                    android:nextFocusDown="@id/mNik"
+                    android:textColor="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <Button
+        android:id="@+id/deleteTanggungan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_delete"
+        android:onClick="onDelete" />
+</LinearLayout>
