@@ -22,85 +22,68 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-
+        <activity
+            android:name=".features.petani.detailProfile.detailProfile"
+            android:label="@string/title_activity_detail_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".features.rut.RutActivity"
             android:theme="@style/AppThemeMain" />
-
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".InformasiRekening" />
-
         <activity android:name=".features.petani.detailpupuk.DetailPupukActivity" />
-
         <activity
             android:name=".features.petani.KartuPetani"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".features.webview.ECommerce"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.webview.KalenderTanam"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.webview.Kios"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.webview.PortalInformasi"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.webview.InfoKur"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.webview.InfoBeasiswa"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.EditPoktan"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.EditProfile"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.jatah.ListDataPupuk"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.anak.InputDataAnak"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.anak.ListDataAnak"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Testdoang"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.petani.MenuUtama"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain" />
-
         <activity
             android:name=".ListData"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".features.users.registrasi.Regist"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain" />
-
         <activity
             android:name=".features.users.login.Login"
             android:screenOrientation="portrait"
@@ -123,9 +106,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".features.e_commerce.EcommerceActivity" />
-
         <activity android:name=".features.rutDetail.RutDetailActivity" />
-
     </application>
 
 </manifest>
