@@ -82,7 +82,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     @BindView(R.id.mTglLahir)
     EditText mTglLahir;
     @BindView(R.id.mBtnDate)
-    Button mBtnDate;
+    ImageButton mBtnDate;
     @BindView(R.id.mAgama)
     MaterialSpinner mAgama;
     @BindView(R.id.mPendTerakhir)
@@ -111,7 +111,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     RadioButton mTidakTanggungan;
     //Anak
     @BindView(R.id.CardAnak)
-    CardView mCardAnak;
+    LinearLayout mCardAnak;
     @BindView(R.id.container)
     LinearLayout parent_anak;
     @BindView(R.id.mNamaAnak)
@@ -119,7 +119,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     @BindView(R.id.SpinnerAnak)
     MaterialSpinner SpinnerAnak;
     @BindView(R.id.dateAnak)
-    Button mBtnDateAnak;
+    ImageButton mBtnDateAnak;
     @BindView(R.id.mTglLahirAnak)
     EditText mTglLahirAnak;
     @BindView(R.id.mTmptLahirAnak)
@@ -131,7 +131,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
 
     //Tanggungan
     @BindView(R.id.CardTanggungan)
-    CardView mCardTanggungan;
+    LinearLayout mCardTanggungan;
     @BindView(R.id.containerTanggungan)
     LinearLayout parent_Tanggungan;
     @BindView(R.id.mNamaLengkapTanggungan)
@@ -145,7 +145,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     @BindView(R.id.mAddTanggungan)
     Button mAddTanggungan;
     @BindView(R.id.mBtnDateTanggungan)
-    Button mBtnDateTanggungan;
+    ImageButton mBtnDateTanggungan;
 
     //data kepemilikan
     @BindView(R.id.mDataKepemilikanLayout)
@@ -471,9 +471,9 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
 
         if (!status_rumah.equals("Status Kepemilikan Rumah")) {
             if (!status_lahan.equals("Status Kepemilikan Lahan")) {
-                if (!fasilitas_listrik.equals("Fasilitas Listrik")) {
-                    if (!kendaraan_hak_milik.equals("Kendaraan Hak milik")) {
-                        if (!jenis_ternak.equals("Jenis Ternak")) {
+                if (!fasilitas_listrik.equals("Status Fasilitas Listrik")) {
+                    if (!kendaraan_hak_milik.equals("Jenis Kepemilikan Kendaraan")) {
+                        if (!jenis_ternak.equals("Jenis Kepemilikan Ternak")) {
                             valid = true;
                         } else TopSnakbar.showWarning(this,
                                 "Harap pilih jenis ternak terlebih dahulu !");

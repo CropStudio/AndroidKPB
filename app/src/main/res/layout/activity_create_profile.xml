@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.petani.profile.create_profile">
+
     <include
         android:id="@+id/signin_content"
         layout="@layout/content_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"/>
+        android:gravity="center" />
+
 </android.support.constraint.ConstraintLayout>
