@@ -59,6 +59,7 @@ public class LoginPresenter {
             @Override
             public void onResponse(retrofit2.Call<LoginResponse> call, Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
+                System.out.println(response.body());
                 if (response.body().getSuccess()) {
                     App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
                     App.getPref().put(Prefs.PREF_ACCESS_TOKEN, response.body().getResult().getToken());

@@ -13,6 +13,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface NetworkService {
@@ -41,6 +42,8 @@ public interface NetworkService {
     @POST("rut/create")
     Call<CommonResponse>createRut(@FieldMap Map<String, Object> params);
 
-
+    @FormUrlEncoded
+    @PUT("petaniedit/{nik}")
+    Call<CommonResponse>updateProfile(@Path("nik") String nik,@FieldMap Map<String, Object> data);
 
 }

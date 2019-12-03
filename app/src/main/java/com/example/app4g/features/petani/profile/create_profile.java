@@ -20,13 +20,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app4g.R;
+import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.common.CommonResponse;
+import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.CustomDrawable;
+import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.ui.TopSnakbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.shuhart.stepview.StepView;
 
 import org.json.JSONArray;
@@ -47,7 +53,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private int currentStep = 0;
-
+    SweetAlertDialog sweetAlertDialog;
     @BindView(R.id.step_view)
     StepView mStepView;
     @BindView(R.id.next_button)
@@ -85,6 +91,8 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     MaterialSpinner mPerkawinan;
     @BindView(R.id.mNamaIbu)
     EditText mNamaIbu;
+    @BindView(R.id.mNoKK)
+    EditText mNoKK;
 
     //data keluarga
     @BindView(R.id.mDataKeluargaLayout)
@@ -154,23 +162,46 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     MaterialSpinner mJenisTernak;
     @BindView(R.id.mKetTernak)
     EditText mKetTernak;
+    @BindView(R.id.mPekerjanSelainTani)
+    EditText mPekerjanSelainTani;
+    @BindView(R.id.mPekerjanPenghuniRumah)
+    EditText mPekerjanPenghuniRumah;
 
-    private Button deleteAnak;
-    JSONObject dataTambahan = new JSONObject();
     JSONArray dataAnaks = new JSONArray();
     JSONArray dataTanggungans = new JSONArray();
+    String kelamin;
+    ProfilePresenter presenter;
+    private LoginResponse mProfile;
+    private String nik, nama, alamat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
         ButterKnife.bind(this);
+        presenter = new ProfilePresenter(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
         this.initViews();
     }
 
     @Override
     public void initViews() {
+        mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        nama = (mProfile.getResult().getNama().contains(" "))
+                ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
+        alamat = (mProfile.getResult().getAlamat().contains(" "))
+                ? mProfile.getResult().getAlamat() : mProfile.getResult().getAlamat();
+        mNik.setText(nik);
+        mNik.setEnabled(false);
+        mName.setText(nama);
+        mAddress.setText(alamat);
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading ...");
         mAgama.setItems(App.getApplication().getResources().getStringArray(R.array.agama));
         mPendTerakhirAnak.setItems(App.getApplication().getResources().getStringArray(R.array.PendidikanAnak));
         mHubKeluarga.setItems(App.getApplication().getResources().getStringArray(R.array.HubKeluarga));
@@ -196,22 +227,22 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
         mRadioTanggungan.setOnCheckedChangeListener(this);
         mTidak.setChecked(true);
         mTidakTanggungan.setChecked(true);
+        mSubmit.setOnClickListener(this);
         this.setDataPribadiVisible(true);
 
     }
 
     public void onSelect(View v) {
-        JSONObject dataKeluarga = new JSONObject();
-
-        try {
-            dataKeluarga.put("namaKepalaKeluarga", mKepalaKeluarga.getText().toString());
-            dataKeluarga.put("dataAnak", dataAnaks);
-            dataKeluarga.put("tungganganLain", dataTanggungans);
-            dataTambahan.put("dataTambahan", dataKeluarga);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        System.out.println(dataTambahan);
+//        JSONObject dataKeluarga = new JSONObject();
+//        try {
+//            dataKeluarga.put("namaKepalaKeluarga", mKepalaKeluarga.getText().toString());
+//            dataKeluarga.put("dataAnak", dataAnaks);
+//            dataKeluarga.put("tungganganLain", dataTanggungans);
+//            dataTambahan.put("dataTambahan", dataKeluarga);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(dataTambahan);
 
     }
 
@@ -219,7 +250,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     public void onAddField(View v) {
         if (v == mAddAnak) {
             if (!mNamaAnak.getText().toString().equals("") && !mTglLahirAnak.getText().toString().equals("") &&
-                    !mTmptLahirAnak.getText().toString().equals("") && mPendTerakhirAnak.getSelectedIndex() != 0) {
+                    !mTmptLahirAnak.getText().toString().equals("") && !mPendTerakhirAnak.getText().toString().equals("Pendidikan Sekarang")) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_anak_field, null);
                 final TextView mAnakKe = (TextView) rowView.findViewById(R.id.mAnakKe);
@@ -227,7 +258,6 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                 final TextView mTglLahirAnaks = (TextView) rowView.findViewById(R.id.mTglLahirAnaks);
                 final TextView mTmptLahirAnaks = (TextView) rowView.findViewById(R.id.mTmptLahirAnaks);
                 final TextView mPendTerakhirAnaks = (TextView) rowView.findViewById(R.id.mPendTerakhirAnaks);
-                deleteAnak = (Button) rowView.findViewById(R.id.deleteAnak);
 
                 mAnakKe.setText(SpinnerAnak.getText().toString());
                 mNamaAnaks.setText(mNamaAnak.getText().toString());
@@ -258,7 +288,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
         }
         if (v == mAddTanggungan) {
             if (!mNamaLengkapTanggungan.getText().toString().equals("") && !mTglLahirTanggungan.getText().toString().equals("") &&
-                    !mTmptLahirTanggungan.getText().toString().equals("") && mHubKeluarga.getSelectedIndex() != 0) {
+                    !mTmptLahirTanggungan.getText().toString().equals("") && !mHubKeluarga.getText().toString().equals("Hubungan Keluarga")) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_tanggungan_field, null);
                 final TextView mNama = (TextView) rowView.findViewById(R.id.mNama);
@@ -293,30 +323,30 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
 
     }
 
-    public void onDelete(View v) {
-        if (v == deleteAnak) {
-            TextView namaAnak = (TextView) ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
-            parent_anak.removeView((View) v.getParent());
-            for (int i = 0; i < dataAnaks.length(); i++) {
-                try {
-                    if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
-                        dataAnaks.remove(i);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+    public void onDeleteAnak(View v) {
+        TextView namaAnak = (TextView) ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
+        parent_anak.removeView((View) v.getParent());
+        for (int i = 0; i < dataAnaks.length(); i++) {
+            try {
+                if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
+                    dataAnaks.remove(i);
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } else {
-            TextView namaAnak = (TextView) ((View) v.getParent()).findViewById(R.id.mNama);
-            parent_Tanggungan.removeView((View) v.getParent());
-            for (int i = 0; i < dataTanggungans.length(); i++) {
-                try {
-                    if (namaAnak.getText().toString().equals(dataTanggungans.getJSONObject(i).getString("namaLengkap"))) {
-                        dataTanggungans.remove(i);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        }
+    }
+
+    public void onDeleteTunggangan(View v) {
+        TextView name = (TextView) ((View) v.getParent()).findViewById(R.id.mNama);
+        parent_Tanggungan.removeView((View) v.getParent());
+        for (int i = 0; i < dataTanggungans.length(); i++) {
+            try {
+                if (name.getText().toString().equals(dataTanggungans.getJSONObject(i).getString("namaLengkap"))) {
+                    dataTanggungans.remove(i);
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -329,13 +359,14 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
         String name = mName.getText().toString();
         String nik = mNik.getText().toString();
         String alamat = mAddress.getText().toString();
-        String kelamin = gender;
+        kelamin = gender;
         String tmpt_lahir = mTempatLahir.getText().toString();
         String tgl_lahir = mTglLahir.getText().toString();
         String agama = mAgama.getText().toString();
         String pendidikan = mPendTerakhir.getText().toString();
         String perkawinan = mPerkawinan.getText().toString();
         String nama_ibu = mNamaIbu.getText().toString();
+        String no_kk = mNoKK.getText().toString();
 
 
         if (!name.equals("")) {
@@ -347,7 +378,10 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                                 if (!pendidikan.equals("Pendidikan Terakhir")) {
                                     if (!perkawinan.equals("Status Perkawinan")) {
                                         if (!nama_ibu.equals("")) {
-                                            valid = true;
+                                            if (!no_kk.equals("")) {
+                                                valid = true;
+                                            } else TopSnakbar.showWarning(this,
+                                                    "Harap isi No Kartu Keluarga");
                                         } else TopSnakbar.showWarning(this,
                                                 "Harap isi nama ibu !");
                                     } else TopSnakbar.showWarning(this,
@@ -391,14 +425,20 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
             if (radio_anak.equals("YA") && !dataAnaks.isNull(0)) {
                 if (radio_tanggungan.equals("YA") && !dataTanggungans.isNull(0)) {
                     valid = true;
-                }
-                else if (radio_tanggungan.equals("TIDAK")) {
+                } else if (radio_tanggungan.equals("TIDAK")) {
                     valid = true;
-                }else TopSnakbar.showWarning(this,
+                } else TopSnakbar.showWarning(this,
                         "Harap isi semua kolom data tanggungan lain terlebih dahulu !");
 
-            } else if(radio_anak.equals("TIDAK") && radio_tanggungan.equals("TIDAK")) {
-                valid = true ;
+            } else if (radio_anak.equals("TIDAK")) {
+                if (radio_tanggungan.equals("TIDAK")) {
+                    valid = true;
+                }
+                else if (radio_tanggungan.equals("YA") && !dataTanggungans.isNull(0)) {
+                    valid = true;
+                } else TopSnakbar.showWarning(this,
+                        "Harap isi semua kolom data tanggungan lain terlebih dahulu !");
+
             } else TopSnakbar.showWarning(this,
                     "Harap isi semua kolom data anak terlebih dahulu !");
 
@@ -421,13 +461,30 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     @Override
     public boolean isDataKepemilikanReady() {
         boolean valid = false;
-        String kepalaKeluarga = mKepalaKeluarga.getText().toString();
+        String status_rumah = mStatusRumah.getText().toString();
+        String status_lahan = mStatusLahan.getText().toString();
+        String fasilitas_listrik = mFasilitasListrik.getText().toString();
+        String kendaraan_hak_milik = mJenisKendaraan.getText().toString();
+        String jenis_ternak = mJenisTernak.getText().toString();
+        String keterangan_ternak = mKetTernak.getText().toString();
 
 
-        if (!kepalaKeluarga.equals("")) {
-            valid = true;
+        if (!status_rumah.equals("Status Kepemilikan Rumah")) {
+            if (!status_lahan.equals("Status Kepemilikan Lahan")) {
+                if (!fasilitas_listrik.equals("Fasilitas Listrik")) {
+                    if (!kendaraan_hak_milik.equals("Kendaraan Hak milik")) {
+                        if (!jenis_ternak.equals("Jenis Ternak")) {
+                            valid = true;
+                        } else TopSnakbar.showWarning(this,
+                                "Harap pilih jenis ternak terlebih dahulu !");
+                    } else TopSnakbar.showWarning(this,
+                            "Harap pilih kendaraan hak milik terlebih dahulu !");
+                } else TopSnakbar.showWarning(this,
+                        "Harap fasilitas listrik terlebih dahulu !");
+            } else TopSnakbar.showWarning(this,
+                    "Harap pilih status lahan terlebih dahulu !");
         } else TopSnakbar.showWarning(this,
-                "Harap isi semua kolom terlebih dahulu");
+                "Harap status kepemilikan rumah terlebih dahulu !");
 
         return valid;
     }
@@ -440,6 +497,79 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
             this.setDataKeluargaVisible(false);
 
         } else mDataKepemilikanLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onSubmit() {
+        JSONObject dataRoot = new JSONObject();
+        JSONObject dataUser = new JSONObject();
+        JSONObject dataKeluarga = new JSONObject();
+        JSONObject dataKepemilikan = new JSONObject();
+        JSONObject ternak = new JSONObject();
+        JSONObject pekerjaan = new JSONObject();
+        try {
+
+            dataKeluarga.put("namaKepalaKeluarga", mKepalaKeluarga.getText().toString());
+            dataKeluarga.put("dataAnak", dataAnaks);
+            dataKeluarga.put("tanggunganLain", dataTanggungans);
+
+            dataKepemilikan.put("statusRumah", mStatusRumah.getText().toString());
+            dataKepemilikan.put("statusLahan", mStatusLahan.getText().toString());
+            dataKepemilikan.put("fasilitasListrik", mFasilitasListrik.getText().toString());
+            dataKepemilikan.put("kendaraan", mJenisKendaraan.getText().toString());
+            ternak.put("namaTernak", mJenisTernak.getText().toString());
+            ternak.put("keteranganTernak", mKetTernak.getText().toString());
+            dataKepemilikan.put("ternak", ternak);
+            pekerjaan.put("pekerjanSelainTani", mPekerjanSelainTani.getText().toString());
+            pekerjaan.put("pekerjanPenghuniRumah", mPekerjanPenghuniRumah.getText().toString());
+            dataKepemilikan.put("pekerjaan", pekerjaan);
+
+            dataUser.put("nama", mName.getText().toString());
+            dataUser.put("nik", mNik.getText().toString());
+            dataUser.put("jenisKelamin", kelamin);
+            dataUser.put("address", mAddress.getText().toString());
+            dataUser.put("tempatLahir", mTempatLahir.getText().toString());
+            dataUser.put("tglLahir", mTglLahir.getText().toString());
+            dataUser.put("noKk", mNoKK.getText().toString());
+            dataUser.put("agama", mAgama.getText().toString());
+            dataUser.put("pendidikanTerakhir", mPendTerakhir.getText().toString());
+            dataUser.put("statusPerkawinan", mPerkawinan.getText().toString());
+            dataUser.put("namaIbuKandung", mNamaIbu.getText().toString());
+            dataUser.put("dataTambahan", dataKeluarga);
+            dataUser.put("dataKepemilikan", dataKepemilikan);
+            dataRoot.put("data", dataUser);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        Gson gson = new Gson();
+//        String Data = gson.toJson(dataRoot);
+        System.out.println(dataRoot);
+        presenter.onUpdateProfile(nik, dataRoot.toString());
+
+
+    }
+
+    @Override
+    public void onUpdateProfileSuccess(CommonResponse response) {
+
+        SweetDialogs.commonSuccess(this, "", true);
+    }
+
+    @Override
+    public void onNetworkError(String cause) {
+        Log.e("errornya", cause);
+        SweetDialogs.endpointError(this);
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+
+        sweetAlertDialog.dismiss();
     }
 
 
@@ -535,8 +665,13 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                 mStepView.done(false);
                 mStepView.go(currentStep, true);
                 break;
+
+            case R.id.mSubmit:
+                this.onSubmit();
+                break;
         }
     }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -548,6 +683,12 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                         break;
                     case R.id.mTidak:
                         mCardAnak.setVisibility(View.GONE);
+                        parent_anak.removeAllViews();
+                        try {
+                            dataAnaks = new JSONArray("[]");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
                 break;
@@ -559,6 +700,12 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                         break;
                     case R.id.mTidakTanggungan:
                         mCardTanggungan.setVisibility(View.GONE);
+                        parent_Tanggungan.removeAllViews();
+                        try {
+                            dataTanggungans = new JSONArray("[]");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
                 break;
