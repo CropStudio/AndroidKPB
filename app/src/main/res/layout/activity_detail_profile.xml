@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".features.petani.detailProfile.detailProfile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/c_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/toUp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/c_white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:id="@+id/backTo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_chevron_left" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:text="Detail Data"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:weightSum="1">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/user_default_farmer"
+                                app:civ_border_color="#80FFFFFF"
+                                app:civ_circle_background_color="@color/c_white" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="1">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:text="ADI PERMANA"
+                                            android:textAllCaps="true"
+                                            android:textSize="15dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:text="NIK PETANI"
+                                            android:textAllCaps="true"
+                                            android:textSize="12dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center|right|top">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingBottom="5dp"
+                                            android:text="LAKI-LAKI"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white"
+                                            android:textSize="8dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/doted_line"
+                                    android:layerType="software" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="Nomor Kartu Keluarga"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="11990022331100"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Alamat"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="2"
+                                    android:paddingLeft="10dp"
+                                    android:text="@string/lorem_ipsum"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Tempat Lahir"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="2"
+                                    android:paddingLeft="10dp"
+                                    android:text="@string/lorem_ipsum"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Pendidikan Terakhir"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="SD / Sederajat"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Nama Ibu Kandung"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="Sumiyati"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Nama Kepala Keluarga"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Supriadi"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/doted_line"
+                                    android:layerType="software" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Status Kepemilikan Rumah"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="milik pribadi"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Status Kepemilikan Rumah"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="milik lahan"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Status Fasilitas Listrik"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="Ada - PLN"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Jenis Kepemilikan Kendaraan"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="Sepedah"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Jenis Kepemilikan Ternak"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:text="ikan - kolam"
+                                        android:textAllCaps="true"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:background="@color/black_overlay" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:text="Ikan mas"
+                                        android:textAllCaps="true"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Pekerjaan Selain Bertani"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="Ternak"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="Pekerjaan Penghuni Rumah"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="Ternak"
+                                    android:textAllCaps="true"
+                                    android:textColor="#66000000"
+                                    android:textSize="12dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F3F1F1"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Agama"
+                                    android:textSize="10dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Kristen Protestan"
+                                    android:textColor="#66000000"
+                                    android:textSize="11dp" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#33000000" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Tanggal Lahir"
+                                    android:textSize="10dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="29-07-2019"
+                                    android:textColor="#66000000"
+                                    android:textSize="11dp" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#33000000" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Status Perkawinan"
+                                    android:textSize="10dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Belum Menikah"
+                                    android:textColor="#66000000"
+                                    android:textSize="11dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Detail Data Anak"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Anak Ke 1"
+                                android:textAllCaps="true"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nama Lengkap"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="11990022331100"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Tanggal Lahir"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="29-07-2019"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pendidikan Sekarang"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="SD / Sederajat"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Tempat Lahir"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="2"
+                                        android:text="@string/lorem_ipsum"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Detail Data Tanggungan"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Tanggungan Ke 1"
+                                android:textAllCaps="true"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nama Lengkap"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="11990022331100"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Tanggal Lahir"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="29-07-2019"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Hubungan Keluarga"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Anak Angkat"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Tempat Lahir"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="2"
+                                        android:text="@string/lorem_ipsum"
+                                        android:textColor="#66000000"
+                                        android:textSize="12dp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F5F5"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_white"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/toUp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/c_white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:text="Kelengkapan Data"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#F3F3F3"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/mDataPribadiLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/search_holder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mName"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="false"
+                                            android:hint="Nama Lengkap (sesuai E-KTP)"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mNik"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="false"
+                                            android:hint="Nomor Induk Kependudukan (sesuai E-KTP)"
+                                            android:inputType="number"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mAddress"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="false"
+                                            android:hint="Alamat Lengkap (sesuai E-KTP)"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <RadioGroup
+                                        android:id="@+id/mRadioGender"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <RadioButton
+                                            android:id="@+id/mMale"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:checked="true"
+                                            android:text="Laki-Laki" />
+
+                                        <RadioButton
+                                            android:id="@+id/mFemale"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_above="@+id/mMale"
+                                            android:layout_marginLeft="20dp"
+                                            android:text="Perempuan" />
+
+                                    </RadioGroup>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mTempatLahir"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="true"
+                                            android:hint="Tempat Lahir (sesuai E-KTP)"
+                                            android:imeOptions="actionDone"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal"
+                                        android:weightSum="2">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="2">
+
+                                            <android.support.design.widget.TextInputLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:textColorHint="@color/statusbarColor">
+
+                                                <android.support.design.widget.TextInputEditText
+                                                    android:id="@+id/mTglLahir"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:backgroundTint="@color/fadeWhite2"
+                                                    android:focusable="false"
+                                                    android:focusableInTouchMode="false"
+                                                    android:hint="Tanggal Lahir (sesuai E-KTP)"
+                                                    android:inputType="text"
+                                                    android:textColor="@color/colorPrimaryDark" />
+
+                                            </android.support.design.widget.TextInputLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="50dp"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center">
+
+                                            <ImageButton
+                                                android:id="@+id/mBtnDate"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:background="@android:color/transparent"
+                                                android:onClick="showDateDialog"
+                                                android:src="@drawable/ic_calendar"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mAgama"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Agama"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Agama"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mPendTerakhir"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pendidikan Terakhir"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Pendidikan Terakhir"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mPerkawinan"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Status Perkawinan"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Status Perkawinan"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mNamaIbu"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:hint="Nama Ibu Kandung"
+                                            android:inputType="text"
+                                            android:nextFocusDown="@id/mNoKK"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mNoKK"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:hint="Nomor Kartu Keluarga"
+                                            android:imeOptions="actionDone"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mDataKeluargaLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mKepalaKeluarga"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="true"
+                                            android:hint="Nama Kepala Keluarga"
+                                            android:imeOptions="actionDone"
+                                            android:inputType="text"
+                                            android:nextFocusDown="@id/mNik"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="Apakah Anda Mempunyai anak ?" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="5dp">
+
+                                        <RadioGroup
+                                            android:id="@+id/mRadioAnak"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:id="@+id/mYa"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:checked="true"
+                                                android:text="YA" />
+
+                                            <RadioButton
+                                                android:id="@+id/mTidak"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_above="@+id/mMale"
+                                                android:layout_marginLeft="20dp"
+                                                android:text="TIDAK" />
+
+                                        </RadioGroup>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/CardAnak"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:padding="5dp"
+                                        android:visibility="visible">
+
+                                        <com.jaredrummler.materialspinner.MaterialSpinner
+                                            android:id="@+id/SpinnerAnak"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Anak Ke"
+                                            android:textSize="16dp"
+                                            app:ms_hint="Anak Ke"
+                                            app:ms_hint_color="@color/statusbarColor"
+                                            app:ms_padding_bottom="0dp"
+                                            app:ms_padding_left="5dp" />
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_margin="5dp"
+                                            android:background="@color/statusbarColor" />
+
+                                        <android.support.design.widget.TextInputLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColorHint="@color/statusbarColor">
+
+                                            <android.support.design.widget.TextInputEditText
+                                                android:id="@+id/mNamaAnak"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:backgroundTint="@color/fadeWhite2"
+                                                android:hint="Nama Anak"
+                                                android:imeOptions="actionDone"
+                                                android:inputType="text"
+                                                android:nextFocusDown="@id/mNik"
+                                                android:textColor="@color/colorPrimaryDark" />
+
+                                        </android.support.design.widget.TextInputLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal"
+                                            android:weightSum="1">
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1">
+
+                                                <android.support.design.widget.TextInputLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColorHint="@color/statusbarColor">
+
+                                                    <android.support.design.widget.TextInputEditText
+                                                        android:id="@+id/mTglLahirAnak"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:backgroundTint="@color/fadeWhite2"
+                                                        android:focusable="false"
+                                                        android:focusableInTouchMode="false"
+                                                        android:hint="Tanggal Lahir "
+                                                        android:inputType="text"
+                                                        android:textColor="@color/colorPrimaryDark" />
+
+                                                </android.support.design.widget.TextInputLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="50dp"
+                                                android:layout_height="match_parent">
+
+                                                <ImageButton
+                                                    android:id="@+id/dateAnak"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:background="@android:color/transparent"
+                                                    android:onClick="showDateDialog"
+                                                    android:src="@drawable/ic_calendar"
+                                                    android:textColor="@color/white" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <android.support.design.widget.TextInputLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColorHint="@color/statusbarColor">
+
+                                            <android.support.design.widget.TextInputEditText
+                                                android:id="@+id/mTmptLahirAnak"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:backgroundTint="@color/fadeWhite2"
+                                                android:hint="Tempat Lahir"
+                                                android:inputType="text"
+                                                android:nextFocusDown="@id/mNik"
+                                                android:textColor="@color/colorPrimaryDark" />
+
+                                        </android.support.design.widget.TextInputLayout>
+
+                                        <com.jaredrummler.materialspinner.MaterialSpinner
+                                            android:id="@+id/mPendTerakhirAnak"
+                                            style="@style/Widget.AppCompat.Spinner.Underlined"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Pendidikan Sekarang"
+                                            android:textSize="16dp"
+                                            app:ms_hint="Pendidikan Sekarang"
+                                            app:ms_hint_color="@color/statusbarColor"
+                                            app:ms_padding_bottom="0dp"
+                                            app:ms_padding_left="5dp"
+                                            app:ms_padding_top="15dp" />
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_margin="5dp"
+                                            android:background="@color/statusbarColor" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="10dp"
+                                            android:gravity="right"
+                                            android:orientation="horizontal">
+
+                                            <Button
+                                                android:id="@+id/mAddAnak"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/btn_tambah"
+                                                android:onClick="onAddField"
+                                                android:paddingLeft="15dp"
+                                                android:paddingRight="15dp"
+                                                android:text="Tambah Data"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/container"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:text="Apakah Anda Mempunyai tanggungan lain ?" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="5dp">
+
+                                        <RadioGroup
+                                            android:id="@+id/mRadioTanggungan"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:id="@+id/mYaTanggungan"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:checked="true"
+                                                android:text="YA" />
+
+                                            <RadioButton
+                                                android:id="@+id/mTidakTanggungan"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="20dp"
+                                                android:text="TIDAK" />
+
+                                        </RadioGroup>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/CardTanggungan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="5dp"
+                                        android:visibility="visible">
+
+                                        <android.support.design.widget.TextInputLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColorHint="@color/statusbarColor">
+
+                                            <android.support.design.widget.TextInputEditText
+                                                android:id="@+id/mNamaLengkapTanggungan"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:backgroundTint="@color/fadeWhite2"
+                                                android:hint="Nama Lengkap"
+                                                android:imeOptions="actionDone"
+                                                android:inputType="text"
+                                                android:nextFocusDown="@id/mNik"
+                                                android:textColor="@color/colorPrimaryDark" />
+
+                                        </android.support.design.widget.TextInputLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal"
+                                            android:weightSum="1">
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1">
+
+                                                <android.support.design.widget.TextInputLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColorHint="@color/statusbarColor">
+
+                                                    <android.support.design.widget.TextInputEditText
+                                                        android:id="@+id/mTglLahirTanggungan"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:backgroundTint="@color/fadeWhite2"
+                                                        android:focusableInTouchMode="false"
+                                                        android:hint="Tanggal Lahir "
+                                                        android:inputType="text"
+                                                        android:textColor="@color/colorPrimaryDark" />
+
+                                                </android.support.design.widget.TextInputLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="50dp"
+                                                android:layout_height="match_parent">
+
+                                                <ImageButton
+                                                    android:id="@+id/mBtnDateTanggungan"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:background="@android:color/transparent"
+                                                    android:onClick="showDateDialog"
+                                                    android:src="@drawable/ic_calendar"
+                                                    android:textColor="@color/white" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <android.support.design.widget.TextInputLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColorHint="@color/statusbarColor">
+
+                                            <android.support.design.widget.TextInputEditText
+                                                android:id="@+id/mTmptLahirTanggungan"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:backgroundTint="@color/fadeWhite2"
+                                                android:hint="Tempat Lahir"
+                                                android:inputType="text"
+                                                android:nextFocusDown="@id/mNik"
+                                                android:textColor="@color/colorPrimaryDark" />
+
+                                        </android.support.design.widget.TextInputLayout>
+
+                                        <com.jaredrummler.materialspinner.MaterialSpinner
+                                            android:id="@+id/mHubKeluarga"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Hubungan Keluarga"
+                                            android:textSize="16dp"
+                                            app:ms_hint="Hubungan Keluarga"
+                                            app:ms_hint_color="@color/statusbarColor"
+                                            app:ms_padding_bottom="0dp"
+                                            app:ms_padding_left="5dp"
+                                            app:ms_padding_top="15dp" />
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_margin="5dp"
+                                            android:background="@color/statusbarColor" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="10dp"
+                                            android:gravity="right"
+                                            android:orientation="horizontal">
+
+                                            <Button
+                                                android:id="@+id/mAddTanggungan"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/btn_tambah"
+                                                android:onClick="onAddField"
+                                                android:paddingLeft="15dp"
+                                                android:paddingRight="15dp"
+                                                android:text="Tambah Data"
+                                                android:textColor="@color/white" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/containerTanggungan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mDataKepemilikanLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="2dp"
+                                app:cardElevation="3dp"
+                                app:cardMaxElevation="2dp"
+                                app:cardUseCompatPadding="true"
+                                app:contentPadding="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mStatusRumah"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Status Kepemilikan Rumah"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Status Kepemilikan Rumah"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mStatusLahan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Status Kepemilikan Lahan"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Status Kepemilikan Lahan"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mFasilitasListrik"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Status Fasilitas Listrik"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Status Fasilitas Listrik"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mJenisKendaraan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Jenis Kepemilikan Kendaraan"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Jenis Kepemilikan Kendaraan"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mJenisTernak"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Jenis Kepemilikan Ternak"
+                                        android:textSize="16dp"
+                                        app:ms_hint="Jenis Kepemilikan Ternak"
+                                        app:ms_hint_color="@color/statusbarColor"
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="5dp"
+                                        app:ms_padding_top="15dp" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@color/statusbarColor" />
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mKetTernak"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:focusable="auto"
+                                            android:hint="Masukkan Jenis ternak anda (cth : ikan mas)"
+                                            android:inputType="text"
+                                            android:nextFocusDown="@id/mPekerjanSelainTani"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mPekerjanSelainTani"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:hint="Pekerjaan Selain Bertani"
+                                            android:inputType="text"
+                                            android:nextFocusDown="@id/mPekerjanPenghuniRumah"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mPekerjanPenghuniRumah"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:hint="Pekerjaan yang dikerjakan oleh Penghuni Rumah"
+                                            android:imeOptions="actionDone"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <Button
+                                android:id="@+id/mSubmit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/btn_rounded_green"
+                                android:text="Simpan Data"
+                                android:textColor="@color/white"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/control_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/bg_screen3"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/back_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_back_left"
+                            android:text="Lanjut" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.shuhart.stepview.StepView
+                            android:id="@+id/step_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/next_button"
+                            android:layout_toRightOf="@id/back_button"
+                            app:sv_animationType="All"
+                            app:sv_doneCircleColor="@color/completeColor"
+                            app:sv_doneStepLineColor="@color/c_white"
+                            app:sv_doneStepMarkColor="@color/c_white"
+                            app:sv_doneTextColor="@color/main_color_grey_800"
+                            app:sv_nextTextColor="@color/fadeWhite2"
+                            app:sv_selectedCircleColor="@color/fadeWhite2"
+                            app:sv_selectedStepNumberColor="@color/main_color_grey_800"
+                            app:sv_selectedTextColor="@color/main_color_grey_800"
+                            app:sv_stepLineWidth="2dp"
+                            app:sv_steps="@array/stepView"
+                            app:sv_typeface="@font/nanum_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/next_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_next_right"
+                            android:text="Kembali" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

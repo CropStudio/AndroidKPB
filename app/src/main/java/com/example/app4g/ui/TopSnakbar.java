@@ -2,6 +2,8 @@ package com.example.app4g.ui;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +20,6 @@ public class TopSnakbar {
         TSnackbar snackbar = TSnackbar.make(activity.findViewById(android.R.id.content), message, TSnackbar.LENGTH_LONG);
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-
         snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.redCrimson));
         TextView textView = snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
         textView.setTextColor(activity.getResources().getColor(R.color.c_white));
@@ -29,7 +30,6 @@ public class TopSnakbar {
         TSnackbar snackbar = TSnackbar.make(activity.findViewById(android.R.id.content), message, TSnackbar.LENGTH_LONG);
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-
         snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
         TextView textView = snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
         textView.setTextColor(activity.getResources().getColor(R.color.c_white));

@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_horizontal_margin"
-    >
-
+    android:padding="@dimen/activity_horizontal_margin">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,9 +18,7 @@
             android:background="@drawable/ic_local_shipping_black_24dp"
             android:scaleType="fitCenter" />
 
-
     </FrameLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +45,6 @@
             android:gravity="center"
             android:text="Description: Selamat Datang Di Pertanian App"
             android:textColor="@android:color/white" />
-
 
     </LinearLayout>
 

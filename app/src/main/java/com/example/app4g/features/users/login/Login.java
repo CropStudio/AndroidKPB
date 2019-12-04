@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
@@ -23,6 +24,8 @@ import com.glide.slider.library.SliderTypes.TextSliderView;
 import com.glide.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
@@ -34,8 +37,10 @@ import butterknife.OnClick;
 public class Login extends AppCompatActivity implements BaseSliderView.OnSliderClickListener,
         ViewPagerEx.OnPageChangeListener, ILoginView {
 
-    @BindView(R.id.slider)
-    SliderLayout mDemoSlider;
+//    @BindView(R.id.carousel)
+//    SliderLayout mDemoSlider;
+    private int[] mImages = new int[]{R.drawable.slide_login_1, R.drawable.slide_login_2, R.drawable.slide_login_3};
+    CarouselView carouselView;
 
     @BindView(R.id.nik)
     EditText edNik;
@@ -62,6 +67,15 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
             this.initViews();
         }
 
+        carouselView = findViewById(R.id.carousel);
+        carouselView.setPageCount(mImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(mImages[position]);
+            }
+        });
+
     }
 
     @Override
@@ -69,17 +83,17 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         ArrayList<String> listUrl = new ArrayList<>();
         ArrayList<String> listName = new ArrayList<>();
 
-        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/fffghgf.jpg");
-        listName.add("Pemodalan Usaha Tani");
-
-        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/cropped-PicsArt_03-29-09.36.17-1.jpg");
-        listName.add("Kepastian Pupuk");
-
-        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/044465100_1539706125-PADI_ORGANIK-Muhamad_Ridlo.jpg");
-        listName.add("Kemudahan Benih");
-
-        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/cropped-Marketplace-Pertanian-01-Petani-Indonesia-Finansialku-1.jpg");
-        listName.add("Kesejahteraan Petani");
+//        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/fffghgf.jpg");
+//        listName.add("Pemodalan Usaha Tani");
+//
+//        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/cropped-PicsArt_03-29-09.36.17-1.jpg");
+//        listName.add("Kepastian Pupuk");
+//
+//        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/044465100_1539706125-PADI_ORGANIK-Muhamad_Ridlo.jpg");
+//        listName.add("Kemudahan Benih");
+//
+//        listUrl.add("http://kartupetaniberjaya.com/wp-content/uploads/2019/07/cropped-Marketplace-Pertanian-01-Petani-Indonesia-Finansialku-1.jpg");
+//        listName.add("Kesejahteraan Petani");
 
         RequestOptions requestOptions = new RequestOptions();
         for (int i = 0; i < listUrl.size(); i++) {
@@ -92,15 +106,15 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                     .setOnSliderClickListener(this);
             sliderView.bundle(new Bundle());
             sliderView.getBundle().putString("extra", "");
-            mDemoSlider.addSlider(sliderView);
+//            mDemoSlider.addSlider(sliderView);
         }
-
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-
-        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-        mDemoSlider.setDuration(4000);
-        mDemoSlider.addOnPageChangeListener(this);
+//
+//        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+//
+//        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+//        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
+//        mDemoSlider.setDuration(4000);
+//        mDemoSlider.addOnPageChangeListener(this);
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText("Loading ...");
     }
@@ -112,12 +126,12 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         finish();
     }
 
-    @Override
-    protected void onStop() {
+//    @Override
+//    protected void onStop() {
         // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
-        mDemoSlider.stopAutoCycle();
-        super.onStop();
-    }
+//        mDemoSlider.stopAutoCycle();
+//        super.onStop();
+//    }
 
     @Override
     public void onSliderClick(BaseSliderView slider) {

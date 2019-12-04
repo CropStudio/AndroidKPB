@@ -1,5 +1,6 @@
 package com.example.app4g.features.petani;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -7,10 +8,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.petani.detailProfile.detailProfile;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -42,6 +45,7 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.profile_image)
     CircleImageView mProfileImg;
     LoginResponse mProfile;
+    ImageButton detailsProfile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +61,16 @@ public class ProfileFragment extends Fragment {
             }
         }
         initView();
+
+        detailsProfile = (ImageButton)view.findViewById(R.id.viewProfile);
+        detailsProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), detailProfile.class));
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
 

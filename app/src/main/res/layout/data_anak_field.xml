@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageButton
+        android:id="@+id/deleteAnak"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/page_details_data_exit"
+        android:onClick="onDeleteAnak"
+        android:src="@drawable/ic_close_red"
+        android:text="Hapus"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/page_details_data"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/mAnakKe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:inputType="text"
+            android:text="ANAK KE 1"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/doted_line"
+            android:layerType="software" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/statusbarColor">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mNamaAnaks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="@color/fadeWhite2"
+                android:hint="Nama Anak"
+                android:inputType="text"
+                android:nextFocusDown="@id/mNik"
+                android:textColor="@color/colorPrimaryDark" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/statusbarColor">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mTglLahirAnaks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="@color/fadeWhite2"
+                android:hint="Tanggal Lahir"
+                android:inputType="text"
+                android:nextFocusDown="@id/mNik"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/statusbarColor">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mTmptLahirAnaks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="@color/fadeWhite2"
+                android:hint="Tempat Lahir"
+                android:inputType="text"
+                android:nextFocusDown="@id/mNik"
+                android:textColor="@color/colorPrimaryDark" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/statusbarColor">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mPendTerakhirAnaks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="@color/fadeWhite2"
+                android:hint="Pendidikan Terakhir"
+                android:inputType="text"
+                android:nextFocusDown="@id/mNik"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

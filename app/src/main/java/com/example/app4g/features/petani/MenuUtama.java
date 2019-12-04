@@ -3,6 +3,7 @@ package com.example.app4g.features.petani;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.features.petani.anak.ListDataAnak;
@@ -21,7 +23,7 @@ import butterknife.ButterKnife;
 
 public class MenuUtama extends AppCompatActivity {
 
-
+    boolean BackPress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,6 @@ public class MenuUtama extends AppCompatActivity {
                 new Dashboard()).commit();
 
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +64,22 @@ public class MenuUtama extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (BackPress) {
+            super.onBackPressed();
+            return;
+        }
+        this.BackPress = true;
+        Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                BackPress=false;
+            }
+        }, 2000);
     }
 
     @Override

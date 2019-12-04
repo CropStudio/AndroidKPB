@@ -1,694 +1,882 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/grey_3"
+    android:background="#F7F5F5"
+    android:orientation="vertical"
     tools:context=".features.petani.detailpupuk.DetailPupukActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:minHeight="?attr/actionBarSize">
+        android:layout_height="60dp"
+        android:background="@color/c_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
+            android:id="@+id/toUp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="@color/c_white"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/AppTheme"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
 
+            <ImageButton
+                android:id="@+id/backTo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_chevron_left" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:text="Detail Data Pupuk"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#F5F0F0"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:text="Masa Tanam"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="3dp"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/background_profile" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/date_bg_2"
+                                    android:fontFamily="serif"
+                                    android:gravity="center"
+                                    android:text="I"
+                                    android:textColor="@color/bg_screen3"
+                                    android:textSize="45dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Komoditi"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
+
+                                        <TextView
+                                            android:id="@+id/komoditas1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="padi"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="TOTAL PUPUK"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
+
+                                        <TextView
+                                            android:id="@+id/total1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="200 Kg"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Urea"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukUrea1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk SP36"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukSp361"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk ZA"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukZA1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk NPK"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukNpk1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Organik"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukOrganik1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/lampung_coa"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="0dp"
-                    android:text="Detail Pupuk"
-                    android:textStyle="bold"
-                    android:textSize="18sp" />
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="3dp"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/background_profile" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/date_bg_2"
+                                    android:fontFamily="serif"
+                                    android:gravity="center"
+                                    android:text="II"
+                                    android:textColor="@color/bg_screen3"
+                                    android:textSize="45dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Komoditi"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
+
+                                        <TextView
+                                            android:id="@+id/komoditas2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="padi"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="TOTAL PUPUK"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
+
+                                        <TextView
+                                            android:id="@+id/total2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="200 Kg"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Urea"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukUrea2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk SP36"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukSp362"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk ZA"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukZA2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk NPK"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukNpk2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Organik"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukOrganik2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </FrameLayout>
+
             </LinearLayout>
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp">
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="1">
-
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/list_container"
-            android:layout_width="wrap_content"
-            android:layout_height="215dp"
-            android:layout_gravity="center"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-                <TextView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Masa Tanam 1"
-                    android:textSize="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textStyle="bold" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/black_overlay"/>
+                    android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Urea"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukUrea1"
-                        android:textColor="@color/gray"
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk SP36"/>
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="3dp"
+                        app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="top">
 
-                    <TextView
-                        android:id="@+id/jumlahPupukSp361"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk ZA"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/background_profile" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
+                        </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/jumlahPupukZA1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk NPK"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="10dp">
 
-                    <TextView
-                        android:id="@+id/jumlahPupukNpk1"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Organik"/>
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/date_bg_2"
+                                    android:fontFamily="serif"
+                                    android:gravity="center"
+                                    android:text="III"
+                                    android:textColor="@color/bg_screen3"
+                                    android:textSize="45dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/jumlahPupukOrganik1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Komoditas"/>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text=": "/>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Komoditi"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
 
-                    <TextView
-                        android:id="@+id/komoditas1"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Padi"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Total Pupuk"/>
+                                        <TextView
+                                            android:id="@+id/komoditas3"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="padi"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
+                                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/total1"
-                        android:textColor="@color/gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="TOTAL PUPUK"
+                                            android:textAllCaps="true"
+                                            android:textColor="#4D000000"
+                                            android:textSize="10dp" />
+
+                                        <TextView
+                                            android:id="@+id/total3"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/date_bg_3"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:text="200 Kg"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Urea"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukUrea3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk SP36"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukSp363"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk ZA"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukZA3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/doted_line"
+                                android:layerType="software" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk NPK"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukNpk3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pupuk Organik"
+                                        android:textColor="#4D000000" />
+
+                                    <TextView
+                                        android:id="@+id/jumlahPupukOrganik3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="400 Kg"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </FrameLayout>
+
             </LinearLayout>
-        </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="215dp"
-            android:layout_gravity="center"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardUseCompatPadding="true">
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Masa Tanam 2"
-                    android:textSize="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textStyle="bold" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/black_overlay"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Urea"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukUrea2"
-                        android:textColor="@color/gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk SP36"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukSp362"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk ZA"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukZA2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk NPK"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukNpk2"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Organik"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukOrganik2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Komoditas"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/komoditas2"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Padi"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Total Pupuk"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/total2"
-                        android:textColor="@color/gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="215dp"
-            android:layout_gravity="center"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Masa Tanam 3"
-                    android:textSize="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textStyle="bold" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/black_overlay"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Urea"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukUrea3"
-                        android:textColor="@color/gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk SP36"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukSp363"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk ZA"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukZA3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk NPK"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukNpk3"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Pupuk Organik"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/jumlahPupukOrganik3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Komoditas"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/komoditas3"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Padi"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:textColor="@color/gray"
-                        android:layout_height="wrap_content"
-                        android:text="Total Pupuk"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray"
-                        android:text=": "/>
-
-                    <TextView
-                        android:id="@+id/total3"
-                        android:textColor="@color/gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20 Kg"/>
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-    </TableLayout>
     </ScrollView>
 
 </LinearLayout>

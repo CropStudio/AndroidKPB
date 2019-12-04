@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_bg_welcome_4" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:src="@drawable/pemodalan" />
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Pemodalan Usaha Tani"
-            android:layout_marginTop="5dp"
-            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-thin"
+            android:text="Pemodalan Usaha"
             android:textSize="25dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@android:color/white"/>
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            android:background="@drawable/doted_line"
+            android:layerType="software" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:textSize="15dp"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center"
             android:text="Optimalisasi KUR, dan kemudahan mengakses permodalalan"
-            android:textColor="@android:color/white"/>
-
+            android:textSize="15dp" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

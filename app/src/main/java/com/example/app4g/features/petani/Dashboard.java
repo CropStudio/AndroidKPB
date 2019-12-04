@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.example.app4g.R;
 import com.example.app4g.features.petani.jatah.ListDataPupuk;
 import com.example.app4g.features.e_commerce.EcommerceActivity;
+import com.example.app4g.features.petani.profile.create_profile;
 import com.example.app4g.features.rut.RutActivity;
 import com.example.app4g.ui.DrawerHeader;
 import com.example.app4g.ui.DrawerMenuItem;
@@ -44,6 +45,8 @@ public class Dashboard extends Fragment {
     DrawerLayout mDrawer;
     @BindView(R.id.mainMenuDashboard)
     ImageButton mainMenuDashboard;
+    @BindView(R.id.mIcon)
+    ImageView mIcon;
     @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,14 +71,19 @@ public class Dashboard extends Fragment {
         //setContentView(R.layout.activity_dashboard);
     }
 
+    @OnClick(R.id.mIcon)
+    void icon(){
+        Intent i = new Intent(getActivity(), create_profile.class);
+        startActivity(i);
+        getActivity().finish();
+    }
+
     @OnClick(R.id.cardPupuk)
     void infoPupuk(){
         Intent i = new Intent(getActivity(), ListDataPupuk.class);
         startActivity(i);
         getActivity().finish();
     }
-
-
 
     @OnClick(R.id.mCardRut)
     void goToRut(){
@@ -135,21 +143,6 @@ public class Dashboard extends Fragment {
 //                .addView(new DrawerMenuItem(this, DrawerMenuItem.DRAWER_MENU_ITEM_CONTACTUS))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_LOGOUT));
 
-
-//        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawer, mainMenuDashboard, R.string.open_drawer, R.string.close_drawer) {
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                super.onDrawerClosed(drawerView);
-//            }
-//        };
-//
-//        mDrawer.addDrawerListener(drawerToggle);
-//        drawerToggle.syncState();
 
         mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
