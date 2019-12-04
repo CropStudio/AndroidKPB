@@ -56,7 +56,7 @@ public class Dashboard extends Fragment {
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(mImages[position]);
+//                imageView.setImageResource(mImages[position]);
             }
         });
         return view;

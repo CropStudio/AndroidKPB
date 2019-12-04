@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
+import com.example.app4g.features.gubernur.Dashboard_Gubernur;
 import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
@@ -188,9 +189,9 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
     @Override
     public void goToDashboardGubernur() {
-//        startActivity(new Intent(this, TrackerActivity.class));
-//        finish();
-        Toast.makeText(this, "Gubernur", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, Dashboard_Gubernur.class));
+        finish();
+//        Toast.makeText(this, "Gubernur", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.signin)

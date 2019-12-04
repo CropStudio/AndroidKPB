@@ -93,7 +93,6 @@ public class LoginPresenter implements ILoginPresenter{
                 try {
                     final JSONObject jObj = new JSONObject(response);
                     final boolean status = jObj.getBoolean("status");
-
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {

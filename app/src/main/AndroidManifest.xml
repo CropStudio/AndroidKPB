@@ -22,6 +22,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".features.gubernur.Menu_Gubernur"></activity>
+        <activity android:name=".features.gubernur.EditProfileGubernur" />
+        <activity android:name=".features.gubernur.ProfileFragmentGubernur" />
+        <activity android:name=".features.gubernur.Dashboard_Gubernur" />
         <activity
             android:name=".features.rut.RutActivity"
             android:theme="@style/AppThemeMain" />

@@ -357,7 +357,7 @@
                                         <ImageView
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_pupuk" />
+                                            app:srcCompat="@drawable/ic_info_pupuk" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -446,7 +446,7 @@
                                         <ImageView
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_payment_kur" />
+                                            app:srcCompat="@drawable/ic_info_payment_kur" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -644,7 +644,7 @@
                                         <ImageView
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_banking_card" />
+                                            app:srcCompat="@drawable/ic_banking_card" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -678,4 +678,5 @@
             </FrameLayout>
         </android.support.v4.widget.DrawerLayout>
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

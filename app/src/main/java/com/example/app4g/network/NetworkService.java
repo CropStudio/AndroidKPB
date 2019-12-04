@@ -4,10 +4,13 @@ import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
+import com.example.app4g.features.gubernur.Model.Response_Kabupaten;
+import com.example.app4g.features.gubernur.Model.Response_Kecamatan;
 import com.example.app4g.features.users.login.model.LoginResponse;
 
 import java.util.Map;
 
+import meridianid.farizdotid.actdaerahindonesia.model.Kabupaten;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -41,6 +44,10 @@ public interface NetworkService {
     @POST("rut/create")
     Call<CommonResponse>createRut(@FieldMap Map<String, Object> params);
 
+    @GET("kabupaten/18")
+    Call<Response_Kabupaten> Tampil_Kabupaten();
 
+    @GET("kecamatan/")
+    Call<Response_Kecamatan> Tampil_Kecamatan();
 
 }
