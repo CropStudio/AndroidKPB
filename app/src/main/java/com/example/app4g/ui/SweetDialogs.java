@@ -138,6 +138,19 @@ public class SweetDialogs {
         dialog.show();
     }
 
+    public static void commonWarningWithIntent(Activity context, String body, onDialogClosed listener) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+        dialog.setCancelable(false);
+        dialog.setTitleText("Data anda belum lengkap");
+        dialog.setContentText(body);
+        dialog.setConfirmText("OK");
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            listener.onClosed("Sukses");
+        });
+        dialog.show();
+    }
+
     public static void Loading(Activity context, String body) {
         SweetAlertDialog pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));

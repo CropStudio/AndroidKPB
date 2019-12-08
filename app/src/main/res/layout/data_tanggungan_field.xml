@@ -34,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:inputType="text"
-            android:text="ANAK KE 1"
+            android:text="Data Tanggungan"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp"

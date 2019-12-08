@@ -10,10 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
-import com.example.app4g.features.petani.detailProfile.detailProfile;
+import com.example.app4g.features.petani.detailProfile.DetailProfile;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -22,6 +23,7 @@ import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
@@ -46,7 +48,8 @@ public class ProfileFragment extends Fragment {
     CircleImageView mProfileImg;
     LoginResponse mProfile;
     ImageButton detailsProfile;
-
+    @BindView(R.id.mEditProfile)
+    ImageButton mEditProfile;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -66,8 +69,9 @@ public class ProfileFragment extends Fragment {
         detailsProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), detailProfile.class));
+                startActivity(new Intent(getActivity(), DetailProfile.class));
                 getActivity().finish();
+//                Toast.makeText(getActivity(), "Maaf menu ini sementara belum tersedia !", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,6 +82,11 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_profile_fragment);
+    }
+
+    @OnClick(R.id.mEditProfile)
+    void onEditProfile(){
+        Toast.makeText(getActivity(), "Maaf menu edit profile belum tersedia", Toast.LENGTH_SHORT).show();
     }
 
     public void initView() {

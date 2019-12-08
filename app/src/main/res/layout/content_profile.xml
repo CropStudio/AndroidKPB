@@ -383,7 +383,7 @@
                                             android:backgroundTint="@color/fadeWhite2"
                                             android:hint="Nomor Kartu Keluarga"
                                             android:imeOptions="actionDone"
-                                            android:inputType="text"
+                                            android:inputType="number"
                                             android:textColor="@color/colorPrimaryDark" />
 
                                     </android.support.design.widget.TextInputLayout>

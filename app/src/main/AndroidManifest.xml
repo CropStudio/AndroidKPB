@@ -7,12 +7,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
+    <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <application
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:name=".server.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,12 +29,11 @@
         <activity android:name=".features.gubernur.ProfileFragmentGubernur" />
         <activity android:name=".features.gubernur.Dashboard_Gubernur" />
         <activity
-            android:name=".features.petani.detailProfile.detailProfile"
+            android:name=".features.petani.detailProfile.DetailProfile"
             android:label="@string/title_activity_detail_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".features.rut.RutActivity"
-            android:theme="@style/AppThemeMain" />
+            android:name=".features.rut.RutActivity" />
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -71,9 +72,9 @@
         <activity
             android:name=".features.petani.anak.InputDataAnak"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".features.petani.anak.ListDataAnak"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".features.petani.anak.ListDataAnak"-->
+<!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".Testdoang"
             android:screenOrientation="portrait" />
@@ -86,14 +87,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.users.registrasi.Regist"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeMain" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".features.users.login.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain" />
         <activity
-            android:name=".features.petani.profile.create_profile"
+            android:name=".features.petani.profile.CreateProfile"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"

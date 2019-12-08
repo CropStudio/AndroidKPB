@@ -57,6 +57,17 @@ public class Users {
     @SerializedName("provinsi")
     private String provinsi;
 
+    @SerializedName("noKk")
+    private String noKk;
+
+    public String getNoKk() {
+        return noKk;
+    }
+
+    public void setNoKk(String noKk) {
+        this.noKk = noKk;
+    }
+
     public String getNik() {
         return nik;
     }

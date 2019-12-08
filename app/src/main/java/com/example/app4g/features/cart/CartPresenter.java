@@ -32,16 +32,6 @@ public class CartPresenter {
 
 
     void getCart(String nik) {
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
-//            Request original = chain.request();
-//            Request request = original.newBuilder()
-//                    .header("x-access-token", token)
-//                    .header("username", username)
-//                    .method(original.method(), original.body())
-//                    .build();
-//
-//            return chain.proceed(request);
-//        }).build();
         restService.create(NetworkService.class).getCart(nik)
                 .enqueue(new Callback<Cart>() {
                     @Override

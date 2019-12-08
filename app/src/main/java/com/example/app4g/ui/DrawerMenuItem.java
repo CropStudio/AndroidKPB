@@ -3,6 +3,7 @@ package com.example.app4g.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
 
-
+import static com.example.app4g.server.App.getContext;
 
 
 /**
@@ -55,18 +56,21 @@ public class DrawerMenuItem {
         switch (mMenuPosition){
             case DRAWER_MENU_ITEM_PROFILE:
                 itemNameTxt.setText("Profile");
-                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
+//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_account_circle_black_24dp));
                 break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
                 itemNameTxt.setText("Kolaborator");
-                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_group_work_black_24dp));
+//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_group_work_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_group_work_black_24dp));
                 break;
 //            case DRAWER_MENU_ITEM_CONTACTUS:
 //                itemNameTxt.setText("Contact us");
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_contact_phone_black_24dp));
 //                break;
             case DRAWER_MENU_ITEM_LOGOUT:
-                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
+//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_exit_to_app_black_24dp));
                 itemNameTxt.setText("Logout");
                 break;
         }

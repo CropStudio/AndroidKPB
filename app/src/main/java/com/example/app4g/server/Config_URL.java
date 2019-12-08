@@ -19,7 +19,7 @@ public class Config_URL
     public static String crudUser     = base_URL + "/user";
 
     //petani
-    public static String cekPetani    = base_URL + "/petani/";
+    public static String cekPetani    = base_URL + "/cekPetani/";
 
     //data anak
     public static String dataAnak     = base_URL + "/cekanak/";

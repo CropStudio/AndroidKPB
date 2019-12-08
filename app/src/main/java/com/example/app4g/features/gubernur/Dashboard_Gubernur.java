@@ -71,6 +71,7 @@ public class Dashboard_Gubernur extends AppCompatActivity {
 
     //    String api NetworkService;
 //    Retrofit mApiService;
+            String TEST_PAGE_URL = "http://prelaunch.kartupetaniberjaya.com/#/dashboardpimpinan";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class Dashboard_Gubernur extends AppCompatActivity {
         bar = (ProgressBar) findViewById(R.id.progressBar2);
         webView.setWebViewClient(new myWebclient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://192.168.1.17:8080/#/dashboardpimpinan");
+        webView.loadUrl(TEST_PAGE_URL);
         carouselView =findViewById(R.id.carousel);
         carouselView.setPageCount(mImages.length);
         carouselView.setImageListener(new ImageListener() {

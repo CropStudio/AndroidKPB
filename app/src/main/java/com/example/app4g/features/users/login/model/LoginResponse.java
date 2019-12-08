@@ -31,4 +31,6 @@ public class LoginResponse {
     public void setRm(String rm) { mRm = rm; }
     public Boolean getSuccess() { return mStatus; }
     public void  setSuccess(Boolean success) { mStatus = success; }
+
+
 }

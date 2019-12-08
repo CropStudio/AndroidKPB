@@ -16,15 +16,20 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.app4g.R;
-import com.example.app4g.features.petani.anak.ListDataAnak;
+import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.petani.profile.CreateProfile;
 import com.example.app4g.features.users.login.Login;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
+import com.example.app4g.ui.SweetDialogs;
 
 import butterknife.ButterKnife;
 
 public class MenuUtama extends AppCompatActivity {
 
     boolean BackPress = false;
-
+    LoginResponse mProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +40,22 @@ public class MenuUtama extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Dashboard()).commit();
+        mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+        String noKk = (mProfile.getResult().getNoKk().contains(" "))
+                ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
+        if(noKk.equals("")){
+            SweetDialogs.commonWarningWithIntent(this, "Anda harus melengkapi data terlebih dahulu !" , string -> {
+                this.goToUpdateProfile();
+            });
+        }
+    }
 
+    public void goToUpdateProfile(){
+        startActivity(new Intent(this, CreateProfile.class));
+        finish();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -88,38 +108,6 @@ public class MenuUtama extends AppCompatActivity {
         if (id == R.id.action_notification1) {
             return true;
         }
-
-        if (id == R.id.dataAnak) {
-            Intent intent = new Intent(MenuUtama.this, ListDataAnak.class);
-            startActivity(intent);
-            finish();
-            return true;
-        } else if (id == R.id.exit) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(MenuUtama.this);
-            builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>")).
-                    setIcon(R.drawable.lampung_coa)
-                    .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-//                        keluar();
-//                        session.setLogin(false);
-//                        session.setSkip(false);
-//                        session.setSessid(0);
-                            Intent intent = new Intent(MenuUtama.this, Login.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @SuppressLint("RestrictedApi")
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    builder.setCancelable(true);
-                }
-            })
-                    .show();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }

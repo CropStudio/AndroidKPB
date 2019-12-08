@@ -2,6 +2,7 @@ package com.example.app4g.features.petani.profile;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,10 @@ import android.widget.Toast;
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.common.CommonResponse;
+import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.model.response;
+import com.example.app4g.features.users.login.Login;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -49,7 +54,7 @@ import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class create_profile extends AppCompatActivity implements IProfileView, View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class CreateProfile extends AppCompatActivity implements IProfileView, View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private int currentStep = 0;
@@ -250,7 +255,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     public void onAddField(View v) {
         if (v == mAddAnak) {
             if (!mNamaAnak.getText().toString().equals("") && !mTglLahirAnak.getText().toString().equals("") &&
-                    !mTmptLahirAnak.getText().toString().equals("") && !mPendTerakhirAnak.getText().toString().equals("Pendidikan Sekarang")) {
+                    !mTmptLahirAnak.getText().toString().equals("") && !mPendTerakhirAnak.getText().toString().equals("Pendidikan Sekarang") && !SpinnerAnak.getText().toString().equals("Anak Ke") ) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_anak_field, null);
                 final TextView mAnakKe = (TextView) rowView.findViewById(R.id.mAnakKe);
@@ -282,8 +287,10 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                     e.printStackTrace();
                 }
                 parent_anak.addView(rowView, 0);
+                Toast.makeText(this, "Berhasil Menambah Data", Toast.LENGTH_SHORT).show();
             } else {
-                TopSnakbar.showWarning(this, "mohon lengkapi data anak !");
+                //TopSnakbar.showWarning(this, "mohon lengkapi data anak !");
+                SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data anak dan pastkan anda sudah menekan tombol tambah data !" ,false);
             }
         }
         if (v == mAddTanggungan) {
@@ -297,7 +304,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                 final TextView mTxtHubKeluarga = (TextView) rowView.findViewById(R.id.mHubKeluarga);
                 mNama.setText(mNamaLengkapTanggungan.getText().toString());
                 mTglLahir.setText(mTglLahirTanggungan.getText().toString());
-                mTmptLahir.setText(mTglLahirTanggungan.getText().toString());
+                mTmptLahir.setText(mTmptLahirTanggungan.getText().toString());
                 mTxtHubKeluarga.setText(mHubKeluarga.getText().toString());
                 mNama.setEnabled(false);
                 mTglLahir.setEnabled(false);
@@ -316,13 +323,15 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                     e.printStackTrace();
                 }
                 parent_Tanggungan.addView(rowView, 0);
+                Toast.makeText(this, "Berhasil Menambah Data", Toast.LENGTH_SHORT).show();
             } else {
-                TopSnakbar.showWarning(this, "mohon lengkapi data tanggungan lain anda !");
+                SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data tanggungan lain dan pastkan anda sudah menekan tombol tambah data !" ,false);
             }
         }
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteAnak(View v) {
         TextView namaAnak = (TextView) ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
         parent_anak.removeView((View) v.getParent());
@@ -337,6 +346,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteTunggangan(View v) {
         TextView name = (TextView) ((View) v.getParent()).findViewById(R.id.mNama);
         parent_Tanggungan.removeView((View) v.getParent());
@@ -427,8 +437,7 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                     valid = true;
                 } else if (radio_tanggungan.equals("TIDAK")) {
                     valid = true;
-                } else TopSnakbar.showWarning(this,
-                        "Harap isi semua kolom data tanggungan lain terlebih dahulu !");
+                } else  SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data tanggungan lain dan pastkan anda sudah menekan tombol tambah data !" ,false);
 
             } else if (radio_anak.equals("TIDAK")) {
                 if (radio_tanggungan.equals("TIDAK")) {
@@ -436,14 +445,11 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
                 }
                 else if (radio_tanggungan.equals("YA") && !dataTanggungans.isNull(0)) {
                     valid = true;
-                } else TopSnakbar.showWarning(this,
-                        "Harap isi semua kolom data tanggungan lain terlebih dahulu !");
+                } else  SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data tanggungan lain dan pastkan anda sudah menekan tombol tambah data !" ,false);
 
-            } else TopSnakbar.showWarning(this,
-                    "Harap isi semua kolom data anak terlebih dahulu !");
+            } else SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data anak dan pastkan anda sudah menekan tombol tambah data !" ,false);
 
-        } else TopSnakbar.showWarning(this,
-                "Harap isi nama kepala keluarga !");
+        } else SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data anak dan pastkan anda sudah menekan tombol tambah data !" ,false);
 
         return valid;
     }
@@ -550,9 +556,18 @@ public class create_profile extends AppCompatActivity implements IProfileView, V
     }
 
     @Override
-    public void onUpdateProfileSuccess(CommonResponse response) {
+    public void onUpdateProfileSuccess(response response) {
+        App.getPref().clear();
+        SweetDialogs.commonSuccessWithIntent(this, "untuk validasi data di harapkan anda login kembali !" , string -> {
+            this.goToDashBoard();
+        });
 
-        SweetDialogs.commonSuccess(this, "", true);
+    }
+
+    @Override
+    public void goToDashBoard(){
+        startActivity(new Intent(this, Login.class));
+        finish();
     }
 
     @Override

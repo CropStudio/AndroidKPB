@@ -26,6 +26,7 @@
             tools:ignore="MissingConstraints">
 
             <ImageButton
+                android:onClick="onBack"
                 android:id="@+id/backTo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

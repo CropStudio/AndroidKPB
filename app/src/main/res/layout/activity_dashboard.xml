@@ -6,55 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".features.petani.Dashboard">
 
-    <RelativeLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent">
 
-        <android.support.v4.widget.DrawerLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/drawerLayout"
+        <LinearLayout
+            android:id="@+id/list_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/list_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3">
 
             <LinearLayout
-                android:id="@+id/list_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/list_viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="match_parent"
                     android:background="#ffffff">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="#0B1733">
 
                         <com.synnapps.carouselview.CarouselView
                             android:id="@+id/carousel"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="match_parent"
                             app:fillColor="#ffffff"
                             app:pageColor="#80ffffff"
                             app:radius="3dp"
@@ -75,42 +72,21 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:weightSum="2">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_kpb" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="KPB Lampung"
-                                    android:textColor="#ffffff"
-                                    android:textSize="20dp" />
-
-                            </LinearLayout>
+                            android:weightSum="1">
 
                             <LinearLayout
                                 android:layout_width="80dp"
-                                android:layout_height="35dp"
-                                android:layout_weight="1">
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:gravity="right|center">
 
                                 <ImageButton
                                     android:id="@+id/mainMenuDashboard"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="40dp"
                                     android:background="@android:color/transparent"
                                     android:scaleType="centerInside"
-                                    android:src="@drawable/ic_user" />
+                                    app:srcCompat="@drawable/user_default_farmer" />
 
                             </LinearLayout>
 
@@ -120,562 +96,711 @@
 
                 </FrameLayout>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        app:srcCompat="@drawable/icon_kpb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kartu Petani Berjaya" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#4D000000" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        app:srcCompat="@drawable/lampung_coa" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lampung" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:weightSum="2">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F5F0F0"
-                            android:gravity="center|left"
-                            android:orientation="horizontal"
-                            android:padding="8dp">
+                            android:layout_weight="1">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_wallet" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Saldo" />
-
-                            <TextView
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/mCardTambahSaldo"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="Rp. 200.000,00"
-                                android:textColor="#1ADE66"
-                                android:visibility="gone" />
+                                android:layout_height="80dp"
+                                android:layout_margin="2dp"
+                                android:clickable="true"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="2dp">
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:weightSum="3">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
+                                <ImageView
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    app:srcCompat="@drawable/bg_dashboard_1" />
 
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#4408AF" />
+                                <View
+                                    android:layout_width="5dp"
+                                    android:layout_height="match_parent"
+                                    android:background="#D1701A" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
+                                        android:layout_weight="1"
                                         android:orientation="horizontal"
+                                        android:padding="8dp">
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:padding="5dp"
+                                            app:srcCompat="@drawable/ic_wallet" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Saldo"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
                                         android:padding="8dp">
 
                                         <ImageView
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_wallet_dashboard" />
+                                            app:srcCompat="@drawable/ic_wallet_dashboard" />
 
                                         <TextView
-                                            android:layout_width="match_parent"
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
+                                            android:layout_marginTop="8dp"
                                             android:text="Tambah Saldo"
+                                            android:textColor="@color/white"
                                             android:textSize="10dp" />
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
+                                    <LinearLayout
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:background="#E20853" />
+                                        android:layout_weight="1"
+                                        android:gravity="center|right"
+                                        android:padding="8dp">
+
+                                        <ImageView
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:padding="5dp"
+                                            app:srcCompat="@drawable/ic_next_read" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/mCardInfoRek"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:layout_margin="2dp"
+                                android:clickable="true"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="2dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    app:srcCompat="@drawable/bg_dashboard_3" />
+
+                                <View
+                                    android:layout_width="5dp"
+                                    android:layout_height="match_parent"
+                                    android:background="#0A4CB3" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
+                                        android:layout_weight="1"
                                         android:orientation="horizontal"
+                                        android:padding="8dp">
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
                                         android:padding="8dp">
 
                                         <ImageView
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_money" />
+                                            app:srcCompat="@drawable/ic_info_money" />
 
                                         <TextView
-                                            android:layout_width="match_parent"
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
+                                            android:layout_marginTop="8dp"
                                             android:text="Info Rekening"
+                                            android:textColor="@color/white"
                                             android:textSize="10dp" />
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/mCardRut"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#D1701A" />
-
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
+                                        android:layout_weight="1"
+                                        android:gravity="center|right"
                                         android:padding="8dp">
 
                                         <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_planing_farm" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Rencana Usaha Tani"
-                                            android:textSize="10dp" />
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:padding="5dp"
+                                            app:srcCompat="@drawable/ic_next_read" />
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
+                                </LinearLayout>
 
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#F5F0F0"
-                            android:gravity="center|left"
-                            android:orientation="horizontal"
-                            android:padding="8dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_dashboard" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Layanan" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:weightSum="3">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardPupuk"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#9DC706" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_pupuk" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Infomasi Pupuk"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardInfoBeasiswa"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#C509E6" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_insurance" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Informasi Beasiswa"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardInfoKur"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#58B94E" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_info_payment_kur" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Informasi  KUR"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:weightSum="3">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardPortalInformasi"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#E61D4C" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_website_portal" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Portal Informasi"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardKatam"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#CA4609" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_planning_calendar" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Kalendar Tanam"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardECommerce"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#FFC107" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_shopping_electronic" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="E-Commerce"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:weightSum="3">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1">
-
-                                <android.support.v7.widget.CardView
-                                    android:id="@+id/cardKartuPetani"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="2dp"
-                                    android:clickable="true"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp">
-
-                                    <View
-                                        android:layout_width="2.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#9C27B0" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="8dp">
-
-                                        <ImageView
-                                            android:layout_width="35dp"
-                                            android:layout_height="35dp"
-                                            android:src="@drawable/ic_banking_card" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="7dp"
-                                            android:text="Kartu Petani"
-                                            android:textSize="10dp" />
-
-                                    </LinearLayout>
-
-                                </android.support.v7.widget.CardView>
-
-                            </LinearLayout>
+                            </android.support.v7.widget.CardView>
 
                         </LinearLayout>
 
                     </LinearLayout>
-                </ScrollView>
-            </LinearLayout>
-            <FrameLayout
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="@android:color/white">
 
-                <com.mindorks.placeholderview.PlaceHolderView
-                    android:id="@+id/drawerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
-            </FrameLayout>
-        </android.support.v4.widget.DrawerLayout>
-    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="#F5F0F0"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_dashboard" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Layanan" />
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:weightSum="4">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardPupuk"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#9DC706" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_info_pupuk" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Infomasi Pupuk"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardInfoBeasiswa"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#C509E6" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_insurance" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Informasi Beasiswa"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardInfoKur"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#58B94E" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_info_payment_kur" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Informasi  KUR"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardPortalInformasi"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#E61D4C" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_website_portal" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Portal Informasi"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardKatam"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#CA4609" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_planning_calendar" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Kalendar Tanam"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardECommerce"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#FFC107" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_shopping_electronic" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="E-Commerce"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardKartuPetani"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#9C27B0" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_banking_card" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Kartu Petani"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/mCardRut"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#76E20B" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_planing_farm" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Rencana Usaha Tani"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@android:color/white">
+
+            <com.mindorks.placeholderview.PlaceHolderView
+                android:id="@+id/drawerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+
+        </FrameLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
 </android.support.constraint.ConstraintLayout>

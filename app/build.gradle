@@ -3,13 +3,13 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.app4g"
-        minSdkVersion 17
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -60,11 +60,11 @@ dependencies {
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'com.androidadvance:topsnackbar:1.1.1'
     implementation 'com.nex3z:notification-badge:1.0.2'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.mindorks:placeholderview:0.2.7'
     implementation 'com.shuhart.stepview:stepview:1.2.6'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
+
 
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'

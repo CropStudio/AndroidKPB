@@ -175,7 +175,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
     @Override
     public void onSigninFailed(String rm) {
-
+        Toast.makeText(this, rm, Toast.LENGTH_SHORT).show();
     }
 
     @Override

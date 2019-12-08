@@ -2,7 +2,9 @@ package com.example.app4g.server;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.support.multidex.MultiDex;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -10,6 +12,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.example.app4g.session.Prefs;
+
+import static android.os.Build.VERSION.SDK;
 
 /*
  * 	We are creating a Application Singleton Object by extending Application, so it should be declared as a application in the "AndroidMainFests" file
@@ -34,14 +38,25 @@ public class App extends Application
     public static Prefs getPref() {
         return preferences;
     }
+    static
+    {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
     @Override
     public void onCreate()
     {
         super.onCreate();
+//        if (Build.VERSION.SDK_INT <= 19){
+//            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+//        }
+
         mInstance = this;
         sApplication = this;
         preferences = new Prefs(sApplication);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
     }
+
 
     public static synchronized App getInstance()
     {

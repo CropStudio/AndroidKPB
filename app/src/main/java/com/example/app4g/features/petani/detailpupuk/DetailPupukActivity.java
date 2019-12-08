@@ -3,6 +3,7 @@ package com.example.app4g.features.petani.detailpupuk;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.app4g.R;
@@ -121,8 +122,15 @@ public class DetailPupukActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent a = new Intent(DetailPupukActivity.this, ListDataPupuk.class);
-        startActivity(a);
+        goToListPupuk();
+    }
+
+    public void onBack(View view) {
+        goToListPupuk();
+    }
+
+    public void goToListPupuk(){
+        startActivity(new Intent(DetailPupukActivity.this, ListDataPupuk.class));
         finish();
     }
 }

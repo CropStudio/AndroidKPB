@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,10 @@ public class PagerActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
-
+//    static
+//    {
+//        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,6 @@ public class PagerActivity extends AppCompatActivity {
 //            launchHomeScreen();
 //            finish();
 //        }
-
         if(App.getPref().getBoolean(Prefs.PREF_FIRST_TIME,false)){
             launchHomeScreen();
             finish();

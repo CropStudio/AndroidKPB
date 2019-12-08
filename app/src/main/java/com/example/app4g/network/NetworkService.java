@@ -4,6 +4,8 @@ import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.model.response;
 import com.example.app4g.features.users.login.model.LoginResponse;
 
 import java.util.Map;
@@ -35,6 +37,9 @@ public interface NetworkService {
     @GET("cart/{nik}")
     Call<Cart>getCart(@Path("nik") String nik);
 
+    @GET("cekPetani/{nik}")
+    Call<ProfileResponse>getPetani(@Path("nik") String nik);
+
     @GET("saldo/{nik}")
     Call<Saldo>getSaldo(@Path("nik") String nik);
 
@@ -44,6 +49,6 @@ public interface NetworkService {
 
     @FormUrlEncoded
     @PUT("petaniedit/{nik}")
-    Call<CommonResponse>updateProfile(@Path("nik") String nik,@FieldMap Map<String, Object> data);
+    Call<response>updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
 }

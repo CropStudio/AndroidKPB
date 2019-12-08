@@ -445,6 +445,7 @@
                                 android:src="@drawable/ic_remove_red_eye" />
 
                             <ImageButton
+                                android:id="@+id/mEditProfile"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
