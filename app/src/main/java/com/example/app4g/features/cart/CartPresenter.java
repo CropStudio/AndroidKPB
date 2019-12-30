@@ -31,14 +31,27 @@ public class CartPresenter {
     }
 
 
-    void getCart(String nik) {
-        restService.create(NetworkService.class).getCart(nik)
+    void getCart(String nik,String token) {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+            Request original = chain.request();
+            Request request = original.newBuilder()
+                    .header("x-access-token", token)
+                    .header("username", nik)
+                    .method(original.method(), original.body())
+                    .build();
+
+            return chain.proceed(request);
+        }).build();
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getCart(nik)
                 .enqueue(new Callback<Cart>() {
                     @Override
                     public void onResponse(Call<Cart> call, Response<Cart> response) {
                         view.hideLoadingIndicator();
-                        //Log.d("Messg", String.valueOf(response.body()));
-                        view.onDataReady(response.body());
+                        Log.d("Messg",""+ response);
+                        if(response.body().getStatus() == null)
+                            view.onDataReady(response.body());
+                        else
+                            view.onRequestFailed(response.body().getRc(),response.body().getRm());
 
                     }
 
@@ -50,13 +63,15 @@ public class CartPresenter {
                 });
     }
 
-    void onCheckout(String body) {
+    void onCheckout(String body,String nik , String token) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("data", body);
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
                     .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("x-access-token", token)
+                    .header("username", nik)
                     .method(original.method(), original.body())
                     .build();
 
@@ -72,14 +87,14 @@ public class CartPresenter {
                 if (response.body().getSuccess()) {
                     view.onCheckoutSuccess(response.body());
                 }else{
-                    view.onCheckoutFail(response.body());
+                    view.onRequestFailed(response.body().getRc(),response.body().getRm());
                 }
             }
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 view.hideLoadingIndicator();
-                view.onNetworkError(t.getLocalizedMessage().toString());
+                view.onNetworkError(t.getLocalizedMessage());
             }
         });
     }

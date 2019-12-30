@@ -65,7 +65,7 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
     CartPresenter presenter;
     public CartAdapter adapter;
     int CartSize = 0;
-    String nik ;
+    String nik,token ;
     public List<Item> items = null;
     long Subtotal;
 
@@ -86,13 +86,16 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
         );
         nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
 
         presenter = new CartPresenter(this);
-        presenter.getCart(nik);
+        presenter.getCart(nik,token);
         mCheckout.setOnClickListener(this);
         this.initViews();
 
     }
+
 
 
     @Override
@@ -143,7 +146,7 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
         Gson gson = new Gson();
         String Data = gson.toJson(checkouts);
 
-        presenter.onCheckout(Data);
+        presenter.onCheckout(Data,nik,token);
 
     }
 
@@ -154,15 +157,18 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
             this.goToCart();
         });
     }
-
     @Override
-    public void onCheckoutFail(CommonResponse response){
-        Log.v("Message" , response.getRm());
-        SweetDialogs.commonError(this,"Gagal Memuat Permintaan",response.getRm(),string -> {
-            this.goToCart();
-        });
+    public void onRequestFailed(String rc, String rm) {
+        if(rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                    rm);
+        else
+            SweetDialogs.commonError(this,"Gagal Memuat Permintaan",rm,string -> {
+                this.goToCart();
+            });
 
     }
+
 
     @Override
     public void onNetworkError(String cause) {

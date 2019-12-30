@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.CircleAnimationUtil;
@@ -30,6 +31,7 @@ import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.e_commerce.model.Item;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
+import com.example.app4g.features.petani.jatah.ListDataPupuk;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -67,7 +69,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     int totalCart;
     SweetAlertDialog sweetAlertDialog;
     EcommerceAdapter adapter;
-    String nik ;
+    String nik, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +86,11 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
         );
         nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         presenter = new EcommercePresenter(this);
-        presenter.showProduct();
-        presenter.getSaldo(nik);
+        presenter.showProduct(nik, token);
+        presenter.getSaldo(nik, token);
 
     }
 
@@ -104,9 +108,9 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
                 //Data akan berubah saat user menginputkan text/kata kunci pada SearchView
                 nextText = nextText.toLowerCase();
                 ArrayList<Item> dataFilter = new ArrayList<>();
-                for(Item data : product){
+                for (Item data : product) {
                     String nama = data.getNamaItem().toLowerCase();
-                    if(nama.contains(nextText)){
+                    if (nama.contains(nextText)) {
                         dataFilter.add(data);
                     }
                 }
@@ -126,14 +130,14 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
         tabLayout.addTab(tabLayout.newTab().setText("Semua"));
         tabLayout.addTab(tabLayout.newTab().setText("Pupuk"));
         tabLayout.addTab(tabLayout.newTab().setText("Alat tani"));
-        tabLayout.addTab(tabLayout.newTab().setText("Subsidi"));
-        tabLayout.addTab(tabLayout.newTab().setText("Benih"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Subsidi"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Benih"));
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                List<Item> filters = null;
+                List<Item> filters = new ArrayList<>();
                 if (tab.getPosition() == 1) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         filters = product.stream()
@@ -146,18 +150,6 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
                                 .filter(kategori -> kategori.getKategori().equals("Alat Tani"))
                                 .collect(Collectors.toList());
                     }
-                } else if (tab.getPosition() == 3) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        filters = product.stream()
-                                .filter(kategori -> kategori.getKategori().equals("Subsidi"))
-                                .collect(Collectors.toList());
-                    }
-                } else if (tab.getPosition() == 4) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        filters = product.stream()
-                                .filter(kategori -> kategori.getKategori().equals("Benih"))
-                                .collect(Collectors.toList());
-                    }
                 } else {
                     filters = product;
                 }
@@ -165,8 +157,6 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
                 adapter = new EcommerceAdapter(filters, EcommerceActivity.this, EcommerceActivity.this);
                 mRecyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
-
 
 
             }
@@ -203,7 +193,10 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 
     @Override
     public void onDataReady(RutResponse ruts) {
-        product = ruts.getResult();
+        if(!ruts.getResult().isEmpty())
+            product = ruts.getResult();
+        else
+            Toast.makeText(this, "Tidak ada barang yg tersedia", Toast.LENGTH_SHORT).show();
         tabLayout.getTabAt(1).select();
 
     }
@@ -224,10 +217,17 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     }
 
     @Override
+    public void onRequestFailed() {
+        SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                "Sesi anda telah berakhir , silahkan login kembali!");
+    }
+
+    @Override
     public void onAddTocartSuccess(RutResponse ruts, ImageView img) {
         addItemToCart(img);
 
     }
+
     private void addItemToCart(ImageView targetView) {
         new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(500).setDestView(mCart).setAnimationListener(new Animator.AnimatorListener() {
             @Override
@@ -237,11 +237,11 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                presenter.getSaldo(nik);
-                NotificationBadge textView = (NotificationBadge) findViewById(R.id.badge);
+                presenter.getSaldo(nik, token);
+                NotificationBadge textView = findViewById(R.id.badge);
                 textView.setNumber(totalCart);
                 //Toast.makeText(EcommerceActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
-                TopSnakbar.showSuccess(EcommerceActivity.this,"Barang berhasil ditambahkan");
+                TopSnakbar.showSuccess(EcommerceActivity.this, "Barang berhasil ditambahkan");
             }
 
             @Override
@@ -271,7 +271,6 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
     }
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -297,7 +296,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 
     @Override
     public void onCartSelect(Item rut, ImageView img) {
-        presenter.createCart(nik, rut , img);
+        presenter.createCart(nik, rut, img, token);
     }
 
     @Override

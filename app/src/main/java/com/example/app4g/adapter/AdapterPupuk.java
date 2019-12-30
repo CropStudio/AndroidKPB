@@ -64,11 +64,11 @@ public class AdapterPupuk extends BaseAdapter{
             convertView = inflater.inflate(R.layout.content_pupuk, null);//buat xml layout content
 
 
-        TextView thnRdkk = (TextView) convertView.findViewById(R.id.thnRdkk);
-        TextView nikPetani = (TextView) convertView.findViewById(R.id.nikPetani);
-        TextView namaPetani = (TextView) convertView.findViewById(R.id.namaPetani);
-        TextView subsektro = (TextView) convertView.findViewById(R.id.subsektor);
-        TextView totPupuk = (TextView) convertView.findViewById(R.id.totPupuk);
+        TextView thnRdkk = convertView.findViewById(R.id.thnRdkk);
+        TextView nikPetani = convertView.findViewById(R.id.nikPetani);
+        TextView namaPetani = convertView.findViewById(R.id.namaPetani);
+        TextView subsektro = convertView.findViewById(R.id.subsektor);
+        TextView totPupuk = convertView.findViewById(R.id.totPupuk);
 
         double urea1 = Double.parseDouble(item.get(position).getUreaMt1());
         double urea2 = Double.parseDouble(item.get(position).getUreaMt2());
@@ -89,7 +89,7 @@ public class AdapterPupuk extends BaseAdapter{
         double totalPupuk = urea1 + urea2 + urea3 + sp361 + sp362 + sp363 + za1 +
                              za2 + za3 + npk1 + npk2 + npk3 + organik1 + organik2 + organik3;
 
-        totPupuk.setText(String.valueOf(totalPupuk) + " Kg");
+        totPupuk.setText(totalPupuk + " Kg");
         thnRdkk.setText(item.get(position).getTahunRdkk());
         nikPetani.setText(item.get(position).getNikPetani());
         namaPetani.setText(item.get(position).getNamaPetani());

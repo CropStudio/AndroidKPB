@@ -30,12 +30,12 @@
                 android:id="@+id/icon_image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/shopping_bag" />
+                app:srcCompat="@drawable/shopping_bag" />
             <ImageView
                 android:id="@+id/icon_image_copy"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/shopping_bag" />
+                app:srcCompat="@drawable/shopping_bag" />
 
         </RelativeLayout>
 
@@ -162,7 +162,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_add_shopping_cart_black_24dp" />
+                        app:srcCompat="@drawable/ic_add_shopping_cart_black_24dp" />
 
                 </LinearLayout>
 

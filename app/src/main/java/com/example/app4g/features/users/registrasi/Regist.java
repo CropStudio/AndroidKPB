@@ -72,7 +72,7 @@ import moe.feng.common.stepperview.VerticalStepperItemView;
 
 public class Regist extends AppCompatActivity implements IRegisterView, View.OnClickListener {
 
-    private VerticalStepperItemView mSteppers[] = new VerticalStepperItemView[3];
+    private VerticalStepperItemView[] mSteppers = new VerticalStepperItemView[3];
     private Button mNextBtn0, mNextBtn1, mPrevBtn1, mNextBtn2, mPrevBtn2;
 
     @BindView(R.id.edNik)
@@ -159,7 +159,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         iRegisterPresenter.setProgressBarVisiblity(View.GONE);
 
         myDialog = new Dialog(Regist.this);
-        layout = (CoordinatorLayout) findViewById(R.id.MySignUp);
+        layout = findViewById(R.id.MySignUp);
 
 
 //        mSteppers[0] = findViewById(R.id.stepper_0);
@@ -423,7 +423,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
         view.setBackgroundColor(layout.getResources().getColor(R.color.red));
-        TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         } else {
@@ -436,7 +436,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
         view.setBackgroundColor(layout.getResources().getColor(R.color.bg_screen3));
-        TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         } else {

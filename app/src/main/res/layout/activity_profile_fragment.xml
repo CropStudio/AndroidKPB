@@ -23,7 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background_profile" />
+                    app:srcCompat="@drawable/background_profile" />
 
             </RelativeLayout>
 
@@ -47,7 +47,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:padding="7dp"
-                        android:src="@drawable/user_default_farmer"
+                        app:srcCompat="@drawable/user_default_farmer"
                         app:civ_border_color="#80FFFFFF"
                         app:civ_border_width="5dp"
                         app:civ_circle_background_color="@color/c_white" />
@@ -60,7 +60,7 @@
                         android:background="@drawable/rounded_left"
                         android:padding="5dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_add_cam" />
+                        app:srcCompat="@drawable/ic_add_cam" />
 
                 </LinearLayout>
 
@@ -327,7 +327,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_details" />
+                    app:srcCompat="@drawable/ic_details" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -442,7 +442,7 @@
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:background="@android:color/transparent"
-                                android:src="@drawable/ic_remove_red_eye" />
+                                app:srcCompat="@drawable/ic_remove_red_eye" />
 
                             <ImageButton
                                 android:id="@+id/mEditProfile"
@@ -451,7 +451,7 @@
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:background="@android:color/transparent"
-                                android:src="@drawable/ic_edit_profile" />
+                                app:srcCompat="@drawable/ic_edit_profile" />
 
                         </LinearLayout>
 

@@ -33,7 +33,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_chevron_left" />
+                app:srcCompat="@drawable/ic_chevron_left" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/background_profile" />
+                                app:srcCompat="@drawable/background_profile" />
 
                         </RelativeLayout>
 
@@ -373,7 +373,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/background_profile" />
+                                app:srcCompat="@drawable/background_profile" />
 
                         </RelativeLayout>
 
@@ -637,7 +637,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/background_profile" />
+                                app:srcCompat="@drawable/background_profile" />
 
                         </RelativeLayout>
 

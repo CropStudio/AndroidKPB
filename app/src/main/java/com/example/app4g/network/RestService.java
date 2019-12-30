@@ -5,11 +5,14 @@ package com.example.app4g.network;
 //import com.example.app4g.R;
 //import com.example.app4g.server.AppController;
 
+import com.example.app4g.R;
+import com.example.app4g.server.App;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestService {
-    private static final String BASK_URL ="http://103.230.48.151:5050/";
+    private static final String BASK_URL = App.getApplication().getString(R.string.end_point);
     private static Retrofit retrofit;
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null){

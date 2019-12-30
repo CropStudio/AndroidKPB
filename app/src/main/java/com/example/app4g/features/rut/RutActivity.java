@@ -41,7 +41,7 @@ import im.delight.android.webview.AdvancedWebView;
 
 public class RutActivity extends AppCompatActivity implements AdvancedWebView.Listener {
 //    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
-    String TEST_PAGE_URL = "http://prelaunch.kartupetaniberjaya.com/#/rut/";
+    String TEST_PAGE_URL = "http://kpb.lampungprov.go.id/#/rut/";
     private AdvancedWebView mWebView;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -68,7 +68,7 @@ public class RutActivity extends AppCompatActivity implements AdvancedWebView.Li
         pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         //pDialog.setCancelable(false);
 
-        mWebView = (AdvancedWebView) findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
         mWebView.setListener(this, this);
         mWebView.setGeolocationEnabled(false);
         mWebView.setMixedContentAllowed(true);

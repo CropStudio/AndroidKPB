@@ -1,10 +1,9 @@
-package com.example.app4g.features.petani.profile;
+package com.example.app4g.features.petani.profile.createprofile;
 
 import android.util.Log;
 
-import com.example.app4g.common.CommonResponse;
-import com.example.app4g.features.petani.profile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.model.response;
+import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.createprofile.model.response;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 
@@ -53,7 +52,7 @@ public class ProfilePresenter {
             @Override
             public void onFailure(Call<response> call, Throwable t) {
                 view.hideLoadingIndicator();
-                view.onNetworkError(t.getLocalizedMessage().toString());
+                view.onNetworkError(t.getLocalizedMessage());
             }
         });
     }

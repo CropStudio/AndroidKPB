@@ -1,6 +1,7 @@
 package com.example.app4g.features.petani.jatah;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,12 +31,15 @@ import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.session.Prefs;
+import com.example.app4g.ui.SweetDialogs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -55,7 +60,7 @@ public class ListDataPupuk extends AppCompatActivity {
 
     @BindView(R.id.textNodata)
     TextView noData;
-    String nik ;
+    String nik , token ;
     ImageButton backTomenu;
 
     @Override
@@ -70,6 +75,8 @@ public class ListDataPupuk extends AppCompatActivity {
         );
         nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         newsList.clear();
@@ -79,7 +86,7 @@ public class ListDataPupuk extends AppCompatActivity {
 
         getNamaPupuk();
 
-        backTomenu = (ImageButton)findViewById(R.id.backTo);
+        backTomenu = findViewById(R.id.backTo);
         backTomenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,25 +135,21 @@ public class ListDataPupuk extends AppCompatActivity {
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 Config_URL.dataPupuk+nik,
                 new Response.Listener<String>() {
-
                     @Override
                     public void onResponse(String response) {
-                        Log.e("Response: ", response.toString());
+                        Log.e("Response: ", response);
                         hideDialog();
-
                         try {
                             JSONObject jObj = new JSONObject(response);
                             boolean status = jObj.getBoolean("status");
                             String data = jObj.getString("message");
 
-                            if(status == true){
-
+                            if(status){
                                 String getObject = jObj.getString("result");
                                 JSONArray jsonArray = new JSONArray(getObject);
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     final JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     DataPupuk pupuk = new DataPupuk();
-
                                     pupuk.setTahunRdkk(jsonObject.getString("year"));
                                     pupuk.setNikPetani(jsonObject.getString("farmer_nik"));
                                     pupuk.setNamaPetani(jsonObject.getString("farmer_name"));
@@ -169,12 +172,11 @@ public class ListDataPupuk extends AppCompatActivity {
                                     pupuk.setKomoditasMt1(jsonObject.getString("mt1_commodity"));
                                     pupuk.setKomoditasMt2(jsonObject.getString("mt2_commodity"));
                                     pupuk.setKomoditasMt3(jsonObject.getString("mt3_commodity"));
-
-
                                     newsList.add(pupuk);
                                 }
                             }else {
-                                noData.setText("Tidak ada data");
+                                SweetDialogs.commonInvalidToken(ListDataPupuk.this, "SIGNOUT",
+                                        "Sesi anda telah berakhir , silahkan login kembali!");
                             }
 
                         } catch (JSONException e) {
@@ -187,34 +189,23 @@ public class ListDataPupuk extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error){
+
                 Log.e(String.valueOf(getApplication()), "Error : " + error.getMessage());
                 error.printStackTrace();
                 Toast.makeText(getApplicationContext(), "No Response From Server", Toast.LENGTH_SHORT).show();
                 noData.setText("No Response From Server :(");
-//                ImageView image = new ImageView(ListPembayaran.this);
-//                image.setImageResource(R.drawable.no_internet);
-//                AlertDialog.Builder builder = new AlertDialog.Builder(ListPembayaran.this);
-//                builder.setTitle(Html.fromHtml("<font color='#2980B9'><b></b></font>"))
-//                        .setCancelable(false)
-//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                Intent a = new Intent(ListPembayaran.this, ListPembayaran.class);
-//                                startActivity(a);
-//                                finish();
-//                            }
-//                        }).setView(image)
-//                        .show();
                 hideDialog();
             }
-        });
-//        {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> headers = new HashMap<>();
-//                headers.put("Authorization", "Bearer " + main.token);
-//                return headers;
-//            }
-//        };
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("x-access-token", token);
+                headers.put("username", nik);
+                return headers;
+            }
+        };
 
         App.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }

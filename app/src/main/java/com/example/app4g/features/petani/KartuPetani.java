@@ -39,10 +39,10 @@ public class KartuPetani extends AppCompatActivity {
         qRBit = printQRCode(nik);
 //        qRBit = getIntent().getParcelableExtra("bitmap");
         Log.v("QR = ", String.valueOf(qRBit));
-        ImageView image = (ImageView) findViewById(R.id.imageView);
+        ImageView image = findViewById(R.id.imageView);
         image.setImageBitmap(qRBit);
 
-        TextView txtNama = (TextView) findViewById(R.id.nameTag);
+        TextView txtNama = findViewById(R.id.nameTag);
         txtNama.setText(nama);
 
     }

@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.profile;
+package com.example.app4g.features.petani.profile.createprofile;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +21,8 @@ import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
-import com.example.app4g.common.CommonResponse;
-import com.example.app4g.features.petani.MenuUtama;
-import com.example.app4g.features.petani.profile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.model.response;
+import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.createprofile.model.response;
 import com.example.app4g.features.users.login.Login;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
@@ -33,8 +30,6 @@ import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.CustomDrawable;
 import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.ui.TopSnakbar;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
@@ -44,11 +39,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 import androidx.annotation.RequiresApi;
 import butterknife.BindView;
@@ -258,11 +250,11 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                     !mTmptLahirAnak.getText().toString().equals("") && !mPendTerakhirAnak.getText().toString().equals("Pendidikan Sekarang") && !SpinnerAnak.getText().toString().equals("Anak Ke") ) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_anak_field, null);
-                final TextView mAnakKe = (TextView) rowView.findViewById(R.id.mAnakKe);
-                final TextView mNamaAnaks = (TextView) rowView.findViewById(R.id.mNamaAnaks);
-                final TextView mTglLahirAnaks = (TextView) rowView.findViewById(R.id.mTglLahirAnaks);
-                final TextView mTmptLahirAnaks = (TextView) rowView.findViewById(R.id.mTmptLahirAnaks);
-                final TextView mPendTerakhirAnaks = (TextView) rowView.findViewById(R.id.mPendTerakhirAnaks);
+                final TextView mAnakKe = rowView.findViewById(R.id.mAnakKe);
+                final TextView mNamaAnaks = rowView.findViewById(R.id.mNamaAnaks);
+                final TextView mTglLahirAnaks = rowView.findViewById(R.id.mTglLahirAnaks);
+                final TextView mTmptLahirAnaks = rowView.findViewById(R.id.mTmptLahirAnaks);
+                final TextView mPendTerakhirAnaks = rowView.findViewById(R.id.mPendTerakhirAnaks);
 
                 mAnakKe.setText(SpinnerAnak.getText().toString());
                 mNamaAnaks.setText(mNamaAnak.getText().toString());
@@ -298,10 +290,10 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                     !mTmptLahirTanggungan.getText().toString().equals("") && !mHubKeluarga.getText().toString().equals("Hubungan Keluarga")) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_tanggungan_field, null);
-                final TextView mNama = (TextView) rowView.findViewById(R.id.mNama);
-                final TextView mTglLahir = (TextView) rowView.findViewById(R.id.mTglLahir);
-                final TextView mTmptLahir = (TextView) rowView.findViewById(R.id.mTmptLahir);
-                final TextView mTxtHubKeluarga = (TextView) rowView.findViewById(R.id.mHubKeluarga);
+                final TextView mNama = rowView.findViewById(R.id.mNama);
+                final TextView mTglLahir = rowView.findViewById(R.id.mTglLahir);
+                final TextView mTmptLahir = rowView.findViewById(R.id.mTmptLahir);
+                final TextView mTxtHubKeluarga = rowView.findViewById(R.id.mHubKeluarga);
                 mNama.setText(mNamaLengkapTanggungan.getText().toString());
                 mTglLahir.setText(mTglLahirTanggungan.getText().toString());
                 mTmptLahir.setText(mTmptLahirTanggungan.getText().toString());
@@ -333,7 +325,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteAnak(View v) {
-        TextView namaAnak = (TextView) ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
+        TextView namaAnak = ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
         parent_anak.removeView((View) v.getParent());
         for (int i = 0; i < dataAnaks.length(); i++) {
             try {
@@ -348,7 +340,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteTunggangan(View v) {
-        TextView name = (TextView) ((View) v.getParent()).findViewById(R.id.mNama);
+        TextView name = ((View) v.getParent()).findViewById(R.id.mNama);
         parent_Tanggungan.removeView((View) v.getParent());
         for (int i = 0; i < dataTanggungans.length(); i++) {
             try {

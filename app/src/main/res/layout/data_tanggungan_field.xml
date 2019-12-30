@@ -14,7 +14,7 @@
         android:layout_gravity="right"
         android:background="@drawable/page_details_data_exit"
         android:onClick="onDeleteTunggangan"
-        android:src="@drawable/ic_close_red"
+        app:srcCompat="@drawable/ic_close_red"
         android:text="Hapus"
         android:textColor="@color/white" />
 

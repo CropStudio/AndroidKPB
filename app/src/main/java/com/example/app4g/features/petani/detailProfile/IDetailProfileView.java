@@ -1,6 +1,6 @@
 package com.example.app4g.features.petani.detailProfile;
 
-import com.example.app4g.features.petani.profile.model.profile;
+import com.example.app4g.features.petani.profile.createprofile.model.profile;
 
 public interface IDetailProfileView {
     void initViews();

@@ -1,24 +1,21 @@
 package com.example.app4g.features.petani;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.content.ComponentCallbacks2;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
-import com.example.app4g.features.petani.profile.CreateProfile;
-import com.example.app4g.features.users.login.Login;
+import com.example.app4g.features.petani.profile.createprofile.CreateProfile;
+import com.example.app4g.features.petani.profile.ProfileFragment;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -26,7 +23,7 @@ import com.example.app4g.ui.SweetDialogs;
 
 import butterknife.ButterKnife;
 
-public class MenuUtama extends AppCompatActivity {
+public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2 {
 
     boolean BackPress = false;
     LoginResponse mProfile;

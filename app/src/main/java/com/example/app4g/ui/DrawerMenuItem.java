@@ -94,7 +94,7 @@ public class DrawerMenuItem {
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_LOGOUT:
-                SweetDialogs.commonError((Activity) mContext, "SIGNOUT",
+                SweetDialogs.commonLogout((Activity) mContext, "SIGNOUT",
                         "Apakah Anda yakin akan signout dari aplikasi?",
                         string ->logout());
                 if(mCallBack != null)mCallBack.onLogoutMenuSelected();

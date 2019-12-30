@@ -77,8 +77,8 @@ public class Dashboard_Gubernur extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard__gubernur);
 //        setupDrawer();
-        webView = (WebView) findViewById(R.id.Gubernur_Dashboard);
-        bar = (ProgressBar) findViewById(R.id.progressBar2);
+        webView = findViewById(R.id.Gubernur_Dashboard);
+        bar = findViewById(R.id.progressBar2);
         webView.setWebViewClient(new myWebclient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(TEST_PAGE_URL);
@@ -90,7 +90,7 @@ public class Dashboard_Gubernur extends AppCompatActivity {
                 imageView.setImageResource(mImages[position]);
             }
         });
-        ImageView mainMenu_profile=(ImageView) findViewById(R.id.profile);
+        ImageView mainMenu_profile= findViewById(R.id.profile);
         mainMenu_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

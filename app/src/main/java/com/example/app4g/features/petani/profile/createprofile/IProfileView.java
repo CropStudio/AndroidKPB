@@ -1,8 +1,7 @@
-package com.example.app4g.features.petani.profile;
+package com.example.app4g.features.petani.profile.createprofile;
 
-import com.example.app4g.common.CommonResponse;
-import com.example.app4g.features.petani.profile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.model.response;
+import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.createprofile.model.response;
 
 public interface IProfileView {
     void initViews();

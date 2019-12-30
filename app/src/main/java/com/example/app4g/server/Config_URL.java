@@ -26,7 +26,7 @@ public class Config_URL
     public static String anak         = base_URL + "/anak";
 
     //data pupuk
-    public static String dataPupuk     = base_URL + "/e-rdkk/";
+    public static String dataPupuk     = base_URL + "e-rdkk/";
 
     //poktan
     public static String dataPoktan   = base_URL + "/poktan";

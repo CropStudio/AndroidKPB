@@ -68,7 +68,7 @@ public class RegisterPresenter implements IRegisterPresenter {
                 Config_URL.registrasi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("msg", "Response: " + response.toString());
+                Log.d("msg", "Response: " + response);
 
                 try {
                     final JSONObject jObj = new JSONObject(response);

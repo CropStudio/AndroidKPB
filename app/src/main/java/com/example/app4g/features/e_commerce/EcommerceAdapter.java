@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
 import com.example.app4g.Utils.Utils;
@@ -26,8 +27,8 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
     private List<Item> filterList;
     private EcommerceAdapter.OnItemSelected listener;
     private EcommerceAdapter.onCartSelected cartListiner;
-    private String matkul ;
-    Activity context ;
+    private String matkul;
+    Activity context;
 
     public interface OnItemSelected {
         void onSelect(Product product);
@@ -39,8 +40,8 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
 
     public EcommerceAdapter(List<Item> data, Activity context, onCartSelected cartListiner) {
         this.ruts = data;
-        this.context = context ;
-        this.cartListiner = cartListiner ;
+        this.context = context;
+        this.cartListiner = cartListiner;
     }
 
 
@@ -56,7 +57,7 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
     public void onBindViewHolder(final EcommerceAdapter.ViewHolder holder, final int position) {
         final Item rut = ruts.get(position);
         //holder.mkdmatkul.setText(laporan.get);
-        if(rut.getKategori().equals("Subsidi"))
+        if (rut.getKategori().equals("Subsidi"))
             holder.mSubsidi.setVisibility(View.VISIBLE);
         else
             holder.mSubsidi.setVisibility(View.GONE);
@@ -65,31 +66,36 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
         holder.mToko.setText(rut.getDistributor().getNama());
         holder.mStok.setText(String.valueOf(rut.getStok()));
         //holder.itemView.setOnClickListener(view -> listener.onSelect(rut));
-        if(!rut.getFoto().equals("")){
+        if (!rut.getFoto().equals("")) {
             Glide.with(context)
-                    .load(App.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point) + rut.getFoto())
+                    .thumbnail(0.1f)
                     .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
                     .into(holder.mIconImage);
             Glide.with(context)
-                    .load(App.getApplication().getResources().getString(R.string.img_end_point)+rut.getFoto())
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point) + rut.getFoto())
+                    .thumbnail(0.1f)
                     .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
                     .into(holder.mIconImageCopy);
-        }
-        else Glide.with(context)
+        } else Glide.with(context)
                 .load(R.drawable.shopping_bag)
+                .thumbnail(0.1f)
                 .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
+                .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
                 .into(holder.mIconImage);
         holder.mCart.setOnClickListener(view -> cartListiner.onCartSelect(rut, holder.mIconImageCopy));
     }
 
-    public void setFilter(List<Item> newList){
-        ruts = new ArrayList<>();
-        ruts.addAll(newList);
-        notifyDataSetChanged();
-    }
+//    public void setFilter(List<Item> newList){
+//        ruts = new ArrayList<>();
+//        ruts.addAll(newList);
+//        notifyDataSetChanged();
+//    }
 
 
-    void setFilter(ArrayList<Item> filterList){
+    public void setFilter(ArrayList<Item> filterList) {
         ruts = new ArrayList<>();
         ruts.addAll(filterList);
         notifyDataSetChanged();
@@ -97,15 +103,18 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.View
 
     @Override
     public int getItemCount() {
-        return ruts.size();
+        if (ruts == null)
+            return 0;
+        else
+            return ruts.size();
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mNama, mHarga , mStok , mToko , mSubsidi;
-        LinearLayout mCart ;
-        ImageView mIconImage , mIconImageCopy;
+        TextView mNama, mHarga, mStok, mToko, mSubsidi;
+        LinearLayout mCart;
+        ImageView mIconImage, mIconImageCopy;
 
         ViewHolder(View view) {
             super(view);

@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_chevron_left" />
+                app:srcCompat="@drawable/ic_chevron_left" />
 
             <TextView
                 android:layout_width="match_parent"

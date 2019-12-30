@@ -770,6 +770,59 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1">
+
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/cardRdkk"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:clickable="true"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardElevation="2dp">
+
+                                        <View
+                                            android:layout_width="2.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#9C27B0" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:padding="8dp">
+
+                                            <ImageView
+                                                android:layout_width="35dp"
+                                                android:layout_height="35dp"
+                                                app:srcCompat="@drawable/ic_banking_card" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="7dp"
+                                                android:text="Kartu Petani"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                 </LinearLayout>

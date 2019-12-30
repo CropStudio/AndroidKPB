@@ -41,7 +41,9 @@ public class LoginPresenter {
     void login(String username , String password) {
         String credentials = username + ":" + password;
         String basic = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-
+        System.out.println(username);
+        System.out.println(password);
+System.out.println(basic+"1");
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -59,7 +61,8 @@ public class LoginPresenter {
             @Override
             public void onResponse(retrofit2.Call<LoginResponse> call, Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
-                System.out.println(response.body());
+                System.out.println(response);
+                System.out.println(response.body().getSuccess());
                 if (response.body().getSuccess()) {
                     App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
                     App.getPref().put(Prefs.PREF_ACCESS_TOKEN, response.body().getResult().getToken());

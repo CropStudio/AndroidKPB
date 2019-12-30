@@ -32,7 +32,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@android:color/transparent"
                 android:onClick="onBack"
-                android:src="@drawable/ic_chevron_left" />
+                app:srcCompat="@drawable/ic_chevron_left" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                                 android:layout_height="50dp"
                                 android:layout_gravity="top"
                                 android:layout_marginTop="10dp"
-                                android:src="@drawable/user_default_farmer"
+                                app:srcCompat="@drawable/user_default_farmer"
                                 app:civ_border_color="#80FFFFFF"
                                 app:civ_circle_background_color="@color/c_white" />
 
@@ -115,7 +115,6 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:paddingLeft="10dp"
-                                            android:text="ADI PERMANA"
                                             android:textAllCaps="true"
                                             android:textSize="15dp"
                                             android:textStyle="bold" />
@@ -125,7 +124,6 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingLeft="10dp"
-                                            android:text="NIK PETANI"
                                             android:textAllCaps="true"
                                             android:textSize="12dp"
                                             android:textStyle="bold" />
@@ -176,7 +174,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
-                                    android:text="11990022331100"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
 
@@ -195,7 +192,7 @@
                                     android:layout_height="wrap_content"
                                     android:maxLines="2"
                                     android:paddingLeft="10dp"
-                                    android:text="@string/lorem_ipsum"
+
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
 
@@ -214,7 +211,7 @@
                                     android:layout_height="wrap_content"
                                     android:maxLines="2"
                                     android:paddingLeft="10dp"
-                                    android:text="@string/lorem_ipsum"
+
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
 
@@ -232,7 +229,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="SD / Sederajat"
+
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
 
@@ -250,7 +247,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="Sumiyati"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -270,7 +267,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginBottom="5dp"
                                     android:paddingLeft="10dp"
-                                    android:text="Supriadi"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -297,7 +294,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="milik pribadi"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -316,7 +313,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="milik lahan"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -335,7 +332,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="Ada - PLN"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -354,7 +351,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="Sepedah"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -378,7 +375,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="10dp"
-                                        android:text="ikan - kolam"
+
                                         android:textAllCaps="true"
                                         android:textColor="#66000000"
                                         android:textSize="12dp" />
@@ -394,7 +391,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="10dp"
-                                        android:text="Ikan mas"
+
                                         android:textAllCaps="true"
                                         android:textColor="#66000000"
                                         android:textSize="12dp" />
@@ -415,7 +412,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="Ternak"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -434,7 +431,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
-                                    android:text="Ternak"
+
                                     android:textAllCaps="true"
                                     android:textColor="#66000000"
                                     android:textSize="12dp" />
@@ -582,7 +579,7 @@
                                     android:layout_width="50dp"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:src="@drawable/ic_arrow_drop" />
+                                    app:srcCompat="@drawable/ic_arrow_drop" />
 
                             </LinearLayout>
 
@@ -749,7 +746,7 @@
                                     android:layout_width="50dp"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:src="@drawable/ic_arrow_drop" />
+                                    app:srcCompat="@drawable/ic_arrow_drop" />
 
                             </LinearLayout>
 

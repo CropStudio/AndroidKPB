@@ -2,23 +2,20 @@ package com.example.app4g.features.petani.detailProfile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.features.petani.MenuUtama;
-import com.example.app4g.features.petani.profile.model.profile;
+import com.example.app4g.features.petani.profile.createprofile.model.profile;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -127,8 +124,8 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
 
     @Override
     public void onDataReady(profile profile) {
-        List<com.example.app4g.features.petani.profile.model.profile.dataTambahan.DataAnak> anaks = new ArrayList<>();
-        List<com.example.app4g.features.petani.profile.model.profile.dataTambahan.TanggunganLain> tanggungans = new ArrayList<>();
+        List<com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.DataAnak> anaks = new ArrayList<>();
+        List<com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.TanggunganLain> tanggungans = new ArrayList<>();
         anaks = profile.getDataTambahan().getDataAnak();
         tanggungans = profile.getDataTambahan().getTanggunganLain();
         mNama.setText(profile.getNama());
@@ -152,15 +149,15 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
         mPerkawinan.setText(profile.getStatusPerkawinan());
         mGender.setText(profile.getJenisKelamin());
         Collections.sort(anaks, Collections.reverseOrder());
-        for (com.example.app4g.features.petani.profile.model.profile.dataTambahan.DataAnak anak : anaks) {
+        for (com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.DataAnak anak : anaks) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.data_anak_field, null);
-            final TextView mAnakKe = (TextView) rowView.findViewById(R.id.mAnakKe);
-            final TextView mNamaAnaks = (TextView) rowView.findViewById(R.id.mNamaAnaks);
-            final TextView mTglLahirAnaks = (TextView) rowView.findViewById(R.id.mTglLahirAnaks);
-            final TextView mTmptLahirAnaks = (TextView) rowView.findViewById(R.id.mTmptLahirAnaks);
-            final TextView mPendTerakhirAnaks = (TextView) rowView.findViewById(R.id.mPendTerakhirAnaks);
-            final ImageButton deleteAnak = (ImageButton) rowView.findViewById(R.id.deleteAnak);
+            final TextView mAnakKe = rowView.findViewById(R.id.mAnakKe);
+            final TextView mNamaAnaks = rowView.findViewById(R.id.mNamaAnaks);
+            final TextView mTglLahirAnaks = rowView.findViewById(R.id.mTglLahirAnaks);
+            final TextView mTmptLahirAnaks = rowView.findViewById(R.id.mTmptLahirAnaks);
+            final TextView mPendTerakhirAnaks = rowView.findViewById(R.id.mPendTerakhirAnaks);
+            final ImageButton deleteAnak = rowView.findViewById(R.id.deleteAnak);
             deleteAnak.setVisibility(View.GONE);
             mAnakKe.setText("Anak ke " + anak.getAnakKe());
             mNamaAnaks.setText(anak.getNamaAnak());
@@ -173,14 +170,14 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
             mPendTerakhirAnaks.setEnabled(false);
             mLayoutAnak.addView(rowView, 0);
         }
-        for (com.example.app4g.features.petani.profile.model.profile.dataTambahan.TanggunganLain tanggungan : tanggungans) {
+        for (com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.TanggunganLain tanggungan : tanggungans) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.data_tanggungan_field, null);
-            final TextView mNama = (TextView) rowView.findViewById(R.id.mNama);
-            final TextView mTglLahir = (TextView) rowView.findViewById(R.id.mTglLahir);
-            final TextView mTmptLahir = (TextView) rowView.findViewById(R.id.mTmptLahir);
-            final TextView mTxtHubKeluarga = (TextView) rowView.findViewById(R.id.mHubKeluarga);
-            final ImageButton deleteTanggungan = (ImageButton) rowView.findViewById(R.id.deleteTanggungan);
+            final TextView mNama = rowView.findViewById(R.id.mNama);
+            final TextView mTglLahir = rowView.findViewById(R.id.mTglLahir);
+            final TextView mTmptLahir = rowView.findViewById(R.id.mTmptLahir);
+            final TextView mTxtHubKeluarga = rowView.findViewById(R.id.mHubKeluarga);
+            final ImageButton deleteTanggungan = rowView.findViewById(R.id.deleteTanggungan);
             deleteTanggungan.setVisibility(View.GONE);
             mNama.setText(tanggungan.getNamaLengkap());
             mTglLahir.setText(tanggungan.getTglLahir());

@@ -23,6 +23,8 @@ public interface IEcommerceView {
 
     void onNetworkError(String cause);
 
+    void onRequestFailed();
+
     void onAddTocartSuccess(RutResponse ruts, ImageView img);
 
     void showLoadingIndicator();

@@ -78,8 +78,8 @@ public class EditPoktan extends AppCompatActivity {
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         pDialog = new ProgressDialog(myDialog.getContext());
         pDialog.setCancelable(false);
-        list = (ListView) myDialog.findViewById(R.id.array_list);
-        EditText edtsearch = (EditText) myDialog.findViewById(R.id.cariNamaAnak);
+        list = myDialog.findViewById(R.id.array_list);
+        EditText edtsearch = myDialog.findViewById(R.id.cariNamaAnak);
         newsList.clear();
 
         adapter = new AdapterPoktan(EditPoktan.this, newsList);
@@ -137,7 +137,7 @@ public class EditPoktan extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.e("Response: ", response.toString());
+                Log.e("Response: ", response);
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);

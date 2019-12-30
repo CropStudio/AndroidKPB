@@ -3,37 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.app4g">
 
+    <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <application
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:name=".server.App"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.gubernur.Menu_Gubernur"></activity>
+        <activity android:name=".features.pupuksubsidi.PupukSubsidiActivity"></activity>
+        <activity android:name=".features.gubernur.Menu_Gubernur" />
         <activity android:name=".features.gubernur.EditProfileGubernur" />
         <activity android:name=".features.gubernur.ProfileFragmentGubernur" />
         <activity android:name=".features.gubernur.Dashboard_Gubernur" />
         <activity
             android:name=".features.petani.detailProfile.DetailProfile"
             android:label="@string/title_activity_detail_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".features.rut.RutActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.rut.RutActivity" />
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -71,10 +73,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.petani.anak.InputDataAnak"
-            android:screenOrientation="portrait" />
-<!--        <activity-->
-<!--            android:name=".features.petani.anak.ListDataAnak"-->
-<!--            android:screenOrientation="portrait" />-->
+            android:screenOrientation="portrait" /> <!-- <activity -->
+        <!-- android:name=".features.petani.anak.ListDataAnak" -->
+        <!-- android:screenOrientation="portrait" /> -->
         <activity
             android:name=".Testdoang"
             android:screenOrientation="portrait" />
@@ -93,7 +94,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain" />
         <activity
-            android:name=".features.petani.profile.CreateProfile"
+            android:name=".features.petani.profile.createprofile.CreateProfile"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"

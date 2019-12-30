@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.profile.model;
+package com.example.app4g.features.petani.profile.createprofile.model;
 
 import android.support.annotation.NonNull;
 
@@ -369,7 +369,7 @@ public class profile {
 
             @Override
             public int compareTo(@NonNull DataAnak o) {
-                int compareQuantity = Integer.parseInt(((DataAnak) o).getAnakKe());
+                int compareQuantity = Integer.parseInt(o.getAnakKe());
 
                 //ascending order
                 return Integer.parseInt(this.anakKe) - compareQuantity;

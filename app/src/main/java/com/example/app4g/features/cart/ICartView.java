@@ -10,6 +10,7 @@ import com.example.app4g.common.CommonResponse;
  */
 
 public interface ICartView {
+
     void initViews();
 
     void clearLightStatusBar(Activity activity);
@@ -20,7 +21,7 @@ public interface ICartView {
 
     void onCheckoutSuccess(CommonResponse response);
 
-    void onCheckoutFail(CommonResponse response);
+    void onRequestFailed(String rc, String rm);
 
     void onNetworkError(String cause);
 

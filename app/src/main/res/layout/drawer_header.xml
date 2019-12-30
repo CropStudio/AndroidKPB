@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <FrameLayout
@@ -19,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/user_header_bg" />
+                app:srcCompat="@drawable/user_header_bg" />
 
         </RelativeLayout>
 
@@ -44,7 +45,7 @@
                         android:id="@+id/profileImageView"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/user_default_farmer" />
+                        app:srcCompat="@drawable/user_default_farmer" />
 
                     <TextView
                         android:id="@+id/nameTxt"

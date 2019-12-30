@@ -1,10 +1,11 @@
-package com.example.app4g.features.petani;
+package com.example.app4g.features.petani.profile;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_profile_fragment, container, false);
         ButterKnife.bind(this, view);
+        mProfileImg.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.user_default_farmer));
         if (Build.VERSION.SDK_INT >= 24) {
             try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
@@ -65,7 +67,7 @@ public class ProfileFragment extends Fragment {
         }
         initView();
 
-        detailsProfile = (ImageButton)view.findViewById(R.id.viewProfile);
+        detailsProfile = view.findViewById(R.id.viewProfile);
         detailsProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

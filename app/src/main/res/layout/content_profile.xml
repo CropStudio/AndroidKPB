@@ -252,7 +252,7 @@
                                                 android:layout_height="50dp"
                                                 android:background="@android:color/transparent"
                                                 android:onClick="showDateDialog"
-                                                android:src="@drawable/ic_calendar"
+                                                app:srcCompat="@drawable/ic_calendar"
                                                 android:textColor="@color/white" />
 
                                         </LinearLayout>
@@ -588,7 +588,7 @@
                                                     android:layout_height="50dp"
                                                     android:background="@android:color/transparent"
                                                     android:onClick="showDateDialog"
-                                                    android:src="@drawable/ic_calendar"
+                                                    app:srcCompat="@drawable/ic_calendar"
                                                     android:textColor="@color/white" />
 
                                             </LinearLayout>
@@ -781,7 +781,7 @@
                                                     android:layout_height="50dp"
                                                     android:background="@android:color/transparent"
                                                     android:onClick="showDateDialog"
-                                                    android:src="@drawable/ic_calendar"
+                                                    app:srcCompat="@drawable/ic_calendar"
                                                     android:textColor="@color/white" />
 
                                             </LinearLayout>
@@ -1080,7 +1080,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/ic_back_left"
+                            app:srcCompat="@drawable/ic_back_left"
                             android:text="Lanjut" />
 
                     </LinearLayout>
@@ -1121,7 +1121,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/ic_next_right"
+                            app:srcCompat="@drawable/ic_next_right"
                             android:text="Kembali" />
 
                     </LinearLayout>

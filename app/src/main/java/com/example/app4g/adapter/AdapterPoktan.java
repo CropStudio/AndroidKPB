@@ -50,8 +50,8 @@ public class AdapterPoktan extends BaseAdapter {
             convertView = inflater.inflate(R.layout.content_poktan, null);
 
 
-        TextView nama          = (TextView) convertView.findViewById(R.id.namaPoktan);
-        TextView alamatPoktan  = (TextView) convertView.findViewById(R.id.alamatPoktan);
+        TextView nama          = convertView.findViewById(R.id.namaPoktan);
+        TextView alamatPoktan  = convertView.findViewById(R.id.alamatPoktan);
 
         nama.setText(item.get(position).getNamaPoktan());
         alamatPoktan.setText(item.get(position).getKabupaten()+" "

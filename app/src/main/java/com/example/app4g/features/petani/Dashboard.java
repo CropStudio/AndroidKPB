@@ -2,7 +2,6 @@ package com.example.app4g.features.petani;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.VectorEnabledTintResources;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +20,7 @@ import android.widget.Toast;
 import com.example.app4g.R;
 import com.example.app4g.features.petani.jatah.ListDataPupuk;
 import com.example.app4g.features.e_commerce.EcommerceActivity;
+import com.example.app4g.features.pupuksubsidi.PupukSubsidiActivity;
 import com.example.app4g.features.rut.RutActivity;
 import com.example.app4g.ui.DrawerHeader;
 import com.example.app4g.ui.DrawerMenuItem;
@@ -54,6 +53,8 @@ public class Dashboard extends Fragment  {
 //    ImageView mIcon;
     @BindView(R.id.mCardInfoRek)
     CardView mCardInfoRek;
+    @BindView(R.id.cardRdkk)
+    CardView cardRdkk;
     @BindView(R.id.mCardTambahSaldo)
     CardView mCardTambahSaldo;
     static
@@ -66,8 +67,6 @@ public class Dashboard extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
-
-            VectorEnabledTintResources.shouldBeUsed();
         this.setupDrawer();
         carouselView = view.findViewById(R.id.carousel);
         carouselView.setPageCount(mImages.length);
@@ -96,6 +95,12 @@ public class Dashboard extends Fragment  {
     @OnClick(R.id.mCardInfoRek)
     void info_rek(){
         Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.cardRdkk)
+    void goToRdkk(){
+        startActivity(new Intent(getActivity(), PupukSubsidiActivity.class) );
+        getActivity().finish();
     }
 
 //    @OnClick(R.id.mIcon)
@@ -151,6 +156,7 @@ public class Dashboard extends Fragment  {
 
     @OnClick(R.id.cardECommerce)
     void eCommerce(){
+//        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getActivity(), EcommerceActivity.class);
         startActivity(i);
         getActivity().finish();
@@ -158,6 +164,7 @@ public class Dashboard extends Fragment  {
 
     @OnClick(R.id.cardKartuPetani)
     void kartuPetani(){
+
         Intent i = new Intent(getActivity(), KartuPetani.class);
         startActivity(i);
         getActivity().finish();

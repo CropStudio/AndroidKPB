@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import com.example.app4g.R;
+import com.example.app4g.features.users.login.Login;
+import com.example.app4g.server.App;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -97,7 +100,8 @@ public class SweetDialogs {
 
     public static void commonLogout(Activity context, String title, String content, onDialogClosed listener) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setTitleText(title);
         dialog.setContentText(content);
         dialog.setConfirmText("OK");
@@ -108,6 +112,20 @@ public class SweetDialogs {
         dialog.show();
     }
 
+    public static void commonInvalidToken(Activity context, String title, String content) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
+        dialog.setCancelable(false);
+        dialog.setTitleText(title);
+        dialog.setContentText(content);
+        dialog.setConfirmText("OK");
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            App.getPref().clear();
+            context.startActivity(new Intent(context, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            ((Activity)context).finish();
+        });
+        dialog.show();
+    }
 
 
     public static void commonSuccess(Activity context, String body, boolean close) {
@@ -180,4 +198,6 @@ public class SweetDialogs {
         });
         dialog.show();
     }
+
+
 }

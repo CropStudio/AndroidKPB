@@ -113,9 +113,9 @@ public class DetailPupukActivity extends AppCompatActivity {
         double tot3 = Double.parseDouble(urea3) + Double.parseDouble(sp363) + Double.parseDouble(za3) +
                 Double.parseDouble(npk3) + Double.parseDouble(organik3);
 
-        total1.setText(String.valueOf(tot1) + " Kg");
-        total2.setText(String.valueOf(tot2) + " Kg");
-        total3.setText(String.valueOf(tot3) + " Kg");
+        total1.setText(tot1 + " Kg");
+        total2.setText(tot2 + " Kg");
+        total3.setText(tot3 + " Kg");
 
 
     }

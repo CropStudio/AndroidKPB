@@ -1,16 +1,31 @@
-package com.example.app4g.features.petani.profile.model;
+package com.example.app4g.features.petani.profile.createprofile.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class response {
+/**
+ * Created by omgimbot on 10/13/2019.
+ */
+
+public class ProfileResponse {
     @SerializedName("rc")
     private String mRc;
+
+    @SerializedName("result")
+    private profile result;
 
     @SerializedName("message")
     private String mRm;
 
     @SerializedName("status")
     private Boolean mStatus;
+
+    public profile getResult() {
+        return result;
+    }
+
+    public void setResult(profile result) {
+        this.result = result;
+    }
 
     public String getmRc() {
         return mRc;
@@ -28,13 +43,11 @@ public class response {
         this.mRm = mRm;
     }
 
-    public Boolean getSuccess() {
+    public Boolean getmStatus() {
         return mStatus;
     }
 
-    public void setSuccess(Boolean mStatus) {
+    public void setmStatus(Boolean mStatus) {
         this.mStatus = mStatus;
     }
-
-
 }

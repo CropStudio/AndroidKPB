@@ -1,9 +1,6 @@
 package com.example.app4g.features.petani.detailProfile;
 
-import android.util.Log;
-
-import com.example.app4g.features.cart.model.Cart;
-import com.example.app4g.features.petani.profile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 
@@ -22,7 +19,7 @@ public class DetailProfilePresenter {
     }
 
     void onGetProfile(String nik) {
-        System.out.println(nik);
+        view.showLoadingIndicator();
         restService.create(NetworkService.class).getPetani(nik)
                 .enqueue(new Callback<ProfileResponse>() {
                     @Override

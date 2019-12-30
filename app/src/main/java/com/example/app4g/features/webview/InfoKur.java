@@ -40,7 +40,7 @@ public class InfoKur extends AppCompatActivity implements AdvancedWebView.Listen
         pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         //pDialog.setCancelable(false);
 
-        mWebView = (AdvancedWebView) findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
         mWebView.setListener(this, this);
         mWebView.setGeolocationEnabled(false);
         mWebView.setMixedContentAllowed(true);
