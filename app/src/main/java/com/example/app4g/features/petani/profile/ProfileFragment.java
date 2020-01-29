@@ -120,7 +120,9 @@ public class ProfileFragment extends Fragment {
                 ? mProfile.getResult().getMt2() : mProfile.getResult().getMt2();
         String mt3 = (mProfile.getResult().getMt3().contains(" "))
                 ? mProfile.getResult().getMt3() : mProfile.getResult().getMt3();
-
+        String idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
+                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
+        Toast.makeText(getActivity(), idKec, Toast.LENGTH_SHORT).show();
         mNik.setText(nik);
         mNama.setText(nama);
         mPhone.setText(no_hp);

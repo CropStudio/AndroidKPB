@@ -35,7 +35,8 @@
             android:name=".features.petani.detailProfile.DetailProfile"
             android:label="@string/title_activity_detail_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".features.rut.RutActivity" />
+        <activity android:name=".features.rut.RutActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -110,8 +111,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".features.e_commerce.EcommerceActivity" />
-        <activity android:name=".features.rutDetail.RutDetailActivity" />
+        <activity android:name=".features.e_commerce.EcommerceActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".features.rutDetail.RutDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

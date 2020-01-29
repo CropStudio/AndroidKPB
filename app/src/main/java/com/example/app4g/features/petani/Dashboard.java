@@ -148,7 +148,7 @@ public class Dashboard extends Fragment  {
 
     @OnClick(R.id.cardKatam)
     void katam(){
-//        Intent i = new Intent(getActivity(), KalenderTanam.class);
+//        Intent i = new Intent(getActivity(), BiayaTanam.class);
 //        startActivity(i);
 //        getActivity().finish();
         Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();

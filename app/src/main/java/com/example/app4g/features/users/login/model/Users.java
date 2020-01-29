@@ -15,6 +15,9 @@ public class Users {
     @SerializedName("role")
     private String role;
 
+    @SerializedName("idKecamatan")
+    private String idKecamatan;
+
     @SerializedName("hashed_password")
     private String hashed_password;
 
@@ -59,6 +62,14 @@ public class Users {
 
     @SerializedName("noKk")
     private String noKk;
+
+    public String getIdKecamatan() {
+        return idKecamatan;
+    }
+
+    public void setIdKecamatan(String idKecamatan) {
+        this.idKecamatan = idKecamatan;
+    }
 
     public String getNoKk() {
         return noKk;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+<!--    <android.support.design.widget.TabLayout-->
+<!--        android:id="@+id/mTabLayout"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:tabBackground="@drawable/white_grey_border_top"-->
+<!--        app:tabGravity="fill"-->
+<!--        app:tabMode="fixed"></android.support.design.widget.TabLayout>-->
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recycler_view"
+        android:name="com.example.app4g.features.rut.ListKebutuhan.KebutuhanSaprotanFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".features.rut.detailRut.saprotan.KebutuhanSaprotanFragment"
+        tools:listitem="@layout/item_kebutuhan_saprotan" />
+
+</LinearLayout>

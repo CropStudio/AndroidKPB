@@ -51,4 +51,6 @@ public interface NetworkService {
     @PUT("petaniedit/{nik}")
     Call<response>updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
+    @GET("/rutpoktans/{idKecamatan}/{nik}")
+    Call<com.example.app4g.features.rut.model.RutResponse>getRut(@Path("idKecamatan") String idKecamatan ,@Path("nik") String nik );
 }

@@ -1,52 +1,85 @@
 package com.example.app4g.features.rut;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.RequiresApi;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.rut.detailRut.MainDetailFragment;
+import com.example.app4g.features.rut.model.BiayaTanam;
+import com.example.app4g.features.rut.model.EstimasiPanen;
+import com.example.app4g.features.rut.model.HasilPascaPanen;
+import com.example.app4g.features.rut.model.KalenderTanam;
+import com.example.app4g.features.rut.model.KebutuhanSaprotan;
 import com.example.app4g.features.rut.model.Rut;
 import com.example.app4g.features.users.login.model.LoginResponse;
-import com.example.app4g.features.webview.PortalInformasi;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.SweetDialogs;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import im.delight.android.webview.AdvancedWebView;
 
-public class RutActivity extends AppCompatActivity implements AdvancedWebView.Listener {
-//    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
+public class RutActivity extends AppCompatActivity implements IRutView, RutAdapter.onRutSelected {
+    //    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
     String TEST_PAGE_URL = "http://kpb.lampungprov.go.id/#/rut/";
     private AdvancedWebView mWebView;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.list_viewpager)
+    ViewPager mListViewPager;
+    @BindView(R.id.list_layout)
+    LinearLayout list_layout;
+    @BindView(R.id.layoutCheckout)
+    RelativeLayout layoutCheckout;
+    @BindView(R.id.mBtnTutup)
+    Button mBtnTutup;
+    @BindView(R.id.mSubtotal)
+    TextView mSubtotal;
+    @BindView(R.id.txtSubtotal)
+    TextView txtSubtotal;
+    @BindView(R.id.mCheckout)
+    Button mCheckout;
+    @BindView(R.id.Layouttoolbar)
+    RelativeLayout Layouttoolbar;
+
+    long Subtotal ;
     ProgressDialog pDialog;
     LoginResponse mProfile;
+    public RutAdapter adapter;
+    RutPresenter presenter;
+    String idKec, nik, token;
+    SweetAlertDialog sweetAlertDialog;
+    boolean LayoutStat = false;
+
+    List<KebutuhanSaprotan> models ;
+    public List<Rut> items = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,137 +91,77 @@ public class RutActivity extends AppCompatActivity implements AdvancedWebView.Li
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        requestAppPermissions();
-        mProfile = (LoginResponse) GsonHelper.parseGson(
+        presenter = new RutPresenter(this);
+        this.initView();
+        LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-        String nik = (mProfile.getResult().getNik().contains(" "))
+        nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
-        pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
-        //pDialog.setCancelable(false);
-
-        mWebView = findViewById(R.id.webview);
-        mWebView.setListener(this, this);
-        mWebView.setGeolocationEnabled(false);
-        mWebView.setMixedContentAllowed(true);
-        mWebView.setCookiesEnabled(true);
-        mWebView.setThirdPartyCookiesEnabled(true);
-
-        mWebView.setWebViewClient(new WebViewClient(){
-
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-                pDialog.setMessage("Please wait...");
-                pDialog.setIndeterminate(false);
-                pDialog.setCancelable(false);
-                pDialog.show();
-                view.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                if(pDialog!=null){
-                    pDialog.dismiss();
-                }
-            }
-        });
-
-        mWebView.setWebChromeClient(new WebChromeClient() {
-
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-                //Toast.makeText(WebViews.this, title, Toast.LENGTH_SHORT).show();
-                // hideDialog();
-            }
-
-        });
-
-        mWebView.addHttpHeader("X-Requested-With", "");
-        mWebView.loadUrl(TEST_PAGE_URL+nik);
+        token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
+        idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
+                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
+        presenter.getRut(nik, token, idKec);
 
     }
 
-    @SuppressLint("NewApi")
     @Override
-    protected void onResume() {
-        super.onResume();
-        mWebView.onResume();
-        // ...
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    protected void onPause() {
-        mWebView.onPause();
-        // ...
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        mWebView.onDestroy();
-        // ...
-        super.onDestroy();
+    public void initView() {
+        mCheckout.setOnClickListener(view-> Toast.makeText(this, "Maaf menu ini masih dalam masa pengembangan ", Toast.LENGTH_SHORT).show());
+        mCheckout.setEnabled(false);
+        mCheckout.setBackgroundColor(getResources().getColor(R.color.grey));
+        mBtnTutup.setOnClickListener(view -> this.HideDetailKebutuhan());
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading ...");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.clearFocus();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        mWebView.onActivityResult(requestCode, resultCode, intent);
-        // ...
-    }
-
-    @Override
-    public void onPageStarted(String url, Bitmap favicon) {
-        pDialog.setMessage("Please wait...");
-        pDialog.show();
-        mWebView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onPageFinished(String url) {
-        pDialog.dismiss();
-        mWebView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onPageError(int errorCode, String description, String failingUrl) {
-        Toast.makeText(this, "onPageError(errorCode = "+errorCode+",  description = "+description+",  failingUrl = "+failingUrl+")", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
-        //Toast.makeText(WebViews.this, "onDownloadRequested(url = "+url+",  suggestedFilename = "+suggestedFilename+",  mimeType = "+mimeType+",  contentLength = "+contentLength+",  contentDisposition = "+contentDisposition+",  userAgent = "+userAgent+")", Toast.LENGTH_LONG).show();
-
-        if (AdvancedWebView.handleDownload(this, url, suggestedFilename)) {
-            // download successfully handled
-            //AdvancedWebView.handleDownload(this, url, suggestedFilename);
-            Toast.makeText(getApplicationContext(), "Berhasil didownload", Toast.LENGTH_LONG).show();
-        }
-        else {
-            // download couldn't be handled because user has disabled download manager app on the device
+    public void clearLightStatusBar(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            activity.getWindow().setStatusBarColor(Color.WHITE);
         }
     }
 
     @Override
-    public void onExternalPageRequest(String url) {
-        Toast.makeText(this, "onExternalPageRequest(url = "+url+")", Toast.LENGTH_SHORT).show();
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
     }
 
     @Override
-    public void onBackPressed() {
-        if (!mWebView.onBackPressed()) { return; }
-        // ...
-        Intent a = new Intent(this, MenuUtama.class);
-        startActivity(a);
-        finish();
-        super.onBackPressed();
+    public void hideLoadingIndicator() {
+
+        sweetAlertDialog.dismiss();
+    }
+
+    @Override
+    public void onDataReady(List<Rut> ruts) {
+        this.items = ruts ;
+        adapter = new RutAdapter(items, this, this);
+        mRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRequestFailed(String rc, String rm) {
+        if (rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                    rm);
+        else
+            SweetDialogs.commonError(this, "Gagal Memuat Permintaan", rm, string -> {
+                this.goToDashboard();
+            });
+    }
+
+    @Override
+    public void onNetworkError(String cause) {
+        Toast.makeText(this, cause, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -202,39 +175,110 @@ public class RutActivity extends AppCompatActivity implements AdvancedWebView.Li
         }
     }
 
-    private void requestAppPermissions() {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
-
-        if (hasReadPermissions() && hasWritePermissions()) {
-            return;
-        }
-
-        ActivityCompat.requestPermissions(this,
-                new String[] {
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, 1000); // your request code
+    @Override
+    public void goToDashboard() {
+        Intent a = new Intent(this, MenuUtama.class);
+        startActivity(a);
+        finish();
     }
 
-    private boolean hasReadPermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    @Override
+    public void onBackPressed() {
+        // ...
+        Intent a = new Intent(this, MenuUtama.class);
+        startActivity(a);
+        finish();
+        super.onBackPressed();
     }
 
-    private boolean hasWritePermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    @Override
+    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, KalenderTanam kalenderTanams, EstimasiPanen estimasiPanen, HasilPascaPanen hasilPascaPanen) {
+        Layouttoolbar.setVisibility(View.GONE);
+        list_layout.setVisibility(View.VISIBLE);
+        mBtnTutup.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        layoutCheckout.setVisibility(View.GONE);
+        final RutPageAdapter adapter = new RutPageAdapter(getSupportFragmentManager());
+        MainDetailFragment fragmentMainDetail = new MainDetailFragment();
+        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams,kalenderTanams,estimasiPanen,hasilPascaPanen);
+        adapter.addFragment(fragmentMainDetail);
+        mListViewPager.setAdapter(adapter);
+        LayoutStat = true;
+    }
+
+    @androidx.annotation.RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onCheckBox(int position) {
+        mSubtotal.setText(Utils.convertRupiah(String.valueOf(getSubtotal(position))));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private long getSubtotal(int position) {
+//        for (Item x : adapter.ruts) {
+//            if (x.isSelected()) {
+//                hargaPerItem = x.getHarga() * x.getQty();
+//                subTotal += hargaPerItem;
+//            }
+//
+//        }
+        long subTotal = adapter.ruts.stream().filter(word -> word.isSelected == true).mapToLong(i -> i.getKebutuhanSaprotan().get(0).getSubTotal() + i.getKebutuhanSaprotan().get(1).getSubTotal() + i.getKebutuhanSaprotan().get(2).getSubTotal()).sum();
+        if (subTotal != 0) {
+            mCheckout.setEnabled(true);
+            mCheckout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        } else {
+            mCheckout.setEnabled(false);
+            mCheckout.setBackgroundColor(getResources().getColor(R.color.grey));
+        }
+        return subTotal;
+    }
+
+//    @Override
+//    public void onDataDetailReady(List<KebutuhanSaprotan> kebutuhanSaprotans) {
+//
+////            Toast.makeText(context, kebutuhanSaprotans.get(0).getNama(), Toast.LENGTH_SHORT).show();
+//        list_layout.setVisibility(View.VISIBLE);
+//        mBtnTutup.setVisibility(View.VISIBLE);
+//        mRecyclerView.setVisibility(View.GONE);
+//        layoutCheckout.setVisibility(View.GONE);
+////        final RutPageAdapter adapter = new RutPageAdapter(getSupportFragmentManager());
+////        KebutuhanSaprotanFragment fragmentTracker = new KebutuhanSaprotanFragment();
+////        models = new ArrayList<>();
+////        for (int j = 0; j < kebutuhanSaprotans.size(); j++) {
+////
+////            models.add(kebutuhanSaprotans.get(j));
+////
+////        }
+////        fragmentTracker.setData(models, JenisTanaman);
+////        adapter.addFragment(fragmentTracker);
+////        mListViewPager.setAdapter(adapter);
+//        final PageFramentAdapter adapter = new PageFramentAdapter(getSupportFragmentManager());
+//        MainDetailFragment fragmentMainDetail = new MainDetailFragment();
+//        fragmentMainDetail.setData(kebutuhanSaprotans);
+//        adapter.addFragment(fragmentMainDetail);
+//        mListViewPager.setAdapter(adapter);
+//        LayoutStat = true;
+//    }
+
+    @Override
+    public void HideDetailKebutuhan() {
+//        list_layout.setVisibility(View.GONE);
+//        mBtnTutup.setVisibility(View.GONE);
+//        mRecyclerView.setVisibility(View.VISIBLE);
+//        LayoutStat = false;
+        startActivity(new Intent(this,RutActivity.class));
+        finish();
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (LayoutStat)
+                HideDetailKebutuhan();
+            else
+                this.goToDashboard();
         }
 
         return false;
         // Disable back button..............
     }
-
-
 }

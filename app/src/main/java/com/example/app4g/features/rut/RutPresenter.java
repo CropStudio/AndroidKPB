@@ -8,8 +8,8 @@ import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.cart.ICartView;
 import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.features.e_commerce.model.Item;
-import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.rut.model.Rut;
+import com.example.app4g.features.rut.model.RutResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 
@@ -36,32 +36,63 @@ public class RutPresenter {
     }
 
 
-    void createRut(String nik , Rut ruts ) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("nik",nik);
-        params.put("id", ruts.getHci());
-        params.put("namaBarang", ruts.getNpk());
-        params.put("harga", ruts.getOrganik());
-        params.put("foto", ruts.getPhonska());
-        params.put("foto", ruts.getUrea());
-        params.put("foto", ruts.getLuas_lahan());
-        view.showLoadingIndicator();
-        restService.create(NetworkService.class).createRut(params).enqueue(new Callback<CommonResponse>() {
-            @Override
-            public void onResponse(retrofit2.Call<CommonResponse> call, Response<CommonResponse> response) {
-                view.hideLoadingIndicator();
-                Log.i("MESSAGE" , ""+response.body());
-                if (response.body().getSuccess()) {
-                    view.onCreateRutSuccess();
-                }
-            }
+//    void createRut(String nik , Rut ruts ) {
+//        HashMap<String, Object> params = new HashMap<>();
+//        params.put("nik",nik);
+//        params.put("id", ruts.getHci());
+//        params.put("namaBarang", ruts.getNpk());
+//        params.put("harga", ruts.getOrganik());
+//        params.put("foto", ruts.getPhonska());
+//        params.put("foto", ruts.getUrea());
+//        params.put("foto", ruts.getLuas_lahan());
+//        view.showLoadingIndicator();
+//        restService.create(NetworkService.class).createRut(params).enqueue(new Callback<CommonResponse>() {
+//            @Override
+//            public void onResponse(retrofit2.Call<CommonResponse> call, Response<CommonResponse> response) {
+//                view.hideLoadingIndicator();
+//                Log.i("MESSAGE" , ""+response.body());
+//                if (response.body().getSuccess()) {
+//                    view.onCreateRutSuccess();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(retrofit2.Call<CommonResponse> call, Throwable t) {
+//                view.hideLoadingIndicator();
+//                view.onNetworkError(t.getLocalizedMessage());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(retrofit2.Call<CommonResponse> call, Throwable t) {
-                view.hideLoadingIndicator();
-                view.onNetworkError(t.getLocalizedMessage());
-            }
-        });
+    void getRut(String nik, String token , String idKec) {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+            Request original = chain.request();
+            Request request = original.newBuilder()
+                    .header("x-access-token", token)
+                    .header("username", nik)
+                    .method(original.method(), original.body())
+                    .build();
+
+            return chain.proceed(request);
+        }).build();
+        view.showLoadingIndicator();
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(idKec,nik)
+                .enqueue(new Callback<RutResponse>() {
+                    @Override
+                    public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
+                        view.hideLoadingIndicator();
+                        if (response.body().getmStatus())
+                            view.onDataReady(response.body().getResult().getRut());
+                        else
+                            view.onRequestFailed(response.body().getmRm(),response.body().getmRc());
+                    }
+
+                    @Override
+                    public void onFailure(Call<RutResponse> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
     }
 
 

@@ -13,21 +13,21 @@ public class Config_URL
     public static String fotoProfilUrl      = "http://api.kartupetaniberjaya.com/potopropil/";
     //public static String fotoProfilUrl      = "http://192.168.43.156:8400/potopropil/";
     //Users
-    public static String login        = base_URL + "/Users/signin";
-    public static String registrasi   = base_URL + "/Users/signup";
-    public static String uploadFoto   = base_URL + "/potopropil/";
-    public static String crudUser     = base_URL + "/user";
+    public static String login        = base_URL + "Users/signin";
+    public static String registrasi   = base_URL + "Users/signup";
+    public static String uploadFoto   = base_URL + "potopropil/";
+    public static String crudUser     = base_URL + "user";
 
     //petani
-    public static String cekPetani    = base_URL + "/cekPetani/";
+    public static String cekPetani    = base_URL + "cekPetani/";
 
     //data anak
-    public static String dataAnak     = base_URL + "/cekanak/";
-    public static String anak         = base_URL + "/anak";
+    public static String dataAnak     = base_URL + "cekanak/";
+    public static String anak         = base_URL + "anak";
 
     //data pupuk
     public static String dataPupuk     = base_URL + "e-rdkk/";
 
     //poktan
-    public static String dataPoktan   = base_URL + "/poktan";
+    public static String dataPoktan   = base_URL + "poktan";
 }

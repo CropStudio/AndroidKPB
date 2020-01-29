@@ -2,67 +2,82 @@ package com.example.app4g.features.rut.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Rut {
+    @SerializedName("jenisTanaman")
+    private String jenisTanaman;
 
-    @SerializedName("urea")
-    private String urea;
-    @SerializedName("hci")
-    private String hci;
-    @SerializedName("organik")
-    private String organik;
-    @SerializedName("npk")
-    private String npk;
-    @SerializedName("phonska")
-    private String phonska;
-    @SerializedName("luas_lahan")
-    private String luas_lahan;
+    @SerializedName("masaTanam")
+    private String masaTanam;
+
+    @SerializedName("kebutuhanSaprotan")
+    private List<KebutuhanSaprotan> KebutuhanSaprotan;
+
+    @SerializedName("garapDanPemeliharaan")
+    private List<BiayaTanam> BiayaTanam;
+
+    @SerializedName("jadwalUsahaTani")
+    private KalenderTanam KalenderTanam;
+
+    @SerializedName("status")
+    private String status;
 
 
-    public String getUrea() {
-        return urea;
+
+    public com.example.app4g.features.rut.model.KalenderTanam getKalenderTanam() {
+        return KalenderTanam;
     }
 
-    public void setUrea(String urea) {
-        this.urea = urea;
+    public void setKalenderTanam(com.example.app4g.features.rut.model.KalenderTanam kalenderTanam) {
+        KalenderTanam = kalenderTanam;
     }
 
-    public String getHci() {
-        return hci;
+    public List<BiayaTanam> getBiayaTanam() {
+        return BiayaTanam;
     }
 
-    public void setHci(String hci) {
-        this.hci = hci;
+    public void setBiayaTanam(List<BiayaTanam> biayaTanam) {
+        BiayaTanam = biayaTanam;
     }
 
-    public String getOrganik() {
-        return organik;
+    public boolean isSelected ;
+    public boolean isSelected() {
+        return isSelected;
     }
 
-    public void setOrganik(String organik) {
-        this.organik = organik;
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+    public String getStatus() {
+        return status;
     }
 
-    public String getNpk() {
-        return npk;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setNpk(String npk) {
-        this.npk = npk;
+    public String getJenisTanaman() {
+        return jenisTanaman;
     }
 
-    public String getPhonska() {
-        return phonska;
+    public void setJenisTanaman(String jenisTanaman) {
+        this.jenisTanaman = jenisTanaman;
     }
 
-    public void setPhonska(String phonska) {
-        this.phonska = phonska;
+    public String getMasaTanam() {
+        return masaTanam;
     }
 
-    public String getLuas_lahan() {
-        return luas_lahan;
+    public void setMasaTanam(String masaTanam) {
+        this.masaTanam = masaTanam;
     }
 
-    public void setLuas_lahan(String luas_lahan) {
-        this.luas_lahan = luas_lahan;
+    public List<com.example.app4g.features.rut.model.KebutuhanSaprotan> getKebutuhanSaprotan() {
+        return KebutuhanSaprotan;
+    }
+
+    public void setKebutuhanSaprotan(List<com.example.app4g.features.rut.model.KebutuhanSaprotan> kebutuhanSaprotan) {
+        KebutuhanSaprotan = kebutuhanSaprotan;
     }
 }

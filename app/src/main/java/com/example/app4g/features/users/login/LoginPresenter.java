@@ -43,7 +43,6 @@ public class LoginPresenter {
         String basic = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
         System.out.println(username);
         System.out.println(password);
-System.out.println(basic+"1");
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
