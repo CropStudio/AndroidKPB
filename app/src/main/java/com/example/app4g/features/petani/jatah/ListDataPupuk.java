@@ -137,7 +137,7 @@ public class ListDataPupuk extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("Response: ", response);
+                        Log.e("CommonRespon: ", response);
                         hideDialog();
                         try {
                             JSONObject jObj = new JSONObject(response);
@@ -192,8 +192,8 @@ public class ListDataPupuk extends AppCompatActivity {
 
                 Log.e(String.valueOf(getApplication()), "Error : " + error.getMessage());
                 error.printStackTrace();
-                Toast.makeText(getApplicationContext(), "No Response From Server", Toast.LENGTH_SHORT).show();
-                noData.setText("No Response From Server :(");
+                Toast.makeText(getApplicationContext(), "No CommonRespon From Server", Toast.LENGTH_SHORT).show();
+                noData.setText("No CommonRespon From Server :(");
                 hideDialog();
             }
         })

@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.detailProfile;
+package com.example.app4g.features.petani.profile.detailProfile;
 
 import android.content.Context;
 import android.content.Intent;

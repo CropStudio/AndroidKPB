@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.profile.createprofile;
+package com.example.app4g.features.petani.noRekening;
 
 import com.example.app4g.common.CommonRespon;
 import com.example.app4g.network.NetworkService;
@@ -14,20 +14,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 
-public class ProfilePresenter {
-    final IProfileView view;
+public class RekeningPresenter {
+    final IRekeningView view;
     public final Retrofit restService;
 
-    public ProfilePresenter(IProfileView view) {
+    public RekeningPresenter(IRekeningView view) {
         this.view = view;
         restService = RestService.getRetrofitInstance();
     }
 
-    void storeNoKK(String noKK) {
-        App.getPref().put(Prefs.PREF_NO_KK, noKK);
+    void storeNoRek(String noRek) {
+        App.getPref().put(Prefs.PREF_NO_REKENING, noRek);
     }
 
-    void onUpdateProfile(String nik,String token ,String body,String noKK) {
+    void onCreateRekening(String nik,String token ,String body,String noRek) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("data", body);
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
@@ -42,12 +42,15 @@ public class ProfilePresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
+//        System.out.println(body);
+
+        System.out.println(params);
         restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<CommonRespon>() {
             @Override
             public void onResponse(Call<CommonRespon> call, retrofit2.Response<CommonRespon> response) {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
-                    view.onUpdateProfileSuccess(response.body(),noKK);
+                    view.onCreateRekeningSuksess(response.body(),noRek);
                 }
             }
 

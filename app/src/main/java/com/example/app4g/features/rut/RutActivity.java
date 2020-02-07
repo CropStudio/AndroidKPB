@@ -25,6 +25,7 @@ import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.Utils.Utils;
 import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.petani.noRekening.Rekening;
 import com.example.app4g.features.rut.detailRut.MainDetailFragment;
 import com.example.app4g.features.rut.model.BiayaTanam;
 import com.example.app4g.features.rut.model.EstimasiPanen;
@@ -109,16 +110,26 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void initView() {
-        mCheckout.setOnClickListener(view-> Toast.makeText(this, "Maaf menu ini masih dalam masa pengembangan ", Toast.LENGTH_SHORT).show());
+        mCheckout.setOnClickListener(view-> this.onSubmit());
         mCheckout.setEnabled(false);
         mCheckout.setBackgroundColor(getResources().getColor(R.color.grey));
         mBtnTutup.setOnClickListener(view -> this.HideDetailKebutuhan());
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText("Loading ...");
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.clearFocus();
+    }
+
+    @Override
+    public void onSubmit(){
+        if(App.getPref().getString(Prefs.PREF_NO_REKENING,"").equals("")){
+            startActivity(new Intent(this , Rekening.class));
+            finish();
+        }else{
+            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -149,7 +160,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onRequestFailed(String rc, String rm) {
+    public void onRequestFailed(String rm, String rc) {
         if (rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
             SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
                     rm);

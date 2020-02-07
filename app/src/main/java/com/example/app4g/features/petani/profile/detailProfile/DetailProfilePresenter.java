@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.detailProfile;
+package com.example.app4g.features.petani.profile.detailProfile;
 
 import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
 import com.example.app4g.network.NetworkService;
@@ -25,7 +25,7 @@ public class DetailProfilePresenter {
                     @Override
                     public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                         view.hideLoadingIndicator();
-                        //Log.d("Messg", String.valueOf(response.body().getmResult()));
+                        //Log.d("Messg", String.valueOf(CommonRespon.body().getmResult()));
                         view.onDataReady(response.body().getResult());
 
                     }

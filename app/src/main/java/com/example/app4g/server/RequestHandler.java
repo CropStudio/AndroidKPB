@@ -63,7 +63,7 @@ public class RequestHandler  {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 sb = new StringBuilder();
                 String response;
-                //Reading server response
+                //Reading server CommonRespon
                 while ((response = br.readLine()) != null){
                     sb.append(response);
                 }

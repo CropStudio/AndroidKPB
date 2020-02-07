@@ -277,7 +277,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                 Config_URL.cekPetani + nikPetani, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                Log.d("msg", "Data petani: " + response.toString());
+//                Log.d("msg", "Data petani: " + CommonRespon.toString());
 
                 try {
                     final JSONObject jObj = new JSONObject(response);
@@ -536,7 +536,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
             Intent a = new Intent(Regist.this, Login.class);
             startActivity(a);
             finish();
-            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Berhasil Melakukan Registrasi , Silahkan Login ", Toast.LENGTH_LONG).show();
         } else {
             TopSnakbar.showWarning(this,msg);
         }

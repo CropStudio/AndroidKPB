@@ -96,15 +96,15 @@
 ////        String tag_json_obj = "json_obj_req";
 ////        StringRequest strReq = new StringRequest(Request.Method.GET,
 ////                Config_URL.dataAnak+strId,
-////                new Response.Listener<String>() {
+////                new CommonRespon.Listener<String>() {
 ////
 ////                    @Override
-////                    public void onResponse(String response) {
-////                        Log.e("Response: ", response.toString());
+////                    public void onResponse(String CommonRespon) {
+////                        Log.e("CommonRespon: ", CommonRespon.toString());
 ////                        hideDialog();
 ////
 ////                        try {
-////                            JSONObject jObj = new JSONObject(response);
+////                            JSONObject jObj = new JSONObject(CommonRespon);
 ////                            boolean status = jObj.getBoolean("status");
 ////
 ////                            if(status == true){
@@ -128,7 +128,7 @@
 ////                        }
 ////                        adapter.notifyDataSetChanged();
 ////                    }
-////                }, new Response.ErrorListener(){
+////                }, new CommonRespon.ErrorListener(){
 ////
 ////            @Override
 ////            public void onErrorResponse(VolleyError error){
@@ -266,13 +266,13 @@
 ////                            }else {
 ////                                String tag_string_req = "req";
 ////                                StringRequest strReq = new StringRequest(Request.Method.PUT,
-////                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new Response.Listener<String>() {
+////                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new CommonRespon.Listener<String>() {
 ////                                    @Override
-////                                    public void onResponse(String response) {
-////                                        Log.d("msg", "Response: " + response.toString());
+////                                    public void onResponse(String CommonRespon) {
+////                                        Log.d("msg", "CommonRespon: " + CommonRespon.toString());
 ////                                        prgBar.setVisibility(View.GONE);
 ////                                        try {
-////                                            final JSONObject jObj = new JSONObject(response);
+////                                            final JSONObject jObj = new JSONObject(CommonRespon);
 ////                                            final boolean status = jObj.getBoolean("status");
 ////
 ////                                            handler.postDelayed(new Runnable() {
@@ -307,7 +307,7 @@
 ////                                            e.printStackTrace();
 ////                                        }
 ////                                    }
-////                                }, new Response.ErrorListener(){
+////                                }, new CommonRespon.ErrorListener(){
 ////
 ////                                    @Override
 ////                                    public void onErrorResponse(VolleyError error){
@@ -363,13 +363,13 @@
 ////                                            }else {
 ////                                                String tag_string_req = "req";
 ////                                                StringRequest strReq = new StringRequest(Request.Method.DELETE,
-////                                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new Response.Listener<String>() {
+////                                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new CommonRespon.Listener<String>() {
 ////                                                    @Override
-////                                                    public void onResponse(String response) {
-////                                                        Log.d("msg", "Response: " + response.toString());
+////                                                    public void onResponse(String CommonRespon) {
+////                                                        Log.d("msg", "CommonRespon: " + CommonRespon.toString());
 ////                                                        prgBar.setVisibility(View.GONE);
 ////                                                        try {
-////                                                            final JSONObject jObj = new JSONObject(response);
+////                                                            final JSONObject jObj = new JSONObject(CommonRespon);
 ////                                                            final boolean status = jObj.getBoolean("status");
 ////
 ////                                                            handler.postDelayed(new Runnable() {
@@ -404,7 +404,7 @@
 ////                                                            e.printStackTrace();
 ////                                                        }
 ////                                                    }
-////                                                }, new Response.ErrorListener(){
+////                                                }, new CommonRespon.ErrorListener(){
 ////
 ////                                                    @Override
 ////                                                    public void onErrorResponse(VolleyError error){

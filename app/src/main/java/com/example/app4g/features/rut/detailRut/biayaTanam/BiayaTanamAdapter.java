@@ -63,9 +63,9 @@ public class BiayaTanamAdapter extends RecyclerView.Adapter<BiayaTanamAdapter.Vi
 
         public ViewHolder(View view) {
             super(view);
-            mJenis = (TextView) view.findViewById(R.id.mJenis);
-            mHarga = (TextView) view.findViewById(R.id.mHarga);
-            mJumlah = (TextView) view.findViewById(R.id.mJumlah);
+            mJenis = view.findViewById(R.id.mJenis);
+            mHarga = view.findViewById(R.id.mHarga);
+            mJumlah = view.findViewById(R.id.mJumlah);
 
         }
 

@@ -137,7 +137,7 @@ public class EditPoktan extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.e("Response: ", response);
+                Log.e("CommonRespon: ", response);
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);

@@ -37,8 +37,16 @@ public class LoginPresenter {
         App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
     }
 
+    void storeNoKK(String noKK) {
+        App.getPref().put(Prefs.PREF_NO_KK, noKK);
+    }
 
-    void login(String username , String password) {
+    void storeNoRek(String noRek) {
+        App.getPref().put(Prefs.PREF_NO_REKENING, noRek);
+    }
+
+
+    void login(String username, String password) {
         String credentials = username + ":" + password;
         String basic = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
         System.out.println(username);
@@ -66,7 +74,7 @@ public class LoginPresenter {
                     App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
                     App.getPref().put(Prefs.PREF_ACCESS_TOKEN, response.body().getResult().getToken());
                     view.onSigninSuccess(response.body());
-                }else
+                } else
                     view.onSigninFailed(response.body().getRm());
             }
 

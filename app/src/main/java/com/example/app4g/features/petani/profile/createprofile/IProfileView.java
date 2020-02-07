@@ -1,7 +1,6 @@
 package com.example.app4g.features.petani.profile.createprofile;
 
-import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.createprofile.model.response;
+import com.example.app4g.common.CommonRespon;
 
 public interface IProfileView {
     void initViews();
@@ -20,7 +19,7 @@ public interface IProfileView {
 
     void onSubmit();
 
-    void onUpdateProfileSuccess(response response);
+    void onUpdateProfileSuccess(CommonRespon commonRespon, String noKK);
 
     void goToDashBoard();
 
@@ -29,4 +28,6 @@ public interface IProfileView {
     void showLoadingIndicator();
 
     void hideLoadingIndicator();
+
+    void goToDashboard();
 }

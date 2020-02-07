@@ -122,7 +122,7 @@ public class SweetDialogs {
             sweetAlertDialog.dismissWithAnimation();
             App.getPref().clear();
             context.startActivity(new Intent(context, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            ((Activity)context).finish();
+            context.finish();
         });
         dialog.show();
     }

@@ -9,14 +9,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app4g.R;
+import com.example.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.example.app4g.features.users.login.Login;
 import com.example.app4g.server.App;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
-
-import static com.example.app4g.server.App.getContext;
 
 
 /**
@@ -55,7 +54,7 @@ public class DrawerMenuItem {
     private void onResolved() {
         switch (mMenuPosition){
             case DRAWER_MENU_ITEM_PROFILE:
-                itemNameTxt.setText("Profile");
+                itemNameTxt.setText("Profil");
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
                 itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_account_circle_black_24dp));
                 break;
@@ -71,7 +70,7 @@ public class DrawerMenuItem {
             case DRAWER_MENU_ITEM_LOGOUT:
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
                 itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_exit_to_app_black_24dp));
-                itemNameTxt.setText("Logout");
+                itemNameTxt.setText("Keluar");
                 break;
         }
     }
@@ -81,11 +80,12 @@ public class DrawerMenuItem {
 
         switch (mMenuPosition){
             case DRAWER_MENU_ITEM_PROFILE:
-                Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
+
+                goToProfile();
                 if(mCallBack != null)mCallBack.onProfileMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
-                goToKolaborator();
+                Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_CONTACTUS:
@@ -125,9 +125,9 @@ public class DrawerMenuItem {
 
     }
 
-    public void goToKolaborator(){
-//        mContext.startActivity(new Intent(mContext, StakeholderActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-//        ((Activity)mContext).finish();
+    public void goToProfile(){
+        mContext.startActivity(new Intent(mContext, DetailProfile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        ((Activity)mContext).finish();
     }
     public void goToKontak(){
 //        mContext.startActivity(new Intent(mContext, ContactActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));

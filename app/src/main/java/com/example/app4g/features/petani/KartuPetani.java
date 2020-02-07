@@ -22,7 +22,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class KartuPetani extends AppCompatActivity {
 
     private Bitmap qRBit;
-    String nik , nama;
+    String nik , nama ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,9 @@ public class KartuPetani extends AppCompatActivity {
         image.setImageBitmap(qRBit);
 
         TextView txtNama = findViewById(R.id.nameTag);
+        TextView txtNik = findViewById(R.id.nikTag);
         txtNama.setText(nama);
+        txtNik.setText(nik);
 
     }
 

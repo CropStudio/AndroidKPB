@@ -26,16 +26,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.pupuksubsidi.PupukSubsidiActivity"></activity>
+        <activity android:name=".features.petani.noRekening.Rekening"></activity>
+        <activity android:name=".features.pupuksubsidi.PupukSubsidiActivity" />
         <activity android:name=".features.gubernur.Menu_Gubernur" />
         <activity android:name=".features.gubernur.EditProfileGubernur" />
         <activity android:name=".features.gubernur.ProfileFragmentGubernur" />
         <activity android:name=".features.gubernur.Dashboard_Gubernur" />
         <activity
-            android:name=".features.petani.detailProfile.DetailProfile"
+            android:name=".features.petani.profile.detailProfile.DetailProfile"
             android:label="@string/title_activity_detail_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".features.rut.RutActivity"
+        <activity
+            android:name=".features.rut.RutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.cart.CartActivity"
@@ -111,9 +113,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".features.e_commerce.EcommerceActivity"
+        <activity
+            android:name=".features.e_commerce.EcommerceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".features.rutDetail.RutDetailActivity"
+        <activity
+            android:name=".features.rutDetail.RutDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 

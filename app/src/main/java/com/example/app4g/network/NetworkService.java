@@ -5,7 +5,7 @@ import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.e_commerce.model.RutResponse;
 import com.example.app4g.features.e_commerce.model.Saldo;
 import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.createprofile.model.response;
+import com.example.app4g.common.CommonRespon;
 import com.example.app4g.features.users.login.model.LoginResponse;
 
 import java.util.Map;
@@ -49,7 +49,7 @@ public interface NetworkService {
 
     @FormUrlEncoded
     @PUT("petaniedit/{nik}")
-    Call<response>updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
+    Call<CommonRespon>updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
     @GET("/rutpoktans/{idKecamatan}/{nik}")
     Call<com.example.app4g.features.rut.model.RutResponse>getRut(@Path("idKecamatan") String idKecamatan ,@Path("nik") String nik );

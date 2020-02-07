@@ -43,11 +43,11 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
         );
         String noKk = (mProfile.getResult().getNoKk().contains(" "))
                 ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
-        if(noKk.equals("")){
-            SweetDialogs.commonWarningWithIntent(this, "Anda harus melengkapi data terlebih dahulu !" , string -> {
-                this.goToUpdateProfile();
-            });
-        }
+//        if(noKk.equals("")){
+//            SweetDialogs.commonWarningWithIntent(this, "Anda harus melengkapi data terlebih dahulu !" , string -> {
+//                this.goToUpdateProfile();
+//            });
+//        }
     }
 
     public void goToUpdateProfile(){

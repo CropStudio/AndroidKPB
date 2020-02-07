@@ -48,10 +48,10 @@ public class RutPresenter {
 //        view.showLoadingIndicator();
 //        restService.create(NetworkService.class).createRut(params).enqueue(new Callback<CommonResponse>() {
 //            @Override
-//            public void onResponse(retrofit2.Call<CommonResponse> call, Response<CommonResponse> response) {
+//            public void onResponse(retrofit2.Call<CommonResponse> call, CommonRespon<CommonResponse> CommonRespon) {
 //                view.hideLoadingIndicator();
-//                Log.i("MESSAGE" , ""+response.body());
-//                if (response.body().getSuccess()) {
+//                Log.i("MESSAGE" , ""+CommonRespon.body());
+//                if (CommonRespon.body().getSuccess()) {
 //                    view.onCreateRutSuccess();
 //                }
 //            }

@@ -66,14 +66,14 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
 
         public ViewHolder(View view) {
             super(view);
-            mNamaPupuk = (TextView) view.findViewById(R.id.mNamaPupuk);
-            mHarga = (TextView) view.findViewById(R.id.mHarga);
-            mJumlah = (TextView) view.findViewById(R.id.mJumlah);
-            mHargaSubsidi = (TextView) view.findViewById(R.id.mHargaSubsidi);
-            mJatahSubsidi = (TextView) view.findViewById(R.id.mJatahSubsidi);
-            mJumlahNonSubsidi = (TextView) view.findViewById(R.id.mJumlahNonSubsidi);
-            mLuasLahan = (TextView) view.findViewById(R.id.mLuasLahan);
-            mSubTotal = (TextView) view.findViewById(R.id.mSubTotal);
+            mNamaPupuk = view.findViewById(R.id.mNamaPupuk);
+            mHarga = view.findViewById(R.id.mHarga);
+            mJumlah = view.findViewById(R.id.mJumlah);
+            mHargaSubsidi = view.findViewById(R.id.mHargaSubsidi);
+            mJatahSubsidi = view.findViewById(R.id.mJatahSubsidi);
+            mJumlahNonSubsidi = view.findViewById(R.id.mJumlahNonSubsidi);
+            mLuasLahan = view.findViewById(R.id.mLuasLahan);
+            mSubTotal = view.findViewById(R.id.mSubTotal);
            // mJenisTanaman = (TextView) view.findViewById(R.id.mJenisTanaman);
         }
 

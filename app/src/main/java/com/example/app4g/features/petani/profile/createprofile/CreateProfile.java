@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,8 +22,8 @@ import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
-import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
-import com.example.app4g.features.petani.profile.createprofile.model.response;
+import com.example.app4g.common.CommonRespon;
+import com.example.app4g.features.petani.MenuUtama;
 import com.example.app4g.features.users.login.Login;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
@@ -169,7 +170,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
     String kelamin;
     ProfilePresenter presenter;
     private LoginResponse mProfile;
-    private String nik, nama, alamat;
+    private String nik, nama, alamat, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,6 +190,8 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         );
         nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         nama = (mProfile.getResult().getNama().contains(" "))
                 ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
         alamat = (mProfile.getResult().getAlamat().contains(" "))
@@ -198,7 +201,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         mName.setText(nama);
         mAddress.setText(alamat);
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText("Loading ...");
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         mAgama.setItems(App.getApplication().getResources().getStringArray(R.array.agama));
         mPendTerakhirAnak.setItems(App.getApplication().getResources().getStringArray(R.array.PendidikanAnak));
         mHubKeluarga.setItems(App.getApplication().getResources().getStringArray(R.array.HubKeluarga));
@@ -542,15 +545,15 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 //        Gson gson = new Gson();
 //        String Data = gson.toJson(dataRoot);
         System.out.println(dataRoot);
-        presenter.onUpdateProfile(nik, dataRoot.toString());
+        presenter.onUpdateProfile(nik,token, dataRoot.toString(),mNoKK.getText().toString());
 
 
     }
 
     @Override
-    public void onUpdateProfileSuccess(response response) {
-        App.getPref().clear();
-        SweetDialogs.commonSuccessWithIntent(this, "untuk validasi data di harapkan anda login kembali !" , string -> {
+    public void onUpdateProfileSuccess(CommonRespon commonRespon, String noKK) {
+        presenter.storeNoKK(noKK);
+        SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan" , string -> {
             this.goToDashBoard();
         });
 
@@ -627,6 +630,29 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
 
     @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            goToDashboard();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToDashboard();
+    }
+
+    @Override
+    public void goToDashboard() {
+        Intent i = new Intent(this, MenuUtama.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.next_button:
@@ -674,7 +700,11 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 break;
 
             case R.id.mSubmit:
-                this.onSubmit();
+                SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "Pastikan semua data anda sudah benar!" , "Data Berhasil disimpan .", string -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        this.onSubmit();
+                    }
+                });
                 break;
         }
     }

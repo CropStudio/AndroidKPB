@@ -18,6 +18,8 @@ public class Prefs extends TrayPreferences {
     public static String PREF_FIREBASE_TOKEN = "firebase.token";
     public static String PREF_FIREBASE_STORED = "firebase.is.stored";
     public static String PREF_ACCESS_TOKEN = "access.token";
+    public static String PREF_NO_KK = "noKK.users";
+    public static String PREF_NO_REKENING = "noRek.users";
     public static String PREF_ROLE = "role.users";
     public static String PREF_CITY_ID = "city.id";
     public static String INTENT_TRACKER_TYPE = "intent.tracker.type";

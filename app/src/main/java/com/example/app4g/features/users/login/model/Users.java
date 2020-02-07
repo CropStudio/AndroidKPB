@@ -6,6 +6,9 @@ public class Users {
     @SerializedName("nik")
     private String nik;
 
+    @SerializedName("nomorRekening")
+    private String nomorRekening;
+
     @SerializedName("nama")
     private String nama;
 
@@ -62,6 +65,14 @@ public class Users {
 
     @SerializedName("noKk")
     private String noKk;
+
+    public String getNomorRekening() {
+        return nomorRekening;
+    }
+
+    public void setNomorRekening(String nomorRekening) {
+        this.nomorRekening = nomorRekening;
+    }
 
     public String getIdKecamatan() {
         return idKecamatan;

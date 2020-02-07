@@ -1,8 +1,8 @@
-package com.example.app4g.features.petani.profile.createprofile.model;
+package com.example.app4g.common;
 
 import com.google.gson.annotations.SerializedName;
 
-public class response {
+public class CommonRespon {
     @SerializedName("rc")
     private String mRc;
 

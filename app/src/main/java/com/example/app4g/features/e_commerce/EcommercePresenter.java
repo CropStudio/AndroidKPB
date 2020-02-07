@@ -52,7 +52,7 @@ public class EcommercePresenter {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
                         view.hideLoadingIndicator();
-                        //Log.d("Messg", String.valueOf(response.body()));
+                        //Log.d("Messg", String.valueOf(CommonRespon.body()));
                         if (response.body().getSuccess())
                             view.onDataReady(response.body());
                         else

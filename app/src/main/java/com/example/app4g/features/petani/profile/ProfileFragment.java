@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
-import com.example.app4g.features.petani.detailProfile.DetailProfile;
+import com.example.app4g.features.petani.profile.detailProfile.DetailProfile;
+import com.example.app4g.features.petani.profile.createprofile.CreateProfile;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
+import com.example.app4g.ui.SweetDialogs;
 
 import java.lang.reflect.Method;
 
@@ -51,6 +53,8 @@ public class ProfileFragment extends Fragment {
     ImageButton detailsProfile;
     @BindView(R.id.mEditProfile)
     ImageButton mEditProfile;
+    String noKK;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -71,13 +75,24 @@ public class ProfileFragment extends Fragment {
         detailsProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), DetailProfile.class));
-                getActivity().finish();
+                if (noKK.equals("")) {
+                    SweetDialogs.commonWarningWithIntent(getActivity(), "Data Anda belum lengkap  , Anda harus melengkapi data terlebih dahulu !", string -> {
+                        goToUpdateProfile();
+                    });
+                } else {
+                    startActivity(new Intent(getActivity(), DetailProfile.class));
+                    getActivity().finish();
+                }
 //                Toast.makeText(getActivity(), "Maaf menu ini sementara belum tersedia !", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
+    }
+
+    public void goToUpdateProfile() {
+        startActivity(new Intent(getActivity(), CreateProfile.class));
+        getActivity().finish();
     }
 
     @Override
@@ -87,8 +102,8 @@ public class ProfileFragment extends Fragment {
     }
 
     @OnClick(R.id.mEditProfile)
-    void onEditProfile(){
-        Toast.makeText(getActivity(), "Maaf menu edit profile belum tersedia", Toast.LENGTH_SHORT).show();
+    void onEditProfile() {
+        goToUpdateProfile();
     }
 
     public void initView() {
@@ -96,8 +111,9 @@ public class ProfileFragment extends Fragment {
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-//        String user_photo = (mProfile.getResult().getUser_photo().contains(" "))
-//                ? mProfile.getResult().getUser_photo() : mProfile.getResult().getUser_photo();
+
+        noKK = App.getPref().getString(Prefs.PREF_NO_KK,"");
+        Toast.makeText(getActivity(), noKK, Toast.LENGTH_SHORT).show();
         String nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         String nama = (mProfile.getResult().getNama().contains(" "))
@@ -122,7 +138,6 @@ public class ProfileFragment extends Fragment {
                 ? mProfile.getResult().getMt3() : mProfile.getResult().getMt3();
         String idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
                 ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
-        Toast.makeText(getActivity(), idKec, Toast.LENGTH_SHORT).show();
         mNik.setText(nik);
         mNama.setText(nama);
         mPhone.setText(no_hp);
@@ -134,5 +149,6 @@ public class ProfileFragment extends Fragment {
         mAddress.setEnabled(false);
         mPhone.setEnabled(false);
         mPoktan.setEnabled(false);
+
     }
 }

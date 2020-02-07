@@ -662,7 +662,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="7dp"
-                                                android:text="E-Commerce"
+                                                android:text="Toko online"
                                                 android:textSize="10dp" />
 
                                         </LinearLayout>

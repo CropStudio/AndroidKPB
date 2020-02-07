@@ -17,6 +17,8 @@ public interface IRutView {
 
     void initView();
 
+    void onSubmit();
+
     void clearLightStatusBar(Activity activity);
 
     void showLoadingIndicator();
@@ -25,7 +27,7 @@ public interface IRutView {
 
     void onDataReady(List<Rut> ruts);
 
-    void onRequestFailed(String rc, String rm);
+    void onRequestFailed(String rm, String rc);
 
     void onNetworkError(String cause);
 

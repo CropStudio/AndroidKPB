@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.detailProfile;
+package com.example.app4g.features.petani.profile.detailProfile;
 
 import com.example.app4g.features.petani.profile.createprofile.model.profile;
 

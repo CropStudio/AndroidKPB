@@ -85,7 +85,7 @@
                 android:layout_height="37dp"
                 android:background="@drawable/bk_mini_rounded"
                 android:gravity="center_vertical"
-                android:text="Checkout"
+                android:text="Setuju"
                 android:textAlignment="center"
                 android:textColor="@color/white_70" />
 

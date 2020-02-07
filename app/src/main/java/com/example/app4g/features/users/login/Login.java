@@ -166,6 +166,8 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         App.getPref().put(Prefs.PREF_ROLE, response.getResult().getRole());
         if (presenter.isLoggedIn()) {
             if (response.getResult().getRole().equals("petani")) {
+                presenter.storeNoKK(response.getResult().getNoKk());
+                presenter.storeNoRek(response.getResult().getNomorRekening());
                 this.goToDashboardPetani();
             } else if (response.getResult().getRole().equals("gubernur")) {
                 this.goToDashboardGubernur();
