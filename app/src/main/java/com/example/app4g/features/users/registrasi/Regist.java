@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -12,6 +13,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -30,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.app4g.features.petani.registrasi.RegistPetaniActivity;
 import com.example.app4g.server.App;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.R;
@@ -86,6 +90,11 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     @BindView(R.id.btnRegistrasi)
     Button btnRegistrasi;
+
+    @BindView(R.id.txtDaftar)
+    TextView txtDaftar;
+    @BindView(R.id.LayoutDaftar)
+    CardView LayoutDaftar;
 
     @BindView(R.id.txtPoktan)
     TextView txtPoktan;
@@ -265,7 +274,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     void cariPetani() {
         String nikPetani = edNik.getText().toString();
         if (nikPetani.isEmpty()) {
-            TopSnakbar.showWarning(this,"NIK TIDAK BOLEH KOSONG");
+            TopSnakbar.showWarning(this, "NIK TIDAK BOLEH KOSONG");
         } else {
             cekPetani(nikPetani);
         }
@@ -291,12 +300,15 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         btnRegistrasi.setVisibility(View.VISIBLE);
                         txtNama.setText(" " + nama);
                         txtPoktan.setText(" " + poktan);
-                        txtAlamat.setText("Alamat "+alamat);
+                        txtAlamat.setText("Alamat " + alamat);
                         dataPetani.setVisibility(View.VISIBLE);
                         snacBarsGreen(msg);
                     } else {
                         dataPetani.setVisibility(View.GONE);
-                        TopSnakbar.showWarning(Regist.this,"NIK PETANI TIDAK DITEMUKAN");
+                        LayoutDaftar.setVisibility(View.VISIBLE);
+                        txtDaftar.setText(Html.fromHtml(String.format("Nik anda tidak terdaftar, Silahkan klik  <b><u>tautan ini</u></b>")));
+                        txtDaftar.setTextColor(Color.RED);
+                        txtDaftar.setOnClickListener(view -> goToDaftar());
                         txtNama.setText(null);
                         txtPoktan.setText(null);
                     }
@@ -312,13 +324,17 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
             public void onErrorResponse(VolleyError error) {
                 Log.e("msg", "Login Error : " + error.getMessage());
                 error.printStackTrace();
-                TopSnakbar.showWarning(Regist.this,"UPS !!! SERVER TIDAK MERESPON");
+                TopSnakbar.showWarning(Regist.this, "UPS !!! SERVER TIDAK MERESPON");
             }
         });
         strReq.setRetryPolicy(policy);
         App.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    public void goToDaftar() {
+        startActivity(new Intent(this, RegistPetaniActivity.class));
+        finish();
+    }
 
 //    @OnClick(R.id.uploadKtp)
 //    void uploadKtp(){
@@ -497,24 +513,22 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         String pass = edPass.getText().toString();
         String repass = edRepass.getText().toString();
         if (nik.isEmpty()) {
-            TopSnakbar.showWarning(this,"NIK TIDAK BOLEH KOSONG");
+            TopSnakbar.showWarning(this, "NIK TIDAK BOLEH KOSONG");
         } else if (nama.isEmpty()) {
-            TopSnakbar.showWarning(this,"TIDAK ADA DATA");
+            TopSnakbar.showWarning(this, "TIDAK ADA DATA");
         } else if (poktan.isEmpty()) {
-            TopSnakbar.showWarning(this,"TIDAK ADA DATA");
+            TopSnakbar.showWarning(this, "TIDAK ADA DATA");
         } else if (!nik.equals(nik)) {
-            TopSnakbar.showWarning(this,"NIK TIDAK SESUAI");
-        } else if (telp.isEmpty()) {
-            TopSnakbar.showWarning(this,"NOMOR TELPHONE TIDAK BOLEH KOSONG");
+            TopSnakbar.showWarning(this, "NIK TIDAK SESUAI");
         } else if (pass.isEmpty()) {
-            TopSnakbar.showWarning(this,"PASSWORD TIDAK BOLEH KOSONG");
+            TopSnakbar.showWarning(this, "PASSWORD TIDAK BOLEH KOSONG");
         } else if (repass.isEmpty()) {
-            TopSnakbar.showWarning(this,"ULANGI PASSWORD");
+            TopSnakbar.showWarning(this, "ULANGI PASSWORD");
         } else if (!pass.equals(repass)) {
-            TopSnakbar.showWarning(this,"PASSWORD TIDAK SESUAI");
+            TopSnakbar.showWarning(this, "PASSWORD TIDAK SESUAI");
         } else {
             iRegisterPresenter.setProgressBarVisiblity(View.VISIBLE);
-            iRegisterPresenter.doRegistrasi(nik, nama, telp, "petani", repass);
+            iRegisterPresenter.doRegistrasi(nik, nama , "petani", repass);
         }
 
     }
@@ -538,7 +552,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
             finish();
             Toast.makeText(getApplicationContext(), "Berhasil Melakukan Registrasi , Silahkan Login ", Toast.LENGTH_LONG).show();
         } else {
-            TopSnakbar.showWarning(this,msg);
+            TopSnakbar.showWarning(this, msg);
         }
     }
 

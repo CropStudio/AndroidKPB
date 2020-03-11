@@ -15,6 +15,7 @@ public class Config_URL
     //Users
     public static String login        = base_URL + "Users/signin";
     public static String registrasi   = base_URL + "Users/signup";
+//    public static String registrasi   = base_URL + "Users/signupandcreate";
     public static String uploadFoto   = base_URL + "potopropil/";
     public static String crudUser     = base_URL + "user";
 

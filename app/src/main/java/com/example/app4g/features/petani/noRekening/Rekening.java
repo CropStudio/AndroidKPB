@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.common.CommonRespon;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
 import com.example.app4g.features.rut.RutActivity;
 import com.example.app4g.features.rut.model.Rut;
 import com.example.app4g.features.users.login.Login;
@@ -33,10 +36,12 @@ public class Rekening extends AppCompatActivity implements IRekeningView{
     EditText mNorek ;
     @BindView(R.id.mSubmit)
     Button mSubmit ;
+    @BindView(R.id.mRadioGroupBank)
+    RadioGroup mRadioGroupBank ;
     RekeningPresenter presenter ;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
-    private String nik, nama, alamat, token;
+    private String nik, nama, alamat, token,Bank;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,21 +73,24 @@ public class Rekening extends AppCompatActivity implements IRekeningView{
 
     @Override
     public void onCreateRekening(){
+        Bank = ((RadioButton) findViewById(mRadioGroupBank.getCheckedRadioButtonId())).getText().toString();
         JSONObject dataRoot = new JSONObject();
         JSONObject data = new JSONObject();
 
         try {
             data.put("nomorRekening" , mNorek.getText().toString());
+            data.put("bank" , Bank);
             dataRoot.put("data", data);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         presenter.onCreateRekening(nik,token,dataRoot.toString(),mNorek.getText().toString());
+
     }
 
     @Override
-    public void onCreateRekeningSuksess(CommonRespon commonRespon, String noRek){
-        presenter.storeNoRek(noRek);
+    public void onCreateRekeningSuksess(LoginResponse profile, String noRek){
+        presenter.storeNoRek(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan" , string -> {
             this.goToRut();
         });

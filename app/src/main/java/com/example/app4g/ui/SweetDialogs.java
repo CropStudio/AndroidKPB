@@ -68,6 +68,7 @@ public class SweetDialogs {
     }
 
 
+
     public static void endpointError(Activity context) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
         dialog.setCancelable(false);
@@ -156,10 +157,10 @@ public class SweetDialogs {
         dialog.show();
     }
 
-    public static void commonWarningWithIntent(Activity context, String body, onDialogClosed listener) {
+    public static void commonWarningWithIntent(Activity context,String title, String body, onDialogClosed listener) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
         dialog.setCancelable(false);
-        dialog.setTitleText("Data anda belum lengkap");
+        dialog.setTitleText(title);
         dialog.setContentText(body);
         dialog.setConfirmText("OK");
         dialog.setConfirmClickListener(sweetAlertDialog -> {

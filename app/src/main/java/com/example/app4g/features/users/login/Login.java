@@ -1,9 +1,15 @@
 package com.example.app4g.features.users.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -12,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.app4g.R;
 import com.example.app4g.features.gubernur.Dashboard_Gubernur;
 import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.petani.registrasi.RegistPetaniActivity;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -47,6 +54,14 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     @BindView(R.id.password)
     EditText edPassword;
 
+    @BindView(R.id.mBtnRegisPetani)
+    Button mBtnRegisPetani;
+
+    @BindView(R.id.signup)
+    Button signup;
+    @BindView(R.id.signin)
+    Button signin;
+
     com.example.app4g.features.users.login.LoginPresenter presenter;
     SweetAlertDialog sweetAlertDialog;
 
@@ -80,6 +95,10 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
     @Override
     public void initViews() {
+//        showSoftKeyboard(edNik);
+        mBtnRegisPetani.setOnClickListener(view -> gotoRegisPetani());
+        signup.setText((Html.fromHtml("Belum punya akun ? <b><u> daftar dsini </u></b>")));
+        mBtnRegisPetani.setText(Html.fromHtml("Selain petani, <b><u> daftar dsini </u></b>"));
         ArrayList<String> listUrl = new ArrayList<>();
         ArrayList<String> listName = new ArrayList<>();
 
@@ -117,6 +136,12 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 //        mDemoSlider.addOnPageChangeListener(this);
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText("Loading ...");
+    }
+
+    public void gotoRegisPetani(){
+        Intent a = new Intent(Login.this, RegistPetaniActivity.class);
+        startActivity(a);
+        finish();
     }
 
     @OnClick(R.id.signup)
@@ -163,10 +188,11 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     public void onSigninSuccess(LoginResponse response) {
         presenter.storeProfile(new Gson().toJson(response));
         presenter.storeAccessToken(response.getResult().getToken());
+        App.getPref().put(Prefs.PREF_FIRST_TIME, true);
         App.getPref().put(Prefs.PREF_ROLE, response.getResult().getRole());
         if (presenter.isLoggedIn()) {
             if (response.getResult().getRole().equals("petani")) {
-                presenter.storeNoKK(response.getResult().getNoKk());
+                presenter.storeNoKK(response.getResult().getProfile().getNoKk());
                 presenter.storeNoRek(response.getResult().getNomorRekening());
                 this.goToDashboardPetani();
             } else if (response.getResult().getRole().equals("gubernur")) {
@@ -220,6 +246,14 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
             Toast.makeText(getApplicationContext(), "Password tidak boleh kosong", Toast.LENGTH_LONG).show();
         } else {
             presenter.login(nik, pass);
+        }
+    }
+
+    public void showSoftKeyboard(View view) {
+        if (view.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
     }
 

@@ -5,7 +5,9 @@ import android.app.Activity;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.cart.model.Cart;
 import com.example.app4g.features.rut.model.KebutuhanSaprotan;
+import com.example.app4g.features.rut.model.Result;
 import com.example.app4g.features.rut.model.Rut;
+import com.example.app4g.features.rut.model.RutResponse;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public interface IRutView {
 
     void hideLoadingIndicator();
 
-    void onDataReady(List<Rut> ruts);
+    void onDataReady(Result result);
 
     void onRequestFailed(String rm, String rc);
 
@@ -34,6 +36,8 @@ public interface IRutView {
     void goToDashboard();
 
 //    void onDataDetailReady(List<KebutuhanSaprotan> kebutuhanSaprotans);
+
+    void onCreateSuccess(String rm);
 
     void HideDetailKebutuhan();
 }

@@ -142,7 +142,8 @@ public class ListDataPupuk extends AppCompatActivity {
                         try {
                             JSONObject jObj = new JSONObject(response);
                             boolean status = jObj.getBoolean("status");
-                            String data = jObj.getString("message");
+                            String rc = jObj.getString("rc");
+                            String rm = jObj.getString("message");
 
                             if(status){
                                 String getObject = jObj.getString("result");
@@ -175,8 +176,13 @@ public class ListDataPupuk extends AppCompatActivity {
                                     newsList.add(pupuk);
                                 }
                             }else {
-                                SweetDialogs.commonInvalidToken(ListDataPupuk.this, "SIGNOUT",
-                                        "Sesi anda telah berakhir , silahkan login kembali!");
+                                if(rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+                                    SweetDialogs.commonInvalidToken(ListDataPupuk.this, "Gagal Memuat Permintaan",
+                                            rm);
+                                else
+                                    SweetDialogs.commonError(ListDataPupuk.this,"Gagal Memuat Permintaan",rm,string -> {
+                                        gotoDashboard();
+                                    });
                             }
 
                         } catch (JSONException e) {
@@ -212,6 +218,12 @@ public class ListDataPupuk extends AppCompatActivity {
 
     @Override
     public void onBackPressed() { //ini untuk tombol fisik kembali
+        Intent a = new Intent(ListDataPupuk.this, MenuUtama.class);
+        startActivity(a);
+        finish();
+    }
+
+    void gotoDashboard(){
         Intent a = new Intent(ListDataPupuk.this, MenuUtama.class);
         startActivity(a);
         finish();

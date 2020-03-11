@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">kpb</string>
-    <string name="app_id">4501</string>
+    <string name="app_name">Kpb</string>
+    <string name="app_id">v1.08</string>
     <!--    <string name="end_point">http://150.107.142.62:5050</string>-->
-        <string name="end_point">http://103.230.48.151:5050/</string>
-<!--    <string name="end_point">http://192.168.1.13:5050/</string>-->
+    <!--    <string name="end_point">http://103.230.48.151:5050/</string>-->
+    <string name="end_point">http://192.168.100.6:5050/</string>
     <string name="img_end_point">http://testing.kartupetaniberjaya.com/admin/gambar_barang/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -33,6 +33,20 @@
     <string name="content_step_0">This is the first step. Click OK button to next step.\n\nTest Message.</string>
     <string name="content_step_1">This is the second step. Click OK button to next step or Cancel button to previous step.\n\nThe summary text of each step is optional. If you haven\'t set, summary view won\'t be displayed.</string>
     <string name="content_step_2">This is the last step. You can finish steps now.</string>
+
+    <string name="termCondition"> <![CDATA[
+        <b><p>1. Membuka rekening Bank pada Bank yang telah bekerjasama dengan aplikasi Kartu Petani Berjaya ( Bank Lampung, Bank Mandiri, Bank BRI dan Bank BNI ). </p>
+        <p>2. Jika sudah memiliki rekening salah satu Bank tersebut, maka wajib mengosongkan rekening yang ada untuk keperluan transaksi pada program kartu petani Berjaya.</p>
+        <p>3. Memasukan Nomor Rekening Kedalam Akun Aplikasi KPB</p>
+        <p>4. Bersedia menyiapkan modal untuk Usaha Tani sesuai dengan yang tertera dalam Rencana Usaha Tani (RUT) dalam aplikasi KPB</p>
+        <p>5. Bersedia untuk mengajukan akses Permodalan baik KUR dari Bank ataupun lembaga keuangan lain yang telah menjadi Member KPB</p>
+        <p>6. Bersedia untuk melakukan standing instruction  untuk transaksi pembayaran yang ada dalam Rencana Usaha Tani pada aplikasi KPB</p>
+        <p>7. Dana  yang telah disimpan di bank atau dana hasil Pinjaman dari KUR maupun dari lembaga keuangan lainnya bersedia disimpan ( hold ) sementara untuk keperluan rencana usaha tani</p>
+        <p>8. Bersedia menjual hasil panen kepada member KPB sesuai harga pasar yang berlaku.</p>
+        <p>9. Pengambilan Produk-Produk usaha Tani yang dipesan sesuai dengan Rencana Usaha Tani seperti : Pupuk/Pestisida dan benih dilakukan satu kali diawal masa tanam.</p>
+        <p>10. Mengikuti segala persyaratan dan ketentuan yang berlaku dalam Aplikasi Kartu Petani Berjaya.</p></b>
+        ]]>
+        </string>
 
     <string name="toggle_animation_button">Toggle Animation</string>
     <string-array name="stepView">
@@ -134,5 +148,29 @@
         <item>Sapi/ Kerbau/ Kambing</item>
         <item>Tidak Ada</item>
     </string-array>
+
+    <string-array name="provinsi">
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+    </string-array>
     <string name="title_activity_detail_profile">detailProfile</string>
+    <string name="title_activity_asset">Aset anda</string>
+
+    <string name="new_message_notification_title_template">New message: %1$s</string>
+
+    <!-- TODO: remove this placeholder text -->
+    <string name="new_message_notification_placeholder_text_template">You said %1$s and lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
+        semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
+        Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
+        ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis
+        viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec
+        tortor.
+    </string>
+
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
 </resources>

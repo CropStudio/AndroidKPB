@@ -37,15 +37,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:padding="7dp"
                         app:srcCompat="@drawable/user_default_farmer"
                         app:civ_border_color="#80FFFFFF"

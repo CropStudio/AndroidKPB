@@ -24,6 +24,7 @@ import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.common.CommonRespon;
 import com.example.app4g.features.petani.MenuUtama;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
 import com.example.app4g.features.users.login.Login;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
@@ -31,6 +32,7 @@ import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.CustomDrawable;
 import com.example.app4g.ui.SweetDialogs;
 import com.example.app4g.ui.TopSnakbar;
+import com.google.gson.Gson;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
@@ -69,6 +71,8 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
     EditText mNik;
     @BindView(R.id.mAddress)
     EditText mAddress;
+    @BindView(R.id.mNoHp)
+    EditText mNoHp;
     @BindView(R.id.mRadioGender)
     RadioGroup mRadioGender;
     @BindView(R.id.mMale)
@@ -194,8 +198,8 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         nama = (mProfile.getResult().getNama().contains(" "))
                 ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
-        alamat = (mProfile.getResult().getAlamat().contains(" "))
-                ? mProfile.getResult().getAlamat() : mProfile.getResult().getAlamat();
+//        alamat = (mProfile.getResult().getAlamat().contains(" "))
+//                ? mProfile.getResult().getAlamat() : mProfile.getResult().getAlamat();
         mNik.setText(nik);
         mNik.setEnabled(false);
         mName.setText(nama);
@@ -529,6 +533,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
             dataUser.put("nik", mNik.getText().toString());
             dataUser.put("jenisKelamin", kelamin);
             dataUser.put("address", mAddress.getText().toString());
+            dataUser.put("no_hp", mNoHp.getText().toString());
             dataUser.put("tempatLahir", mTempatLahir.getText().toString());
             dataUser.put("tglLahir", mTglLahir.getText().toString());
             dataUser.put("noKk", mNoKK.getText().toString());
@@ -551,12 +556,23 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
     }
 
     @Override
-    public void onUpdateProfileSuccess(CommonRespon commonRespon, String noKK) {
+    public void onUpdateProfileSuccess(LoginResponse profile, String noKK) {
+//        App.getPref().clear();
         presenter.storeNoKK(noKK);
+        App.getPref().put(Prefs.PREF_STORE_PROFILE,new Gson().toJson(profile));
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan" , string -> {
             this.goToDashBoard();
         });
 
+    }
+
+    @Override
+    public void onUpdateProfileFailed(String rc , String rm){
+        if(rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                    rm);
+        else
+            SweetDialogs.commonWarning(this,"Gagal Memuat Permintaan" , rm , false);
     }
 
     @Override

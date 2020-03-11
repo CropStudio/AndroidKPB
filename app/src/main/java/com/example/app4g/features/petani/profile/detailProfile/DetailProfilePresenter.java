@@ -1,6 +1,6 @@
 package com.example.app4g.features.petani.profile.detailProfile;
 
-import com.example.app4g.features.petani.profile.createprofile.model.ProfileResponse;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 
@@ -20,7 +20,7 @@ public class DetailProfilePresenter {
 
     void onGetProfile(String nik) {
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).getPetani(nik)
+        restService.create(NetworkService.class).getProfilePetani(nik)
                 .enqueue(new Callback<ProfileResponse>() {
                     @Override
                     public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {

@@ -54,7 +54,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/colorPrimary"/>
 
-        <!--area Form SignUp-->
+        <!--Area Form SignUp-->
         <ScrollView
             android:clipToPadding="false"
             android:gravity="center"

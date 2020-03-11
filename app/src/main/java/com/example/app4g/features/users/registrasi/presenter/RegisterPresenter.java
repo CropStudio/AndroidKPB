@@ -52,9 +52,9 @@ public class RegisterPresenter implements IRegisterPresenter {
     }
 
     @Override
-    public void doRegistrasi(String nik, String nama, String noHp, String role, String password) {
-        user   = new RegisterModel(nik, nama, noHp, role, password);
-        registrasi(nik, nama, noHp, role, password);
+    public void doRegistrasi(String nik, String nama, String role, String password) {
+        user   = new RegisterModel(nik, nama, role, password);
+        registrasi(nik, nama, role, password);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RegisterPresenter implements IRegisterPresenter {
         iRegisterView.onSetProgressBarVisibility(visiblity);
     }
 
-    public void registrasi(final String nik, final String nama, final String noHp, final String role, final String password){
+    public void registrasi(final String nik, final String nama, final String role, final String password){
         String tag_string_req = "req";
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 Config_URL.registrasi, new Response.Listener<String>() {
@@ -118,7 +118,7 @@ public class RegisterPresenter implements IRegisterPresenter {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nik", nik);
                 params.put("nama", nama);
-                params.put("no_hp", noHp);
+                params.put("no_hp", "");
                 params.put("password", password);
                 params.put("role", role);
                 return params;

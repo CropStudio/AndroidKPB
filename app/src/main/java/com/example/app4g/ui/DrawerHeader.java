@@ -50,10 +50,10 @@ public class DrawerHeader {
 //                ? mProfile.getResult().getUser_photo() : mProfile.getResult().getUser_photo();
         String nama = (mProfile.getResult().getNama().contains(" "))
                 ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
-        String no_hp = (mProfile.getResult().getNo_hp().contains(" "))
-                ? mProfile.getResult().getNo_hp() : mProfile.getResult().getNo_hp();
+        String nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         nameTxt.setText(nama);
-        emailTxt.setText(no_hp);
+        emailTxt.setText(nik);
 //        if(!user_photo.equals(""))
 //            Glide.with(mContext)
 //                    .load(App.getApplication().getString(R.string.img_end_point))

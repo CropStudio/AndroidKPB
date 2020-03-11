@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.profile.createprofile.model;
+package com.example.app4g.features.petani.profile.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -17,7 +17,7 @@ public class ProfileResponse {
     private String mRm;
 
     @SerializedName("status")
-    private Boolean mStatus;
+    private Boolean success;
 
     public profile getResult() {
         return result;
@@ -43,11 +43,11 @@ public class ProfileResponse {
         this.mRm = mRm;
     }
 
-    public Boolean getmStatus() {
-        return mStatus;
+    public Boolean getSuccess() {
+        return success;
     }
 
-    public void setmStatus(Boolean mStatus) {
-        this.mStatus = mStatus;
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 }

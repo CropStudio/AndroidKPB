@@ -23,25 +23,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp"
-            android:weightSum="3">
-
-            <LinearLayout
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0">
-
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:id="@+id/mCheckbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25" />
-
-            </LinearLayout>
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="1.4"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="5dp">
@@ -50,7 +37,10 @@
                     android:id="@+id/mMt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Masa Tanam Pertama"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Masa Tanam Pertama (Padi)"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="#4D4747"
                     android:textStyle="bold" />
 
@@ -61,48 +51,287 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/mJenisTanaman"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Padi"
-                        android:textAllCaps="true"
-                        android:textColor="@color/black_overlay"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost_left"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="17dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:textSize="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Kebutuhan saprotan"
+                                android:textAlignment="center"
+                                android:textAllCaps="true"
+                                android:textColor="#5C5656"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textColor="@color/c_black"
+                                android:textSize="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Total"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mTotalSaprotan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="2000"
+                                android:textColor="@color/c_black"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost_left"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="17dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Budidaya Tani"
+                                android:textAllCaps="true"
+                                android:textColor="#5C5656"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Total"
+                                android:textColor="@color/c_black"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mTotalBudidaya"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="2000"
+                                android:textColor="@color/c_black"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost_left"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="17dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Estimasi Pendapatan"
+                                android:textAllCaps="true"
+                                android:textColor="#5C5656"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Total"
+                                android:textColor="@color/c_black"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mTotalPendapatan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="2000"
+                                android:textColor="@color/c_black"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost_left"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="17dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Keuntungan"
+                                android:textAllCaps="true"
+                                android:textColor="#5C5656"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_rounded_cost"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Total"
+                                android:textColor="@color/c_black"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mTotalKeuntungan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="2000"
+                                android:textColor="@color/c_black"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:gravity="top">
+                android:layout_weight="0.6">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/mStatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:gravity="center"
-                        android:text="menungu"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.8"
+                        android:gravity="center_vertical"
+                        android:text="Menunggu Persetujuan dari anda"
                         android:textAllCaps="true"
                         android:textColor="@color/black_overlay"
                         android:textStyle="bold" />
 
                     <View
+                        android:id="@+id/mStatusBar"
                         android:layout_width="6dp"
                         android:layout_height="6dp"
-                        android:background="@drawable/bg_rounded_primary" />
+                        android:layout_marginLeft="5dp"
+                        android:background="@color/light_green" />
 
                 </LinearLayout>
 
@@ -112,17 +341,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <Button
+                android:padding="8dp"
                 android:id="@+id/mBtnKebutuhan"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/bg_rounded_status"
-                android:text="Detail Kebutuhan"
                 android:drawableRight="@drawable/arrow_go"
-                android:paddingRight="15dp"
-                android:textColor="@color/white" />
+                android:text="Detail"
+                android:textColor="@color/c_black" />
+
+
+            <Button
+                android:padding="8dp"
+                android:id="@+id/mBtnSetuju"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_status"
+                android:drawableRight="@drawable/ic_check_circle_white_24dp"
+                android:text="Setuju"
+                android:textColor="@color/c_black" />
 
         </LinearLayout>
 

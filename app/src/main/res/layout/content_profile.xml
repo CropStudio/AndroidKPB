@@ -124,8 +124,39 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:backgroundTint="@color/fadeWhite2"
-                                            android:focusable="false"
                                             android:hint="Alamat Lengkap (sesuai E-KTP)"
+                                            android:inputType="text"
+                                            android:textColor="@color/colorPrimaryDark" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+<!--                                    <android.support.design.widget.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:textColorHint="@color/statusbarColor">-->
+
+<!--                                        <android.support.design.widget.TextInputEditText-->
+<!--                                            android:id="@+id/mKomoditas"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:backgroundTint="@color/fadeWhite2"-->
+<!--                                            android:hint="Alamat Lengkap (sesuai E-KTP)"-->
+<!--                                            android:inputType="text"-->
+<!--                                            android:textColor="@color/colorPrimaryDark" />-->
+
+<!--                                    </android.support.design.widget.TextInputLayout>-->
+
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/statusbarColor">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/mNoHp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/fadeWhite2"
+                                            android:hint="No Telepon"
                                             android:inputType="text"
                                             android:textColor="@color/colorPrimaryDark" />
 
@@ -404,7 +435,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -869,7 +900,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <ScrollView
                         android:layout_width="match_parent"

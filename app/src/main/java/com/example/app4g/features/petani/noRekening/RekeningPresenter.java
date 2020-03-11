@@ -1,10 +1,13 @@
 package com.example.app4g.features.petani.noRekening;
 
 import com.example.app4g.common.CommonRespon;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
+import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 
@@ -23,8 +26,8 @@ public class RekeningPresenter {
         restService = RestService.getRetrofitInstance();
     }
 
-    void storeNoRek(String noRek) {
-        App.getPref().put(Prefs.PREF_NO_REKENING, noRek);
+    void storeNoRek(LoginResponse profile) {
+        App.getPref().put(Prefs.PREF_STORE_PROFILE, new Gson().toJson(profile));
     }
 
     void onCreateRekening(String nik,String token ,String body,String noRek) {
@@ -45,9 +48,9 @@ public class RekeningPresenter {
 //        System.out.println(body);
 
         System.out.println(params);
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<CommonRespon>() {
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<CommonRespon> call, retrofit2.Response<CommonRespon> response) {
+            public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
                     view.onCreateRekeningSuksess(response.body(),noRek);
@@ -55,7 +58,7 @@ public class RekeningPresenter {
             }
 
             @Override
-            public void onFailure(Call<CommonRespon> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 view.hideLoadingIndicator();
                 view.onNetworkError(t.getLocalizedMessage());
             }

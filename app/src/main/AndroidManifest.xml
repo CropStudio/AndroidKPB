@@ -5,6 +5,7 @@
 
     <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -26,7 +27,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.noRekening.Rekening"></activity>
+        <activity android:name=".features.petani.profile.aset_petani.CreateAset"
+            android:label="@string/title_activity_asset"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.rut.kebutuhanRut.CreateKebutuhanRut" />
+        <activity
+            android:name=".features.petani.registrasi.RegistPetaniActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".features.petani.noRekening.Rekening" />
         <activity android:name=".features.pupuksubsidi.PupukSubsidiActivity" />
         <activity android:name=".features.gubernur.Menu_Gubernur" />
         <activity android:name=".features.gubernur.EditProfileGubernur" />
@@ -95,7 +103,8 @@
         <activity
             android:name=".features.users.login.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeMain" />
+            android:theme="@style/AppThemeMain"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".features.petani.profile.createprofile.CreateProfile"
             android:screenOrientation="portrait" />
@@ -119,6 +128,10 @@
         <activity
             android:name=".features.rutDetail.RutDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".features.transaksi.TransaksiActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

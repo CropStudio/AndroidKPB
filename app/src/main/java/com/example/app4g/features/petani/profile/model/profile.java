@@ -1,4 +1,4 @@
-package com.example.app4g.features.petani.profile.createprofile.model;
+package com.example.app4g.features.petani.profile.model;
 
 import android.support.annotation.NonNull;
 
@@ -31,6 +31,15 @@ public class profile {
     @SerializedName("agama")
     private String agama;
 
+    @SerializedName("no_hp")
+    private String no_hp;
+
+    @SerializedName("komoditas")
+    private List<Komoditas> komoditas;
+
+    @SerializedName("luas_tanah")
+    private LuasLahan luasLahan;
+
     @SerializedName("pendidikanTerakhir")
     private String pendidikanTerakhir;
 
@@ -45,6 +54,52 @@ public class profile {
 
     @SerializedName("dataKepemilikan")
     private dataKepemilikan dataKepemilikan;
+
+    @SerializedName("nomorRekening")
+    private String nomorRekening;
+
+    public String getNomorRekening() {
+        return nomorRekening;
+    }
+
+    public void setNomorRekening(String nomorRekening) {
+        this.nomorRekening = nomorRekening;
+    }
+
+    public List<Komoditas> getKomoditas() {
+        return komoditas;
+    }
+
+    public void setKomoditas(List<Komoditas> komoditas) {
+        this.komoditas = komoditas;
+    }
+
+    public LuasLahan getLuasLahan() {
+        return luasLahan;
+    }
+
+    public void setLuasLahan(LuasLahan luasLahan) {
+        this.luasLahan = luasLahan;
+    }
+
+    @SerializedName("area")
+    private Area area;
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public String getNo_hp() {
+        return no_hp;
+    }
+
+    public void setNo_hp(String phone_number) {
+        this.no_hp = phone_number;
+    }
 
     public String getNik() {
         return nik;
@@ -423,6 +478,100 @@ public class profile {
             }
 
 
+        }
+
+
+
+
+    }
+
+    public class Area {
+        @SerializedName("city")
+        private String city;
+
+        @SerializedName("city_code")
+        private String city_code;
+
+        @SerializedName("district")
+        private String district;
+
+        @SerializedName("district_code")
+        private String district_code;
+
+        @SerializedName("province")
+        private String province;
+
+        @SerializedName("province_code")
+        private String province_code;
+
+        @SerializedName("sub_district")
+        private String sub_district;
+
+        @SerializedName("sub_district_code")
+        private String sub_district_code;
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getCity_code() {
+            return city_code;
+        }
+
+        public void setCity_code(String city_code) {
+            this.city_code = city_code;
+        }
+
+        public String getDistrict() {
+            return district;
+        }
+
+        public void setDistrict(String district) {
+            this.district = district;
+        }
+
+        public String getDistrict_code() {
+            return district_code;
+        }
+
+        public void setDistrict_code(String district_code) {
+            this.district_code = district_code;
+        }
+
+        public String getProvince() {
+            return province;
+        }
+
+        public void setProvince(String province) {
+            this.province = province;
+        }
+
+        public String getProvince_code() {
+            return province_code;
+        }
+
+        public void setProvince_code(String province_code) {
+            this.province_code = province_code;
+        }
+
+        public String getSub_district() {
+            return sub_district;
+        }
+
+        public void setSub_district(String sub_district) {
+            this.sub_district = sub_district;
+        }
+
+        public String getSub_district_code() {
+            return sub_district_code;
+        }
+
+        public void setSub_district_code(String sub_district_code) {
+            this.sub_district_code = sub_district_code;
         }
     }
 }

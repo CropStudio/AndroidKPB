@@ -53,11 +53,11 @@ public class DrawerMenuItem {
 
     private void onResolved() {
         switch (mMenuPosition){
-            case DRAWER_MENU_ITEM_PROFILE:
-                itemNameTxt.setText("Profil");
-//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
-                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_account_circle_black_24dp));
-                break;
+//            case DRAWER_MENU_ITEM_PROFILE:
+//                itemNameTxt.setText("Profil");
+////                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
+//                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_account_circle_black_24dp));
+//                break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
                 itemNameTxt.setText("Kolaborator");
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_group_work_black_24dp));
@@ -79,11 +79,11 @@ public class DrawerMenuItem {
     private void onMenuItemClick(){
 
         switch (mMenuPosition){
-            case DRAWER_MENU_ITEM_PROFILE:
-
-                goToProfile();
-                if(mCallBack != null)mCallBack.onProfileMenuSelected();
-                break;
+//            case DRAWER_MENU_ITEM_PROFILE:
+//
+//                goToProfile();
+//                if(mCallBack != null)mCallBack.onProfileMenuSelected();
+//                break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
                 Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();

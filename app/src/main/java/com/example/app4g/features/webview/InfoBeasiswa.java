@@ -35,7 +35,7 @@ public class InfoBeasiswa extends AppCompatActivity implements AdvancedWebView.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_beasiswa);
 
-        requestAppPermissions();
+
 
         pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         //pDialog.setCancelable(false);
@@ -173,27 +173,5 @@ public class InfoBeasiswa extends AppCompatActivity implements AdvancedWebView.L
         }
     }
 
-    private void requestAppPermissions() {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
 
-        if (hasReadPermissions() && hasWritePermissions()) {
-            return;
-        }
-
-        ActivityCompat.requestPermissions(this,
-                new String[] {
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, 1000); // your request code
-    }
-
-    private boolean hasReadPermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    private boolean hasWritePermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-    }
 }

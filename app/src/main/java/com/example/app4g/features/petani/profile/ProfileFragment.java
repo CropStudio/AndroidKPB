@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (noKK.equals("")) {
-                    SweetDialogs.commonWarningWithIntent(getActivity(), "Data Anda belum lengkap  , Anda harus melengkapi data terlebih dahulu !", string -> {
+                    SweetDialogs.commonWarningWithIntent(getActivity(), "Data Anda belum lengkap"  , "Anda harus melengkapi data terlebih dahulu !", string -> {
                         goToUpdateProfile();
                     });
                 } else {
@@ -107,45 +107,50 @@ public class ProfileFragment extends Fragment {
     }
 
     public void initView() {
+        String no_hp;
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
 
-        noKK = App.getPref().getString(Prefs.PREF_NO_KK,"");
-        Toast.makeText(getActivity(), noKK, Toast.LENGTH_SHORT).show();
+        noKK = App.getPref().getString(Prefs.PREF_NO_KK, "");
         String nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         String nama = (mProfile.getResult().getNama().contains(" "))
                 ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
-        String no_hp = (mProfile.getResult().getNo_hp().contains(" "))
-                ? mProfile.getResult().getNo_hp() : mProfile.getResult().getNo_hp();
-        String alamat = (mProfile.getResult().getAlamat().contains(" "))
-                ? mProfile.getResult().getAlamat() : mProfile.getResult().getAlamat();
-        String kecamatan = (mProfile.getResult().getKecamatan().contains(" "))
-                ? mProfile.getResult().getKecamatan() : mProfile.getResult().getKecamatan();
-        String kabupaten = (mProfile.getResult().getKabupaten().contains(" "))
-                ? mProfile.getResult().getKabupaten() : mProfile.getResult().getKabupaten();
-        String provinsi = (mProfile.getResult().getProvinsi().contains(" "))
-                ? mProfile.getResult().getProvinsi() : mProfile.getResult().getProvinsi();
-        String namaPoktan = (mProfile.getResult().getNama_poktan().contains(" "))
-                ? mProfile.getResult().getNama_poktan() : mProfile.getResult().getNama_poktan();
-        String mt1 = (mProfile.getResult().getMt1().contains(" "))
-                ? mProfile.getResult().getMt1() : mProfile.getResult().getMt1();
-        String mt2 = (mProfile.getResult().getMt2().contains(" "))
-                ? mProfile.getResult().getMt2() : mProfile.getResult().getMt2();
-        String mt3 = (mProfile.getResult().getMt3().contains(" "))
-                ? mProfile.getResult().getMt3() : mProfile.getResult().getMt3();
-        String idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
-                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
+        if ((mProfile.getResult().getProfile().getNo_hp() != null)) {
+            no_hp = (mProfile.getResult().getProfile().getNo_hp().contains(""))
+                    ? mProfile.getResult().getProfile().getNo_hp() : mProfile.getResult().getProfile().getNo_hp();
+        } else
+            no_hp = "-";
+
+
+        String alamat = (mProfile.getResult().getProfile().getAddress().contains(" "))
+                ? mProfile.getResult().getProfile().getAddress() : mProfile.getResult().getProfile().getAddress();
+        String kecamatan = (mProfile.getResult().getProfile().getArea().getDistrict().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getDistrict() : mProfile.getResult().getProfile().getArea().getDistrict();
+        String kabupaten = (mProfile.getResult().getProfile().getArea().getCity().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getCity() : mProfile.getResult().getProfile().getArea().getCity();
+        String provinsi = (mProfile.getResult().getProfile().getArea().getProvince().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getProvince() : mProfile.getResult().getProfile().getArea().getProvince();
+//        String namaPoktan = (mProfile.getResult().getNama_poktan().contains(" "))
+//                ? mProfile.getResult().getNama_poktan() : mProfile.getResult().getNama_poktan();
+//        String mt1 = (mProfile.getResult().getMt1().contains(" "))
+//                ? mProfile.getResult().getMt1() : mProfile.getResult().getMt1();
+//        String mt2 = (mProfile.getResult().getMt2().contains(" "))
+//                ? mProfile.getResult().getMt2() : mProfile.getResult().getMt2();
+//        String mt3 = (mProfile.getResult().getMt3().contains(" "))
+//                ? mProfile.getResult().getMt3() : mProfile.getResult().getMt3();
+//        String idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
+//                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
         mNik.setText(nik);
         mNama.setText(nama);
+        mAddress.setText(alamat + ", KEC. " + kecamatan + ", " + kabupaten + ", " + provinsi);
+        mPoktan.setText("-");
         mPhone.setText(no_hp);
-        mAddress.setText(alamat + ", KEC. " + kecamatan + ", KAB. " + kabupaten + ", " + provinsi);
-        mPoktan.setText(namaPoktan);
-        mMt1.setText(mt1);
-        mMt2.setText(mt2);
-        mMt3.setText(mt3);
+//        mMt1.setText(mt1);
+//        mMt2.setText(mt2);
+//        mMt3.setText(mt3);
         mAddress.setEnabled(false);
         mPhone.setEnabled(false);
         mPoktan.setEnabled(false);

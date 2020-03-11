@@ -30,7 +30,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:background="@drawable/bg_rounded_cost_left"
+                    android:background="#09E069"
                     android:paddingLeft="15dp"
                     android:paddingTop="17dp"
                     android:paddingBottom="17dp">
@@ -40,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:text="Gabah Kering Panen"
                         android:textAllCaps="true"
-                        android:textColor="#5C5656"
+                        android:textColor="#ffffff"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -112,7 +112,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:background="@drawable/bg_rounded_cost_left"
+                    android:background="#09E069"
                     android:paddingLeft="15dp"
                     android:paddingTop="17dp"
                     android:paddingBottom="17dp">
@@ -122,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:text="Gabah Kering Giling"
                         android:textAllCaps="true"
-                        android:textColor="#5C5656"
+                        android:textColor="#ffffff"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -194,7 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:background="@drawable/bg_rounded_cost_left"
+                    android:background="#09E069"
                     android:paddingLeft="15dp"
                     android:paddingTop="17dp"
                     android:paddingBottom="17dp">
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:text="Beras"
                         android:textAllCaps="true"
-                        android:textColor="#5C5656"
+                        android:textColor="#ffffff"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 

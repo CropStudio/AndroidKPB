@@ -4,6 +4,7 @@ package com.example.app4g.features.rut;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.app4g.common.CommonRespon;
 import com.example.app4g.common.CommonResponse;
 import com.example.app4g.features.cart.ICartView;
 import com.example.app4g.features.cart.model.Cart;
@@ -12,6 +13,10 @@ import com.example.app4g.features.rut.model.Rut;
 import com.example.app4g.features.rut.model.RutResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -36,35 +41,40 @@ public class RutPresenter {
     }
 
 
-//    void createRut(String nik , Rut ruts ) {
-//        HashMap<String, Object> params = new HashMap<>();
-//        params.put("nik",nik);
-//        params.put("id", ruts.getHci());
-//        params.put("namaBarang", ruts.getNpk());
-//        params.put("harga", ruts.getOrganik());
-//        params.put("foto", ruts.getPhonska());
-//        params.put("foto", ruts.getUrea());
-//        params.put("foto", ruts.getLuas_lahan());
-//        view.showLoadingIndicator();
-//        restService.create(NetworkService.class).createRut(params).enqueue(new Callback<CommonResponse>() {
-//            @Override
-//            public void onResponse(retrofit2.Call<CommonResponse> call, CommonRespon<CommonResponse> CommonRespon) {
-//                view.hideLoadingIndicator();
-//                Log.i("MESSAGE" , ""+CommonRespon.body());
-//                if (CommonRespon.body().getSuccess()) {
-//                    view.onCreateRutSuccess();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(retrofit2.Call<CommonResponse> call, Throwable t) {
-//                view.hideLoadingIndicator();
-//                view.onNetworkError(t.getLocalizedMessage());
-//            }
-//        });
-//    }
+    void createRut(String nik, String token, String body) {
+//        System.out.println(body);
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("data", body);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+            Request original = chain.request();
+            Request request = original.newBuilder()
+                    .header("x-access-token", token)
+                    .header("username", nik)
+                    .header("Content-Type", "application/json")
+                    .method(original.method(), original.body())
+                    .build();
 
-    void getRut(String nik, String token , String idKec) {
+            return chain.proceed(request);
+        }).build();
+        view.showLoadingIndicator();
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createRut(params)
+                .enqueue(new Callback<CommonRespon>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
+                        view.hideLoadingIndicator();
+                        view.onCreateSuccess("Success");
+
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<CommonRespon> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
+    }
+
+    void getRut(String nik, String token, String idKec ) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -76,15 +86,15 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(idKec,nik)
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(nik)
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
                         view.hideLoadingIndicator();
                         if (response.body().getmStatus())
-                            view.onDataReady(response.body().getResult().getRut());
+                            view.onDataReady(response.body().getResult());
                         else
-                            view.onRequestFailed(response.body().getmRm(),response.body().getmRc());
+                            view.onRequestFailed(response.body().getmRm(), response.body().getmRc());
                     }
 
                     @Override
@@ -94,7 +104,6 @@ public class RutPresenter {
                     }
                 });
     }
-
 
 
 }

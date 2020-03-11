@@ -5,10 +5,9 @@ public class RegisterModel implements IUserRegister {
     String nik, nama, noHp, role, password;
 //    Bitmap ktp, kk;
 
-    public RegisterModel(String nik, String nama, String noHp, String role, String password){
+    public RegisterModel(String nik, String nama , String role, String password){
         this.nik = nik;
         this.nama= nama;
-        this.noHp=noHp;
         this.role=role;
         this.password=password;
 //        this.ktp = ktp;

@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.petani.dashboard.Dashboard;
 import com.example.app4g.features.petani.profile.createprofile.CreateProfile;
 import com.example.app4g.features.petani.profile.ProfileFragment;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
-import com.example.app4g.ui.SweetDialogs;
 
 import butterknife.ButterKnife;
 
@@ -41,8 +41,8 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-        String noKk = (mProfile.getResult().getNoKk().contains(" "))
-                ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
+//        String noKk = (mProfile.getResult().getNoKk().contains(" "))
+//                ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
 //        if(noKk.equals("")){
 //            SweetDialogs.commonWarningWithIntent(this, "Anda harus melengkapi data terlebih dahulu !" , string -> {
 //                this.goToUpdateProfile();

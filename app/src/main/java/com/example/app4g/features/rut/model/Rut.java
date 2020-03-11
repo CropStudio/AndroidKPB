@@ -23,7 +23,137 @@ public class Rut {
     @SerializedName("status")
     private String status;
 
+    @SerializedName("subTotalSaprotan")
+    private String subTotalSaprotan;
 
+    @SerializedName("subTotalGarapDanPemeliharaan")
+    private String subTotalGarapDanPemeliharaan;
+
+    @SerializedName("subPrediksiPendapatan")
+    private String subPrediksiPendapatan;
+
+    @SerializedName("subPendapatanKotor")
+    private String subPendapatanKotor;
+
+    @SerializedName("nomorRekeningPetani")
+    private String nomorRekening;
+
+    @SerializedName("Bank")
+    private String bank;
+
+    @SerializedName("nik")
+    private String nik;
+
+    @SerializedName("idPenuyuluh")
+    private String idPenuyuluh;
+
+    @SerializedName("idDesa")
+    private String idDesa;
+
+    @SerializedName("tahun")
+    private Number tahun;
+
+    @SerializedName("idPoktan")
+    private Number idPoktan;
+
+    @SerializedName("idKios")
+    private Number idKios;
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
+    public String getIdPenuyuluh() {
+        return idPenuyuluh;
+    }
+
+    public void setIdPenuyuluh(String idPenuyuluh) {
+        this.idPenuyuluh = idPenuyuluh;
+    }
+
+    public String getIdDesa() {
+        return idDesa;
+    }
+
+    public void setIdDesa(String idDesa) {
+        this.idDesa = idDesa;
+    }
+
+    public Number getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(Number tahun) {
+        this.tahun = tahun;
+    }
+
+    public Number getIdPoktan() {
+        return idPoktan;
+    }
+
+    public void setIdPoktan(Number idPoktan) {
+        this.idPoktan = idPoktan;
+    }
+
+    public Number getIdKios() {
+        return idKios;
+    }
+
+    public void setIdKios(Number idKios) {
+        this.idKios = idKios;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getNomorRekening() {
+        return nomorRekening;
+    }
+
+    public void setNomorRekening(String nomorRekening) {
+        this.nomorRekening = nomorRekening;
+    }
+
+    public String getSubTotalSaprotan() {
+        return subTotalSaprotan;
+    }
+
+    public void setSubTotalSaprotan(String subTotalSaprotan) {
+        this.subTotalSaprotan = subTotalSaprotan;
+    }
+
+    public String getSubTotalGarapDanPemeliharaan() {
+        return subTotalGarapDanPemeliharaan;
+    }
+
+    public void setSubTotalGarapDanPemeliharaan(String subTotalGarapDanPemeliharaan) {
+        this.subTotalGarapDanPemeliharaan = subTotalGarapDanPemeliharaan;
+    }
+
+    public String getSubPrediksiPendapatan() {
+        return subPrediksiPendapatan;
+    }
+
+    public void setSubPrediksiPendapatan(String subPrediksiPendapatan) {
+        this.subPrediksiPendapatan = subPrediksiPendapatan;
+    }
+
+    public String getSubPendapatanKotor() {
+        return subPendapatanKotor;
+    }
+
+    public void setSubPendapatanKotor(String subPendapatanKotor) {
+        this.subPendapatanKotor = subPendapatanKotor;
+    }
 
     public com.example.app4g.features.rut.model.KalenderTanam getKalenderTanam() {
         return KalenderTanam;

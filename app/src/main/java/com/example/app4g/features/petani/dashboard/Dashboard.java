@@ -1,7 +1,8 @@
-package com.example.app4g.features.petani;
+package com.example.app4g.features.petani.dashboard;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -9,25 +10,39 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.app4g.R;
+import com.example.app4g.Utils.GsonHelper;
+import com.example.app4g.features.petani.KartuPetani;
 import com.example.app4g.features.petani.jatah.ListDataPupuk;
 import com.example.app4g.features.e_commerce.EcommerceActivity;
+import com.example.app4g.features.petani.noRekening.RekeningPresenter;
+import com.example.app4g.features.petani.profile.aset_petani.CreateAset;
 import com.example.app4g.features.pupuksubsidi.PupukSubsidiActivity;
 import com.example.app4g.features.rut.RutActivity;
+import com.example.app4g.features.rut.kebutuhanRut.CreateKebutuhanRut;
+import com.example.app4g.features.transaksi.TransaksiActivity;
+import com.example.app4g.features.users.login.Login;
+import com.example.app4g.features.users.login.model.LoginResponse;
+import com.example.app4g.server.App;
+import com.example.app4g.session.Prefs;
 import com.example.app4g.ui.DrawerHeader;
 import com.example.app4g.ui.DrawerMenuItem;
 import com.example.app4g.features.webview.InfoBeasiswa;
 import com.example.app4g.features.webview.InfoKur;
 import com.example.app4g.features.webview.PortalInformasi;
+import com.example.app4g.ui.SweetDialogs;
 import com.mindorks.placeholderview.PlaceHolderView;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -35,11 +50,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Dashboard extends Fragment  {
+public class Dashboard extends Fragment implements IDashboardView {
 
 
     private int[] mImages = new int[]{R.drawable.slide_1, R.drawable.slide_2, R.drawable.slide_3, R.drawable.slide_4};
-   // private int[] mImages = new int[]{getR.drawable.slide_1, R.drawable.slide_2, R.drawable.slide_3, R.drawable.slide_4};
+    // private int[] mImages = new int[]{getR.drawable.slide_1, R.drawable.slide_2, R.drawable.slide_3, R.drawable.slide_4};
     CarouselView carouselView;
     @BindView(R.id.list_viewpager)
     ViewPager mListViewPager;
@@ -49,36 +64,89 @@ public class Dashboard extends Fragment  {
     DrawerLayout mDrawer;
     @BindView(R.id.mainMenuDashboard)
     ImageButton mainMenuDashboard;
-//    @BindView(R.id.mIcon)
+    //    @BindView(R.id.mIcon)
 //    ImageView mIcon;
     @BindView(R.id.mCardInfoRek)
     CardView mCardInfoRek;
-    @BindView(R.id.cardRdkk)
+    @BindView(R.id.cardPasarTani)
     CardView cardRdkk;
-    @BindView(R.id.mCardTambahSaldo)
-    CardView mCardTambahSaldo;
-    static
-    {
+    @BindView(R.id.mCardTransaksi)
+    CardView mCardTransaksi;
+    DashboardPresenter presenter ;
+    SweetAlertDialog sweetAlertDialog;
+    private LoginResponse mProfile;
+    int komoditas;
+
+    static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+
     @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
+        presenter = new DashboardPresenter(this);
         this.setupDrawer();
+        this.initViews();
         carouselView = view.findViewById(R.id.carousel);
         carouselView.setPageCount(mImages.length);
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
-//                imageView.setImageResource(getActivity(),mImages[position]);
+                imageView.setImageResource(mImages[position]);
 //                imageView.setImageDrawable(VectorDrawableCompat.create(getResources(), R.drawable.slide_1, null));
-                imageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.slide_1));
+//                imageView.setImageDrawable(ContextCompat.getDrawable(getContext(), mImages));
             }
         });
+
+        mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+
+
+//        komoditas = mProfile.getResult().getProfile().getKomoditas().size() ;
+        Log.d("Komoditasnya", "" + komoditas);
         return view;
+    }
+
+    @Override
+    public void onNetworkError(String cause) {
+        Log.e("errornya", cause);
+        SweetDialogs.endpointError(getActivity());
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+
+        sweetAlertDialog.dismiss();
+    }
+
+    @Override
+    public void initViews() {
+        sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
+        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
+
+    }
+
+    @Override
+    public void goUpdateVersion(String rm) {
+        SweetDialogs.commonWarningWithIntent(getActivity(),"APLIKASI VERSI TERBARU SUDAH TERSEDIA", rm, string -> {
+            this.goUpdateApps();
+        });
+    }
+
+    @Override
+    public void goUpdateApps(){
+
     }
 
     @Override
@@ -87,20 +155,23 @@ public class Dashboard extends Fragment  {
         //setContentView(R.layout.activity_dashboard);
     }
 
-    @OnClick(R.id.mCardTambahSaldo)
-    void tambah_saldo(){
+    @OnClick(R.id.mCardTransaksi)
+    void tambah_saldo() {
         Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
+//        startActivity(new Intent(getActivity(), TransaksiActivity.class));
+//        getActivity().finish();
     }
 
     @OnClick(R.id.mCardInfoRek)
-    void info_rek(){
+    void info_rek() {
         Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.cardRdkk)
-    void goToRdkk(){
-        startActivity(new Intent(getActivity(), PupukSubsidiActivity.class) );
-        getActivity().finish();
+    @OnClick(R.id.cardPasarTani)
+    void goToRdkk() {
+//        startActivity(new Intent(getActivity(), PupukSubsidiActivity.class) );
+//        getActivity().finish();
+        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
     }
 
 //    @OnClick(R.id.mIcon)
@@ -111,43 +182,57 @@ public class Dashboard extends Fragment  {
 //    }
 
     @OnClick(R.id.cardPupuk)
-    void infoPupuk(){
+    void infoPupuk() {
         Intent i = new Intent(getActivity(), ListDataPupuk.class);
         startActivity(i);
         getActivity().finish();
     }
 
     @OnClick(R.id.mCardRut)
-    void goToRut(){
+    void goToRut() {
+//        if(komoditas <= 0){
+//            SweetDialogs.commonWarningWithIntent(getActivity(), "Data rencana tani anda belum ada , Silahkan tekan ok untuk mengisi data", string -> {
+//                startActivity(new Intent(getActivity() , CreateKebutuhanRut.class));
+//                getActivity().finish();
+//            });
+//
+//        }else{
+//            Intent i = new Intent(getActivity(), RutActivity.class);
+//            startActivity(i);
+//            getActivity().finish();
+//        }
+
         Intent i = new Intent(getActivity(), RutActivity.class);
         startActivity(i);
         getActivity().finish();
+
     }
+
 
     //OnClick function
     @OnClick(R.id.cardInfoBeasiswa)
-    void infoBea(){
+    void infoBea() {
         Intent i = new Intent(getActivity(), InfoBeasiswa.class);
         startActivity(i);
         getActivity().finish();
     }
 
     @OnClick(R.id.cardInfoKur)
-    void infoKur(){
+    void infoKur() {
         Intent i = new Intent(getActivity(), InfoKur.class);
         startActivity(i);
         getActivity().finish();
     }
 
     @OnClick(R.id.cardPortalInformasi)
-    void portalInformasi(){
+    void portalInformasi() {
         Intent i = new Intent(getActivity(), PortalInformasi.class);
         startActivity(i);
         getActivity().finish();
     }
 
     @OnClick(R.id.cardKatam)
-    void katam(){
+    void katam() {
 //        Intent i = new Intent(getActivity(), BiayaTanam.class);
 //        startActivity(i);
 //        getActivity().finish();
@@ -155,7 +240,7 @@ public class Dashboard extends Fragment  {
     }
 
     @OnClick(R.id.cardECommerce)
-    void eCommerce(){
+    void eCommerce() {
 //        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getActivity(), EcommerceActivity.class);
         startActivity(i);
@@ -163,7 +248,7 @@ public class Dashboard extends Fragment  {
     }
 
     @OnClick(R.id.cardKartuPetani)
-    void kartuPetani(){
+    void kartuPetani() {
 
         Intent i = new Intent(getActivity(), KartuPetani.class);
         startActivity(i);
@@ -173,7 +258,7 @@ public class Dashboard extends Fragment  {
     private void setupDrawer() {
         mDrawerView
                 .addView(new DrawerHeader(getActivity()))
-                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_PROFILE))
+//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_PROFILE))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_KOLABORATOR))
 //                .addView(new DrawerMenuItem(this, DrawerMenuItem.DRAWER_MENU_ITEM_CONTACTUS))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_LOGOUT));
@@ -182,7 +267,7 @@ public class Dashboard extends Fragment  {
         mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mDrawer.isDrawerOpen(Gravity.END)) mDrawer.openDrawer(Gravity.END);
+                if (!mDrawer.isDrawerOpen(Gravity.END)) mDrawer.openDrawer(Gravity.END);
                 else mDrawer.closeDrawer(Gravity.START);
             }
         });

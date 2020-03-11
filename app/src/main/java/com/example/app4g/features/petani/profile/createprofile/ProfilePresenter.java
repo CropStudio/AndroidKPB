@@ -1,6 +1,8 @@
 package com.example.app4g.features.petani.profile.createprofile;
 
 import com.example.app4g.common.CommonRespon;
+import com.example.app4g.features.petani.profile.model.ProfileResponse;
+import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.network.NetworkService;
 import com.example.app4g.network.RestService;
 import com.example.app4g.server.App;
@@ -42,17 +44,19 @@ public class ProfilePresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<CommonRespon>() {
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<CommonRespon> call, retrofit2.Response<CommonRespon> response) {
+            public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
                     view.onUpdateProfileSuccess(response.body(),noKK);
+                }else{
+
                 }
             }
 
             @Override
-            public void onFailure(Call<CommonRespon> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 view.hideLoadingIndicator();
                 view.onNetworkError(t.getLocalizedMessage());
             }

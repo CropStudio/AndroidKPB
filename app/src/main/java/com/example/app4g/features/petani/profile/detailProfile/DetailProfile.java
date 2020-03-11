@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.example.app4g.R;
 import com.example.app4g.Utils.GsonHelper;
 import com.example.app4g.features.petani.MenuUtama;
-import com.example.app4g.features.petani.profile.createprofile.model.profile;
+import com.example.app4g.features.petani.profile.model.profile;
 import com.example.app4g.features.users.login.model.LoginResponse;
 import com.example.app4g.server.App;
 import com.example.app4g.session.Prefs;
@@ -124,8 +124,8 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
 
     @Override
     public void onDataReady(profile profile) {
-        List<com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.DataAnak> anaks = new ArrayList<>();
-        List<com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.TanggunganLain> tanggungans = new ArrayList<>();
+        List<com.example.app4g.features.petani.profile.model.profile.dataTambahan.DataAnak> anaks = new ArrayList<>();
+        List<com.example.app4g.features.petani.profile.model.profile.dataTambahan.TanggunganLain> tanggungans = new ArrayList<>();
         anaks = profile.getDataTambahan().getDataAnak();
         tanggungans = profile.getDataTambahan().getTanggunganLain();
         mNama.setText(profile.getNama());
@@ -149,7 +149,7 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
         mPerkawinan.setText(profile.getStatusPerkawinan());
         mGender.setText(profile.getJenisKelamin());
         Collections.sort(anaks, Collections.reverseOrder());
-        for (com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.DataAnak anak : anaks) {
+        for (com.example.app4g.features.petani.profile.model.profile.dataTambahan.DataAnak anak : anaks) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.data_anak_field, null);
             final TextView mAnakKe = rowView.findViewById(R.id.mAnakKe);
@@ -170,7 +170,7 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
             mPendTerakhirAnaks.setEnabled(false);
             mLayoutAnak.addView(rowView, 0);
         }
-        for (com.example.app4g.features.petani.profile.createprofile.model.profile.dataTambahan.TanggunganLain tanggungan : tanggungans) {
+        for (com.example.app4g.features.petani.profile.model.profile.dataTambahan.TanggunganLain tanggungan : tanggungans) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.data_tanggungan_field, null);
             final TextView mNama = rowView.findViewById(R.id.mNama);

@@ -1,5 +1,6 @@
 package com.example.app4g.features.users.login.model;
 
+import com.example.app4g.features.petani.profile.model.profile;
 import com.google.gson.annotations.SerializedName;
 
 public class Users {
@@ -18,7 +19,7 @@ public class Users {
     @SerializedName("role")
     private String role;
 
-    @SerializedName("idKecamatan")
+    @SerializedName("idDesa")
     private String idKecamatan;
 
     @SerializedName("hashed_password")
@@ -36,35 +37,16 @@ public class Users {
     @SerializedName("token")
     private String token;
 
-    @SerializedName("nama_poktan")
-    private String nama_poktan;
+    @SerializedName("profile")
+    private profile profile;
 
-    @SerializedName("alamat")
-    private String alamat;
+    public com.example.app4g.features.petani.profile.model.profile getProfile() {
+        return profile;
+    }
 
-    @SerializedName("mt1")
-    private String mt1;
-
-    @SerializedName("mt2")
-    private String mt2;
-
-    @SerializedName("mt3")
-    private String mt3;
-
-    @SerializedName("kecamatan")
-    private String kecamatan;
-
-    @SerializedName("kabupaten")
-    private String kabupaten;
-
-    @SerializedName("kota")
-    private String kota;
-
-    @SerializedName("provinsi")
-    private String provinsi;
-
-    @SerializedName("noKk")
-    private String noKk;
+    public void setProfile(com.example.app4g.features.petani.profile.model.profile profile) {
+        this.profile = profile;
+    }
 
     public String getNomorRekening() {
         return nomorRekening;
@@ -82,13 +64,6 @@ public class Users {
         this.idKecamatan = idKecamatan;
     }
 
-    public String getNoKk() {
-        return noKk;
-    }
-
-    public void setNoKk(String noKk) {
-        this.noKk = noKk;
-    }
 
     public String getNik() {
         return nik;
@@ -162,75 +137,4 @@ public class Users {
         this.token = token;
     }
 
-    public String getNama_poktan() {
-        return nama_poktan;
-    }
-
-    public void setNama_poktan(String nama_poktan) {
-        this.nama_poktan = nama_poktan;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public String getMt1() {
-        return mt1;
-    }
-
-    public void setMt1(String mt1) {
-        this.mt1 = mt1;
-    }
-
-    public String getMt2() {
-        return mt2;
-    }
-
-    public void setMt2(String mt2) {
-        this.mt2 = mt2;
-    }
-
-    public String getMt3() {
-        return mt3;
-    }
-
-    public void setMt3(String mt3) {
-        this.mt3 = mt3;
-    }
-
-    public String getKecamatan() {
-        return kecamatan;
-    }
-
-    public void setKecamatan(String kecamatan) {
-        this.kecamatan = kecamatan;
-    }
-
-    public String getKabupaten() {
-        return kabupaten;
-    }
-
-    public void setKabupaten(String kabupaten) {
-        this.kabupaten = kabupaten;
-    }
-
-    public String getKota() {
-        return kota;
-    }
-
-    public void setKota(String kota) {
-        this.kota = kota;
-    }
-
-    public String getProvinsi() {
-        return provinsi;
-    }
-
-    public void setProvinsi(String provinsi) {
-        this.provinsi = provinsi;
-    }
 }

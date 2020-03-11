@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.petani.Dashboard">
+    tools:context=".features.petani.dashboard.Dashboard">
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -54,6 +54,7 @@
                             android:layout_height="match_parent"
                             app:fillColor="#ffffff"
                             app:pageColor="#80ffffff"
+                            app:indicatorVisibility="invisible"
                             app:radius="3dp"
                             app:slideInterval="3000"
                             app:strokeColor="#80ffffff"
@@ -177,7 +178,7 @@
                             android:layout_weight="1">
 
                             <android.support.v7.widget.CardView
-                                android:id="@+id/mCardTambahSaldo"
+                                android:id="@+id/mCardTransaksi"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:layout_margin="2dp"
@@ -197,6 +198,7 @@
                                     android:background="#D1701A" />
 
                                 <LinearLayout
+                                    android:id="@+id/mBtnTransaksi"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal"
@@ -240,7 +242,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="Tambah Saldo"
+                                            android:text="TRANSAKSI"
                                             android:textColor="@color/white"
                                             android:textSize="10dp" />
 
@@ -424,7 +426,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="7dp"
-                                                android:text="Infomasi Pupuk"
+                                                android:text="Infomasi jatah pupuk subsidi"
                                                 android:textSize="10dp" />
 
                                         </LinearLayout>
@@ -634,7 +636,7 @@
                                     android:layout_weight="1">
 
                                     <android.support.v7.widget.CardView
-                                        android:id="@+id/cardECommerce"
+                                        android:id="@+id/mCardRut"
                                         android:layout_width="match_parent"
                                         android:layout_height="60dp"
                                         android:clickable="true"
@@ -656,13 +658,13 @@
                                             <ImageView
                                                 android:layout_width="35dp"
                                                 android:layout_height="35dp"
-                                                app:srcCompat="@drawable/ic_shopping_electronic" />
+                                                app:srcCompat="@drawable/ic_planing_farm" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="7dp"
-                                                android:text="Toko online"
+                                                android:text="Rencana Usaha Tani"
                                                 android:textSize="10dp" />
 
                                         </LinearLayout>
@@ -725,13 +727,14 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1">
 
                                     <android.support.v7.widget.CardView
-                                        android:id="@+id/mCardRut"
+                                        android:id="@+id/cardECommerce"
                                         android:layout_width="match_parent"
                                         android:layout_height="60dp"
                                         android:clickable="true"
@@ -742,7 +745,6 @@
                                             android:layout_width="2.5dp"
                                             android:layout_height="match_parent"
                                             android:background="#76E20B" />
-
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
@@ -753,16 +755,17 @@
                                             <ImageView
                                                 android:layout_width="35dp"
                                                 android:layout_height="35dp"
-                                                app:srcCompat="@drawable/ic_planing_farm" />
+                                                app:srcCompat="@drawable/ic_shopping_electronic" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="7dp"
-                                                android:text="Rencana Usaha Tani"
+                                                android:text="Toko online"
                                                 android:textSize="10dp" />
 
                                         </LinearLayout>
+
 
                                     </android.support.v7.widget.CardView>
 
@@ -771,6 +774,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -778,14 +782,14 @@
                                 android:weightSum="2">
 
                                 <LinearLayout
-                                    android:visibility="gone"
+                                    android:visibility="visible"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
-                                    android:layout_weight="1">
+                                    android:layout_weight="0.98">
 
                                     <android.support.v7.widget.CardView
-                                        android:id="@+id/cardRdkk"
+                                        android:id="@+id/cardPasarTani"
                                         android:layout_width="match_parent"
                                         android:layout_height="60dp"
                                         android:clickable="true"
@@ -795,7 +799,7 @@
                                         <View
                                             android:layout_width="2.5dp"
                                             android:layout_height="match_parent"
-                                            android:background="#9C27B0" />
+                                            android:background="@color/colorPrimaryDark" />
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -807,13 +811,13 @@
                                             <ImageView
                                                 android:layout_width="35dp"
                                                 android:layout_height="35dp"
-                                                app:srcCompat="@drawable/ic_banking_card" />
+                                                app:srcCompat="@drawable/iconfinder_layers_grass_37644" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="7dp"
-                                                android:text="Kartu Petani"
+                                                android:text="Pasar Tani"
                                                 android:textSize="10dp" />
 
                                         </LinearLayout>

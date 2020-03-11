@@ -30,6 +30,28 @@ public class KebutuhanSaprotan {
     @SerializedName("jumlahNonSubsidi")
     private String jumlahNonSubsidi;
 
+    @SerializedName("totalSubBiayaSubsidi")
+    private String totalSubBiayaSubsidi;
+
+    @SerializedName("totalNonSubsidi")
+    private String totalNonSubsidi;
+
+    public String getTotalSubBiayaSubsidi() {
+        return totalSubBiayaSubsidi;
+    }
+
+    public void setTotalSubBiayaSubsidi(String totalSubBiayaSubsidi) {
+        this.totalSubBiayaSubsidi = totalSubBiayaSubsidi;
+    }
+
+    public String getTotalNonSubsidi() {
+        return totalNonSubsidi;
+    }
+
+    public void setTotalNonSubsidi(String totalNonSubsidi) {
+        this.totalNonSubsidi = totalNonSubsidi;
+    }
+
     @SerializedName("luasLahan")
     private String luasLahan;
 
