@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: moe.feng:MaterialStepperView:0.2.4.2@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/MaterialStepperView-0.2.4.2.aar/0bef4cb018bbe9b43c33009821044fc9/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-MaterialStepperView-0.2.4.2.aar/8fe058bf0c8ea9220fc6bb4cdbc65cb8/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/MaterialStepperView-0.2.4.2.aar/0bef4cb018bbe9b43c33009821044fc9/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/MaterialStepperView-0.2.4.2.aar/0bef4cb018bbe9b43c33009821044fc9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-MaterialStepperView-0.2.4.2.aar/8fe058bf0c8ea9220fc6bb4cdbc65cb8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-MaterialStepperView-0.2.4.2.aar/8fe058bf0c8ea9220fc6bb4cdbc65cb8/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
