@@ -1,17 +1,37 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    signingConfigs {
+        release2 {
+            storeFile file('/Users/admin/keystore')
+            storePassword '12421025'
+            keyAlias = 'keyVers1'
+            keyPassword '12421025'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.app4g"
+        applicationId "com.app.app4g"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.1"
+        versionCode 2
+        versionName "1.2"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release2
+        aaptOptions { cruncherEnabled = false }
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,23 +49,23 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    implementation 'com.android.support:support-vector-drawable:28.0.0'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui:2.0.0-rc02'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
-    implementation 'com.android.support:gridlayout-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.android.volley:volley:1.1.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'moe.feng:MaterialStepperView:0.2.4.2'
     implementation "com.github.firdausmaulan:GlideSlider:$glide_slider_version"
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -66,6 +86,7 @@ dependencies {
     implementation 'com.mindorks:placeholderview:0.2.7'
     implementation 'com.shuhart.stepview:stepview:1.2.6'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
+    implementation 'com.google.android.material:material:1.1.0'
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'
     //retrofit
@@ -74,15 +95,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     compileOnly 'javax.annotation:jsr250-api:1.0'
-    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'androidx.multidex:multidex:2.0.0'
     implementation files('libs/jackson-databind-2.0.0.jar')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     //grafik
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.github.farizdotid:actdaerahindonesia:1.0'

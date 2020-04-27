@@ -1,475 +1,493 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/MySignUp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".features.users.registrasi.Regist">
+
+    <include layout="@layout/toolbar_default" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center|top"
         android:orientation="vertical">
 
-        <FrameLayout
+        <ImageView
+            android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_check" />
 
-            <RelativeLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="25dp"
+            android:paddingTop="10dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="10dp"
+            android:text="@string/check"
+            android:textColor="@color/color_default_blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/nameHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#0B1733">
+                android:layout_height="wrap_content"
+                android:hint="@string/nama"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_user">
 
-                <com.synnapps.carouselview.CarouselView
-                    android:id="@+id/carousel"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:indicatorVisibility="invisible"
-                    app:radius="3dp"
-                    app:slideInterval="3000"
-                    app:strokeWidth="0dp" />
+                    android:inputType="text"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
 
-            </RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlinedTextFieldNik"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/nik"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:endIconMode="custom"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_card">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edNik"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/btnCari"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_seeker"></ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dataPetani"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|left"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/icon_kpb" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="Kartu Petani Berjaya"
-                        android:textColor="@color/white"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cardKartuPetani"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        app:cardBackgroundColor="#D9FFFFFF"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="7dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="7dp">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="sans-serif-thin"
-                                    android:text="Periksa NIK anda"
-                                    android:textSize="23dp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:padding="5dp"
-                                android:weightSum="2">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1">
-
-                                    <android.support.design.widget.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <android.support.design.widget.TextInputEditText
-                                            android:id="@+id/edNik"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:backgroundTintMode="@color/bg_screen3"
-                                            android:hint="Nomor Induk Kependudukan"
-                                            android:inputType="number"
-                                            android:textSize="12dp" />
-
-                                    </android.support.design.widget.TextInputLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="60dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center">
-
-                                    <ImageButton
-                                        android:id="@+id/btnCari"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:background="@android:color/transparent"
-                                        android:padding="5dp"
-                                        android:scaleType="centerInside"
-                                        app:srcCompat="@drawable/ic_search" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/LayoutDaftar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clickable="true"
-                        android:visibility="gone"
-                        app:cardBackgroundColor="#D9FFFFFF"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="7dp">
-
-                            <TextView
-                                android:id="@+id/txtDaftar"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-thin"
-                                android:text="Nik anda tidak ditemukan , Silahkan klik tauan ini !"
-                                android:textSize="15dp"
-                                android:textColor="@color/c_black"
-                                android:textAlignment="center"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/dataPetani"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_weight="1"
+                        android:background="@color/color_default_blue"
+                        android:padding="5dp"
+                        android:weightSum="2">
 
-                        <android.support.v7.widget.CardView
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
-                            app:cardBackgroundColor="#D9FFFFFF"
-                            app:cardCornerRadius="5dp"
-                            app:cardElevation="2dp">
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:text="@string/find"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="5dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="7dp"
-                                    android:weightSum="3">
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Nama Lengkap"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/txtNama"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:maxLines="3"
-                                            android:text="Adi Permana"
-                                            android:textAllCaps="true" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Jenis Kelamin"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/txtJenisKelamin"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Laki - Laki"
-                                            android:textAllCaps="true" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Poktan"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/txtPoktan"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="POKTAN"
-                                            android:textAllCaps="true" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="300dp"
-                                    android:layout_height="5dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/doted_line"
-                                    android:layerType="software" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Alamat"
-                                        android:textSize="12dp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:id="@+id/txtAlamat"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="alamat"
-                                        android:textAllCaps="true" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center|right"
+                            android:paddingRight="10dp"
+                            android:text="@string/poktan"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="2">
 
-                        <android.support.v7.widget.CardView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            app:cardBackgroundColor="#D9FFFFFF"
-                            app:cardCornerRadius="5dp"
-                            app:cardElevation="2dp">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:tint="@color/color_default_blue"
+                                app:srcCompat="@drawable/ic_user" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:paddingLeft="7dp"
-                                android:paddingRight="7dp"
-                                android:paddingBottom="7dp">
+                                android:text="@string/nama_lengkap"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:visibility="gone"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="5dp"
-                                    android:paddingTop="5dp"
-                                    android:paddingRight="5dp">
+                            <TextView
+                                android:id="@+id/txtNama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="John Charley"
+                                android:textSize="12sp" />
 
-                                    <android.support.design.widget.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        app:passwordToggleEnabled="true">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gender"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
-                                        <android.support.design.widget.TextInputEditText
-                                            android:id="@+id/edTlp"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:backgroundTintMode="@color/colorAccent"
-                                            android:hint="Nomor Telepon"
-                                            android:inputType="phone"
-                                            android:textSize="12dp" />
+                            <TextView
+                                android:id="@+id/txtJenisKelamin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Laki-Laki"
+                                android:textSize="12sp" />
 
-                                    </android.support.design.widget.TextInputLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/alamat"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
-                                </LinearLayout>
+                            <TextView
+                                android:id="@+id/txtAlamat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Jl. Pegangsaan Timur No. 26 Jakarta Selatan"
+                                android:textSize="12sp" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="5dp"
-                                    android:paddingRight="5dp">
-
-                                    <android.support.design.widget.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        app:passwordToggleEnabled="true">
-
-                                        <android.support.design.widget.TextInputEditText
-                                            android:id="@+id/edPass"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:backgroundTintMode="@color/colorAccent"
-                                            android:hint="Password"
-                                            android:inputType="textPassword"
-                                            android:textSize="12dp" />
-
-                                    </android.support.design.widget.TextInputLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="5dp"
-                                    android:paddingRight="5dp">
-
-                                    <android.support.design.widget.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        app:passwordToggleEnabled="true">
-
-                                        <android.support.design.widget.TextInputEditText
-                                            android:id="@+id/edRePass"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:backgroundTintMode="@color/colorAccent"
-                                            android:hint="Ulangi Password"
-                                            android:inputType="textPassword"
-                                            android:textSize="12dp" />
-
-                                    </android.support.design.widget.TextInputLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:padding="5dp">
-
-                                    <Button
-                                        android:id="@+id/btnRegistrasi"
-                                        style="?android:attr/borderlessButtonStyle"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/btn_rounded_green"
-                                        android:fontFamily="sans-serif-thin"
-                                        android:text="Daftar"
-                                        android:textAllCaps="false"
-                                        android:textColor="@color/c_white"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-
-                                    <Button
-                                        android:id="@+id/button_prev_2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="30dp"
-                                        android:background="@null"
-                                        android:fontFamily="sans-serif-thin"
-                                        android:text="sudah punya akun ? masuk sekarang"
-                                        android:textAllCaps="false" />
-
-                                    <ProgressBar
-                                        android:id="@+id/progress_login"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:theme="@style/AppTheme.WhiteAccent" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addressHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/provinsiList"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/provinsi"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="5dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:endIconMode="dropdown_menu"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_list">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/provinsiAuto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/kabupatenList"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/kabupaten"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:endIconMode="dropdown_menu"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_list">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/kabupatenAuto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/kecamatanList"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/kecamatan"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="5dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:endIconMode="dropdown_menu"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_list">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/kecamatanAuto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/desaList"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/desa"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:endIconMode="dropdown_menu"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_list">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/desaAuto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/alamat"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/passwordHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/pass"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_unlock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/confirm_pass"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_unlock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edRePass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnRegistrasi"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:text="@string/signup"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/color_default_blue" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/copyright" />
+
+    </LinearLayout>
+
+</LinearLayout>

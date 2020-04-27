@@ -64,7 +64,7 @@
                     android:layout_marginTop="-40dp"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:background="@color/float_transparent"
                         android:id="@+id/icon_image_holder"
                         android:layout_width="match_parent"
@@ -172,7 +172,7 @@
 
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
@@ -182,18 +182,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <android.support.design.widget.TabLayout
+                <com.google.android.material.tabs.TabLayout
                     android:id="@+id/bottomNavViewBar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:tabBackground="@drawable/white_grey_border_top"
                     app:tabMode="fixed"
                     app:tabGravity="fill">
-                </android.support.design.widget.TabLayout>
+                </com.google.android.material.tabs.TabLayout>
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.app4g">
+    package="com.app.app4g">
 
     <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
 
@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.profile.aset_petani.CreateAset"
+        <activity android:name=".features.petani.profile.createmt.createMt"></activity>
+        <activity
+            android:name=".features.petani.profile.createaset.CreateAset"
             android:label="@string/title_activity_asset"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.rut.kebutuhanRut.CreateKebutuhanRut" />
