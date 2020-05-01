@@ -32,8 +32,8 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_utama);
         ButterKnife.bind(this);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+//        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+//        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Dashboard()).commit();
@@ -55,33 +55,33 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
         finish();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
-                    switch (item.getItemId()) {
-                        case R.id.home:
-                            selectedFragment = new Dashboard();
-                            break;
-                        case R.id.profile:
-                            selectedFragment = new ProfileFragment();
-                            break;
-                    }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
-
-                    return true;
-                }
-            };
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                    Fragment selectedFragment = null;
+//
+//                    switch (item.getItemId()) {
+//                        case R.id.home:
+//                            selectedFragment = new Dashboard();
+//                            break;
+//                        case R.id.profile:
+//                            selectedFragment = new ProfileFragment();
+//                            break;
+//                    }
+//
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                            selectedFragment).commit();
+//
+//                    return true;
+//                }
+//            };
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
     @Override
     public void onBackPressed() {
@@ -99,12 +99,12 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
         }, 2000);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_notification1) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == R.id.action_notification1) {
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

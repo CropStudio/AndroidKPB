@@ -27,7 +27,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.profile.createmt.createMt"></activity>
+        <activity
+            android:name=".Splash"
+            android:noHistory="true" />
+        <activity android:name=".features.petani.profile.createmt.createMt" />
         <activity
             android:name=".features.petani.profile.createaset.CreateAset"
             android:label="@string/title_activity_asset"
@@ -112,6 +115,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

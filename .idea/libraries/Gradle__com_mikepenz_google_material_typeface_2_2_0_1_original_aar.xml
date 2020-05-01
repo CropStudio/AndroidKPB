@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.mikepenz:google-material-typeface:2.2.0.1.original@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/google-material-typeface-2.2.0.1.original.aar/4510757b54018f7d736931369c3d22fd/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/google-material-typeface-2.2.0.1.original.aar/4510757b54018f7d736931369c3d22fd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84629d938abdfef7716a820db1f14fb0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84629d938abdfef7716a820db1f14fb0/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/google-material-typeface/2.2.0.1.original/42a3caf4f4fa4743e1626280e13caa22a7c54759/google-material-typeface-2.2.0.1.original-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/google-material-typeface/2.2.0.1.original/277064e0f3439236228745b5d68a1ceae7af9974/google-material-typeface-2.2.0.1.original-sources.jar!/" />
     </SOURCES>

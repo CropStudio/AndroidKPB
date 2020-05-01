@@ -1,587 +1,460 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".features.petani.registrasi.RegistPetaniActivity">
+    android:weightSum="3"
+    tools:context=".features.users.registrasi.Regist">
 
+    <include layout="@layout/toolbar_default" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center|top"
         android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_check" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="25dp"
+            android:paddingTop="10dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="10dp"
+            android:text="@string/check"
+            android:textColor="@color/color_default_blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ScrollView
+        <LinearLayout
+            android:id="@+id/nameHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/nama"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_userz">
 
-                <LinearLayout
-                    android:id="@+id/mLayoutData"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mNama"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardCornerRadius="2dp"
-                        app:cardElevation="3dp"
-                        app:cardMaxElevation="5dp"
-                        app:cardUseCompatPadding="true"
-                        app:contentPadding="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/mNama"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/grey_20"
-                                    android:focusable="auto"
-                                    android:hint="Nama Lengkap (Sesuai e-Ktp)"
-                                    android:inputType="text"
-                                    android:nextFocusDown="@id/mPekerjanSelainTani"
-                                    android:textColor="@color/c_black"
-                                    android:textColorHint="@color/statusbarColor" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/mNik"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/grey_20"
-                                    android:focusable="auto"
-                                    android:hint="Nomor induk kependudukan (sesuai e-Ktp)"
-                                    android:inputType="number"
-                                    android:nextFocusDown="@id/mPekerjanSelainTani"
-                                    android:textColor="@color/c_black"
-                                    android:textColorHint="@color/statusbarColor" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textColorHint="@color/statusbarColor">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:text="Provinsi"
-                                        android:textColor="@color/colorPrimaryDark" />
-
-                                    <Spinner
-                                        android:id="@+id/mProv"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Provinsi"
-                                        android:textSize="16dp"
-                                        app:ms_hint="Provinsi"
-                                        app:ms_hint_color="@color/statusbarColor"
-                                        app:ms_padding_bottom="0dp"
-                                        app:ms_padding_left="5dp"
-                                        app:ms_padding_top="15dp" />
-                                </LinearLayout>
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:text="Kabupaten"
-                                    android:textColor="@color/colorPrimaryDark" />
-
-
-                                <Spinner
-                                    android:id="@+id/mKab"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kabupaten"
-                                    android:textSize="16dp"
-                                    app:ms_hint="Kabupaten"
-                                    app:ms_hint_color="@color/statusbarColor"
-                                    app:ms_padding_bottom="0dp"
-                                    app:ms_padding_left="5dp"
-                                    app:ms_padding_top="15dp" />
-                            </LinearLayout>
-
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:text="Kecamatan"
-                                    android:textColor="@color/colorPrimaryDark" />
-
-                                <Spinner
-                                    android:id="@+id/mKec"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kecamatan"
-                                    android:textSize="16dp"
-                                    app:ms_hint="Kecamatan"
-                                    app:ms_hint_color="@color/statusbarColor"
-                                    app:ms_padding_bottom="0dp"
-                                    app:ms_padding_left="5dp"
-                                    app:ms_padding_top="15dp" />
-                            </LinearLayout>
-
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:text="Desa"
-                                    android:textColor="@color/colorPrimaryDark" />
-
-                                <Spinner
-                                    android:id="@+id/mDesa"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Desa"
-                                    android:textSize="16dp"
-                                    app:ms_hint="Kecamatan"
-                                    app:ms_hint_color="@color/statusbarColor"
-                                    app:ms_padding_bottom="0dp"
-                                    app:ms_padding_left="5dp"
-                                    app:ms_padding_top="15dp" />
-                            </LinearLayout>
-
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textColorHint="@color/statusbarColor">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:text="Sub Sektor"
-                                        android:textColor="@color/colorPrimaryDark" />
-
-                                    <Spinner
-                                        android:id="@+id/mSubsektor"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Sub sektor"
-                                        android:textSize="16dp"
-                                        app:ms_hint="Provinsi"
-                                        app:ms_hint_color="@color/statusbarColor"
-                                        app:ms_padding_bottom="0dp"
-                                        app:ms_padding_left="5dp"
-                                        app:ms_padding_top="15dp" />
-                                </LinearLayout>
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:visibility="gone"
-                                android:textColorHint="@color/statusbarColor">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:text="Komoditas"
-                                        android:textColor="@color/colorPrimaryDark" />
-
-                                    <Spinner
-                                        android:id="@+id/mKomoditas"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Komoditas"
-                                        android:textSize="16dp"
-                                        app:ms_hint="Provinsi"
-                                        app:ms_hint_color="@color/statusbarColor"
-                                        app:ms_padding_bottom="0dp"
-                                        app:ms_padding_left="5dp"
-                                        app:ms_padding_top="15dp" />
-                                </LinearLayout>
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="5dp"
-                                android:background="@color/statusbarColor" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/LayoutLuasTanah"
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardBackgroundColor="#F3F1F1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="8dp"
-                                app:cardMaxElevation="5dp"
-                                app:cardUseCompatPadding="true"
-                                app:contentPadding="8dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:text="Luas Tanah"
-                                        android:textColor="@color/colorPrimaryDark"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:text="0.5 = 1/2 hektar"
-                                        android:textColor="@color/c_black"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:text="1 = 1 hektar"
-                                        android:textColor="@color/c_black"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="5dp"
-                                        android:layout_gravity="center"
-                                        android:layout_margin="5dp"
-                                        android:background="@drawable/doted_line"
-                                        android:layerType="software" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/mMt1"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:backgroundTint="@color/c_black"
-                                                android:focusable="auto"
-                                                android:text="0"
-                                                android:hint="Masa Tanam 1"
-                                                android:inputType="number"
-                                                android:nextFocusDown="@id/mPekerjanSelainTani"
-                                                android:textColor="@color/c_black"
-                                                android:textColorHint="@color/statusbarColor" />
-                                        </com.google.android.material.textfield.TextInputLayout>
-
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/mMt2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:backgroundTint="@color/c_black"
-                                                android:focusable="auto"
-                                                android:hint="Masa Tanam 2"
-                                                android:text="0"
-                                                android:inputType="text"
-                                                android:nextFocusDown="@id/mPekerjanSelainTani"
-                                                android:textColor="@color/c_black"
-                                                android:textColorHint="@color/statusbarColor" />
-                                        </com.google.android.material.textfield.TextInputLayout>
-
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/mMt3"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:backgroundTint="@color/c_black"
-                                                android:focusable="auto"
-                                                android:text="0"
-                                                android:hint="Masa Tanam 3"
-                                                android:inputType="text"
-                                                android:nextFocusDown="@id/mPekerjanSelainTani"
-                                                android:textColor="@color/c_black"
-                                                android:textColorHint="@color/statusbarColor" />
-                                        </com.google.android.material.textfield.TextInputLayout>
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/LayoutBanyakKomoditas"
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardBackgroundColor="#F3F1F1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="8dp"
-                                app:cardMaxElevation="5dp"
-                                app:cardUseCompatPadding="true"
-                                app:contentPadding="8dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:text="Banyak Komoditas"
-                                        android:textColor="@color/colorPrimaryDark"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="5dp"
-                                        android:layout_gravity="center"
-                                        android:layout_margin="5dp"
-                                        android:background="@drawable/doted_line"
-                                        android:layerType="software" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/mJmlhKomoditas"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:backgroundTint="@color/c_black"
-                                                android:focusable="auto"
-                                                android:text="0"
-                                                android:hint="Jumlah ternak anda"
-                                                android:inputType="number"
-                                                android:nextFocusDown="@id/mPekerjanSelainTani"
-                                                android:textColor="@color/c_black"
-                                                android:textColorHint="@color/statusbarColor" />
-                                        </com.google.android.material.textfield.TextInputLayout>
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/mAlamat"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/grey_20"
-                                    android:focusable="auto"
-                                    android:hint="Alamat Lengkap"
-                                    android:inputType="text"
-                                    android:nextFocusDown="@id/mPekerjanSelainTani"
-                                    android:textColor="@color/c_black"
-                                    android:textColorHint="@color/statusbarColor" />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                app:passwordToggleEnabled="true">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/mPassword"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/grey_20"
-                                    android:focusable="auto"
-                                    android:hint="Kata sandi"
-                                    android:inputType="textPassword"
-                                    android:nextFocusDown="@id/mPekerjanSelainTani"
-                                    android:textColor="@color/c_black"
-                                    android:textColorHint="@color/statusbarColor" />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                app:passwordToggleEnabled="true">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/mRePassword"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/grey_20"
-                                    android:focusable="auto"
-                                    android:hint="Ulangi kata sandi"
-                                    android:inputType="textPassword"
-                                    android:textColor="@color/c_black"
-                                    android:textColorHint="@color/statusbarColor" />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-            </ScrollView>
-
+                    android:inputType="text"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/control_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlinedTextFieldNik"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nik"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:endIconMode="custom"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_card">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mNik"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/btnCari"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="-65dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="20dp"
+                android:alpha="0.5"
+                android:scaleX="-1"
+                app:srcCompat="@drawable/ic_seeker" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dataPetani"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/bg_screen3"
-                android:orientation="horizontal">
-
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_info_body"
+                    android:orientation="vertical"
+                    android:weightSum="2">
 
-                    <Button
-                        android:id="@+id/mSubmit"
-                        style="?android:attr/borderlessButtonStyle"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="0"
+                        android:background="@drawable/shape_info_header"
+                        android:padding="5dp"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:text="@string/find"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center|right"
+                            android:paddingRight="10dp"
+                            android:text="@string/poktan"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/btn_rounded_green"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="Daftar"
-                        android:textAllCaps="false"
-                        android:textColor="@color/c_white"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:tint="@color/color_default_blue"
+                                app:srcCompat="@drawable/ic_userz" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nama_lengkap"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtNama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="John Charley"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gender"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtJenisKelamin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Laki-Laki"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/alamat"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtAlamat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Jl. Pegangsaan Timur No. 26 Jakarta Selatan"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/addressHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Spinner
+                    android:id="@+id/mProv"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_spinner"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="5dp" />
+
+                <Spinner
+                    android:id="@+id/mKab"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_spinner"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Spinner
+                    android:id="@+id/mKec"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_spinner"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="5dp" />
+
+                <Spinner
+                    android:id="@+id/mDesa"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_spinner"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="5dp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/alamat"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:startIconDrawable="@drawable/ic_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mAlamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/passwordHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/pass"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_unlock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/confirm_pass"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:boxStrokeColor="@color/color_default_blue"
+                app:hintTextColor="@color/color_default_black"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_unlock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mRePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/mSubmit"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:text="@string/signup"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/color_default_blue" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0"
+        android:gravity="center">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/copyright" />
+
+    </LinearLayout>
+
+</LinearLayout>

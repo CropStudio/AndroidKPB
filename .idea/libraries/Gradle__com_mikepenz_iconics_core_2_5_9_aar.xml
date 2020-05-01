@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.mikepenz:iconics-core:2.5.9@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-iconics-core-2.5.9.aar/3bd3ede70fa81974667d370818fb5ddc/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-iconics-core-2.5.9.aar/3bd3ede70fa81974667d370818fb5ddc/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f92f27abe0282712fb5061e73952337c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f92f27abe0282712fb5061e73952337c/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/iconics-core/2.5.9/37ca57ba8c8de7b4cabbbb0ac30670dd3b8bbcd6/iconics-core-2.5.9-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/iconics-core/2.5.9/2abb471f56275fe3ddc5c042e2007f2201b962cd/iconics-core-2.5.9-sources.jar!/" />
     </SOURCES>
