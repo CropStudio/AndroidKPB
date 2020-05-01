@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -81,8 +85,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     @BindView(R.id.edNik)
     EditText edNik;
-//    @BindView(R.id.edTlp)
-//    EditText edTlp;
     @BindView(R.id.edPass)
     EditText edPass;
     @BindView(R.id.edRePass)
@@ -91,13 +93,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     @BindView(R.id.btnRegistrasi)
     Button btnRegistrasi;
 
-//    @BindView(R.id.txtDaftar)
-//    TextView txtDaftar;
-//    @BindView(R.id.LayoutDaftar)
-//    CardView LayoutDaftar;
-
-//    @BindView(R.id.txtPoktan)
-//    TextView txtPoktan;
     @BindView(R.id.txtNama)
     TextView txtNama;
     @BindView(R.id.txtAlamat)
@@ -116,22 +111,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     @BindView(R.id.passwordHide)
     LinearLayout PasswordLayout;
 
-//    @BindView(R.id.MySignUp)
-//    CoordinatorLayout layout;
-
-    private int[] mImages = new int[]{R.drawable.slide_login_1, R.drawable.slide_login_2, R.drawable.slide_login_3};
-    CarouselView carouselView;
-
-//    @BindView(R.id.titik_1)
-//    TextView titik1;
-//    @BindView(R.id.titik_2)
-//    TextView titik2;
-//    @BindView(R.id.titik_3)
-//    TextView titik3;
-//    @BindView(R.id.titik_4)
-//    TextView titik4;
-
-
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
 
@@ -144,24 +123,19 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     private final int GALLERY_KTP = 11;
     private final int CameraR_KTP = 1111;
 
-//    @BindView(R.id.imgKtp)
-//    ImageView imgKtp;
-//    @BindView(R.id.imgKK)
-//    ImageView imgKk;
-
     Dialog myDialog;
-
     String mCurrentPhotoPath;
-
     IRegisterPresenter iRegisterPresenter;
-//    @BindView(R.id.progress_login)
-//    ProgressBar prgBar;
-
     Bitmap bitmapKk, bitmapktp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_regist);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 24) {
@@ -176,21 +150,13 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         iRegisterPresenter.setProgressBarVisiblity(View.GONE);
 
         myDialog = new Dialog(Regist.this);
-//        layout = findViewById(R.id.MySignUp);
-
     }
 
     @Override
     public void onBackPressed() {
-        Intent a = new Intent(Regist.this, Login.class);
-        startActivity(a);
-        finish();
+        startActivity(new Intent(Regist.this, Login.class));
+        Animatoo.animateSlideDown(Regist.this);
     }
-
-//    @OnClick(R.id.tglan)
-//    void tglan(){
-//        showDateDialog();
-//    }
 
     private void showDateDialog() {
         Calendar newCalendar = Calendar.getInstance();
@@ -200,7 +166,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
-                //edTanggal.setText(dateFormatter.format(newDate.getTime()));
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -223,7 +188,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                 Config_URL.cekPetani + nikPetani, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                Log.d("msg", "Data petani: " + CommonRespon.toString());
 
                 try {
                     final JSONObject jObj = new JSONObject(response);
@@ -239,18 +203,15 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         dataPetani.setVisibility(View.VISIBLE);
                         PasswordLayout.setVisibility(View.VISIBLE);
                         txtNama.setText(nama);
-//                        txtPoktan.setText(" " + poktan);
                         txtAlamat.setText(alamat);
 
-//                        snacBarsGreen(msg);
                     } else {
+                        imgView.setVisibility(View.VISIBLE);
                         dataPetani.setVisibility(View.GONE);
-//                        LayoutDaftar.setVisibility(View.VISIBLE);
-//                        txtDaftar.setText(Html.fromHtml(String.format("Nik anda tidak terdaftar, Silahkan klik  <b><u>tautan ini</u></b>")));
-//                        txtDaftar.setTextColor(Color.RED);
-//                        txtDaftar.setOnClickListener(view -> goToDaftar());
+                        PasswordLayout.setVisibility(View.GONE);
+                        btnRegistrasiLayout.setVisibility(View.GONE);
                         txtNama.setText(null);
-//                        txtPoktan.setText(null);
+                        goToDaftar();
                     }
 
                 } catch (JSONException e) {
@@ -276,130 +237,20 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         finish();
     }
 
-//    @OnClick(R.id.uploadKtp)
-//    void uploadKtp(){
-//        addPermission();
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//            // Create the File where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException ex) {
-//                // Error occurred while creating the File
-//                Log.i("Tags", "IOException");
-//            }
-//            // Continue only if the File was successfully created
-//            if (photoFile != null) {
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-//                startActivityForResult(cameraIntent, CameraR_KTP);
-//            }
-//        }
-//    }
-//
-//    @OnClick(R.id.uploadKk)
-//    void uploadKk(){
-//        addPermission();
-//
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//            // Create the File where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException ex) {
-//                // Error occurred while creating the File
-//                Log.i("Tags", "IOException");
-//            }
-//            // Continue only if the File was successfully created
-//            if (photoFile != null) {
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-//                startActivityForResult(cameraIntent, CameraR_KK);
-//            }
-//        }
-//    }
-
     private File createImageFile() throws IOException {
-        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  // prefix
-                ".jpg",         // suffix
-                storageDir      // directory
+                imageFileName,
+                ".jpg",
+                storageDir
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
     }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == Regist.this.RESULT_CANCELED) {
-//            return;
-//        }
-//        if (requestCode == CameraR_KTP) {
-//                try {
-//
-//                     bitmapktp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
-//                    // imageView.setImageBitmap(bitmap);
-//                    //getFileDataFromDrawable(bitmap);
-//
-//                    imgKtp.setVisibility(View.VISIBLE);
-//                    imgKtp.setImageBitmap(bitmapktp);
-//                    //uploadImage(bitmap);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//        }
-//
-//        if (requestCode == CameraR_KK) {
-//                try {
-//                     bitmapKk = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
-//                    // imageView.setImageBitmap(bitmap);
-//                    //getFileDataFromDrawable(bitmap);
-//                    imgKk.setVisibility(View.VISIBLE);
-//                    imgKk.setImageBitmap(bitmapKk);
-//                    //uploadImage(bitmap);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//        }
-//    }
-
-
-//    public void snacBars(String text) {
-//        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
-//        View view = snackbar.getView();
-//        view.setBackgroundColor(layout.getResources().getColor(R.color.red));
-//        TextView tv = view.findViewById(R.id.snackbar_text);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-//        } else {
-//            tv.setGravity(Gravity.CENTER_HORIZONTAL);
-//        }
-//        snackbar.show();
-//    }
-
-//    public void snacBarsGreen(String text) {
-//        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
-//        View view = snackbar.getView();
-//        view.setBackgroundColor(layout.getResources().getColor(R.color.bg_screen3));
-//        TextView tv = view.findViewById(R.id.snackbar_text);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-//        } else {
-//            tv.setGravity(Gravity.CENTER_HORIZONTAL);
-//        }
-//        snackbar.show();
-//    }
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -417,14 +268,11 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            //Toast.makeText(getActivity(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+
                         }
 
-                        // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
 
                         }
                     }
@@ -449,7 +297,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         String nik = edNik.getText().toString();
         String nama = txtNama.getText().toString();
         String poktan = txtNama.getText().toString();
-//        String telp = edTlp.getText().toString();
         String pass = edPass.getText().toString();
         String repass = edRepass.getText().toString();
         if (nik.isEmpty()) {
@@ -470,7 +317,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
             iRegisterPresenter.setProgressBarVisiblity(View.VISIBLE);
             iRegisterPresenter.doRegistrasi(nik, nama , "petani", repass);
         }
-
     }
 
     @Override
@@ -498,6 +344,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     @Override
     public void onSetProgressBarVisibility(int visibility) {
-//        prgBar.setVisibility(visibility);
+
     }
 }

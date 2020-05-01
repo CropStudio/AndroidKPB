@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.LinkedHashMapAdapter;
@@ -31,6 +33,7 @@ import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +41,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RegistPetaniActivity extends AppCompatActivity implements IRegistPetaniView, MaterialSpinner.OnItemSelectedListener, AdapterView.OnItemSelectedListener {
+public class RegistPetaniActivity extends AppCompatActivity implements IRegistPetaniView, AdapterView.OnItemSelectedListener {
+
     SweetAlertDialog sweetAlertDialog;
     RegistPetaniPresenter presenter;
     private LinkedHashMapAdapter<String, String> adapter;
@@ -69,12 +73,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
     @BindView(R.id.mDesa)
     Spinner mDesa;
 
-    @BindView(R.id.mSubsektor)
-    Spinner mSubsektor;
-
-    @BindView(R.id.mKomoditas)
-    Spinner mKomoditas;
-
     @BindView(R.id.mNama)
     EditText mNama;
 
@@ -90,24 +88,8 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
     @BindView(R.id.mRePassword)
     EditText mRePassword;
 
-    @BindView(R.id.mMt1)
-    EditText mMt1;
-
-    @BindView(R.id.mMt2)
-    EditText mMt2;
-
-    @BindView(R.id.mMt3)
-    EditText mMt3;
-
     @BindView(R.id.mSubmit)
     Button mSubmit;
-
-    @BindView(R.id.LayoutLuasTanah)
-    CardView LayoutLuasTanah;
-
-    @BindView(R.id.LayoutBanyakKomoditas)
-    CardView LayoutBanyakKomoditas;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,8 +108,8 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
         provinsi = new LinkedHashMap<String, String>();
-        provinsi.put("18", "Lampung");
-        provinsi.put("16", "Sumatera Selatan");
+        provinsi.put("Lampung", "18");
+        provinsi.put("Sumatera Selatan", "16");
         adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, provinsi);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mProv.setAdapter(adapter);
@@ -135,7 +117,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
         mKab.setOnItemSelectedListener(this);
         mKec.setOnItemSelectedListener(this);
         mDesa.setOnItemSelectedListener(this);
-        mSubsektor.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -149,9 +130,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
         String alamat = mAlamat.getText().toString();
         String password = mPassword.getText().toString();
         String rePassword = mRePassword.getText().toString();
-        String mt1 = mMt1.getText().toString();
-        String mt2 = mMt2.getText().toString();
-        String mt3 = mMt3.getText().toString();
         JSONObject luas_lahan = new JSONObject();
         RegistModel model = new RegistModel();
         LuasLahan modelLahan= new LuasLahan();
@@ -183,19 +161,13 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
                                                             model.setArea(modelArea);
                                                             model.setAddress(alamat);
                                                             model.setPassword(password);
-                                                            modelLahan.setMt1(mt1);
-                                                            modelLahan.setMt2(mt2);
-                                                            modelLahan.setMt3(mt3);
                                                             model.setLuasLahan(modelLahan);
-//                                                            model.setSubsektor(subsektors);
-//                                                            model.setKomoditas(komoditass);
                                                             presenter.daftarPetani(model);
                                                             Log.d("Result", new Gson().toJson(model));
                                                         }
                                                     })
                                                     .setNegativeButton("No", null)
                                                     .setMessage(Html.fromHtml(String.format(App.getApplication().getString(R.string.termCondition))))
-//                                                    .setMessage(Html.fromHtml(String.format("<b><p>1. Membuka rekening Bank pada Bank yang telah bekerjasama dengan aplikasi Kartu Petani Berjaya ( Bank Lampung, Bank Mandiri, Bank BRI dan Bank BNI ). </p></b>")))
                                                     .show();
 
                                         } else TopSnakbar.showWarning(this,
@@ -216,8 +188,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
                     "Harap isi NIK anda sesuai e-Ktp");
         else TopSnakbar.showWarning(this,
                 "Harap isi nama lengkap anda sesuai e-Ktp");
-
-
     }
 
     @Override
@@ -275,18 +245,13 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
 
             adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, subsektor);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mSubsektor.setAdapter(adapter);
-            mSubsektor.setOnItemSelectedListener(this);
         } else if (key.equals(key_komoditas)) {
             for (Result komoditass : result) {
-//                System.out.println(subsektors.getName());
                 komoditas.put(komoditass.getId(), komoditass.getName());
             }
 
             adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, komoditas);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mKomoditas.setAdapter(adapter);
-            mKomoditas.setOnItemSelectedListener(this);
         }
 
     }
@@ -309,7 +274,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
     public void onNetworkError(String cause) {
         Log.d("Error", cause);
         TopSnakbar.showWarning(this, "Koneksi Anda Bermasalah !");
-//        SweetDialogs.endpointError(this);
     }
 
     @Override
@@ -332,22 +296,15 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
 
     @Override
     public void onBackPressed() {
-        // ...
         this.goBack();
         super.onBackPressed();
     }
 
     @Override
-    public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-        Log.d("itemProv", item.toString());
-
-
-    }
-
-    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()) {
+        switch (view.getId()) {
             case R.id.mProv:
+                Toast.makeText(this, String.valueOf(adapterView.getId()), Toast.LENGTH_SHORT).show();
                 Map.Entry<String, String> itemProv = (Map.Entry<String, String>) mProv.getSelectedItem();
                 presenter.getArea(itemProv.getKey(), key_kabupaten);
                 idprov = itemProv.getKey() ;
@@ -374,26 +331,12 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
                 desas = itemDesa.getValue();
                 Log.d("Desa", itemDesa.getKey());
                 break;
-            case R.id.mSubsektor:
-                Map.Entry<String, String> itemSubsektor = (Map.Entry<String, String>) mSubsektor.getSelectedItem();
-
-                if (itemSubsektor.getValue().equals("Tanaman Pangan") || itemSubsektor.getValue().equals("Perkebunan")
-                        || itemSubsektor.getValue().equals("Hortikultura")) {
-                    LayoutLuasTanah.setVisibility(View.VISIBLE);
-                    LayoutBanyakKomoditas.setVisibility(View.GONE);
-                } else {
-                    LayoutLuasTanah.setVisibility(View.GONE);
-                    LayoutBanyakKomoditas.setVisibility(View.VISIBLE);
-                }
-                subsektors = itemSubsektor.getValue();
-                presenter.getArea(itemSubsektor.getKey(), key_komoditas);
-                break;
-            case R.id.mKomoditas:
-                Map.Entry<String, String> itemKomoditas = (Map.Entry<String, String>) mKomoditas.getSelectedItem();
-                komoditass = itemKomoditas.getValue();
-
-                break;
         }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     @Override
