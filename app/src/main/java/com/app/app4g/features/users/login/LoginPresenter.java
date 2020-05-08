@@ -62,7 +62,6 @@ public class LoginPresenter {
 
             return chain.proceed(request);
         }).build();
-
         view.showLoadingIndicator();
         restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).signin().enqueue(new Callback<LoginResponse>() {
             @Override

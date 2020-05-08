@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LayoutspinnerContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <com.jaredrummler.materialspinner.MaterialSpinner-->
+<!--        android:id="@+id/mSpinner"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:textColor="@color/color_default_black"-->
+<!--        android:textSize="15dp"-->
+<!--        app:ms_hint_color="@color/color_default_black"-->
+<!--        app:ms_padding_left="50dp" />-->
+
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:layout_weight="1"
+        android:id="@+id/mSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ms_multiline="false"
+        app:ms_padding_left="50dp"
+       />
+
+</LinearLayout>

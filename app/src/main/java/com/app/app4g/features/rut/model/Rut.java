@@ -5,59 +5,59 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Rut {
-    @SerializedName("jenisTanaman")
-    private String jenisTanaman;
+    @SerializedName("nik")
+    private String nik;
 
-    @SerializedName("masaTanam")
-    private String masaTanam;
+    @SerializedName("idAsset")
+    private String idAsset;
+
+    @SerializedName("jumlahAset")
+    private String jumlahAset;
+
+    @SerializedName("komoditas")
+    private String komoditas;
+
+    @SerializedName("idDesa")
+    private String idDesa;
+
+    @SerializedName("subsektor")
+    private String subsektor;
+
+    @SerializedName("area")
+    private String area;
+
+    @SerializedName("jumlahHasilPanen")
+    private String jumlahHasilPanen;
+
+    @SerializedName("satuan")
+    private String satuan;
+
+    @SerializedName("hargaSatuan")
+    private String hargaSatuan;
+
+    @SerializedName("hasilPanen")
+    private String hasilPanen;
+
+    @SerializedName("keterangan")
+    private String keterangan;
+
+    @SerializedName("standarUntuk")
+    private String standarUntuk;
+
+    @SerializedName("satuanAsset")
+    private String satuanAsset;
+
+    @SerializedName("pendapatanKotor")
+    private String pendapatanKotor;
 
     @SerializedName("kebutuhanSaprotan")
     private List<KebutuhanSaprotan> KebutuhanSaprotan;
 
     @SerializedName("garapDanPemeliharaan")
-    private List<BiayaTanam> BiayaTanam;
+    private List<BiayaTanam> garapDanPemeliharaan;
 
     @SerializedName("jadwalUsahaTani")
-    private KalenderTanam KalenderTanam;
-
-    @SerializedName("status")
-    private String status;
-
-    @SerializedName("subTotalSaprotan")
-    private String subTotalSaprotan;
-
-    @SerializedName("subTotalGarapDanPemeliharaan")
-    private String subTotalGarapDanPemeliharaan;
-
-    @SerializedName("subPrediksiPendapatan")
-    private String subPrediksiPendapatan;
-
-    @SerializedName("subPendapatanKotor")
-    private String subPendapatanKotor;
-
-    @SerializedName("nomorRekeningPetani")
-    private String nomorRekening;
-
-    @SerializedName("Bank")
-    private String bank;
-
-    @SerializedName("nik")
-    private String nik;
-
-    @SerializedName("idPenuyuluh")
-    private String idPenuyuluh;
-
-    @SerializedName("idDesa")
-    private String idDesa;
-
-    @SerializedName("tahun")
-    private Number tahun;
-
-    @SerializedName("idPoktan")
-    private Number idPoktan;
-
-    @SerializedName("idKios")
-    private Number idKios;
+    private List<JadwalUsahaTani> jadwalUsahaTani;
 
     public String getNik() {
         return nik;
@@ -67,12 +67,28 @@ public class Rut {
         this.nik = nik;
     }
 
-    public String getIdPenuyuluh() {
-        return idPenuyuluh;
+    public String getIdAsset() {
+        return idAsset;
     }
 
-    public void setIdPenuyuluh(String idPenuyuluh) {
-        this.idPenuyuluh = idPenuyuluh;
+    public void setIdAsset(String idAsset) {
+        this.idAsset = idAsset;
+    }
+
+    public String getJumlahAset() {
+        return jumlahAset;
+    }
+
+    public void setJumlahAset(String jumlahAset) {
+        this.jumlahAset = jumlahAset;
+    }
+
+    public String getKomoditas() {
+        return komoditas;
+    }
+
+    public void setKomoditas(String komoditas) {
+        this.komoditas = komoditas;
     }
 
     public String getIdDesa() {
@@ -83,124 +99,84 @@ public class Rut {
         this.idDesa = idDesa;
     }
 
-    public Number getTahun() {
-        return tahun;
+    public String getSubsektor() {
+        return subsektor;
     }
 
-    public void setTahun(Number tahun) {
-        this.tahun = tahun;
+    public void setSubsektor(String subsektor) {
+        this.subsektor = subsektor;
     }
 
-    public Number getIdPoktan() {
-        return idPoktan;
+    public String getArea() {
+        return area;
     }
 
-    public void setIdPoktan(Number idPoktan) {
-        this.idPoktan = idPoktan;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public Number getIdKios() {
-        return idKios;
+    public String getJumlahHasilPanen() {
+        return jumlahHasilPanen;
     }
 
-    public void setIdKios(Number idKios) {
-        this.idKios = idKios;
+    public void setJumlahHasilPanen(String jumlahHasilPanen) {
+        this.jumlahHasilPanen = jumlahHasilPanen;
     }
 
-    public String getBank() {
-        return bank;
+    public String getSatuan() {
+        return satuan;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
     }
 
-    public String getNomorRekening() {
-        return nomorRekening;
+    public String getHargaSatuan() {
+        return hargaSatuan;
     }
 
-    public void setNomorRekening(String nomorRekening) {
-        this.nomorRekening = nomorRekening;
+    public void setHargaSatuan(String hargaSatuan) {
+        this.hargaSatuan = hargaSatuan;
     }
 
-    public String getSubTotalSaprotan() {
-        return subTotalSaprotan;
+    public String getHasilPanen() {
+        return hasilPanen;
     }
 
-    public void setSubTotalSaprotan(String subTotalSaprotan) {
-        this.subTotalSaprotan = subTotalSaprotan;
+    public void setHasilPanen(String hasilPanen) {
+        this.hasilPanen = hasilPanen;
     }
 
-    public String getSubTotalGarapDanPemeliharaan() {
-        return subTotalGarapDanPemeliharaan;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setSubTotalGarapDanPemeliharaan(String subTotalGarapDanPemeliharaan) {
-        this.subTotalGarapDanPemeliharaan = subTotalGarapDanPemeliharaan;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 
-    public String getSubPrediksiPendapatan() {
-        return subPrediksiPendapatan;
+    public String getStandarUntuk() {
+        return standarUntuk;
     }
 
-    public void setSubPrediksiPendapatan(String subPrediksiPendapatan) {
-        this.subPrediksiPendapatan = subPrediksiPendapatan;
+    public void setStandarUntuk(String standarUntuk) {
+        this.standarUntuk = standarUntuk;
     }
 
-    public String getSubPendapatanKotor() {
-        return subPendapatanKotor;
+    public String getSatuanAsset() {
+        return satuanAsset;
     }
 
-    public void setSubPendapatanKotor(String subPendapatanKotor) {
-        this.subPendapatanKotor = subPendapatanKotor;
+    public void setSatuanAsset(String satuanAsset) {
+        this.satuanAsset = satuanAsset;
     }
 
-    public com.app.app4g.features.rut.model.KalenderTanam getKalenderTanam() {
-        return KalenderTanam;
+    public String getPendapatanKotor() {
+        return pendapatanKotor;
     }
 
-    public void setKalenderTanam(com.app.app4g.features.rut.model.KalenderTanam kalenderTanam) {
-        KalenderTanam = kalenderTanam;
-    }
-
-    public List<BiayaTanam> getBiayaTanam() {
-        return BiayaTanam;
-    }
-
-    public void setBiayaTanam(List<BiayaTanam> biayaTanam) {
-        BiayaTanam = biayaTanam;
-    }
-
-    public boolean isSelected ;
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getJenisTanaman() {
-        return jenisTanaman;
-    }
-
-    public void setJenisTanaman(String jenisTanaman) {
-        this.jenisTanaman = jenisTanaman;
-    }
-
-    public String getMasaTanam() {
-        return masaTanam;
-    }
-
-    public void setMasaTanam(String masaTanam) {
-        this.masaTanam = masaTanam;
+    public void setPendapatanKotor(String pendapatanKotor) {
+        this.pendapatanKotor = pendapatanKotor;
     }
 
     public List<com.app.app4g.features.rut.model.KebutuhanSaprotan> getKebutuhanSaprotan() {
@@ -209,5 +185,21 @@ public class Rut {
 
     public void setKebutuhanSaprotan(List<com.app.app4g.features.rut.model.KebutuhanSaprotan> kebutuhanSaprotan) {
         KebutuhanSaprotan = kebutuhanSaprotan;
+    }
+
+    public List<BiayaTanam> getGarapDanPemeliharaan() {
+        return garapDanPemeliharaan;
+    }
+
+    public void setGarapDanPemeliharaan(List<BiayaTanam> garapDanPemeliharaan) {
+        this.garapDanPemeliharaan = garapDanPemeliharaan;
+    }
+
+    public List<JadwalUsahaTani> getJadwalUsahaTani() {
+        return jadwalUsahaTani;
+    }
+
+    public void setJadwalUsahaTani(List<JadwalUsahaTani> jadwalUsahaTani) {
+        this.jadwalUsahaTani = jadwalUsahaTani;
     }
 }

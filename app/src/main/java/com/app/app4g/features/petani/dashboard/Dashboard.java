@@ -33,7 +33,7 @@ import com.app.app4g.features.petani.AdapterSliderBanner;
 import com.app.app4g.features.petani.KartuPetani;
 import com.app.app4g.features.petani.ModelSliderBanner;
 import com.app.app4g.features.petani.jatah.ListDataPupuk;
-import com.app.app4g.features.petani.profile.createaset.CreateAset;
+import com.app.app4g.features.rut.aset.AsetActivity;
 import com.app.app4g.features.users.login.Login;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
@@ -45,7 +45,6 @@ import com.app.app4g.ui.SweetDialogs;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
-import com.mindorks.placeholderview.PlaceHolderView;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
@@ -54,14 +53,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Dashboard extends Fragment implements IDashboardView {
 
-    @BindView(R.id.drawerView)
-    PlaceHolderView mDrawerView;
-    @BindView(R.id.mainMenuDashboard)
-    ImageButton mainMenuDashboard;
+//    @BindView(R.id.drawerView)
+//    PlaceHolderView mDrawerView;
+//    @BindView(R.id.mainMenuDashboard)
+//    ImageButton mainMenuDashboard;
     @BindView(R.id.mCardInfoRek)
     CardView mCardInfoRek;
     @BindView(R.id.cardPasarTani)
@@ -96,7 +96,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
-        //ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         presenter = new DashboardPresenter(this);
 //        this.setupDrawer();
         this.initViews();
@@ -199,7 +199,7 @@ public class Dashboard extends Fragment implements IDashboardView {
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-        if(mProfile.getResult().getProfile().getAsetPetani() != null)
+        if(mProfile.getResult().getProfile().getAsetPetani() !=null)
             asetPetani  = mProfile.getResult().getProfile().getAsetPetani().size();
         else
             asetPetani = 0 ;
@@ -229,6 +229,7 @@ public class Dashboard extends Fragment implements IDashboardView {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                App.getPref().clear();
                 startActivity(new Intent(getActivity(), Login.class));
                 Animatoo.animateSlideUp(getActivity());
             }
@@ -240,22 +241,28 @@ public class Dashboard extends Fragment implements IDashboardView {
     public class MyTimerTask extends TimerTask {
         @Override
         public void run() {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (viewPager.getCurrentItem() == 0) {
-                        viewPager.setCurrentItem(1);
-                    } else if (viewPager.getCurrentItem() == 1) {
-                        viewPager.setCurrentItem(2);
-                    } else if (viewPager.getCurrentItem() == 2) {
-                        viewPager.setCurrentItem(3);
-                    } else if (viewPager.getCurrentItem() == 3) {
-                        viewPager.setCurrentItem(4);
-                    } else {
-                        viewPager.setCurrentItem(0);
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (viewPager.getCurrentItem() == 0) {
+                                viewPager.setCurrentItem(1);
+                            } else if (viewPager.getCurrentItem() == 1) {
+                                viewPager.setCurrentItem(2);
+                            } else if (viewPager.getCurrentItem() == 2) {
+                                viewPager.setCurrentItem(3);
+                            } else if (viewPager.getCurrentItem() == 3) {
+                                viewPager.setCurrentItem(4);
+                            } else {
+                                viewPager.setCurrentItem(0);
+                            }
+                        } catch (Exception e) {
+
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -325,11 +332,11 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     @OnClick(R.id.mCardRut)
     void goToRut() {
-        this.goToCreateAset();
+        this.gotoAset();
     }
 
-    void goToCreateAset(){
-        Intent i = new Intent(getActivity(), CreateAset.class);
+    void gotoAset(){
+        Intent i = new Intent(getActivity(), AsetActivity.class);
         startActivity(i);
         getActivity().finish();
     }

@@ -1,4 +1,4 @@
-package com.app.app4g.features.petani.profile.createaset;
+package com.app.app4g.features.rut.aset.createaset;
 
 import com.app.app4g.features.petani.registrasi.model.FormModel.Result;
 import com.app.app4g.features.users.login.model.LoginResponse;
@@ -14,7 +14,7 @@ public interface ICreateAsetView {
 
     void initViews();
 
-    void showDataAset();
+    void onSubmit();
 
     void showLoadingIndicator();
 

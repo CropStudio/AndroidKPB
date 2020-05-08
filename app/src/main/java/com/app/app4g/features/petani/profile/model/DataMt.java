@@ -2,7 +2,9 @@ package com.app.app4g.features.petani.profile.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class dataMt {
+import java.io.Serializable;
+
+public class DataMt implements Serializable {
     @SerializedName("masaTanam")
     public String masaTanam ;
 

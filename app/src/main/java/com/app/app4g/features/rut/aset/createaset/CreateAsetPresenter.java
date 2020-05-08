@@ -1,5 +1,7 @@
-package com.app.app4g.features.petani.profile.createaset;
+package com.app.app4g.features.rut.aset.createaset;
 
+
+import android.util.Log;
 
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.app4g.features.users.login.model.LoginResponse;
@@ -94,6 +96,7 @@ public class CreateAsetPresenter {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
                     view.onCreateAsetSuccess(response.body());
+                    Log.d("RESPONNYA" ,new Gson().toJson(response.body()));
                 } else {
 
                 }

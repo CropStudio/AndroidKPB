@@ -1,15 +1,17 @@
 package com.app.app4g.features.rut.detailRut.kalenderTanam;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.app4g.R;
-import com.app.app4g.features.rut.model.KalenderTanam;
+import com.app.app4g.features.rut.model.JadwalUsahaTani;
 
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +47,7 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
     TextView tgl14;
     @BindView(R.id.tgl15)
     TextView tgl15;
-    KalenderTanam kalenderTanam ;
+    List<JadwalUsahaTani> jadwalUsahaTani;
     public KalenderTanamFragment() {
         // Required empty public constructor
     }
@@ -66,8 +68,8 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kalender_tanam, container, false);
         ButterKnife.bind(this,view);
-        if (kalenderTanam  != null) {
-            this.setData(kalenderTanam);
+        if (jadwalUsahaTani != null) {
+            this.setData(jadwalUsahaTani);
             this.initViews();
         }
         return view ;
@@ -75,28 +77,28 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
 
     @Override
     public void initViews(){
-        tgl1.setText(kalenderTanam.getTglPengairanAirkeLahan());
-        tgl2.setText(kalenderTanam.getTglPengolahanLahan());
-        tgl3.setText(kalenderTanam.getTglPersemaian());
-        tgl4.setText(kalenderTanam.getTglPenanaman());
-        tgl5.setText(kalenderTanam.getTglPemeliharaan());
-        tgl6.setText(kalenderTanam.getTglPemupukanDasar());
-        tgl7.setText(kalenderTanam.getTglPenyemprotanHerbisida());
-        tgl8.setText(kalenderTanam.getTglPenyemprotanFungsida1DanZpt1());
-        tgl9.setText(kalenderTanam.getTglPemupukan1());
-        tgl10.setText(kalenderTanam.getTglPemupukan2());
-        tgl11.setText(kalenderTanam.getTglPenyemprotanFungsida2DanZpt2());
-        tgl12.setText(kalenderTanam.getTglPenyemprotanInsektisida1DanGandasliBuah1());
-        tgl13.setText(kalenderTanam.getTglPenyemprotanFungsida3DanZpt3());
-        tgl14.setText(kalenderTanam.getTglPenyemprotanInsektisida2DanGandasliBuah2());
-        tgl15.setText(kalenderTanam.getTglPanen());
+//        tgl1.setText(kalenderTanam.getTglPengairanAirkeLahan());
+//        tgl2.setText(kalenderTanam.getTglPengolahanLahan());
+//        tgl3.setText(kalenderTanam.getTglPersemaian());
+//        tgl4.setText(kalenderTanam.getTglPenanaman());
+//        tgl5.setText(kalenderTanam.getTglPemeliharaan());
+//        tgl6.setText(kalenderTanam.getTglPemupukanDasar());
+//        tgl7.setText(kalenderTanam.getTglPenyemprotanHerbisida());
+//        tgl8.setText(kalenderTanam.getTglPenyemprotanFungsida1DanZpt1());
+//        tgl9.setText(kalenderTanam.getTglPemupukan1());
+//        tgl10.setText(kalenderTanam.getTglPemupukan2());
+//        tgl11.setText(kalenderTanam.getTglPenyemprotanFungsida2DanZpt2());
+//        tgl12.setText(kalenderTanam.getTglPenyemprotanInsektisida1DanGandasliBuah1());
+//        tgl13.setText(kalenderTanam.getTglPenyemprotanFungsida3DanZpt3());
+//        tgl14.setText(kalenderTanam.getTglPenyemprotanInsektisida2DanGandasliBuah2());
+//        tgl15.setText(kalenderTanam.getTglPanen());
     }
 
     @Override
-    public void setData(KalenderTanam kalenderTanam) {
-        Log.d("pengolahan", kalenderTanam.getTglPengolahanLahan());
-        this.kalenderTanam = kalenderTanam;
-        if (this.kalenderTanam != null) {
+    public void setData(List<JadwalUsahaTani> jadwalUsahaTani) {
+//        Log.d("pengolahan", kalenderTanam.getTglPengolahanLahan());
+        this.jadwalUsahaTani = jadwalUsahaTani;
+        if (this.jadwalUsahaTani != null) {
 //            this.initViews();
         }
     }

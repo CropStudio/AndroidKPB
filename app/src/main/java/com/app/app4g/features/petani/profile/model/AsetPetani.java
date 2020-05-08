@@ -2,23 +2,35 @@ package com.app.app4g.features.petani.profile.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AsetPetani {
+public class AsetPetani implements Serializable {
     @SerializedName("_id")
-    public String _id ;
+    public String _id;
+
+    @SerializedName("idSubsektor")
+    public String idSubsektor;
 
     @SerializedName("namaAset")
-    public String namaAset ;
+    public String namaAset;
 
     @SerializedName("totalAset")
-    public String totalAset ;
+    public String totalAset;
 
     @SerializedName("jenisAset")
-    public String jenisAset ;
+    public String jenisAset;
 
     @SerializedName("dataPermt")
-    public List<dataMt> dataPermt ;
+    public List<DataMt> dataPermt;
+
+    public String getIdSubsektor() {
+        return idSubsektor;
+    }
+
+    public void setIdSubsektor(String idSubsektor) {
+        this.idSubsektor = idSubsektor;
+    }
 
     public String get_id() {
         return _id;
@@ -52,11 +64,11 @@ public class AsetPetani {
         this.jenisAset = jenisAset;
     }
 
-    public List<dataMt> getDataPermt() {
+    public List<DataMt> getDataPermt() {
         return dataPermt;
     }
 
-    public void setDataPermt(List<dataMt> dataPermt) {
+    public void setDataPermt(List<DataMt> dataPermt) {
         this.dataPermt = dataPermt;
     }
 }

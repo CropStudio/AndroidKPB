@@ -10,13 +10,17 @@ import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.app4g.features.petani.registrasi.model.RegistModel;
 import com.app.app4g.features.users.login.model.LoginResponse;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -54,8 +58,9 @@ public interface NetworkService {
     @PUT("petaniedit/{nik}")
     Call<LoginResponse> updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
-    @GET("rutpetani/{nik}")
-    Call<com.app.app4g.features.rut.model.RutResponse> getRut(@Path("nik") String nik);
+    @FormUrlEncoded
+    @POST("rutpetani/{nik}")
+    Call<com.app.app4g.features.rut.model.RutResponse> getRut(@Path("nik") String nik , @FieldMap Map<String, Object> data);
 
     @GET("kabupaten/{id}")
     Call<AreaResponse> getKab(@Path("id") String id);
@@ -77,4 +82,8 @@ public interface NetworkService {
 
     @POST("users/signupandcreate")
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);
+
+    @FormUrlEncoded
+    @PUT("petani/createasset/{id}/{nik}")
+    Call<LoginResponse> createMt(@Path("id") String id, @Path("nik") String nik, @FieldMap Map<String, Object> data);
 }

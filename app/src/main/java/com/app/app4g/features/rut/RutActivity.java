@@ -5,12 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -24,11 +28,14 @@ import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.petani.noRekening.Rekening;
+import com.app.app4g.features.petani.profile.model.DataMt;
+import com.app.app4g.features.rut.aset.AsetActivity;
 import com.app.app4g.features.rut.detailRut.MainDetailFragment;
+import com.app.app4g.features.rut.editRut.EditRutActivity;
 import com.app.app4g.features.rut.model.BiayaTanam;
 import com.app.app4g.features.rut.model.EstimasiPanen;
 import com.app.app4g.features.rut.model.HasilPascaPanen;
-import com.app.app4g.features.rut.model.KalenderTanam;
+import com.app.app4g.features.rut.model.JadwalUsahaTani;
 import com.app.app4g.features.rut.model.KebutuhanSaprotan;
 import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.rut.model.Rut;
@@ -36,10 +43,14 @@ import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
 import com.app.app4g.ui.SweetDialogs;
+import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,8 +61,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     //    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
     String TEST_PAGE_URL = "http://kpb.lampungprov.go.id/#/rut/";
     private AdvancedWebView mWebView;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    //    @BindView(R.id.toolbar)
+//    Toolbar mToolbar;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.list_viewpager)
@@ -60,41 +71,38 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LinearLayout list_layout;
     //    @BindView(R.id.layoutCheckout)
 //    RelativeLayout layoutCheckout;
-    @BindView(R.id.mBtnTutup)
-    Button mBtnTutup;
+//    @BindView(R.id.mBtnTutup)
+//    Button mBtnTutup;
     //    @BindView(R.id.mSubtotal)
 //    TextView mSubtotal;
 //    @BindView(R.id.txtSubtotal)
 //    TextView txtSubtotal;
 //    @BindView(R.id.mCheckout)
 //    Button mCheckout;
-    @BindView(R.id.Layouttoolbar)
-    RelativeLayout Layouttoolbar;
+//    @BindView(R.id.Layouttoolbar)
+//    RelativeLayout Layouttoolbar;
 
     long Subtotal;
     ProgressDialog pDialog;
     LoginResponse mProfile;
     public RutAdapter adapter;
     RutPresenter presenter;
-    String idKec, nik, token, idPenyuluh , nomorrekening;
+    String idKec, nik, token, idDesa, nomorrekening, idAset  , idKab;
     Number idKios, tahun, idPoktan;
     SweetAlertDialog sweetAlertDialog;
     boolean LayoutStat = false;
 
     List<KebutuhanSaprotan> models;
-    public List<Rut> items = null;
+    List<DataMt> dataMt;
+    JSONObject data = new JSONObject();
+    JSONArray DataJsonMt = new JSONArray();
+    public List<Result> items = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rut);
         ButterKnife.bind(this);
-        setSupportActionBar(mToolbar);
-        mToolbar.setTitle("RUT (Rencana Usaha Tani)");
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.c_black));
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new RutPresenter(this);
         this.initView();
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
@@ -107,11 +115,42 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+        idDesa = (mProfile.getResult().getProfile().getArea().getSub_district_code().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getSub_district_code() : mProfile.getResult().getProfile().getArea().getSub_district_code();
+        idKec = (mProfile.getResult().getProfile().getArea().getDistrict_code().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getDistrict_code() : mProfile.getResult().getProfile().getArea().getDistrict_code();
+        idKab = (mProfile.getResult().getProfile().getArea().getCity_code().contains(" "))
+                ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
+        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+        System.out.println(new Gson().toJson(dataMt));
+        idAset = getIntent().getExtras().getString("_id");
+        if (dataMt != null) {
+            for (DataMt datas : dataMt) {
+                try {
+                    DataJsonMt.put(
+                            new JSONObject()
+                                    .put("masaTanam", datas.masaTanam)
+                                    .put("jumlahAset", datas.jumlahAset)
+                                    .put("subsektor", datas.getSubsektor())
+                                    .put("namaKomoditas", datas.getNamaKomoditas())
 
-//        idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
-//                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
-//        Log.d("kecamatan", idKec);
-        presenter.getRut(nik, token, idKec);
+                    );
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                data.put("nik", nik);
+                data.put("idAsset", idAset);
+                data.put("dataPermt", DataJsonMt);
+                data.put("idDesa", idDesa);
+                data.put("idKecamatan", idKec);
+                data.put("idKabupaten", idKab);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        presenter.getRut(nik, token, data.toString());
 
     }
 
@@ -121,7 +160,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //        mCheckout.setEnabled(false);
 //        mCheckout.setBackgroundColor(getResources().getColor(R.color.grey));
 //        mBtnTutup.setOnClickListener(view -> this.HideDetailKebutuhan());
-        mBtnTutup.setOnClickListener(view -> Toast.makeText(this, "Maaf , Menu ini sedang dalam masa pengembangan", Toast.LENGTH_SHORT).show());
+//        mBtnTutup.setOnClickListener(view -> Toast.makeText(this, "Maaf , Menu ini sedang dalam masa pengembangan", Toast.LENGTH_SHORT).show());
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
@@ -160,34 +199,37 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onDataReady(Result result) {
-        idKios = result.getIdKios();
-        idPoktan = result.getIdPoktan();
-        tahun = result.getTahun();
-        idPenyuluh = result.getIdPenuyuluh();
-        int index = 0;
-        this.items = result.getRut();
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getJenisTanaman().contains("")) {
-                index = i;
-            }
-        }
-        items.remove(index);
+    public void onDataReady(List<Result> result) {
+//        System.out.println(new Gson().toJson(result));
+//        idKios = result.getIdKios();
+//        idPoktan = result.getIdPoktan();
+//        tahun = result.getTahun();
+//        idPenyuluh = result.getIdPenuyuluh();
+//        int index = 0;
+        this.items = result;
+//        for (int i = 0; i < items.size(); i++) {
+//            if (items.get(i).getJenisTanaman().contains("")) {
+//                index = i;
+//            }
+//        }
+//        items.remove(index);
         adapter = new RutAdapter(items, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+
     }
 
 
     @Override
-    public void onRequestFailed(String rm, String rc) {
-        if (rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
-            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
-                    rm);
-        else
-            SweetDialogs.commonError(this, "Gagal Memuat Permintaan", rm, string -> {
-                this.goToDashboard();
-            });
+    public void onRequestFailed(String rm) {
+//        if (rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+//            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+//                    rm);
+//        else
+        SweetDialogs.commonError(this, "Gagal Memuat Permintaan", rm, string -> {
+            this.goToDashboard();
+        });
     }
 
     @Override
@@ -209,7 +251,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void goToDashboard() {
-        Intent a = new Intent(this, MenuUtama.class);
+        Intent a = new Intent(this, AsetActivity.class);
         startActivity(a);
         finish();
     }
@@ -217,22 +259,20 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onBackPressed() {
         // ...
-        Intent a = new Intent(this, MenuUtama.class);
-        startActivity(a);
-        finish();
+        this.goToDashboard();
         super.onBackPressed();
     }
 
     @Override
-    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, KalenderTanam kalenderTanams, EstimasiPanen estimasiPanen, HasilPascaPanen hasilPascaPanen) {
-        Layouttoolbar.setVisibility(View.GONE);
+    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> kalenderTanams) {
+//        Layouttoolbar.setVisibility(View.GONE);
         list_layout.setVisibility(View.VISIBLE);
-        mBtnTutup.setVisibility(View.VISIBLE);
+//        mBtnTutup.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
 //        layoutCheckout.setVisibility(View.GONE);
         final RutPageAdapter adapter = new RutPageAdapter(getSupportFragmentManager());
         MainDetailFragment fragmentMainDetail = new MainDetailFragment();
-        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, kalenderTanams, estimasiPanen, hasilPascaPanen);
+        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, kalenderTanams);
         adapter.addFragment(fragmentMainDetail);
         mListViewPager.setAdapter(adapter);
         LayoutStat = true;
@@ -241,27 +281,38 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onSetuju(Rut rut) {
 
-        String noRek = App.getPref().getString(Prefs.PREF_NO_REKENING, "");
-        String Bank = App.getPref().getString(Prefs.PREF_BANK, "");
-        JSONObject dataRoot = new JSONObject();
-        if (nomorrekening.equals("")) {
-            startActivity(new Intent(this, Rekening.class));
-            finish();
-        } else {
-            rut.setNomorRekening(noRek);
-            rut.setBank(Bank);
-            rut.setTahun(tahun);
-            rut.setIdPoktan(idPoktan);
-            rut.setIdKios(idKios);
-            rut.setNik(nik);
-//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-//            presenter.createRut(nik, token, new Gson().toJson(rut));
-           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    this.onCreateSuccess("Success");
-                }
-            });
-        }
+//        String noRek = App.getPref().getString(Prefs.PREF_NO_REKENING, "");
+//        String Bank = App.getPref().getString(Prefs.PREF_BANK, "");
+//        JSONObject dataRoot = new JSONObject();
+//        if (nomorrekening.equals("")) {
+//            startActivity(new Intent(this, Rekening.class));
+//            finish();
+//        } else {
+//            rut.setNomorRekening(noRek);
+//            rut.setBank(Bank);
+//            rut.setTahun(tahun);
+//            rut.setIdPoktan(idPoktan);
+//            rut.setIdKios(idKios);
+//            rut.setNik(nik);
+////            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+////            presenter.createRut(nik, token, new Gson().toJson(rut));
+//           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    this.onCreateSuccess("Success");
+//                }
+//            });
+//        }
+    }
+
+    @Override
+    public void onEditRut(Result rut) {
+//        System.out.println(rut.getKebutuhanSaprotan());
+        Intent i = new Intent(this, EditRutActivity.class);
+        i.putExtra("dataMt", (Serializable) dataMt);
+        i.putExtra("idAset", idAset);
+        i.putExtra("nik", nik);
+        i.putExtra("idMt", rut.getMt());
+        startActivity(i);
     }
 
     @Override
@@ -292,8 +343,9 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void HideDetailKebutuhan() {
-        startActivity(new Intent(this, RutActivity.class));
-        finish();
+        LayoutStat = false ;
+        list_layout.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -2,9 +2,11 @@ package com.app.app4g.features.rut.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class RutResponse {
     @SerializedName("result")
-    private Result result;
+    private List<Result> result;
 
     @SerializedName("message")
     private String mRm;
@@ -15,11 +17,11 @@ public class RutResponse {
     @SerializedName("rc")
     private String mRc;
 
-    public Result getResult() {
+    public List<Result> getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(List<Result> result) {
         this.result = result;
     }
 

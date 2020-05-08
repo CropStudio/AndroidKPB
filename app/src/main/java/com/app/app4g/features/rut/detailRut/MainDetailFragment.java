@@ -1,6 +1,8 @@
 package com.app.app4g.features.rut.detailRut;
 
 import android.os.Bundle;
+
+import com.app.app4g.features.rut.model.JadwalUsahaTani;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +19,6 @@ import com.app.app4g.features.rut.detailRut.biayaTanam.BiayaTanamFragment;
 import com.app.app4g.features.rut.model.BiayaTanam;
 import com.app.app4g.features.rut.model.EstimasiPanen;
 import com.app.app4g.features.rut.model.HasilPascaPanen;
-import com.app.app4g.features.rut.model.KalenderTanam;
 import com.app.app4g.features.rut.model.KebutuhanSaprotan;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
 
     List<KebutuhanSaprotan> kebutuhanSaprotans = new ArrayList<>();
     List<BiayaTanam> biayaTanams = new ArrayList<>();
-    KalenderTanam kalenderTanam ;
+    List<JadwalUsahaTani> jadwalUsahaTani;
     EstimasiPanen estimasiPanen ;
     HasilPascaPanen hasilPascaPanen ;
 
@@ -63,7 +64,7 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
         ButterKnife.bind(this, view);
 
         if (kebutuhanSaprotans.size() > 0) {
-            this.setData(kebutuhanSaprotans, biayaTanams,kalenderTanam,estimasiPanen,hasilPascaPanen);
+            this.setData(kebutuhanSaprotans, biayaTanams, jadwalUsahaTani);
             this.initViews();
         }
         return view;
@@ -76,15 +77,15 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
         BiayaTanamFragment biayaTanamFragment = new BiayaTanamFragment();
         EstimasiPanenFragment estimasiPanenFragment = new EstimasiPanenFragment();
         saprotanFragment.setData(kebutuhanSaprotans);
-        kalenderTanamFragment.setData(kalenderTanam);
+        kalenderTanamFragment.setData(jadwalUsahaTani);
         biayaTanamFragment.setData(biayaTanams);
-        estimasiPanenFragment.setData(estimasiPanen);
+//        estimasiPanenFragment.setData(estimasiPanen);
         FragmentManager cfManager= getChildFragmentManager();
         PageFramentAdapter adapter = new PageFramentAdapter(cfManager);
         adapter.addFragment(saprotanFragment,"Saprotan");
         adapter.addFragment(kalenderTanamFragment,"Kalender Tanam");
         adapter.addFragment(biayaTanamFragment,"Biaya Tanam");
-        adapter.addFragment(estimasiPanenFragment,"Estimasi Panen");
+//        adapter.addFragment(estimasiPanenFragment,"Estimasi Panen");
 
         mListViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mListViewPager);
@@ -92,12 +93,10 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
 
 
     @Override
-    public void setData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams , KalenderTanam kalenderTanams, EstimasiPanen estimasiPanen, HasilPascaPanen hasilPascaPanen) {
+    public void setData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams , List<JadwalUsahaTani> jadwalUsahaTani) {
         this.kebutuhanSaprotans = kebutuhanSaprotans;
         this.biayaTanams = biayaTanams;
-        this.kalenderTanam = kalenderTanams;
-        this.hasilPascaPanen = hasilPascaPanen;
-        this.estimasiPanen = estimasiPanen;
+        this.jadwalUsahaTani = jadwalUsahaTani;
 
     }
 

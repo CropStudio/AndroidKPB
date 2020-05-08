@@ -1,6 +1,7 @@
 package com.app.app4g.features.rut.detailRut.saprotan;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +45,17 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final KebutuhanSaprotan kebutuhanSaprotan = kebutuhanSaprotans.get(position);
         holder.mNamaPupuk.setText(kebutuhanSaprotan.getNama());
-        holder.mHarga.setText(Utils.convertRupiah(kebutuhanSaprotan.getHarga()));
-        holder.mJumlah.setText(kebutuhanSaprotan.getJumlah());
-        holder.mHargaSubsidi.setText(Utils.convertRupiah(kebutuhanSaprotan.getHargaSubsidi()));
-        holder.mJatahSubsidi.setText(kebutuhanSaprotan.getJatahSubsidi());
-        holder.mJumlahNonSubsidi.setText(kebutuhanSaprotan.getJumlahNonSubsidi());
-        holder.mLuasLahan.setText(kebutuhanSaprotan.getLuasLahan());
-        holder.mSubTotal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSubTotal())));
-//        holder.mJenisTanaman.setText(JenisTnm);
+        if (kebutuhanSaprotan.getSelected() != null) {
+            holder.mNamaBarang.setText(kebutuhanSaprotan.getSelected().getNamaBarang());
+            holder.mHarga.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHarga())));
+            holder.mHargaSubsidi.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHargaSubsidi())));
+        }
+        holder.mJumlah.setText(String.valueOf(kebutuhanSaprotan.getJumlah()));
+        if (kebutuhanSaprotan.getSubsidi())
+            holder.mStatusSubsidi.setText("Subsidi");
+        else
+            holder.mStatusSubsidi.setText("Tidak Subsidi");
+//        holder.mSubTotal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSubTotal())));
 
     }
 
@@ -62,19 +66,17 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView mNamaPupuk, mHarga, mJumlah, mHargaSubsidi, mJatahSubsidi, mJumlahNonSubsidi, mLuasLahan, mSubTotal;
+        public final TextView mNamaPupuk, mNamaBarang, mHarga, mJumlah, mHargaSubsidi, mSubTotal, mStatusSubsidi;
 
         public ViewHolder(View view) {
             super(view);
             mNamaPupuk = view.findViewById(R.id.mNamaPupuk);
+            mNamaBarang = view.findViewById(R.id.mNamaBarang);
             mHarga = view.findViewById(R.id.mHarga);
             mJumlah = view.findViewById(R.id.mJumlah);
             mHargaSubsidi = view.findViewById(R.id.mHargaSubsidi);
-            mJatahSubsidi = view.findViewById(R.id.mJatahSubsidi);
-            mJumlahNonSubsidi = view.findViewById(R.id.mJumlahNonSubsidi);
-            mLuasLahan = view.findViewById(R.id.mLuasLahan);
+            mStatusSubsidi = view.findViewById(R.id.mStatusSubsidi);
             mSubTotal = view.findViewById(R.id.mSubTotal);
-           // mJenisTanaman = (TextView) view.findViewById(R.id.mJenisTanaman);
         }
 
     }

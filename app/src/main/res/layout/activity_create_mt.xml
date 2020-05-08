@@ -1,9 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.petani.profile.createmt.createMt">
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".features.rut.createmt.CreateMt">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/toolbar_default_in" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|top"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center|left"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/ic_rut_desc" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Masa Tanam"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:visibility="visible">
+
+                        <Button
+                            android:id="@+id/mSubmit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/color_default_green"
+                            android:text="selesai" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="30dp"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_icon_add" />
+
+                <LinearLayout
+                    android:id="@+id/statusHide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:weightSum="2">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center|left"
+                                    android:paddingLeft="10dp"
+                                    android:text="Masa Tanam 01"
+                                    android:textColor="@color/color_default_black"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="15dp">
+
+                                    <Spinner
+                                        android:id="@+id/mMt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="48dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/shape_spinner"
+                                        android:paddingLeft="40dp"
+                                        android:textColor="@color/color_default_black"
+                                        android:textSize="15dp"
+                                        app:ms_hint="Provinsi"
+                                        app:ms_hint_color="@color/color_default_black"
+                                        app:ms_padding_left="5dp" />
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/shape_spinner"
+                                    android:layout_marginRight="15dp">
+
+                                    <com.jaredrummler.materialspinner.MaterialSpinner
+                                        android:id="@+id/mKomoditas"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="45dp"
+                                        android:layout_weight="1"
+                                        android:text="Pilih Komoditas"
+                                        android:textColor="@color/color_default_black"
+                                        android:textSize="15dp"
+                                        app:ms_hint="Pilih Komoditas"
+                                        app:ms_hint_color="@color/color_default_black"
+                                        app:ms_padding_left="50dp" />
+
+                                </LinearLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/LayoutBanyakKomoditas"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:hint="Jumlah"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    app:boxStrokeColor="@color/color_default_blue"
+                                    app:hintTextColor="@color/color_default_black"
+                                    app:startIconDrawable="@drawable/ic_rut_desc">
+
+                                    <EditText
+                                        android:id="@+id/mJmlhKomoditas"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:inputType="text"
+                                        android:padding="5dp"
+                                        android:textColor="@color/color_default_black"
+                                        android:textSize="15dp" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/LayoutLuasTanah"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:hint="Luas Lahan"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    app:boxStrokeColor="@color/color_default_blue"
+                                    app:hintTextColor="@color/color_default_black"
+                                    app:startIconDrawable="@drawable/ic_rut_desc">
+
+                                    <EditText
+                                        android:id="@+id/mLuasLahan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:inputType="text"
+                                        android:padding="5dp"
+                                        android:textColor="@color/color_default_black"
+                                        android:textSize="15dp" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/addMt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:onClick="onAddMt"
+                    android:padding="15dp"
+                    android:text="Tambah Masa Tanam"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/color_default_green" />
+
+                <LinearLayout
+                    android:id="@+id/containerMt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/copyright" />
+
+    </LinearLayout>
+
+</LinearLayout>

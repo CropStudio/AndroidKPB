@@ -5,6 +5,7 @@ import com.app.app4g.common.CommonRespon;
 import com.app.app4g.features.rut.model.RutResponse;
 import com.app.app4g.network.NetworkService;
 import com.app.app4g.network.RestService;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 
@@ -62,7 +63,9 @@ public class RutPresenter {
                 });
     }
 
-    void getRut(String nik, String token, String idKec ) {
+    void getRut(String nik, String token , String body) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("data", body);
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -74,15 +77,16 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(nik)
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(nik,params)
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
                         view.hideLoadingIndicator();
+//                        System.out.println(new Gson().toJson(response.body()));
                         if (response.body().getmStatus())
                             view.onDataReady(response.body().getResult());
                         else
-                            view.onRequestFailed(response.body().getmRm(), response.body().getmRc());
+                            view.onRequestFailed(response.body().getmRm()   );
                     }
 
                     @Override

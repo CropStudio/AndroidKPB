@@ -108,8 +108,8 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
         provinsi = new LinkedHashMap<String, String>();
-        provinsi.put("Lampung", "18");
-        provinsi.put("Sumatera Selatan", "16");
+        provinsi.put("18", "Lampung");
+        provinsi.put("16", "Sumatera Selatan");
         adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, provinsi);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mProv.setAdapter(adapter);
@@ -123,7 +123,7 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
     public void onRegisPetani() {
         String nama = mNama.getText().toString();
         String nik = mNik.getText().toString();
-//        provi = mProv.getSelectedItem().toString();
+//        provinsi = mProv.getSelectedItem().toString();
 //        kabupaten = mKab.getSelectedItem().toString();
 //        kecamatan = mKec.getSelectedItem().toString();
 //        desa = mDesa.getSelectedItem().toString();
@@ -212,7 +212,6 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
                 System.out.println(kab.getNama());
                 kabupaten.put(kab.getId_kab(), kab.getNama());
             }
-
             adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, kabupaten);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mKab.setAdapter(adapter);
@@ -239,7 +238,7 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
             mDesa.setOnItemSelectedListener(this);
         } else if (key.equals(key_subsektor)) {
             for (Result subsektors : result) {
-                System.out.println(subsektors.getName());
+
                 subsektor.put(subsektors.getId(), subsektors.getName());
             }
 
@@ -302,9 +301,8 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (view.getId()) {
+        switch (adapterView.getId()) {
             case R.id.mProv:
-                Toast.makeText(this, String.valueOf(adapterView.getId()), Toast.LENGTH_SHORT).show();
                 Map.Entry<String, String> itemProv = (Map.Entry<String, String>) mProv.getSelectedItem();
                 presenter.getArea(itemProv.getKey(), key_kabupaten);
                 idprov = itemProv.getKey() ;

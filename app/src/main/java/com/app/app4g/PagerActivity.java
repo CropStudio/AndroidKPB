@@ -54,10 +54,18 @@ public class PagerActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        if (restorePrefData()) {
+//        if (restorePrefData()) {
+//            startActivity(new Intent(getApplicationContext(), Splash.class));
+//            Animatoo.animateZoom(PagerActivity.this);
+//        }
+        requestAppPermissions();
+        if(App.getPref().getBoolean(Prefs.PREF_FIRST_TIME,false)){
             startActivity(new Intent(getApplicationContext(), Splash.class));
             Animatoo.animateZoom(PagerActivity.this);
+            finish();
         }
+
+
 
         setContentView(R.layout.activity_pager);
 
@@ -148,6 +156,30 @@ public class PagerActivity extends AppCompatActivity {
         tabIndicator.setVisibility(View.INVISIBLE);
         // TODO : ADD an animation the getstarted button
         btnGetStarted.setAnimation(btnAnim);
+    }
+
+    private void requestAppPermissions() {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+
+        if (hasReadPermissions() && hasWritePermissions()) {
+            return;
+        }
+
+        ActivityCompat.requestPermissions(this,
+                new String[] {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, 1000); // your request code
+    }
+
+    private boolean hasReadPermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private boolean hasWritePermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
 }

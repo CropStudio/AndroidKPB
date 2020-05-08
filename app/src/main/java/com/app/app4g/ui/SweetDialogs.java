@@ -76,7 +76,7 @@ public class SweetDialogs {
         dialog.setConfirmText("OK");
         dialog.setConfirmClickListener(sweetAlertDialog -> {
             sweetAlertDialog.dismissWithAnimation();
-            context.finish();
+            context.finishAffinity();
         });
         try {
             dialog.show();

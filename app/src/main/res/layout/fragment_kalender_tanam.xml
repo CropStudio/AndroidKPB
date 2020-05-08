@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:name="com.example.app4g.features.rut.detailRut.kalenderTanam.KalenderTanamFragment"
+    android:name="com.example.app4g.features.rut.detailRut.jadwalUsahaTani.KalenderTanamFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="3dp"
-    tools:context=".features.rut.detailRut.kalenderTanam.KalenderTanamFragment">
+    tools:context=".features.rut.detailRut.jadwalUsahaTani.KalenderTanamFragment">
 
     <ScrollView
         android:layout_width="match_parent"

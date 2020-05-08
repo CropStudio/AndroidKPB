@@ -2,113 +2,43 @@ package com.app.app4g.features.rut.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class KebutuhanSaprotan {
-    @SerializedName("_id")
-    private String _id;
+import java.io.Serializable;
+import java.util.List;
+
+public class KebutuhanSaprotan implements Serializable {
 
     @SerializedName("nama")
     private String nama;
 
-    @SerializedName("harga")
-    private String harga;
-
     @SerializedName("jumlah")
-    private String jumlah;
+    private long jumlah;
 
-    @SerializedName("id")
-    private String id;
+    @SerializedName("subsidi")
+    private Boolean subsidi;
 
-    @SerializedName("hargaSubsidi")
-    private String hargaSubsidi;
+    @SerializedName("listBarang")
+    private List<ListBarang> listBarang;
+
+    @SerializedName("selected")
+    private ListBarang selected;
 
     @SerializedName("subTotal")
-    private long subTotal;
+    private Long subTotal;
 
-    @SerializedName("jatahSubsidi")
-    private String jatahSubsidi;
-
-    @SerializedName("jumlahNonSubsidi")
-    private String jumlahNonSubsidi;
-
-    @SerializedName("totalSubBiayaSubsidi")
-    private String totalSubBiayaSubsidi;
-
-    @SerializedName("totalNonSubsidi")
-    private String totalNonSubsidi;
-
-    public String getTotalSubBiayaSubsidi() {
-        return totalSubBiayaSubsidi;
-    }
-
-    public void setTotalSubBiayaSubsidi(String totalSubBiayaSubsidi) {
-        this.totalSubBiayaSubsidi = totalSubBiayaSubsidi;
-    }
-
-    public String getTotalNonSubsidi() {
-        return totalNonSubsidi;
-    }
-
-    public void setTotalNonSubsidi(String totalNonSubsidi) {
-        this.totalNonSubsidi = totalNonSubsidi;
-    }
-
-    @SerializedName("luasLahan")
-    private String luasLahan;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getHargaSubsidi() {
-        return hargaSubsidi;
-    }
-
-    public void setHargaSubsidi(String hargaSubsidi) {
-        this.hargaSubsidi = hargaSubsidi;
-    }
-
-    public long getSubTotal() {
+    public Long getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(long subTotal) {
+    public void setSubTotal(Long subTotal) {
         this.subTotal = subTotal;
     }
 
-    public String getJatahSubsidi() {
-        return jatahSubsidi;
+    public ListBarang getSelected() {
+        return selected;
     }
 
-    public void setJatahSubsidi(String jatahSubsidi) {
-        this.jatahSubsidi = jatahSubsidi;
-    }
-
-    public String getJumlahNonSubsidi() {
-        return jumlahNonSubsidi;
-    }
-
-    public void setJumlahNonSubsidi(String jumlahNonSubsidi) {
-        this.jumlahNonSubsidi = jumlahNonSubsidi;
-    }
-
-    public String getLuasLahan() {
-        return luasLahan;
-    }
-
-    public void setLuasLahan(String luasLahan) {
-        this.luasLahan = luasLahan;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setSelected(ListBarang selected) {
+        this.selected = selected;
     }
 
     public String getNama() {
@@ -119,19 +49,31 @@ public class KebutuhanSaprotan {
         this.nama = nama;
     }
 
-    public String getHarga() {
-        return harga;
-    }
-
-    public void setHarga(String harga) {
-        this.harga = harga;
-    }
-
-    public String getJumlah() {
+    public long getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(String jumlah) {
+    public void setJumlah(long jumlah) {
         this.jumlah = jumlah;
     }
+
+    public Boolean getSubsidi() {
+        return subsidi;
+    }
+
+    public void setSubsidi(Boolean subsidi) {
+        this.subsidi = subsidi;
+    }
+
+    public List<ListBarang> getListBarang() {
+        return listBarang;
+    }
+
+    public void setListBarang(List<ListBarang> listBarang) {
+        this.listBarang = listBarang;
+    }
+
+
+
+
 }

@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class profile {
+public class profile implements Serializable {
     @SerializedName("nik")
     private String nik;
 

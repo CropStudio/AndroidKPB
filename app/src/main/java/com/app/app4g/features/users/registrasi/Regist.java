@@ -80,7 +80,7 @@ import moe.feng.common.stepperview.VerticalStepperItemView;
 
 public class Regist extends AppCompatActivity implements IRegisterView, View.OnClickListener {
 
-    private VerticalStepperItemView[] mSteppers = new VerticalStepperItemView[3];
+//    private VerticalStepperItemView[] mSteppers = new VerticalStepperItemView[3];
     private Button mNextBtn0, mNextBtn1, mPrevBtn1, mNextBtn2, mPrevBtn2;
 
     @BindView(R.id.edNik)

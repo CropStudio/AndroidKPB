@@ -94,6 +94,34 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="Nama Barang"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mNamaBarang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="-"
+                        android:textColor="#66000000"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Jumlah"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -104,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="000000"
+                        android:text="-"
                         android:textColor="#66000000"
                         android:textSize="12dp" />
 
@@ -131,11 +159,38 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="000000"
+                        android:text="-"
                         android:textColor="#66000000"
                         android:textSize="12dp" />
 
                 </LinearLayout>
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="2">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Jatah Subsidi"-->
+<!--                        android:textSize="12dp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/mJatahSubsidi"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="right"-->
+<!--                        android:text="000000"-->
+<!--                        android:textColor="#66000000"-->
+<!--                        android:textSize="12dp" />-->
+
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,75 +203,48 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Jatah Subsidi"
+                        android:text="Status"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/mJatahSubsidi"
+                        android:id="@+id/mStatusSubsidi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="000000"
+                        android:text="-"
                         android:textColor="#66000000"
                         android:textSize="12dp" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:weightSum="2">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="2">-->
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Jumlah Non Subsidi"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Luas Lahan"-->
+<!--                        android:textSize="12dp"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <TextView
-                        android:id="@+id/mJumlahNonSubsidi"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="000000"
-                        android:textColor="#66000000"
-                        android:textSize="12dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/mLuasLahan"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="right"-->
+<!--                        android:text="000000"-->
+<!--                        android:textColor="#66000000"-->
+<!--                        android:textSize="12dp" />-->
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Luas Lahan"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/mLuasLahan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="000000"
-                        android:textColor="#66000000"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="000000"
+                        android:text="-"
                         android:textColor="#66000000"
                         android:textSize="12dp" />
 

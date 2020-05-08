@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+
+import com.app.app4g.features.rutDetail.RutDetailActivity;
 import com.google.android.material.tabs.TabLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

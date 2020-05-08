@@ -77,13 +77,10 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_login);
-
         ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
 
@@ -209,17 +206,20 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
     @Override
     public void goToDashboardPetani() {
-        final LoadingDialog loadingDialog = new LoadingDialog(Login.this);
-        loadingDialog.startLoadingDialog();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadingDialog.dismissDialog();
-                startActivity(new Intent(Login.this, MenuUtama.class));
-                Animatoo.animateZoom(Login.this);
-            }
-        }, 3000);
+//        final LoadingDialog loadingDialog = new LoadingDialog(Login.this);
+//        loadingDialog.startLoadingDialog();
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                loadingDialog.dismissDialog();
+//                startActivity(new Intent(Login.this, MenuUtama.class));
+//                Animatoo.animateZoom(Login.this);
+//            }
+//        }, 3000);
+
+        startActivity(new Intent(Login.this, MenuUtama.class));
+        Animatoo.animateZoom(Login.this);
     }
 
     @Override

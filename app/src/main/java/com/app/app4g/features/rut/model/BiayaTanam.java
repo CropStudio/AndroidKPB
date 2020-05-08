@@ -18,6 +18,17 @@ public class BiayaTanam {
     @SerializedName("satuan")
     private String satuan;
 
+    @SerializedName("total")
+    private String total;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
     public String get_id() {
         return _id;
     }
