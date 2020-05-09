@@ -72,6 +72,9 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     @BindView(R.id.containerMt)
     LinearLayout parent_datas;
+    @BindView(R.id.detailInput)
+    LinearLayout detailInput;
+
     private List<AsetPetani> asetPetani;
     View rowView;
     LoginResponse mProfile;
@@ -197,6 +200,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                 if (!mKomoditas.getText().toString().equals("Pilih Komoditas")) {
                     LayoutInflater inflater = (LayoutInflater) getSystemService(this.LAYOUT_INFLATER_SERVICE);
                     rowView = inflater.inflate(R.layout.data_mt_field, null);
+                    detailInput.setVisibility(View.VISIBLE);
                     final TextView mMt = rowView.findViewById(R.id.mMt);
                     final TextView mTotalAset = rowView.findViewById(R.id.mTotalAset);
                     mMt.setText(valueMt);

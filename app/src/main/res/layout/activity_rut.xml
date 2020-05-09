@@ -12,14 +12,14 @@
 
     <include layout="@layout/toolbar_default_in" />
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:gravity="center|top"
             android:orientation="vertical">
 
@@ -72,13 +72,13 @@
                     <LinearLayout
                         android:id="@+id/statusHide"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_3">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
                             tools:itemCount="5"
                             tools:listitem="@layout/item_list_rut">
 
@@ -110,22 +110,22 @@
         </LinearLayout>
 
         <Button
-            android:drawableRight="@drawable/ic_edit_black_24dp"
             android:id="@+id/mBtnTutup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#46B854"
+            android:drawableRight="@drawable/ic_edit_black_24dp"
             android:gravity="center"
             android:text="EDIT"
             android:textColor="@color/white"
-            android:visibility="gone"/>
-    </RelativeLayout>
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_weight="0"
         android:gravity="center">
 
         <TextView

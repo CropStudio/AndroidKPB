@@ -89,10 +89,8 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     EditText edPass;
     @BindView(R.id.edRePass)
     TextView edRepass;
-
     @BindView(R.id.btnRegistrasi)
     Button btnRegistrasi;
-
     @BindView(R.id.txtNama)
     TextView txtNama;
     @BindView(R.id.txtAlamat)
@@ -101,13 +99,10 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     TextView txtJenisKelmain;
     @BindView(R.id.imgView)
     ImageView imgView;
-
     @BindView(R.id.dataPetani)
     LinearLayout dataPetani;
-
     @BindView(R.id.buttonHide)
     LinearLayout btnRegistrasiLayout;
-
     @BindView(R.id.passwordHide)
     LinearLayout PasswordLayout;
 
@@ -163,11 +158,9 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
             }
-
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
@@ -204,7 +197,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         PasswordLayout.setVisibility(View.VISIBLE);
                         txtNama.setText(nama);
                         txtAlamat.setText(alamat);
-
                     } else {
                         imgView.setVisibility(View.VISIBLE);
                         dataPetani.setVisibility(View.GONE);
@@ -213,11 +205,10 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         txtNama.setText(null);
                         goToDaftar();
                     }
-
                 } catch (JSONException e) {
-
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
 
@@ -247,7 +238,6 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                 ".jpg",
                 storageDir
         );
-
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
     }
@@ -258,22 +248,17 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         return byteArrayOutputStream.toByteArray();
     }
 
-
     public void addPermission() {
         Dexter.withActivity(Regist.this)
                 .withPermissions(
-
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
-
                         }
-
                         if (report.isAnyPermissionPermanentlyDenied()) {
-
                         }
                     }
 

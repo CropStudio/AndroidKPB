@@ -16,13 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
+        android:background="@color/grey_3"
         android:gravity="center|top"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center|left"
+            android:background="@color/white"
+            android:gravity="center|start"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -46,7 +48,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Tambah Data Komoditas"
+                    android:text="@string/tambah_komoditas"
                     android:textColor="@color/color_default_black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -59,9 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/ic_icon"
-            android:visibility="visible" />
-
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +71,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:weightSum="2">
-
 
             <Spinner
                 android:id="@+id/mSubsektor"
@@ -82,24 +82,24 @@
                 android:background="@drawable/shape_spinner"
                 android:paddingLeft="40dp"
                 android:textColor="@color/color_default_black"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 app:ms_hint="Provinsi"
                 app:ms_hint_color="@color/color_default_black"
                 app:ms_padding_left="5dp" />
 
             <Spinner
-                android:visibility="gone"
-                android:layout_marginTop="5dp"
                 android:id="@+id/mKomoditas"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="25dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape_spinner"
                 android:paddingLeft="40dp"
                 android:textColor="@color/color_default_black"
-                android:textSize="15dp"
+                android:textSize="15sp"
+                android:visibility="gone"
                 app:ms_hint="Provinsi"
                 app:ms_hint_color="@color/color_default_black"
                 app:ms_padding_left="5dp" />
@@ -110,9 +110,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Luas Tanah"
+                android:hint="@string/luas_tanah"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
+                app:boxBackgroundColor="@color/white"
                 app:boxStrokeColor="@color/color_default_blue"
                 app:hintTextColor="@color/color_default_black"
                 app:startIconDrawable="@drawable/ic_rut_desc">
@@ -124,7 +125,7 @@
                     android:inputType="numberDecimal"
                     android:padding="5dp"
                     android:textColor="@color/color_default_black"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,9 +135,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Banyaknya"
+                android:hint="@string/banyaknya"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
+                app:boxBackgroundColor="@color/white"
                 app:boxStrokeColor="@color/color_default_blue"
                 app:hintTextColor="@color/color_default_black"
                 app:startIconDrawable="@drawable/ic_rut_desc">
@@ -148,7 +150,7 @@
                     android:inputType="numberDecimal"
                     android:padding="5dp"
                     android:textColor="@color/color_default_black"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

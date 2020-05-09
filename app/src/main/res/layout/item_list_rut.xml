@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingTop="2dp"
+    android:paddingRight="8dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true">
@@ -31,7 +32,6 @@
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0"
                     android:gravity="center">
 
                     <TextView
@@ -40,7 +40,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|top"
                         android:text="01"
-                        android:textSize="20dp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -48,7 +48,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -70,7 +69,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="KOMODITI"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -79,7 +78,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Lada"
                                 android:textColor="@color/color_default_blue"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -96,7 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="20 Januari 2020"
                                 android:textColor="@color/color_default_blue"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:id="@+id/indicator"
@@ -115,7 +114,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/dotted"
+                        android:background="@drawable/doted_line"
                         android:layerType="software" />
 
                     <LinearLayout
@@ -136,7 +135,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Kebutuhan Saprotan"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -144,8 +143,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1000"
-                                android:textColor="@color/color_default_green"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -161,7 +159,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Estimasi Pendapatan"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -169,8 +167,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1000"
-                                android:textColor="@color/color_default_green"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -194,7 +191,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Budidaya Tani"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -202,8 +199,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1000"
-                                android:textColor="@color/color_default_green"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -219,7 +215,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Keuntungan"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -227,8 +223,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1000"
-                                android:textColor="@color/color_default_green"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -240,25 +235,29 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="0"
-                android:background="#F9F6F6"
-                android:gravity="center"
+                android:background="@drawable/card_list_rut"
+                android:gravity="center|bottom"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
                 <LinearLayout
-                    android:layout_width="100dp"
+                    android:layout_width="135dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:gravity="center|left"
+                    android:gravity="center|left|bottom"
                     android:paddingLeft="10dp">
 
                     <Button
                         android:id="@+id/mBtnSetuju"
-                        android:layout_width="wrap_content"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:layout_width="120dp"
                         android:layout_height="40dp"
-                        android:text="SETUJU" />
+                        android:text="@string/setuju"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/color_default_blue"
+                        app:icon="@drawable/ic_playlist_add_check_black_24dp"
+                        app:iconSize="20dp" />
 
                 </LinearLayout>
 
@@ -272,32 +271,42 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center|bottom"
                         android:orientation="horizontal"
                         android:paddingRight="5dp">
 
                         <Button
                             android:id="@+id/mBtnEdit"
-                            android:layout_width="wrap_content"
+                            style="@style/Widget.MaterialComponents.Button.Icon"
+                            android:layout_width="90dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="@color/color_default_green"
-                            android:text="UBAH" />
+                            android:text="@string/Ubah"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/color_default_green"
+                            app:icon="@drawable/ic_edit_black_24dp"
+                            app:iconGravity="end"
+                            app:iconSize="17dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center|bottom"
                         android:orientation="horizontal"
                         android:paddingRight="10dp">
 
                         <Button
                             android:id="@+id/mBtnKebutuhan"
-                            android:layout_width="wrap_content"
+                            style="@style/Widget.MaterialComponents.Button.Icon"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="@color/color_default_green"
-                            android:text="RINCIAN" />
+                            android:text="@string/rincian"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/color_default_green"
+                            app:icon="@drawable/ic_assignment_black_24dp"
+                            app:iconGravity="end"
+                            app:iconSize="17dp" />
 
                     </LinearLayout>
 

@@ -12,6 +12,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="section_format">Page %1$d</string>
     <string name="title_home">Home</string>
+    <string name="date">00 Januari 0000</string>
     <string name="title_dashboard">Profile</string>
     <string name="loading">Memuat Permintaan...</string>
     <string name="title_exit">Exit</string>
@@ -229,6 +230,26 @@
     <string name="lorem_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 
     <string name="menu_komoditi">komoditas Tersedia</string>
+
+    <string name="total_aset">TOTAL ASET</string>
+    <string name="sub_sektor">SUB SEKTOR</string>
+    <string name="count">01</string>
+    <string name="atur_rut">ATUR RUT</string>
+    <string name="tambah_aset">TAMBAH ASET</string>
+    <string name="tambah_komoditas">Tambah Data Komoditas</string>
+    <string name="luas_tanah">Luas Tanah</string>
+    <string name="banyaknya">Banyaknya</string>
+    <string name="masa_tanam">Masa Tanam</string>
+    <string name="selesai">selesai</string>
+    <string name="masa_tanam_01">Masa Tanam 01</string>
+    <string name="luas_lahan">Luas Lahan</string>
+    <string name="jumlah">Jumlah</string>
+    <string name="tambah_masatanam">Tambah Masa Tanam</string>
+    <string name="info_1">Luas Lahan / Banyak komoditas</string>
+    <string name="setuju">Setuju</string>
+    <string name="Ubah">Ubah</string>
+    <string name="rincian">Rincian</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->

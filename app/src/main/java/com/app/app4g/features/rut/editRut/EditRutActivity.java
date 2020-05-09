@@ -40,7 +40,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fr.ganfra.materialspinner.MaterialSpinner;
 import im.delight.android.webview.AdvancedWebView;
 
 public class EditRutActivity extends AppCompatActivity implements AdvancedWebView.Listener , IEditRutView {

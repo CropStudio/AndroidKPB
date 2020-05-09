@@ -3,52 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="15dp"
-    android:paddingEnd="15dp"
-    android:paddingTop="15dp"
+    android:layout_marginTop="15dp"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="1"
-        android:background="@drawable/page_details_data"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:weightSum="2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
                 android:id="@+id/mMt"
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:gravity="center|start"
-                android:inputType="text"
-                android:text="Masa Tanam 1"
+                android:text="@string/masa_tanam_01"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/deleteAnak"
-                android:layout_width="50dp"
-                android:layout_weight="0"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:background="@android:color/transparent"
-                android:onClick="onDeleteAset"
-                app:srcCompat="@drawable/ic_close_red"
-                android:text="Hapus"
-                android:textColor="@color/white" />
 
         </LinearLayout>
 
@@ -57,41 +39,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:inputType="text"
-            android:visibility="gone"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/doted_line"
-            android:layerType="software" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/mTotalAset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColorHint="@color/statusbarColor">
+            android:hint="@string/info_1"
+            android:textColor="@color/color_default_black_dark"
+            android:textSize="13sp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mTotalAset"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:backgroundTint="@color/fadeWhite2"
-                android:hint="Luas Lahan / Banyak komoditas"
-                android:inputType="text"
-                android:nextFocusDown="@id/mNik"
-                android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:id="@+id/mTotalKomoditas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/info_1"
+            android:textColor="@color/color_default_black_dark"
+            android:textSize="13sp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/deleteAnak"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:onClick="onDeleteAset"
+            android:text="Hapus"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_delete_black_24dp"
+            app:iconGravity="end"
+            app:iconSize="17dp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#EFEDED" />
 
 </LinearLayout>

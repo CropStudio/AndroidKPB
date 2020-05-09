@@ -6,13 +6,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
+        android:layout_height="130dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
         app:contentPadding="7dp"
-        app:cardUseCompatPadding="true"
-        android:layout_marginBottom="10dp">
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,16 +30,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="01"
-                    android:textSize="40dp"
+                    android:text="@string/count"
+                    android:textSize="35sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="80dp"
-                android:background="#BEBEBE" />
+                android:layout_height="match_parent"
+                android:background="#EAE7E7" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,17 +57,16 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SUB SEKTOR"
-                        android:textSize="16dp"
+                        android:text="@string/sub_sektor"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/mSubsektor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Perkebunan"
                         android:textColor="@color/color_default_blue"
-                        android:textSize="12dp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -81,8 +78,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Total Aset"
-                        android:textSize="16dp"
+                        android:text="@string/total_aset"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -91,9 +88,8 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="0.5 hektar"
                         android:textColor="@color/color_default_blue"
-                        android:textSize="12dp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -110,23 +106,23 @@
                     android:id="@+id/dateUpdateKomoditi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="20 Januari 2020"
+                    android:gravity="end"
+                    android:text="@string/date"
                     android:textColor="@color/color_default_blue"
-                    android:textSize="12dp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="bottom|right">
+                    android:gravity="bottom|end">
 
                     <Button
                         android:id="@+id/buttonSet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/color_default_blue"
-                        android:text="ATUR RUT"
-                        android:textSize="12dp" />
+                        android:text="@string/atur_rut"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 

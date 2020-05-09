@@ -7,32 +7,33 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:weightSum="3"
     tools:context=".features.rut.createmt.CreateMt">
 
     <include layout="@layout/toolbar_default_in" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:gravity="center|top"
         android:orientation="vertical">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/grey_3">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center|top"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:gravity="center|left"
+                    android:background="@color/white"
+                    android:gravity="center|end"
                     android:orientation="horizontal"
                     android:padding="5dp">
 
@@ -56,7 +57,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Masa Tanam"
+                            android:text="@string/masa_tanam"
                             android:textColor="@color/color_default_black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -75,7 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/color_default_green"
-                            android:text="selesai" />
+                            android:text="@string/selesai" />
 
                     </LinearLayout>
 
@@ -95,7 +96,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical"
                     android:visibility="visible">
 
@@ -104,33 +105,24 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="5dp"
-                        app:cardUseCompatPadding="true">
+                        app:cardUseCompatPadding="true"
+                        app:contentPadding="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:weightSum="2">
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
 
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_weight="1"
-                                android:padding="5dp"
-                                android:weightSum="2">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center|left"
-                                    android:paddingLeft="10dp"
-                                    android:text="Masa Tanam 01"
-                                    android:textColor="@color/color_default_black"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center|start"
+                                android:text="@string/masa_tanam"
+                                android:textColor="@color/color_default_black"
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -138,46 +130,33 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                <Spinner
+                                    android:id="@+id/mMt"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="15dp">
-
-                                    <Spinner
-                                        android:id="@+id/mMt"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/shape_spinner"
-                                        android:paddingLeft="40dp"
-                                        android:textColor="@color/color_default_black"
-                                        android:textSize="15dp"
-                                        app:ms_hint="Provinsi"
-                                        app:ms_hint_color="@color/color_default_black"
-                                        app:ms_padding_left="5dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_marginTop="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_height="48dp"
                                     android:background="@drawable/shape_spinner"
-                                    android:layout_marginRight="15dp">
+                                    android:paddingLeft="40dp"
+                                    android:textColor="@color/color_default_black"
+                                    android:textSize="15sp"
+                                    app:ms_hint="Provinsi"
+                                    app:ms_hint_color="@color/color_default_black"
+                                    app:ms_padding_left="5dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/shape_spinner"
+                                    android:paddingLeft="40dp"
+                                    android:paddingRight="25dp">
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mKomoditas"
-                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                         android:layout_width="match_parent"
-                                        android:layout_height="45dp"
-                                        android:layout_weight="1"
-                                        android:text="Pilih Komoditas"
+                                        android:layout_height="match_parent"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15dp"
+                                        android:textSize="15sp"
+                                        app:ms_hide_arrow="true"
                                         app:ms_hint="Pilih Komoditas"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_left="50dp" />
@@ -185,16 +164,13 @@
                                 </LinearLayout>
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:visibility="gone"
                                     android:id="@+id/LayoutBanyakKomoditas"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
                                     android:layout_weight="1"
-                                    android:hint="Jumlah"
-                                    android:paddingLeft="15dp"
-                                    android:paddingRight="15dp"
+                                    android:hint="@string/jumlah"
+                                    android:visibility="gone"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_rut_desc">
@@ -204,23 +180,19 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:inputType="text"
-                                        android:padding="5dp"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15dp" />
+                                        android:textSize="15sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:visibility="gone"
                                     android:id="@+id/LayoutLuasTanah"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
                                     android:layout_weight="1"
-                                    android:hint="Luas Lahan"
-                                    android:paddingLeft="15dp"
-                                    android:paddingRight="15dp"
+                                    android:hint="@string/luas_lahan"
+                                    android:visibility="gone"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_rut_desc">
@@ -230,9 +202,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:inputType="text"
-                                        android:padding="5dp"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15dp" />
+                                        android:textSize="15sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -244,23 +215,59 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/addMt"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:onClick="onAddMt"
-                    android:padding="15dp"
-                    android:text="Tambah Masa Tanam"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/color_default_green" />
+                    android:gravity="end"
+                    android:paddingRight="18dp">
+
+                    <Button
+                        android:id="@+id/addMt"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onAddMt"
+                        android:text="@string/tambah_masatanam"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="12sp"
+                        app:boxStrokeColor="@color/color_default_green"
+                        app:icon="@drawable/ic_add_black_24dp"
+                        app:iconGravity="end"
+                        app:iconSize="17dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/containerMt"
+                    android:id="@+id/detailInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Data Masa Tanam"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/doted_line"
+                        android:layerType="software" />
+
+                    <LinearLayout
+                        android:id="@+id/containerMt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -273,7 +280,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_weight="0"
         android:gravity="center">
 
         <TextView
