@@ -179,7 +179,7 @@
                                         android:id="@+id/mJmlhKomoditas"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:inputType="text"
+                                        android:inputType="numberDecimal"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp" />
 
@@ -201,7 +201,7 @@
                                         android:id="@+id/mLuasLahan"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:inputType="text"
+                                        android:inputType="numberDecimal"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp" />
 

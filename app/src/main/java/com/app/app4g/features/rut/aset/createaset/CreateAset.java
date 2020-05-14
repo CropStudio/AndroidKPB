@@ -143,7 +143,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
 
     @Override
     public void onSubmit() {
-        String totalAset = null;
+        String totalAset = "";
         String idSub = idSubsektor;
         String namaAset = subsektors;
 
@@ -153,7 +153,8 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         } else
             totalAset = mJmlhKomoditas.getText().toString();
 
-        if (totalAset != null) {
+        if (!totalAset.equals("")) {
+            System.out.println(totalAset);
             for (AsetPetani asets : asetsPetani) {
                 try {
                     newAset.put(
@@ -180,7 +181,6 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            System.out.println(newAset);
             JSONObject dataRoot = new JSONObject();
             JSONObject asetPetani = new JSONObject();
             try {
@@ -191,7 +191,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
             }
             presenter.createAset(nik, token, dataRoot.toString());
         }else{
-            TopSnakbar.showWarning(this, "anda belum mengisi luas lahan");
+            TopSnakbar.showWarning(this, "Anda belum mengisi luas lahan / banyaknya komoditas");
         }
     }
 
@@ -211,7 +211,6 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         komoditas = new LinkedHashMap<String, String>();
         if (key.equals(key_subsektors)) {
             for (Result subsektors : result) {
-                System.out.println(subsektors.getName());
                 subsektor.put(subsektors.getId(), subsektors.getName());
             }
 

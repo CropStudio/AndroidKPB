@@ -107,7 +107,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:text="@string/date"
                     android:textColor="@color/color_default_blue"
                     android:textSize="14sp" />
 

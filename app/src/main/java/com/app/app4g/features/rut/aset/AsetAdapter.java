@@ -62,6 +62,7 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
             satuan = "ekor";
 
         holder.mKomoditas.setText(aset.getTotalAset() + " " + satuan);
+        holder.countKomoditi.setText(String.valueOf(position+1));
         holder.buttonSet.setOnClickListener(view -> listener.onSelect(aset));
 
 
@@ -76,13 +77,14 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mSubsektor, mKomoditas, mTotalAset;
+        TextView mSubsektor, mKomoditas, countKomoditi;
         Button buttonSet;
 
         ViewHolder(View view) {
             super(view);
             mSubsektor = view.findViewById(R.id.mSubsektor);
             mKomoditas = view.findViewById(R.id.mKomoditas);
+            countKomoditi = view.findViewById(R.id.countKomoditi);
             buttonSet = view.findViewById(R.id.buttonSet);
         }
     }

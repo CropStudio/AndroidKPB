@@ -108,11 +108,11 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         presenter.getKomoditas(idSubsektor);
         if (subsektor.equals("Tanaman Pangan") || subsektor.equals("Perkebunan")
                 || subsektor.equals("Hortikultura")) {
-            LayoutLuasTanah.setVisibility(View.VISIBLE);
             LayoutBanyakKomoditas.setVisibility(View.GONE);
+            LayoutLuasTanah.setVisibility(View.VISIBLE);
         } else {
-            LayoutBanyakKomoditas.setVisibility(View.VISIBLE);
             LayoutLuasTanah.setVisibility(View.GONE);
+            LayoutBanyakKomoditas.setVisibility(View.VISIBLE);
         }
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
@@ -180,7 +180,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-
+            this.gotoAsset();
         }
 
         return false;
@@ -310,7 +310,11 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mSubmit:
-                SweetDialogs.confirmDialog(this,"Apakah anda yakin ?" , "pastikan data masa tanam sudah benar !" , "Berhasil memuat permintaan" , string -> this.CreateMt());
+                System.out.println(dataMt);
+                if(dataMt.length() > 0)
+                    SweetDialogs.confirmDialog(this,"Apakah anda yakin ?" , "pastikan data masa tanam sudah benar !" , "Berhasil memuat permintaan" , string -> this.CreateMt());
+                else
+                    SweetDialogs.commonError(this,"Pastikan anda sudah menekan tombol tambah masa tanam ",false);
                 break;
         }
     }

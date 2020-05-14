@@ -105,12 +105,13 @@
                 app:ms_padding_left="5dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/LayoutLuasTanah"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/luas_tanah"
+                android:hint="Luas Tanah "
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 app:boxBackgroundColor="@color/white"
@@ -130,6 +131,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/LayoutBanyakKomoditas"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
