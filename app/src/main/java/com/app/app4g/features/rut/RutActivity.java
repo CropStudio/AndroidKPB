@@ -61,8 +61,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     //    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
     String TEST_PAGE_URL = "http://kpb.lampungprov.go.id/#/rut/";
     private AdvancedWebView mWebView;
-    //    @BindView(R.id.toolbar)
-//    Toolbar mToolbar;
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.list_viewpager)
@@ -87,7 +87,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LoginResponse mProfile;
     public RutAdapter adapter;
     RutPresenter presenter;
-    String idKec, nik, token, idDesa, nomorrekening, idAset  , idKab;
+    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab;
     Number idKios, tahun, idPoktan;
     SweetAlertDialog sweetAlertDialog;
     boolean LayoutStat = false;
@@ -104,7 +104,12 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         setContentView(R.layout.activity_rut);
         ButterKnife.bind(this);
         presenter = new RutPresenter(this);
-        this.initView();
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Rencana Usaha Tani");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
@@ -122,7 +127,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         idKab = (mProfile.getResult().getProfile().getArea().getCity_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
         dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
-        System.out.println(new Gson().toJson(dataMt));
         idAset = getIntent().getExtras().getString("_id");
         if (dataMt != null) {
             for (DataMt datas : dataMt) {
@@ -150,7 +154,9 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 e.printStackTrace();
             }
         }
+        this.initView();
         presenter.getRut(nik, token, data.toString());
+
 
     }
 
@@ -279,29 +285,34 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onSetuju(Rut rut) {
+    public void onSetuju(Result rut) {
 
-//        String noRek = App.getPref().getString(Prefs.PREF_NO_REKENING, "");
-//        String Bank = App.getPref().getString(Prefs.PREF_BANK, "");
-//        JSONObject dataRoot = new JSONObject();
-//        if (nomorrekening.equals("")) {
-//            startActivity(new Intent(this, Rekening.class));
-//            finish();
-//        } else {
+    if(nomorrekening.equals("")){
+        Toast.makeText(this, "kosong", Toast.LENGTH_SHORT).show();
+    }
+        if (nomorrekening.equals("")) {
+            Intent i = new Intent(this, Rekening.class);
+            i.putExtra("data", (Serializable) dataMt);
+            i.putExtra("_id", idAset);
+            startActivity(i);
+            finish();
+        } else {
 //            rut.setNomorRekening(noRek);
 //            rut.setBank(Bank);
 //            rut.setTahun(tahun);
 //            rut.setIdPoktan(idPoktan);
 //            rut.setIdKios(idKios);
 //            rut.setNik(nik);
-////            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-////            presenter.createRut(nik, token, new Gson().toJson(rut));
+
+//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+//            presenter.createRut(nik, token, new Gson().toJson(rut));
 //           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //                    this.onCreateSuccess("Success");
 //                }
 //            });
-//        }
+            System.out.println(new Gson().toJson(rut));
+        }
     }
 
     @Override
@@ -343,7 +354,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void HideDetailKebutuhan() {
-        LayoutStat = false ;
+        LayoutStat = false;
         list_layout.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }

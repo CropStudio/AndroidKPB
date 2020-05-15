@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.app4g.R;
+import com.app.app4g.features.petani.profile.ProfileFragment;
 import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.app.app4g.features.users.login.Login;
 import com.app.app4g.server.App;
@@ -26,12 +27,9 @@ public class DrawerMenuItem {
 
     public static final int DRAWER_MENU_ITEM_PROFILE = 1;
     public static final int DRAWER_MENU_ITEM_KOLABORATOR = 2;
-    public static final int DRAWER_MENU_ITEM_CONTACTUS = 3;
-    public static final int DRAWER_MENU_ITEM_MESSAGE = 4;
-    public static final int DRAWER_MENU_ITEM_NOTIFICATIONS = 5;
-    public static final int DRAWER_MENU_ITEM_SETTINGS = 6;
-    public static final int DRAWER_MENU_ITEM_TERMS = 7;
-    public static final int DRAWER_MENU_ITEM_LOGOUT = 8;
+    public static final int DRAWER_MENU_ITEM_ABOUT = 3;
+    public static final int DRAWER_MENU_ITEM_TERMCONDITION = 4;
+    public static final int DRAWER_MENU_ITEM_LOGOUT = 5;
 
     private int mMenuPosition;
     private Context mContext;
@@ -53,23 +51,27 @@ public class DrawerMenuItem {
 
     private void onResolved() {
         switch (mMenuPosition){
-//            case DRAWER_MENU_ITEM_PROFILE:
-//                itemNameTxt.setText("Profil");
-////                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
-//                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_account_circle_black_24dp));
-//                break;
+            case DRAWER_MENU_ITEM_PROFILE:
+                itemNameTxt.setText("Profil");
+//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_userz));
+                break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
                 itemNameTxt.setText("Kolaborator");
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_group_work_black_24dp));
-                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_group_work_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_kolaborator));
                 break;
-//            case DRAWER_MENU_ITEM_CONTACTUS:
-//                itemNameTxt.setText("Contact us");
-//                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_contact_phone_black_24dp));
-//                break;
+            case DRAWER_MENU_ITEM_ABOUT:
+                itemNameTxt.setText("Tentang Kami");
+                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_about));
+                break;
+            case DRAWER_MENU_ITEM_TERMCONDITION:
+                itemNameTxt.setText("Syarat dan Ketentuan");
+                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_term));
+                break;
             case DRAWER_MENU_ITEM_LOGOUT:
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
-                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_exit_to_app_black_24dp));
+                itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_keluar));
                 itemNameTxt.setText("Keluar");
                 break;
         }
@@ -79,16 +81,20 @@ public class DrawerMenuItem {
     private void onMenuItemClick(){
 
         switch (mMenuPosition){
-//            case DRAWER_MENU_ITEM_PROFILE:
-//
-//                goToProfile();
-//                if(mCallBack != null)mCallBack.onProfileMenuSelected();
-//                break;
+            case DRAWER_MENU_ITEM_PROFILE:
+                goToProfile();
+                if(mCallBack != null)mCallBack.onProfileMenuSelected();
+                break;
             case DRAWER_MENU_ITEM_KOLABORATOR:
                 Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();
                 break;
-            case DRAWER_MENU_ITEM_CONTACTUS:
+            case DRAWER_MENU_ITEM_ABOUT:
+                //goToKontak();
+                Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
+                if(mCallBack != null)mCallBack.onRequestMenuSelected();
+                break;
+            case DRAWER_MENU_ITEM_TERMCONDITION:
                 //goToKontak();
                 Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();
@@ -126,7 +132,7 @@ public class DrawerMenuItem {
     }
 
     public void goToProfile(){
-        mContext.startActivity(new Intent(mContext, DetailProfile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        mContext.startActivity(new Intent(mContext, ProfileFragment.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         ((Activity)mContext).finish();
     }
     public void goToKontak(){

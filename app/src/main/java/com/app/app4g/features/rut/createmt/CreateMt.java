@@ -1,12 +1,14 @@
 package com.app.app4g.features.rut.createmt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -75,6 +77,9 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     @BindView(R.id.detailInput)
     LinearLayout detailInput;
 
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
+
     private List<AsetPetani> asetPetani;
     View rowView;
     LoginResponse mProfile;
@@ -90,6 +95,11 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_mt);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Tambah Masa Tanam");
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         presenter = new CreateMtPresenter(this);
         subsektor = getIntent().getExtras().getString("subsektor");
         _id = getIntent().getExtras().getString("_id");
@@ -203,7 +213,9 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                     detailInput.setVisibility(View.VISIBLE);
                     final TextView mMt = rowView.findViewById(R.id.mMt);
                     final TextView mTotalAset = rowView.findViewById(R.id.mTotalAset);
+                    final TextView mKomoditass = rowView.findViewById(R.id.mKomoditas);
                     mMt.setText(valueMt);
+                    mKomoditass.setText(mKomoditas.getText().toString());
                     if (subsektor.equals("Tanaman Pangan") || subsektor.equals("Perkebunan")
                             || subsektor.equals("Hortikultura"))
                         mTotalAset.setText(mLuasLahan.getText().toString());
@@ -317,6 +329,24 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                     SweetDialogs.commonError(this,"Pastikan anda sudah menekan tombol tambah masa tanam ",false);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // ...
+        this.gotoAsset();
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.gotoAsset();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 

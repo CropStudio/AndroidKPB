@@ -1,6 +1,7 @@
 package com.app.app4g.features.rut.aset;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,8 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
     RecyclerView mRecyclerView;
     @BindView(R.id.btnAddAset)
     Button btnAddAset;
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
     private List<AsetPetani> asetPetani;
     AsetAdapter adapter;
 
@@ -51,6 +54,12 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aset);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Subsektor");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         this.initViews();
     }
 

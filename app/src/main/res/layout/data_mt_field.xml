@@ -46,6 +46,14 @@
             android:visibility="gone" />
 
         <TextView
+            android:id="@+id/mKomoditas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/info_1"
+            android:textColor="@color/color_default_black_dark"
+            android:textSize="13sp" />
+
+        <TextView
             android:id="@+id/mTotalAset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

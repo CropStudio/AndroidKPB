@@ -24,7 +24,7 @@ public class RekeningPresenter {
         restService = RestService.getRetrofitInstance();
     }
 
-    void storeNoRek(LoginResponse profile) {
+    void storeProfile(LoginResponse profile) {
         App.getPref().put(Prefs.PREF_STORE_PROFILE, new Gson().toJson(profile));
     }
 

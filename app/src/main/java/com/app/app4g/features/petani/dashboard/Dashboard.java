@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.cardview.widget.CardView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,10 +42,13 @@ import com.app.app4g.session.Prefs;
 import com.app.app4g.features.webview.InfoBeasiswa;
 import com.app.app4g.features.webview.InfoKur;
 import com.app.app4g.features.webview.PortalInformasi;
+import com.app.app4g.ui.DrawerHeader;
+import com.app.app4g.ui.DrawerMenuItem;
 import com.app.app4g.ui.SweetDialogs;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
+import com.mindorks.placeholderview.PlaceHolderView;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
@@ -58,10 +62,10 @@ import butterknife.OnClick;
 
 public class Dashboard extends Fragment implements IDashboardView {
 
-//    @BindView(R.id.drawerView)
-//    PlaceHolderView mDrawerView;
-//    @BindView(R.id.mainMenuDashboard)
-//    ImageButton mainMenuDashboard;
+    @BindView(R.id.drawerView)
+    PlaceHolderView mDrawerView;
+    @BindView(R.id.mainMenu)
+    ImageButton mainMenuDashboard;
     @BindView(R.id.mCardInfoRek)
     CardView mCardInfoRek;
     @BindView(R.id.cardPasarTani)
@@ -98,15 +102,15 @@ public class Dashboard extends Fragment implements IDashboardView {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
         presenter = new DashboardPresenter(this);
-//        this.setupDrawer();
+        this.setupDrawer();
         this.initViews();
 
         indicatorDot = view.findViewById(R.id.bannerDot);
         viewPager = view.findViewById(R.id.viewPager);
         drawer = view.findViewById(R.id.dashboard);
         toolbarMain = view.findViewById(R.id.toolbar);
-        menu = view.findViewById(R.id.mainMenu);
-        navigation = view.findViewById(R.id.navigation);
+//        menu = view.findViewById(R.id.mainMenu);
+//        navigation = view.findViewById(R.id.navigation);
         banners = view.findViewById(R.id.banner);
 
         models = new ArrayList<>();
@@ -161,30 +165,30 @@ public class Dashboard extends Fragment implements IDashboardView {
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarMain);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(navigation);
-            }
-        });
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.profile){
-
-                }else if (id == R.id.kolaborator){
-
-                }else if (id == R.id.about){
-
-                }else if (id == R.id.term){
-
-                }else if (id == R.id.exit){
-                    poupExit();
-                }
-                return true;
-            }
-        });
+//        menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                drawer.openDrawer(navigation);
+//            }
+//        });
+//        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int id = item.getItemId();
+//                if (id == R.id.profile){
+//
+//                }else if (id == R.id.kolaborator){
+//
+//                }else if (id == R.id.about){
+//
+//                }else if (id == R.id.term){
+//
+//                }else if (id == R.id.exit){
+//                    poupExit();
+//                }
+//                return true;
+//            }
+//        });
 
 //        carouselView = view.findViewById(R.id.carousel);
 //        carouselView.setPageCount(mImages.length);
@@ -381,18 +385,29 @@ public class Dashboard extends Fragment implements IDashboardView {
         getActivity().finish();
     }
 
-//    private void setupDrawer() {
-//        mDrawerView
-//                .addView(new DrawerHeader(getActivity()))
-//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_KOLABORATOR))
-//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_LOGOUT));
-//
-//        mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
+    private void setupDrawer() {
+        mDrawerView
+                .addView(new DrawerHeader(getActivity()))
+                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_PROFILE))
+                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_KOLABORATOR))
+                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_ABOUT))
+                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_TERMCONDITION))
+                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_LOGOUT));
+
+//        menu.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("WrongConstant")
 //            @Override
 //            public void onClick(View v) {
-//                if (!mDrawer.isDrawerOpen(Gravity.END)) mDrawer.openDrawer(Gravity.END);
-//                else mDrawer.closeDrawer(Gravity.START);
+//                if (!drawer.isDrawerOpen(Gravity.END)) drawer.openDrawer(Gravity.END);
+//                else drawer.closeDrawer(Gravity.START);
 //            }
 //        });
-//    }
+        mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!drawer.isDrawerOpen(Gravity.END)) drawer.openDrawer(Gravity.END);
+                else drawer.closeDrawer(Gravity.START);
+            }
+        });
+    }
 }

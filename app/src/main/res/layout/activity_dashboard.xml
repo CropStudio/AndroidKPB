@@ -732,17 +732,33 @@
 
     </LinearLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
+    <!--    <com.google.android.material.navigation.NavigationView-->
+    <!--        android:id="@+id/navigation"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_gravity="end"-->
+    <!--        android:background="@color/white_transparant"-->
+    <!--        app:headerLayout="@layout/header"-->
+    <!--        app:itemIconTint="@color/color_default_black"-->
+    <!--        app:itemTextColor="@color/color_default_blue"-->
+    <!--        app:menu="@menu/dashboard">-->
+
+    <!--    </com.google.android.material.navigation.NavigationView>-->
+
+    <FrameLayout
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@color/white_transparant"
-        app:headerLayout="@layout/header"
+        android:background="@android:color/white"
         app:itemIconTint="@color/color_default_black"
-        app:itemTextColor="@color/color_default_blue"
-        app:menu="@menu/dashboard">
+        app:itemTextColor="@color/color_default_blue">
 
-    </com.google.android.material.navigation.NavigationView>
+        <com.mindorks.placeholderview.PlaceHolderView
+            android:id="@+id/drawerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+    </FrameLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -13,15 +13,20 @@ import android.widget.RadioGroup;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
+import com.app.app4g.features.petani.profile.model.DataMt;
 import com.app.app4g.features.rut.RutActivity;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
 import com.app.app4g.ui.SweetDialogs;
+import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,13 +41,18 @@ public class Rekening extends AppCompatActivity implements IRekeningView{
     RekeningPresenter presenter ;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
-    private String nik, nama, alamat, token,Bank;
+    private String nik, nama, alamat, token,Bank , idAset;
+    List<DataMt> dataMt ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rekening);
         ButterKnife.bind(this);
         presenter = new RekeningPresenter(this);
+        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+        idAset = getIntent().getExtras().getString("_id");
+        System.out.println(new Gson().toJson(dataMt));
+        System.out.println(idAset);
         this.initViews();
 
     }
@@ -85,7 +95,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView{
 
     @Override
     public void onCreateRekeningSuksess(LoginResponse profile, String noRek){
-        presenter.storeNoRek(profile);
+        presenter.storeProfile(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan" , string -> {
             this.goToRut();
         });
@@ -110,7 +120,10 @@ public class Rekening extends AppCompatActivity implements IRekeningView{
 
     @Override
     public void goToRut(){
-        startActivity(new Intent(this, RutActivity.class));
+        Intent i = new Intent(this, RutActivity.class);
+        i.putExtra("data", (Serializable) dataMt);
+        i.putExtra("_id", idAset);
+        startActivity(i);
         finish();
     }
 

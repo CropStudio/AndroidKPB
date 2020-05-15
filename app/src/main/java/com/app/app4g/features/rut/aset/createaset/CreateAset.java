@@ -81,6 +81,9 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
     @BindView(R.id.mSubmit)
     Button mSubmit;
 
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
+
     LoginResponse mProfile;
     JSONArray DataAset = new JSONArray();
     JSONArray newAset = new JSONArray();
@@ -99,6 +102,11 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_aset);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Tambah Subsektor");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new CreateAsetPresenter(this);
         this.initViews();
     }

@@ -34,7 +34,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
     public interface onRutSelected {
         void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> jadwalUsahaTanis );
 //        void onCheckBox(int position);
-        void onSetuju(Rut rut);
+        void onSetuju(Result rut);
         void onEditRut(Result rut);
     }
 
@@ -93,7 +93,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 //            holder.mBtnSetuju.setBackgroundColor(context.getResources().getColor(R.color.grey));
 
 //        }
-
+        holder.mBtnSetuju.setOnClickListener(view->rutListener.onSetuju(rut));
         holder.mBtnEdit.setOnClickListener(view->rutListener.onEditRut(rut));
     }
 
