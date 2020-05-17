@@ -120,6 +120,7 @@ public class Dashboard extends Fragment implements IDashboardView {
         models.add(new ModelSliderBanner(R.drawable.banner_c));
         models.add(new ModelSliderBanner(R.drawable.banner_d));
         models.add(new ModelSliderBanner(R.drawable.banner_e));
+        models.add(new ModelSliderBanner(R.drawable.banner_f));
 
         adapter = new AdapterSliderBanner(models, getActivity());
         dotsCount = adapter.getCount();

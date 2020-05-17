@@ -10,7 +10,6 @@
     android:weightSum="3"
     tools:context=".features.petani.profile.Profile">
 
-
     <include layout="@layout/toolbar_default_in" />
 
     <LinearLayout
