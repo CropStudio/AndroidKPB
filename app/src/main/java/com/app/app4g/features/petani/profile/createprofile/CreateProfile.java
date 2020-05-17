@@ -259,7 +259,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         if (v == mAddAnak) {
             if (!mNamaAnak.getText().toString().equals("") && !mTglLahirAnak.getText().toString().equals("") &&
                     !mTmptLahirAnak.getText().toString().equals("") && !mPendTerakhirAnak.getText().toString().equals("Pendidikan Sekarang") && !SpinnerAnak.getText().toString().equals("Anak Ke") ) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(this.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_anak_field, null);
                 final TextView mAnakKe = rowView.findViewById(R.id.mAnakKe);
                 final TextView mNamaAnaks = rowView.findViewById(R.id.mNamaAnaks);
@@ -299,7 +299,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         if (v == mAddTanggungan) {
             if (!mNamaLengkapTanggungan.getText().toString().equals("") && !mTglLahirTanggungan.getText().toString().equals("") &&
                     !mTmptLahirTanggungan.getText().toString().equals("") && !mHubKeluarga.getText().toString().equals("Hubungan Keluarga")) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(this.LAYOUT_INFLATER_SERVICE);
                 final View rowView = inflater.inflate(R.layout.data_tanggungan_field, null);
                 final TextView mNama = rowView.findViewById(R.id.mNama);
                 final TextView mTglLahir = rowView.findViewById(R.id.mTglLahir);
@@ -334,25 +334,27 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteAnak(View v) {
-        TextView namaAnak = ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
+//        TextView name = ((TextView) v.getParent()).findViewById(R.id.mNamaAnaks);
+//        System.out.println(name.getText().toString().trim());
+
+//        for (int i = 0; i < dataAnaks.length(); i++) {
+//            try {
+//                if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
+//                    dataAnaks.remove(i);
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
         parent_anak.removeView((View) v.getParent());
-        for (int i = 0; i < dataAnaks.length(); i++) {
-            try {
-                if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
-                    dataAnaks.remove(i);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteTunggangan(View v) {
         TextView name = ((View) v.getParent()).findViewById(R.id.mNama);
-        parent_Tanggungan.removeView((View) v.getParent());
+
         for (int i = 0; i < dataTanggungans.length(); i++) {
             try {
                 if (name.getText().toString().equals(dataTanggungans.getJSONObject(i).getString("namaLengkap"))) {
@@ -362,6 +364,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 e.printStackTrace();
             }
         }
+        parent_Tanggungan.removeView((View) v.getParent());
     }
 
 

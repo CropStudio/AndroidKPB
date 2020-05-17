@@ -160,6 +160,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
             }
         }
         this.initView();
+        System.out.println(data.toString());
         presenter.getRut(nik, token, data.toString());
 
 
@@ -218,6 +219,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //        idPenyuluh = result.getIdPenuyuluh();
 //        int index = 0;
         this.items = result;
+        System.out.println(new Gson().toJson(result.get(0).getSubTotalKebutuhanSaprotan()));
 //        for (int i = 0; i < items.size(); i++) {
 //            if (items.get(i).getJenisTanaman().contains("")) {
 //                index = i;
@@ -292,32 +294,33 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onSetuju(Result rut) {
 
-    if(nomorrekening.equals("")){
-        Toast.makeText(this, "kosong", Toast.LENGTH_SHORT).show();
-    }
-        if (nomorrekening.equals("")) {
-            Intent i = new Intent(this, Rekening.class);
-            i.putExtra("data", (Serializable) dataMt);
-            i.putExtra("_id", idAset);
-            startActivity(i);
-            finish();
-        } else {
-//            rut.setNomorRekening(noRek);
-//            rut.setBank(Bank);
-//            rut.setTahun(tahun);
-//            rut.setIdPoktan(idPoktan);
-//            rut.setIdKios(idKios);
-//            rut.setNik(nik);
-
-//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-//            presenter.createRut(nik, token, new Gson().toJson(rut));
-//           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    this.onCreateSuccess("Success");
-//                }
-//            });
-            System.out.println(new Gson().toJson(rut));
-        }
+//    if(nomorrekening.equals("")){
+//        Toast.makeText(this, "kosong", Toast.LENGTH_SHORT).show();
+//    }
+//        if (nomorrekening.equals("")) {
+//            Intent i = new Intent(this, Rekening.class);
+//            i.putExtra("data", (Serializable) dataMt);
+//            i.putExtra("_id", idAset);
+//            startActivity(i);
+//            finish();
+//        } else {
+////            rut.setNomorRekening(noRek);
+////            rut.setBank(Bank);
+////            rut.setTahun(tahun);
+////            rut.setIdPoktan(idPoktan);
+////            rut.setIdKios(idKios);
+////            rut.setNik(nik);
+//
+////            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+////            presenter.createRut(nik, token, new Gson().toJson(rut));
+////           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
+////                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+////                    this.onCreateSuccess("Success");
+////                }
+////            });
+//            System.out.println(new Gson().toJson(rut));
+//        }
+        Toast.makeText(this, "Maaf menu ini masih dalam tahap pengembangan", Toast.LENGTH_SHORT).show();
     }
 
     @Override

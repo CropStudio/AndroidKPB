@@ -90,6 +90,8 @@ public class ListBarang implements Serializable {
         this.harga = harga;
     }
 
+
+
     public long getHargaKios() {
         return hargaKios;
     }

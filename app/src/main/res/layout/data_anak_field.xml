@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingTop="2dp"
     android:theme="@style/AppThemeSubs">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        app:cardElevation="2dp"-->
+<!--        app:cardUseCompatPadding="true">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,18 +168,7 @@
                     android:orientation="horizontal"
                     android:paddingRight="10dp">
 
-                    <Button
-                        android:id="@+id/deleteAnak"
-                        style="@style/Widget.MaterialComponents.Button.Icon"
-                        android:layout_width="110dp"
-                        android:layout_height="40dp"
-                        android:onClick="onDeleteAnak"
-                        android:text="Hapus"
-                        android:textSize="12sp"
-                        app:backgroundTint="@color/color_default_green"
-                        app:icon="@drawable/ic_delete_sweep_black_24dp"
-                        app:iconGravity="end"
-                        app:iconSize="17dp" />
+
 
                 </LinearLayout>
 
@@ -186,6 +176,19 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/deleteAnak"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:onClick="onDeleteAnak"
+        android:text="Hapus"
+        android:textSize="12sp"
+        app:backgroundTint="@color/color_default_green"
+        app:icon="@drawable/ic_delete_sweep_black_24dp"
+        app:iconGravity="end"
+        app:iconSize="17dp" />
+
+<!--    </androidx.cardview.widget.CardView>-->
 
 </LinearLayout>

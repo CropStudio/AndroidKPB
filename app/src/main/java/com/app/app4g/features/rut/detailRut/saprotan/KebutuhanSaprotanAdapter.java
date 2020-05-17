@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.app.app4g.R;
 import com.app.app4g.Utils.Utils;
 import com.app.app4g.features.rut.model.KebutuhanSaprotan;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -46,16 +47,18 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
         final KebutuhanSaprotan kebutuhanSaprotan = kebutuhanSaprotans.get(position);
         holder.mNamaPupuk.setText(kebutuhanSaprotan.getNama());
         if (kebutuhanSaprotan.getSelected() != null) {
+            System.out.println(new Gson().toJson(kebutuhanSaprotan.getSelected().getHarga()));
             holder.mNamaBarang.setText(kebutuhanSaprotan.getSelected().getNamaBarang());
-            holder.mHarga.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHarga())));
+            holder.mHargaNormal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHarga())));
             holder.mHargaSubsidi.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHargaSubsidi())));
+//            holder.mSubTotal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSubTotal())));
         }
         holder.mJumlah.setText(String.valueOf(kebutuhanSaprotan.getJumlah()));
         if (kebutuhanSaprotan.getSubsidi())
             holder.mStatusSubsidi.setText("Subsidi");
         else
             holder.mStatusSubsidi.setText("Tidak Subsidi");
-//        holder.mSubTotal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSubTotal())));
+
 
     }
 
@@ -66,13 +69,14 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView mNamaPupuk, mNamaBarang, mHarga, mJumlah, mHargaSubsidi, mSubTotal, mStatusSubsidi;
+        public final TextView mNamaPupuk, mNamaBarang, mHargaNormal, mJumlah, mHargaSubsidi, mSubTotal, mStatusSubsidi,mSubtotal;
 
         public ViewHolder(View view) {
             super(view);
             mNamaPupuk = view.findViewById(R.id.mNamaPupuk);
+            mSubtotal = view.findViewById(R.id.mSubtotal);
             mNamaBarang = view.findViewById(R.id.mNamaBarang);
-            mHarga = view.findViewById(R.id.mHarga);
+            mHargaNormal = view.findViewById(R.id.mHargaNormal);
             mJumlah = view.findViewById(R.id.mJumlah);
             mHargaSubsidi = view.findViewById(R.id.mHargaSubsidi);
             mStatusSubsidi = view.findViewById(R.id.mStatusSubsidi);

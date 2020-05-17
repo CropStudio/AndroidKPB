@@ -1,6 +1,7 @@
 package com.app.app4g.features.rut.editRut;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -45,17 +46,25 @@ import im.delight.android.webview.AdvancedWebView;
 public class EditRutActivity extends AppCompatActivity implements AdvancedWebView.Listener , IEditRutView {
 
     List<DataMt> dataMt ;
-    String BASE_URL = "http://192.168.100.6:8080/#/RUT/";
+    String BASE_URL = "http://prelaunch.kartupetaniberjaya.com/#/rut/";
     private AdvancedWebView mWebView;
     SweetAlertDialog sweetAlertDialog;
 //    ProgressDialog pDialog;
     String nik , idAset , idMt ;
+
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_rut);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Tambah Masa Tanam");
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("dataMt");
         nik = getIntent().getExtras().getString("nik");
         idAset = getIntent().getExtras().getString("idAset");

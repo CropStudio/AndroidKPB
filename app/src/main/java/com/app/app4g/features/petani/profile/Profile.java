@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
@@ -100,7 +101,8 @@ public class Profile extends AppCompatActivity {
 
     @OnClick(R.id.mEditProfile)
     void onEditProfile() {
-        goToUpdateProfile();
+        Toast.makeText(this, "Maaf menu ini belum tersedia", Toast.LENGTH_SHORT).show();
+//        goToUpdateProfile();
     }
 
     public void initView() {

@@ -70,10 +70,10 @@
                 <TextView
                     android:id="@+id/mNamaBarang"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="Gabah Kering"
+                    android:text="----"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="00000"
+                    android:text="----"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="00000"
+                    android:text="----"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -136,18 +136,45 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="Sub Total"
+                    android:text="Harga Normal"
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/mSubTotal"
+                    android:id="@+id/mHargaNormal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="00000"
+                    android:text="----"
                     android:textSize="13sp"
                     android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Sub Total"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/mSubtotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="----"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
 
             </LinearLayout>
 

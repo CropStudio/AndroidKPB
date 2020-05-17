@@ -1,15 +1,19 @@
 package com.app.app4g.features.rut.createmt;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -47,6 +51,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.app.app4g.server.App.getContext;
+
 public class CreateMt extends AppCompatActivity implements ICreateMtView, AdapterView.OnItemSelectedListener, View.OnClickListener {
     String subsektor, idSubsektor, totalAset, _id;
     SweetAlertDialog sweetAlertDialog;
@@ -83,7 +89,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
-
+    ViewGroup parent;
     private List<AsetPetani> asetPetani;
     View rowView;
     LoginResponse mProfile;
@@ -120,6 +126,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     @Override
     public void initViews() {
+
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
@@ -214,23 +221,29 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     public void onAddMt(View v) {
         boolean ValidasiInput = true;
+        String totalAset = null;
         switch (v.getId()) {
             case R.id.addMt:
                 if (!mKomoditas.getText().toString().equals("Pilih Komoditas")) {
-                    LayoutInflater inflater = (LayoutInflater) getSystemService(this.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     rowView = inflater.inflate(R.layout.data_mt_field, null);
-                    detailInput.setVisibility(View.VISIBLE);
-                    bannerImage.setVisibility(View.GONE);
                     final TextView mMt = rowView.findViewById(R.id.mMt);
+                    final TextView id = rowView.findViewById(R.id.mIdMt);
                     final TextView mTotalAset = rowView.findViewById(R.id.mTotalAset);
                     final TextView mKomoditass = rowView.findViewById(R.id.mKomoditas);
+                    final TextView mSatuan = rowView.findViewById(R.id.mSatuan);
                     mMt.setText(valueMt);
+                    id.setText(idMt);
                     mKomoditass.setText(mKomoditas.getText().toString());
                     if (subsektor.equals("Tanaman Pangan") || subsektor.equals("Perkebunan")
-                            || subsektor.equals("Hortikultura"))
+                            || subsektor.equals("Hortikultura")) {
                         mTotalAset.setText(mLuasLahan.getText().toString());
-                    else
+                        mSatuan.setText("Hektar");
+
+                    } else {
                         mTotalAset.setText(mJmlhKomoditas.getText().toString());
+                        mSatuan.setText(" ");
+                    }
 
                     if (!mTotalAset.getText().toString().equals("")) {
                         if (dataMt != null) {
@@ -266,6 +279,8 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                                     e.printStackTrace();
                                 }
                                 Log.d("DATAMT", dataPermt.toString());
+                                detailInput.setVisibility(View.VISIBLE);
+                                bannerImage.setVisibility(View.GONE);
 //                                presenter.createMt(nik, token, _id, dataMt.toString());
                                 parent_datas.addView(rowView, 0);
                                 TopSnakbar.showSuccess(this, "Data masa tanam di tambahkan");
@@ -293,6 +308,8 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                                 e.printStackTrace();
                             }
                             Log.d("DATAMT", dataPermt.toString());
+                            detailInput.setVisibility(View.VISIBLE);
+                            bannerImage.setVisibility(View.GONE);
                             parent_datas.addView(rowView, 0);
                         }
 
@@ -304,6 +321,32 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                     TopSnakbar.showWarning(this, "Anda belum memilih komoditas ");
                 }
                 break;
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void onDeleteMt(View v) {
+
+//        JSONObject dataRoot = new JSONObject();
+//        JSONObject asetPetani = new JSONObject();
+//        try {
+//            asetPetani.put("asetPetani", DataAset);
+//            dataRoot.put("data", asetPetani);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        TextView _id = ((View) v.getParent()).findViewById(R.id.mIdMt);
+        Toast.makeText(this, _id.getText().toString(), Toast.LENGTH_SHORT).show();
+        ((ViewGroup)v.getParent().getParent()).removeView((ViewGroup)v.getParent());
+        for (int i = 0; i < dataMt.length(); i++) {
+            try {
+                if (_id.getText().toString().equals(dataMt.getJSONObject(i).getString("masaTanam"))) {
+                    dataMt.remove(i);
+                    Log.d("DATAMT", dataMt.toString());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -324,7 +367,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     }
 
     @Override
-    public void CreateMt(){
+    public void CreateMt() {
         presenter.createMt(nik, token, _id, dataMt.toString());
     }
 
@@ -333,10 +376,10 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         switch (view.getId()) {
             case R.id.mSubmit:
                 System.out.println(dataMt);
-                if(dataMt.length() > 0)
-                    SweetDialogs.confirmDialog(this,"Apakah anda yakin ?" , "Pastikan data masa tanam yang anda masukan sudah benar !" , "Berhasil memuat permintaan" , string -> this.CreateMt());
+                if (dataMt.length() > 0)
+                    SweetDialogs.confirmDialog(this, "Apakah anda yakin ?", "Pastikan data masa tanam yang anda masukan sudah benar !", "Berhasil memuat permintaan", string -> this.CreateMt());
                 else
-                    SweetDialogs.commonError(this,"Pastikan anda sudah menekan tombol tambah masa tanam ",false);
+                    SweetDialogs.commonError(this, "Pastikan anda sudah menekan tombol tambah masa tanam ", false);
                 break;
         }
     }

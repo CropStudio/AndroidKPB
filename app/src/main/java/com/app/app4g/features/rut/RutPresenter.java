@@ -86,7 +86,7 @@ public class RutPresenter {
                         if (response.body().getmStatus())
                             view.onDataReady(response.body().getResult());
                         else
-                            view.onRequestFailed(response.body().getmRm()   );
+                            view.onRequestFailed(response.body().getmRm());
                     }
 
                     @Override
