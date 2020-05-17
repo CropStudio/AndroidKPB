@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="8dp"
     android:paddingTop="2dp"
+    android:theme="@style/AppThemeSubs"
     android:paddingRight="8dp">
 
     <androidx.cardview.widget.CardView
@@ -78,7 +79,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Lada"
                                 android:textColor="@color/color_default_blue"
-                                android:textSize="12sp" />
+                                android:textSize="15sp" />
 
                         </LinearLayout>
 
@@ -235,7 +236,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_weight="0"
                 android:background="@drawable/card_list_rut"
                 android:gravity="center|bottom"
@@ -278,7 +279,7 @@
                         <Button
                             android:id="@+id/mBtnEdit"
                             style="@style/Widget.MaterialComponents.Button.Icon"
-                            android:layout_width="90dp"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:text="@string/Ubah"
                             android:textSize="12sp"
@@ -299,7 +300,7 @@
                         <Button
                             android:id="@+id/mBtnKebutuhan"
                             style="@style/Widget.MaterialComponents.Button.Icon"
-                            android:layout_width="100dp"
+                            android:layout_width="110dp"
                             android:layout_height="40dp"
                             android:text="@string/rincian"
                             android:textSize="12sp"

@@ -84,6 +84,10 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
 
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         if (presenter.isLoggedIn()) {
             if (App.getPref().getString(Prefs.PREF_ROLE, "").equals("petani")) {
                 this.goToDashboardPetani();
@@ -130,8 +134,10 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
             sliderView.bundle(new Bundle());
             sliderView.getBundle().putString("extra", "");
         }
+
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText("Loading ...");
+
     }
 
     public void gotoRegisPetani(){
@@ -200,7 +206,6 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
 
     @Override
     public void hideLoadingIndicator() {
-
         sweetAlertDialog.dismiss();
     }
 

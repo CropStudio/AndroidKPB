@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -105,9 +106,14 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Tambah Subsektor");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new CreateAsetPresenter(this);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.initViews();
     }
 

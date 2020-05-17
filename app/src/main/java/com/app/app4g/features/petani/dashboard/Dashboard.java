@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -123,6 +124,10 @@ public class Dashboard extends Fragment implements IDashboardView {
         adapter = new AdapterSliderBanner(models, getActivity());
         dotsCount = adapter.getCount();
         dots = new ImageView[dotsCount];
+
+        getActivity().getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         for (int i = 0; i < dotsCount; i++) {
             dots[i] = new ImageView(getActivity());

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AppThemeSubs">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -14,18 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            app:tabTextColor="#E4DBDB"
-            app:tabSelectedTextColor="#857D7D"
             app:tabIndicatorColor="#46B854"
-            app:tabRippleColor="#8B46B854"
-            app:tabMode="scrollable" />
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#857D7D"
+            android:elevation="2dp"
+            app:tabTextColor="#E4DBDB" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/list_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mTabLayout"
-            android:background="#F7F4F4"
+            android:background="@color/white"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </RelativeLayout>

@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="80dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="77dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Jenis"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +49,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:text="Urea"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Nama barang"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mNamaBarang"
@@ -74,7 +74,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="Gabah Kering"
-                    android:textSize="10dp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <View
@@ -89,7 +89,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="Jumlah"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mJumlah"
@@ -98,7 +98,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="00000"
-                    android:textSize="10dp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Harga Subsidi"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mHargaSubsidi"
@@ -122,7 +122,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="00000"
-                    android:textSize="10dp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <View
@@ -137,7 +137,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="Sub Total"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mSubTotal"
@@ -146,7 +146,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="00000"
-                    android:textSize="10dp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -162,12 +162,11 @@
                 android:id="@+id/mStatusSubsidi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:background="@drawable/badge"
                 android:gravity="center"
-                android:paddingLeft="15dp"
+                android:paddingLeft="8dp"
                 android:paddingTop="2dp"
-                android:paddingRight="15dp"
+                android:paddingRight="8dp"
                 android:paddingBottom="2dp"
                 android:text="non-subsidi"
                 android:textAllCaps="false"
@@ -181,6 +180,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey_3" />
+        android:background="@color/grey_10" />
 
 </LinearLayout>

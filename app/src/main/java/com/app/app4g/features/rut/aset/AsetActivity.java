@@ -11,6 +11,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -57,8 +58,12 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Subsektor");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         this.initViews();
     }

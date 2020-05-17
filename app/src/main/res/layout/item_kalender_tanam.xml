@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="65dp"
+    android:theme="@style/AppThemeSubs"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -40,7 +41,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Jenis"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +50,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:text="Urea"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -65,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Harga"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mHarga"
@@ -75,7 +76,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:text="2000"
-                    android:textSize="10dp" />
+                    android:textSize="13sp" />
 
                 <View
                     android:layout_width="1dp"
@@ -89,7 +90,7 @@
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="Jumlah"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/mJumlah"
@@ -99,7 +100,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="000000"
-                    android:textSize="10dp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -122,6 +123,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey_3" />
+        android:background="@color/grey_10" />
 
 </LinearLayout>

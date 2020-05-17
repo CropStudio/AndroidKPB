@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.app4g.R;
+import com.app.app4g.features.petani.profile.Profile;
 import com.app.app4g.features.petani.profile.ProfileFragment;
 import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.app.app4g.features.users.login.Login;
@@ -128,11 +129,10 @@ public class DrawerMenuItem {
         mContext.startActivity(new Intent(mContext, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         ((Activity)mContext).finish();
         Toast.makeText(mContext, "Signout berhasil", Toast.LENGTH_LONG).show();
-
     }
 
     public void goToProfile(){
-        mContext.startActivity(new Intent(mContext, ProfileFragment.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+         mContext.startActivity(new Intent(mContext, Profile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         ((Activity)mContext).finish();
     }
     public void goToKontak(){

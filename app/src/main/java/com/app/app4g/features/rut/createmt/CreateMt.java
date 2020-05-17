@@ -10,9 +10,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -76,6 +78,8 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     LinearLayout parent_datas;
     @BindView(R.id.detailInput)
     LinearLayout detailInput;
+    @BindView(R.id.bannerImage)
+    ImageView bannerImage;
 
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
@@ -97,7 +101,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Tambah Masa Tanam");
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         presenter = new CreateMtPresenter(this);
@@ -105,6 +109,11 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         _id = getIntent().getExtras().getString("_id");
         idSubsektor = getIntent().getExtras().getString("idSubsektor");
         totalAset = getIntent().getExtras().getString("totalAset");
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.initViews();
 
     }
@@ -211,6 +220,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                     LayoutInflater inflater = (LayoutInflater) getSystemService(this.LAYOUT_INFLATER_SERVICE);
                     rowView = inflater.inflate(R.layout.data_mt_field, null);
                     detailInput.setVisibility(View.VISIBLE);
+                    bannerImage.setVisibility(View.GONE);
                     final TextView mMt = rowView.findViewById(R.id.mMt);
                     final TextView mTotalAset = rowView.findViewById(R.id.mTotalAset);
                     final TextView mKomoditass = rowView.findViewById(R.id.mKomoditas);
@@ -324,7 +334,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
             case R.id.mSubmit:
                 System.out.println(dataMt);
                 if(dataMt.length() > 0)
-                    SweetDialogs.confirmDialog(this,"Apakah anda yakin ?" , "pastikan data masa tanam sudah benar !" , "Berhasil memuat permintaan" , string -> this.CreateMt());
+                    SweetDialogs.confirmDialog(this,"Apakah anda yakin ?" , "Pastikan data masa tanam yang anda masukan sudah benar !" , "Berhasil memuat permintaan" , string -> this.CreateMt());
                 else
                     SweetDialogs.commonError(this,"Pastikan anda sudah menekan tombol tambah masa tanam ",false);
                 break;

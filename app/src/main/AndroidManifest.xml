@@ -27,16 +27,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.rut.editRut.EditRutActivity"></activity>
-        <activity android:name=".features.rut.aset.AsetActivity" />
+        <activity android:name=".features.petani.profile.Profile" />
+        <activity android:name=".features.rut.editRut.EditRutActivity" />
+        <activity
+            android:name=".features.rut.aset.AsetActivity"
+            android:theme="@style/AppThemeSubs" />
         <activity
             android:name=".Splash"
             android:noHistory="true" />
-        <activity android:name=".features.rut.createmt.CreateMt" />
+        <activity
+            android:name=".features.rut.createmt.CreateMt"
+            android:theme="@style/AppThemeSubs" />
         <activity
             android:name=".features.rut.aset.createaset.CreateAset"
             android:label="@string/title_activity_asset"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppThemeSubs" />
         <activity android:name=".features.rut.kebutuhanRut.CreateKebutuhanRut" />
         <activity
             android:name=".features.petani.registrasi.RegistPetaniActivity"
@@ -53,7 +58,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.rut.RutActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeSubs" />
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -100,17 +106,18 @@
         <activity
             android:name=".features.petani.MenuUtama"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeMain" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ListData"
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.users.registrasi.Regist"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeSubs" />
         <activity
             android:name=".features.users.login.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeMain"
+            android:theme="@style/AppThemeSubs"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".features.petani.profile.createprofile.CreateProfile"
@@ -118,7 +125,8 @@
         <activity
             android:name=".PagerActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeSubs">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

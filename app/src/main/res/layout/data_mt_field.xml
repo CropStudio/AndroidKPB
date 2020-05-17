@@ -6,7 +6,8 @@
     android:layout_marginTop="15dp"
     android:orientation="vertical"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:paddingRight="5dp"
+    android:theme="@style/AppThemeSubs">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -45,34 +47,89 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/mKomoditas"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/info_1"
-            android:textColor="@color/color_default_black_dark"
-            android:textSize="13sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/mTotalAset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/info_1"
-            android:textColor="@color/color_default_black_dark"
-            android:textSize="13sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilihan Komoditas"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/mTotalKomoditas"
+            <TextView
+                android:id="@+id/mKomoditas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="@string/info_1"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/info_1"
-            android:textColor="@color/color_default_black_dark"
-            android:textSize="13sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Luas Lahan"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/mTotalAset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="@string/info_1"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="hektar"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Komoditas"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/mTotalKomoditas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="@string/app_id"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/deleteAnak"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            android:layout_width="90dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:onClick="onDeleteAset"

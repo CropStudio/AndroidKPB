@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -107,8 +108,12 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Rencana Usaha Tani");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),

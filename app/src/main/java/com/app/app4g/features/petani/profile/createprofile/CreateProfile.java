@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -181,6 +182,11 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         ButterKnife.bind(this);
         presenter = new ProfilePresenter(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.initViews();
     }
 

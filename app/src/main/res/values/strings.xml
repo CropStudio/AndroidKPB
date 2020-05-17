@@ -4,8 +4,8 @@
     <string name="app_id">v1.0</string>
     <string name="app_name_country">Provinsi Lampung</string>
     <!--    <string name="end_point">http://150.107.142.62:5050</string>-->
-    <!--    <string name="end_point">http://103.230.48.151:5050/</string>-->
-    <string name="end_point">http://192.168.100.4:5050/</string>
+    <string name="end_point">http://103.230.48.151:5050/</string>
+    <!--    <string name="end_point">http://192.168.100.23:5050/</string>-->
     <string name="img_end_point">http://testing.kartupetaniberjaya.com/admin/gambar_barang/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -161,7 +161,7 @@
         <item>18</item>
     </string-array>
     <string name="title_activity_detail_profile">detailProfile</string>
-    <string name="title_activity_asset">Aset anda</string>
+    <string name="title_activity_asset">Subsektor anda</string>
 
     <string name="new_message_notification_title_template">New message: %1$s</string>
 
@@ -231,11 +231,11 @@
 
     <string name="menu_komoditi">komoditas Tersedia</string>
 
-    <string name="total_aset">TOTAL ASET</string>
+    <string name="total_aset">TOTAL SUBSEKTOR</string>
     <string name="sub_sektor">SUB SEKTOR</string>
     <string name="count">01</string>
     <string name="atur_rut">ATUR RUT</string>
-    <string name="tambah_aset">TAMBAH ASET</string>
+    <string name="tambah_aset">TAMBAH SUBSEKTOR</string>
     <string name="tambah_komoditas">Tambah Data Komoditas</string>
     <string name="luas_tanah">Luas Tanah</string>
     <string name="banyaknya">Banyaknya</string>
@@ -249,6 +249,22 @@
     <string name="setuju">Setuju</string>
     <string name="Ubah">Ubah</string>
     <string name="rincian">Rincian</string>
+    <string name="profile">Rincian data diri</string>
+    <string name="lta">Luas Tanah 1</string>
+    <string name="ltb">Luas Tanah 2</string>
+    <string name="ltc">Luas Tanah 3</string>
+    <string name="edit">Perbaharui</string>
+    <string name="telp">Nomor Telephone</string>
+    <string name="telp_number">+62 877 7625 0855</string>
+    <string name="detail">Lihat detail</string>
+    <string name="place_birth">Tempat Lahir</string>
+    <string name="date_birth">Tanggal Lahir</string>
+    <string name="mom">Nama Ibu Kandung</string>
+    <string name="no_kk">Nomor Kartu Keluarga</string>
+    <string name="nama_kk">Nama Kepala Keluarga</string>
+    <string name="anak_ke">Anak ke</string>
+    <string name="nama_anak">Nama Anak</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

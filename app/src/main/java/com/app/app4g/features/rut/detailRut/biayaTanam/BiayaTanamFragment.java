@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.app.app4g.R;
 import com.app.app4g.features.rut.model.BiayaTanam;
@@ -47,6 +48,9 @@ public class BiayaTanamFragment extends Fragment implements IBiayaTanamView {
         if (biayaTanams.size() > 0) {
             this.setData(biayaTanams);
         }
+        getActivity().getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         return view ;
     }
 

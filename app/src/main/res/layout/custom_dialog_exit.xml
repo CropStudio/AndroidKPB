@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
+    android:theme="@style/AppThemeSubs"
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView

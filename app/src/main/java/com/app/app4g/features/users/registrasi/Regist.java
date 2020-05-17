@@ -131,6 +131,10 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         setContentView(R.layout.activity_regist);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 24) {

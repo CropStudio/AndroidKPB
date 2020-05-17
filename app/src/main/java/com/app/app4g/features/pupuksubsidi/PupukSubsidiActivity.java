@@ -21,10 +21,10 @@ public class PupukSubsidiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rdkk);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle("Rdkk (Rencana Definitif Kelompok Tani)");
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.c_black));
+        mToolbar.setTitle("Rencana Definitif Kelompok Tani");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

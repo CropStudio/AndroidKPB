@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/profile" android:title="Profil Pengguna" android:icon="@drawable/ic_userz"></item>
+    <item android:id="@+id/profile" android:title="Data diri" android:icon="@drawable/ic_userz"></item>
     <item android:id="@+id/kolaborator" android:title="Kolaborator" android:icon="@drawable/ic_kolaborator"></item>
     <item android:id="@+id/about" android:title="Tentang Kami" android:icon="@drawable/ic_about"></item>
     <item android:id="@+id/term" android:title="Syarat dan Ketentuan" android:icon="@drawable/ic_term"></item>

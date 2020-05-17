@@ -66,7 +66,6 @@ public class PagerActivity extends AppCompatActivity {
         }
 
 
-
         setContentView(R.layout.activity_pager);
 
         btnNext = findViewById(R.id.btn_next);
@@ -76,10 +75,10 @@ public class PagerActivity extends AppCompatActivity {
         tvSkip = findViewById(R.id.tv_skip);
 
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Rencana Usaha Tani", "Perencanaan usaha tani yang meliputi kebutuhan SAPROTAN per masa tanam, jadwal tanam, biaya kegiatan dan pekerjaan pertanian setiap masa tanam.", R.drawable.ic_slider_a));
-        mList.add(new ScreenItem("Laporan Usaha Tani", "Realisasi usaha tani sebagai tolak ukur keberhasilan usaha tani dalam bentuk laporan keuangan.", R.drawable.ic_slider_a));
-        mList.add(new ScreenItem("Keanggotaan", "Petani dan semua pihak terkait yang merupakan anggota, terdaftar dalam satu sistem serta proses transfer dan arus transaksi secara otomatis di atur dalam sistem KPB.", R.drawable.ic_slider_a));
-        mList.add(new ScreenItem("Kartu Petani Berjaya", "Suatu program yang menghubngkan semua kepentingan pertanian dengan tujuan mencapai kesejahteraan petani dan semua pihak yang terlibat dalam proses pertanian secara bersama-sama.", R.drawable.ic_slider_a));
+        mList.add(new ScreenItem("Rencana Usaha Tani", "Rencana Usaha Tani digital berdasarkan rekomendasi terbaik dari para ahli yang di harapkan meningkatkan keuntungan yang dapat dihasilkan oleh petani.", R.drawable.slider_a));
+        mList.add(new ScreenItem("Laporan Usaha Tani", "Menyediakan Laporan Usaha Tani berdasarkan kegiatan petani selama masa tanam. Laporan Usaha Tani ini adalah realisasi usaha tani", R.drawable.slider_b));
+        mList.add(new ScreenItem("Arus Bisnis Anggota", "Program KPB menyatukan seluruh pihak yang terkait dengan pertanian secara luas untuk kemudahan dan keamanan arus transaksi mulai dari hulu ke hilir", R.drawable.slider_c));
+        mList.add(new ScreenItem("Kartu Petani Berjaya", "Program Kartu Petani Berjaya adalah suatu program, yang menghubungkan semua kepentingan pertanian dengan tujuan mencapai kesejahteraan petani dan semua pihak yang terlibat dalam proses pertanian secara bersama-sama.", R.drawable.slider_d));
 
         screenPager = findViewById(R.id.screen_viewpager);
         introViewPagerAdapter = new IntroViewPagerAdapter(this, mList);

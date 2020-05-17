@@ -3,122 +3,189 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:paddingTop="2dp"
+    android:theme="@style/AppThemeSubs">
 
-    <ImageButton
-        android:id="@+id/deleteAnak"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/page_details_data_exit"
-        android:onClick="onDeleteAnak"
-        app:srcCompat="@drawable/ic_close_red"
-        android:text="Hapus"
-        android:textColor="@color/white" />
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="1"
-        android:background="@drawable/page_details_data"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/mAnakKe"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:inputType="text"
-            android:text="ANAK KE 1"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="2">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/doted_line"
-            android:layerType="software" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColorHint="@color/statusbarColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mNamaAnaks"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:backgroundTint="@color/fadeWhite2"
-                android:hint="Nama Anak"
-                android:inputType="text"
-                android:nextFocusDown="@id/mNik"
-                android:textColor="@color/colorPrimaryDark" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:weightSum="2">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/statusbarColor">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mTglLahirAnaks"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="4dp">
+
+                            <TextView
+                                android:id="@+id/mNamaAnaks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Adi Permana"
+                                android:textAllCaps="true"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mAnakKe"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Anak Ke 1"
+                                android:textColor="@color/color_default_blue"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center|right"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mTglLahirAnaks"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20 Januari 2020"
+                                android:textColor="@color/color_default_blue"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/indicator"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginLeft="10dp"
+                                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/doted_line"
+                        android:layerType="software" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tempat Lahir"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mTmptLahirAnaks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jl. Pegangsaan Timur No. 26 Jakarta Selatan"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pendidikan Terakhir"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mPendTerakhirAnaks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sekolah menengah Pertama"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:backgroundTint="@color/fadeWhite2"
-                android:hint="Tanggal Lahir"
-                android:inputType="text"
-                android:nextFocusDown="@id/mNik"
-                android:textColor="@color/colorPrimaryDark" />
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:background="@drawable/card_list_rut"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|right"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/statusbarColor">
+                    <Button
+                        android:id="@+id/deleteAnak"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:layout_width="110dp"
+                        android:layout_height="40dp"
+                        android:onClick="onDeleteAnak"
+                        android:text="Hapus"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/color_default_green"
+                        app:icon="@drawable/ic_delete_sweep_black_24dp"
+                        app:iconGravity="end"
+                        app:iconSize="17dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mTmptLahirAnaks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:backgroundTint="@color/fadeWhite2"
-                android:hint="Tempat Lahir"
-                android:inputType="text"
-                android:nextFocusDown="@id/mNik"
-                android:textColor="@color/colorPrimaryDark" />
-        </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/statusbarColor">
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mPendTerakhirAnaks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:backgroundTint="@color/fadeWhite2"
-                android:hint="Pendidikan Terakhir"
-                android:inputType="text"
-                android:nextFocusDown="@id/mNik"
-                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

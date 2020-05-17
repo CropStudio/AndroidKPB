@@ -33,7 +33,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="ADI PERMANA"
                     android:textAllCaps="true"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -47,17 +47,17 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="right">
+                android:gravity="right|bottom">
 
                 <TextView
                     android:id="@+id/thnRdkk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2019"
                     android:layout_marginRight="10dp"
-                    android:textSize="18dp" />
+                    android:text="2019"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -66,7 +66,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F5F5F5"
+            android:background="@color/grey_10"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -171,12 +171,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/date_bg_1"
+                        android:background="@drawable/btn_tambah"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="Rincian Data"
                         android:textColor="@color/white"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 

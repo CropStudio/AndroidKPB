@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
+    android:theme="@style/AppThemeSubs"
     tools:context=".features.rut.createmt.CreateMt">
 
     <include layout="@layout/toolbar_default_in" />
@@ -20,8 +21,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey_3">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,13 +76,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/color_default_green"
-                            android:text="@string/selesai" />
+                            android:text="@string/selesai"
+                            android:textColor="@color/white" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/bannerImage"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="30dp"
@@ -137,7 +139,7 @@
                                     android:background="@drawable/shape_spinner"
                                     android:paddingLeft="40dp"
                                     android:textColor="@color/color_default_black"
-                                    android:textSize="15sp"
+                                    android:textSize="150sp"
                                     app:ms_hint="Provinsi"
                                     app:ms_hint_color="@color/color_default_black"
                                     app:ms_padding_left="5dp" />
@@ -147,19 +149,23 @@
                                     android:layout_height="48dp"
                                     android:layout_marginTop="5dp"
                                     android:background="@drawable/shape_spinner"
+                                    android:gravity="center"
                                     android:paddingLeft="40dp"
                                     android:paddingRight="25dp">
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mKomoditas"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pilih Komoditas"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15sp"
+                                        android:textSize="14sp"
                                         app:ms_hide_arrow="true"
                                         app:ms_hint="Pilih Komoditas"
                                         app:ms_hint_color="@color/color_default_black"
-                                        app:ms_padding_left="50dp" />
+                                        app:ms_padding_bottom="0dp"
+                                        app:ms_padding_left="10dp"
+                                        app:ms_padding_top="0dp" />
 
                                 </LinearLayout>
 
@@ -218,14 +224,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:paddingRight="18dp">
+                    android:gravity="end">
 
                     <Button
                         android:id="@+id/addMt"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
                         android:onClick="onAddMt"
                         android:text="@string/tambah_masatanam"
                         android:textColor="@color/color_default_black"
@@ -244,8 +250,8 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    android:padding="15dp">
+                    android:padding="15dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"

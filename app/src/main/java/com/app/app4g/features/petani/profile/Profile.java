@@ -1,25 +1,26 @@
 package com.app.app4g.features.petani.profile;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Build;
-import android.os.StrictMode;
-import androidx.fragment.app.Fragment;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
-import android.view.LayoutInflater;
+import android.os.StrictMode;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
-import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
+import com.app.app4g.features.petani.dashboard.Dashboard;
 import com.app.app4g.features.petani.profile.createprofile.CreateProfile;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
-import com.app.app4g.ui.SweetDialogs;
 
 import java.lang.reflect.Method;
 
@@ -28,7 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileFragment extends Fragment {
+public class Profile extends AppCompatActivity {
 
     @BindView(R.id.mNama)
     TextView mNama;
@@ -49,17 +50,38 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.profile_image)
     CircleImageView mProfileImg;
     LoginResponse mProfile;
-    ImageButton detailsProfile;
+    Button detailsProfile;
     @BindView(R.id.mEditProfile)
-    ImageButton mEditProfile;
+    Button mEditProfile;
     String noKK;
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_profile_fragment, container, false);
-        ButterKnife.bind(this, view);
-        mProfileImg.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.user_default_farmer));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+
+        ButterKnife.bind(this);
+        mProfileImg.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.user_default_farmer));
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Data diri");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                finish();
+            }
+        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (Build.VERSION.SDK_INT >= 24) {
             try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
@@ -69,35 +91,11 @@ public class ProfileFragment extends Fragment {
             }
         }
         initView();
-
-//        detailsProfile = view.findViewById(R.id.viewProfile);
-//        detailsProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (noKK.equals("")) {
-//                    SweetDialogs.commonWarningWithIntent(getActivity(), "Data Anda belum lengkap"  , "Anda harus melengkapi data terlebih dahulu !", string -> {
-//                        goToUpdateProfile();
-//                    });
-//                } else {
-//                    startActivity(new Intent(getActivity(), DetailProfile.class));
-//                    getActivity().finish();
-//                }
-////                Toast.makeText(getActivity(), "Maaf menu ini sementara belum tersedia !", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        return view;
     }
 
     public void goToUpdateProfile() {
-        startActivity(new Intent(getActivity(), CreateProfile.class));
-        getActivity().finish();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_profile_fragment);
+        startActivity(new Intent(this, CreateProfile.class));
+        finish();
     }
 
     @OnClick(R.id.mEditProfile)

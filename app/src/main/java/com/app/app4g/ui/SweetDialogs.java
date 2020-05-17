@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.widget.Button;
+
+import androidx.core.content.ContextCompat;
 
 import com.app.app4g.R;
 import com.app.app4g.features.users.login.Login;
@@ -31,6 +34,13 @@ public class SweetDialogs {
                 context.finish();
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void locationDisabledWarning(Activity context) {
@@ -50,6 +60,13 @@ public class SweetDialogs {
             context.finish();
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void commonError(Activity context, String content, boolean close) {
@@ -64,15 +81,20 @@ public class SweetDialogs {
                 context.finish();
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
-
-
 
     public static void endpointError(Activity context) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
         dialog.setCancelable(false);
         dialog.setTitleText("Oops!");
-        dialog.setContentText("Koneksi internet Anda sedang tidak stabil atau server mengalami gangguan, silahkan coba beberapa saat lagi");
+        dialog.setContentText("Internet tidak stabil atau server mengalami gangguan, silahkan coba lagi");
         dialog.setConfirmText("OK");
         dialog.setConfirmClickListener(sweetAlertDialog -> {
             sweetAlertDialog.dismissWithAnimation();
@@ -82,8 +104,14 @@ public class SweetDialogs {
             dialog.show();
         }catch (Exception e){
             e.printStackTrace();
-
         }
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
     public static void commonError(Activity context, String title, String content, onDialogClosed listener) {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
@@ -96,6 +124,13 @@ public class SweetDialogs {
             listener.onClosed("closed");
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void commonLogout(Activity context, String title, String content, onDialogClosed listener) {
@@ -110,6 +145,13 @@ public class SweetDialogs {
             listener.onClosed("closed");
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void commonInvalidToken(Activity context, String title, String content) {
@@ -125,6 +167,13 @@ public class SweetDialogs {
             context.finish();
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
 
@@ -141,6 +190,13 @@ public class SweetDialogs {
                 sweetAlertDialog.dismissWithAnimation();
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void commonSuccessWithIntent(Activity context, String body, onDialogClosed listener) {
@@ -154,6 +210,13 @@ public class SweetDialogs {
                 listener.onClosed("Sukses");
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
     }
 
     public static void commonWarningWithIntent(Activity context,String title, String body, onDialogClosed listener) {
@@ -167,6 +230,14 @@ public class SweetDialogs {
             listener.onClosed("Sukses");
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
+
     }
 
     public static void Loading(Activity context, String body) {
@@ -188,8 +259,8 @@ public class SweetDialogs {
         SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
         dialog.setTitleText(Title);
         dialog.setContentText(body);
-        dialog.setCancelText("No");
-        dialog.setConfirmText("Yes");
+        dialog.setCancelText("Tidak");
+        dialog.setConfirmText("Ya");
         dialog.showCancelButton(true);
         dialog.setCancelable(false);
         dialog.setConfirmClickListener(sweetAlertDialog -> {
@@ -197,6 +268,19 @@ public class SweetDialogs {
             listener.onClosed(suksesBody);
         });
         dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+        Button btnCc = (Button) dialog.findViewById(R.id.cancel_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
+
+        btnCc.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnCc.setScaleX((float) 1);
+        btnCc.setScaleY((float) 0.8);
+        btnCc.setTextSize((float) 16.5);
     }
 
 
