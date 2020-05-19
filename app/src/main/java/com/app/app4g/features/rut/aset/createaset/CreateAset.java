@@ -168,7 +168,6 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
             totalAset = mJmlhKomoditas.getText().toString();
 
         if (!totalAset.equals("")) {
-            System.out.println(totalAset);
             for (AsetPetani asets : asetsPetani) {
                 try {
                     newAset.put(
@@ -176,6 +175,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
                                     .put("namaAset", asets.getNamaAset())
                                     .put("idSubsektor", asets.getIdSubsektor())
                                     .put("totalAset", asets.getTotalAset())
+                                    .put("dataPermt", new JSONArray(new Gson().toJson(asets.getDataPermt())))
 
                     );
 
@@ -183,6 +183,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
                     e.printStackTrace();
                 }
             }
+            System.out.println(newAset.toString());
             try {
                 newAset.put(
                         new JSONObject()
