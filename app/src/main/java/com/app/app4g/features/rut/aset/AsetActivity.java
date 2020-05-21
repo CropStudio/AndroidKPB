@@ -26,6 +26,7 @@ import com.app.app4g.features.rut.createmt.CreateMt;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
+import com.app.app4g.ui.SweetDialogs;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -49,12 +50,15 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
     Toolbar mToolbar;
     private List<AsetPetani> asetPetani;
     AsetAdapter adapter;
+    AsetPresenter presenter ;
+    SweetAlertDialog sweetAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aset);
         ButterKnife.bind(this);
+        presenter = new AsetPresenter(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Subsektor");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
@@ -70,6 +74,10 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
 
     @Override
     public void initViews() {
+
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
+        sweetAlertDialog.setCancelable(false);
         btnAddAset.setOnClickListener(view -> this.goToAddAset());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
@@ -148,5 +156,34 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
             startActivity(i);
             finish();
         }
+    }
+
+    @Override
+    public void onHapus(AsetPetani aset) {
+       presenter.deleteAset(nik , token , aset.get_id());
+
+    }
+
+    @Override
+    public void onDeleteSuccess(LoginResponse response) {
+        presenter.storeProfile(response);
+        this.recreate();
+
+    }
+
+    @Override
+    public void onNetworkError(String cause) {
+        Log.d("Error", cause);
+        SweetDialogs.endpointError(this);
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+        sweetAlertDialog.dismiss();
     }
 }

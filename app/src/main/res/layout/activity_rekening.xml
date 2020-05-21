@@ -19,41 +19,43 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <LinearLayout
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PILIH BANK"
-                android:textSize="16dp"
                 android:textColor="@color/c_black"
-                android:textStyle="bold"/>
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
             <RadioGroup
                 android:id="@+id/mRadioGroupBank"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bank BRI"/>
+                    android:text="Bank BRI" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bank Lampung"/>
+                    android:text="Bank Lampung" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bank Mandiri"/>
+                    android:text="Bank Mandiri" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bank BNI"/>
+                    android:text="Bank BNI" />
             </RadioGroup>
 
             <androidx.cardview.widget.CardView
@@ -72,9 +74,9 @@
                     android:gravity="center_vertical"
                     android:textColorHint="@color/statusbarColor">
 
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/mNorek"
-                        android:textStyle="bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/fadeWhite2"
@@ -82,17 +84,47 @@
                         android:hint="Masukkan No Rekening Anda"
                         android:inputType="number"
                         android:nextFocusDown="@id/mPekerjanSelainTani"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
+
+
                 </com.google.android.material.textfield.TextInputLayout>
+
+
             </androidx.cardview.widget.CardView>
 
-            <Button
+            <LinearLayout
                 android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kios"/>
+
+                <Spinner
+                    android:id="@+id/mSpinnerKios"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/shape_spinner"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="150sp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="5dp" />
+
+            </LinearLayout>
+
+            <Button
                 android:id="@+id/mSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/btn_rounded_green"
-                android:text="Tambah Rekening"
+                android:text="Simpan"
                 android:textColor="@color/white" />
 
 

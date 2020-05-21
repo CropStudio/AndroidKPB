@@ -1,5 +1,6 @@
 package com.app.app4g.features.petani.noRekening;
 
+import com.app.app4g.features.petani.noRekening.model.KiosResponse;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.network.NetworkService;
 import com.app.app4g.network.RestService;
@@ -13,6 +14,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RekeningPresenter {
@@ -61,5 +63,29 @@ public class RekeningPresenter {
                 view.onNetworkError(t.getLocalizedMessage());
             }
         });
+    }
+
+    public void getKios(String idKabupaten,String idDesa,String idKecamatan) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("id_desa", idDesa);
+        params.put("id_kecamtan", idKecamatan);
+        params.put("id_kabupaten", idKabupaten);
+        view.showLoadingIndicator();
+        restService.create(NetworkService.class).getKiosByArea(params)
+                .enqueue(new Callback<KiosResponse>() {
+                    @Override
+                    public void onResponse(Call<KiosResponse> call, Response<KiosResponse> response) {
+                        view.hideLoadingIndicator();
+                        if (response.body().getStatus())
+                            view.onDataReady(response.body().getResult());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<KiosResponse> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
     }
 }

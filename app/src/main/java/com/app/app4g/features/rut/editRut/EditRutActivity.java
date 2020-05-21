@@ -61,7 +61,7 @@ public class EditRutActivity extends AppCompatActivity implements AdvancedWebVie
         setContentView(R.layout.activity_edit_rut);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Tambah Masa Tanam");
+        getSupportActionBar().setTitle("Ubah kebutuhan saprotan");
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));

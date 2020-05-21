@@ -12,7 +12,7 @@ public interface ICreateMtView {
 
 //    void onCreateAsetSuccess(LoginResponse profile);
 
-    void onDataReady(List<Result> result);
+    void onDataReady(List<String> result);
 
     void onCreateMtSuccess(LoginResponse profile);
 

@@ -2,6 +2,7 @@ package com.app.app4g.features.rut;
 
 
 import com.app.app4g.common.CommonRespon;
+import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.rut.model.RutResponse;
 import com.app.app4g.network.NetworkService;
 import com.app.app4g.network.RestService;
@@ -30,10 +31,8 @@ public class RutPresenter {
     }
 
 
-    void createRut(String nik, String token, String body) {
+    void createRut(String nik, String token, Result rut) {
 //        System.out.println(body);
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("data", body);
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -46,7 +45,7 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createRut(params)
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createRut(rut)
                 .enqueue(new Callback<CommonRespon>() {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {

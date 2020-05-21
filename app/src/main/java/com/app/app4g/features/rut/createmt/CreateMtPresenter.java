@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.app.app4g.features.e_commerce.IEcommerceView;
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
+import com.app.app4g.features.rut.createmt.model.DistincKomoditas;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.network.NetworkService;
 import com.app.app4g.network.RestService;
@@ -69,13 +70,13 @@ public class CreateMtPresenter {
         });
     }
 
-    public void getKomoditas(String idSub) {
+    public void getDistincKomoditas() {
         view.showLoadingIndicator();
 //        Log.d("idsub", idSub);
-        restService.create(NetworkService.class).getKomoditas(idSub)
-                .enqueue(new Callback<AreaResponse>() {
+        restService.create(NetworkService.class).getDistincKomoditas()
+                .enqueue(new Callback<DistincKomoditas>() {
                     @Override
-                    public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
+                    public void onResponse(Call<DistincKomoditas> call, Response<DistincKomoditas> response) {
                         view.hideLoadingIndicator();
                         if (response.body().getStatus())
                             view.onDataReady(response.body().getResult());
@@ -83,7 +84,7 @@ public class CreateMtPresenter {
                     }
 
                     @Override
-                    public void onFailure(Call<AreaResponse> call, Throwable t) {
+                    public void onFailure(Call<DistincKomoditas> call, Throwable t) {
                         view.hideLoadingIndicator();
                         view.onNetworkError(t.getLocalizedMessage());
                     }

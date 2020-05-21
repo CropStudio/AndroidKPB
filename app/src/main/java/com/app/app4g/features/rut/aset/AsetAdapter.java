@@ -1,6 +1,7 @@
 package com.app.app4g.features.rut.aset;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.app.app4g.Utils.Utils;
 import com.app.app4g.features.e_commerce.model.Item;
 import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.server.App;
+import com.app.app4g.ui.SweetDialogs;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
@@ -39,6 +41,7 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
 
     public interface OnItemSelected {
         void onSelect(AsetPetani aset);
+        void onHapus(AsetPetani aset);
     }
 
 
@@ -64,6 +67,11 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
         holder.mKomoditas.setText(aset.getTotalAset() + " " + satuan);
         holder.countKomoditi.setText(String.valueOf(position+1));
         holder.buttonSet.setOnClickListener(view -> listener.onSelect(aset));
+        holder.mBtnHapus.setOnClickListener(view -> SweetDialogs.confirmDialog(context, "Apakah Anda Yakin ?" , "Pastikan no rekening anda sudah benar!" , "Data Berhasil disimpan .", string -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                listener.onHapus(aset);
+            }
+        }));
 
 
     }
@@ -78,7 +86,7 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mSubsektor, mKomoditas, countKomoditi;
-        Button buttonSet;
+        Button buttonSet,mBtnHapus;
 
         ViewHolder(View view) {
             super(view);
@@ -86,6 +94,7 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
             mKomoditas = view.findViewById(R.id.mKomoditas);
             countKomoditi = view.findViewById(R.id.countKomoditi);
             buttonSet = view.findViewById(R.id.buttonSet);
+            mBtnHapus = view.findViewById(R.id.mBtnHapus);
         }
     }
 

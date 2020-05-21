@@ -102,19 +102,27 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/dateUpdateKomoditi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textColor="@color/color_default_blue"
-                    android:textSize="14sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/dateUpdateKomoditi"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="end"-->
+<!--                    android:textColor="@color/color_default_blue"-->
+<!--                    android:textSize="14sp" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:gravity="bottom|end">
-
+                    <Button
+                        android:id="@+id/mBtnHapus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/red_btn_bg_pressed_color"
+                        android:text="Hapus"
+                        android:textSize="12sp" />
                     <Button
                         android:id="@+id/buttonSet"
                         android:layout_width="wrap_content"
@@ -123,6 +131,8 @@
                         android:backgroundTint="@color/color_default_blue"
                         android:text="@string/atur_rut"
                         android:textSize="12sp" />
+
+
 
                 </LinearLayout>
 

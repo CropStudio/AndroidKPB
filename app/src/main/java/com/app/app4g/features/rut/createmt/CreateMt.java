@@ -131,7 +131,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
         mSubmit.setOnClickListener(this);
-        presenter.getKomoditas(idSubsektor);
+        presenter.getDistincKomoditas();
         if (subsektor.equals("Tanaman Pangan") || subsektor.equals("Perkebunan")
                 || subsektor.equals("Hortikultura")) {
             LayoutBanyakKomoditas.setVisibility(View.GONE);
@@ -169,9 +169,9 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     }
 
     @Override
-    public void onDataReady(List<Result> result) {
-        for (Result komoditas : result) {
-            spinnerKomoditas.add(komoditas.getName());
+    public void onDataReady(List<String> result) {
+        for (String komoditas : result) {
+            spinnerKomoditas.add(komoditas);
         }
         mKomoditas.setItems(spinnerKomoditas);
 

@@ -4,10 +4,13 @@ import com.app.app4g.features.cart.model.Cart;
 import com.app.app4g.common.CommonResponse;
 import com.app.app4g.features.e_commerce.model.RutResponse;
 import com.app.app4g.features.e_commerce.model.Saldo;
+import com.app.app4g.features.petani.noRekening.model.KiosResponse;
 import com.app.app4g.features.petani.profile.model.ProfileResponse;
 import com.app.app4g.common.CommonRespon;
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.app4g.features.petani.registrasi.model.RegistModel;
+import com.app.app4g.features.rut.createmt.model.DistincKomoditas;
+import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.users.login.model.LoginResponse;
 
 import org.json.JSONObject;
@@ -50,9 +53,8 @@ public interface NetworkService {
     @GET("saldo/{nik}")
     Call<Saldo> getSaldo(@Path("nik") String nik);
 
-    @FormUrlEncoded
-    @POST("transaksiRut")
-    Call<CommonRespon> createRut(@FieldMap Map<String, Object> params);
+    @POST("transaksirutpetani")
+    Call<CommonRespon> createRut(@Body Result rut);
 
     @FormUrlEncoded
     @PUT("petaniedit/{nik}")
@@ -77,6 +79,9 @@ public interface NetworkService {
     @GET("komoditasbysub/{idSub}")
     Call<AreaResponse> getKomoditas(@Path("idSub") String idSub);
 
+    @GET("distinctkomoditas/")
+    Call<DistincKomoditas> getDistincKomoditas();
+
     @GET("cekversion/{id}")
     Call<CommonRespon> cekVersion(@Path("id") String id);
 
@@ -86,4 +91,11 @@ public interface NetworkService {
     @FormUrlEncoded
     @PUT("petani/createasset/{id}/{nik}")
     Call<LoginResponse> createMt(@Path("id") String id, @Path("nik") String nik, @FieldMap Map<String, Object> data);
+
+    @PUT("hapusasetpetani/{idasset}/{nik}")
+    Call<LoginResponse> deleteAset(@Path("idasset") String idasset,@Path("nik") String nik);
+
+    @FormUrlEncoded
+    @POST("getkiosbyarea")
+    Call<KiosResponse> getKiosByArea(@FieldMap Map<String, Object> data);
 }

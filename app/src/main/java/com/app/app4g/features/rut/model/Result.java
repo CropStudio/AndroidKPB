@@ -6,8 +6,30 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Result implements Serializable  {
+
+    //extra field
+    @SerializedName("idKios")
+    private Number idKios;
+
+    @SerializedName("idKabupaten")
+    private String idKabupaten;
+
+    //end
+
+    @SerializedName("tahun")
+    private String tahun;
+
+    @SerializedName("subTotalSaprotan")
+    private String subTotalSaprotan;
+
+    @SerializedName("updated")
+    private Boolean updated;
+
     @SerializedName("nik")
     private String nik;
+
+    @SerializedName("mt")
+    private String mt;
 
     @SerializedName("idAsset")
     private String idAsset;
@@ -20,6 +42,9 @@ public class Result implements Serializable  {
 
     @SerializedName("idDesa")
     private String idDesa;
+
+    @SerializedName("idPenyuluh")
+    private String idPenyuluh;
 
     @SerializedName("subsektor")
     private String subsektor;
@@ -48,9 +73,6 @@ public class Result implements Serializable  {
     @SerializedName("satuanAsset")
     private String satuanAsset;
 
-    @SerializedName("mt")
-    private String mt;
-
     @SerializedName("subTotalGarapDanPemeliharaan")
     private String subTotalGarapDanPemeliharaan;
 
@@ -74,6 +96,22 @@ public class Result implements Serializable  {
 
     @SerializedName("jadwalUsahaTani")
     private List<JadwalUsahaTani> jadwalUsahaTani;
+
+    public Number getIdKios() {
+        return idKios;
+    }
+
+    public void setIdKios(Number idKios) {
+        this.idKios = idKios;
+    }
+
+    public String getIdKabupaten() {
+        return idKabupaten;
+    }
+
+    public void setIdKabupaten(String idKabupaten) {
+        this.idKabupaten = idKabupaten;
+    }
 
     public String getSubTotalGarapDanPemeliharaan() {
         return subTotalGarapDanPemeliharaan;
@@ -257,5 +295,37 @@ public class Result implements Serializable  {
 
     public void setJadwalUsahaTani(List<JadwalUsahaTani> jadwalUsahaTani) {
         this.jadwalUsahaTani = jadwalUsahaTani;
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
+    }
+
+    public String getSubTotalSaprotan() {
+        return subTotalSaprotan;
+    }
+
+    public void setSubTotalSaprotan(String subTotalSaprotan) {
+        this.subTotalSaprotan = subTotalSaprotan;
+    }
+
+    public Boolean getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Boolean updated) {
+        this.updated = updated;
+    }
+
+    public String getIdPenyuluh() {
+        return idPenyuluh;
+    }
+
+    public void setIdPenyuluh(String idPenyuluh) {
+        this.idPenyuluh = idPenyuluh;
     }
 }

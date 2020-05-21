@@ -44,6 +44,7 @@ import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
 import com.app.app4g.ui.SweetDialogs;
+import com.app.app4g.ui.TopSnakbar;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -125,6 +126,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+        idKios = mProfile.getResult().getProfile().getIdKios();
         idDesa = (mProfile.getResult().getProfile().getArea().getSub_district_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getSub_district_code() : mProfile.getResult().getProfile().getArea().getSub_district_code();
         idKec = (mProfile.getResult().getProfile().getArea().getDistrict_code().contains(" "))
@@ -182,15 +184,15 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         mRecyclerView.clearFocus();
     }
 
-    @Override
-    public void onSubmit() {
-        if (App.getPref().getString(Prefs.PREF_NO_REKENING, "").equals("")) {
-            startActivity(new Intent(this, Rekening.class));
-            finish();
-        } else {
-            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onSubmit() {
+//        if (App.getPref().getString(Prefs.PREF_NO_REKENING, "").equals("")) {
+//            startActivity(new Intent(this, Rekening.class));
+//            finish();
+//        } else {
+//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @Override
     public void clearLightStatusBar(Activity activity) {
@@ -294,33 +296,39 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onSetuju(Result rut) {
 
-//    if(nomorrekening.equals("")){
-//        Toast.makeText(this, "kosong", Toast.LENGTH_SHORT).show();
-//    }
-//        if (nomorrekening.equals("")) {
-//            Intent i = new Intent(this, Rekening.class);
-//            i.putExtra("data", (Serializable) dataMt);
-//            i.putExtra("_id", idAset);
-//            startActivity(i);
-//            finish();
-//        } else {
-////            rut.setNomorRekening(noRek);
-////            rut.setBank(Bank);
-////            rut.setTahun(tahun);
-////            rut.setIdPoktan(idPoktan);
-////            rut.setIdKios(idKios);
-////            rut.setNik(nik);
-//
-////            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-////            presenter.createRut(nik, token, new Gson().toJson(rut));
-////           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
-////                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-////                    this.onCreateSuccess("Success");
-////                }
-////            });
-//            System.out.println(new Gson().toJson(rut));
-//        }
-        Toast.makeText(this, "Maaf menu ini masih dalam tahap pengembangan", Toast.LENGTH_SHORT).show();
+        if(rut.getUpdated()) {
+            if (nomorrekening.equals("")) {
+                SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
+
+            } else {
+//            rut.setNomorRekening(noRek);
+//            rut.setBank(Bank);
+//            rut.setTahun(tahun);
+//            rut.setIdPoktan(idPoktan);
+                rut.setIdKios(idKios);
+//            rut.setNik(nik);
+
+//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
+                presenter.createRut(nik, token, rut);
+//           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    this.onCreateSuccess("Success");
+//                }
+//            });
+                System.out.println(new Gson().toJson(rut));
+            }
+        }else{
+            TopSnakbar.showWarning(this , "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
+        }
+    }
+
+    @Override
+    public void goToRekening(){
+        Intent i = new Intent(this, Rekening.class);
+        i.putExtra("data", (Serializable) dataMt);
+        i.putExtra("_id", idAset);
+        startActivity(i);
+        finish();
     }
 
     @Override

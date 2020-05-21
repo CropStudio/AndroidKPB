@@ -14,7 +14,7 @@ public interface IRutView {
 
     void initView();
 
-    void onSubmit();
+//    void onSubmit();
 
     void clearLightStatusBar(Activity activity);
 
@@ -32,6 +32,8 @@ public interface IRutView {
     void goToDashboard();
 
 //    void onDataDetailReady(List<KebutuhanSaprotan> kebutuhanSaprotans);
+
+    void goToRekening();
 
     void onCreateSuccess(String rm);
 

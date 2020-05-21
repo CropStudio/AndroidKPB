@@ -59,6 +59,17 @@ public class profile implements Serializable {
     @SerializedName("nomorRekening")
     private String nomorRekening;
 
+    @SerializedName("idKios")
+    private Number idKios;
+
+    public Number getIdKios() {
+        return idKios;
+    }
+
+    public void setIdKios(Number idKios) {
+        this.idKios = idKios;
+    }
+
     public String getNomorRekening() {
         return nomorRekening;
     }
