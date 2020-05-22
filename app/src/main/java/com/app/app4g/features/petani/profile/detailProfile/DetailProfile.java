@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -109,6 +110,10 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         this.initViews();
         presenter.onGetProfile(nik);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
     }
 

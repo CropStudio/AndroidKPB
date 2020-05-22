@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -69,6 +70,11 @@ public class EditRutActivity extends AppCompatActivity implements AdvancedWebVie
         nik = getIntent().getExtras().getString("nik");
         idAset = getIntent().getExtras().getString("idAset");
         idMt = getIntent().getExtras().getString("idMt");
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.initViews();
 //        mSubmit.setOnClickListener(view -> onSubmit());
     }

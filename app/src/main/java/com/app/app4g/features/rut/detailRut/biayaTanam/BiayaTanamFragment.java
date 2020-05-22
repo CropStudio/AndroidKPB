@@ -48,9 +48,11 @@ public class BiayaTanamFragment extends Fragment implements IBiayaTanamView {
         if (biayaTanams.size() > 0) {
             this.setData(biayaTanams);
         }
+
         getActivity().getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         return view ;
     }
 

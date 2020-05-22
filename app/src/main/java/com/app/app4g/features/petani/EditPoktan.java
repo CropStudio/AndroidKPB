@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -65,6 +66,11 @@ public class EditPoktan extends AppCompatActivity {
         edAlamat.setText(alamatPoktan);
 
         myDialog = new Dialog(this);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
     }
 
     @OnClick(R.id.linearPilihPoktan)

@@ -4,6 +4,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.app.app4g.R;
@@ -117,6 +118,9 @@ public class DetailPupukActivity extends AppCompatActivity {
         total2.setText(tot2 + " Kg");
         total3.setText(tot3 + " Kg");
 
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
     }
 

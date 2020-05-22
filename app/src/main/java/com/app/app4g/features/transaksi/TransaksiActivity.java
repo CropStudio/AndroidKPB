@@ -12,6 +12,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
@@ -50,6 +51,11 @@ public class TransaksiActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
 //        try {
 //            ReceiveRmq.main(stringArray);
 //        } catch (Exception e) {

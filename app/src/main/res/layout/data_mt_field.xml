@@ -121,13 +121,14 @@
 
         <Button
             android:id="@+id/DeleteMt"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:onClick="onDeleteMt"
             android:text="Hapus"
             android:textSize="12sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/color_default_green"
             app:icon="@drawable/ic_delete_black_24dp"
             app:iconGravity="end"
             app:iconSize="17dp" />

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -60,6 +61,10 @@ public class CreateKebutuhanRut extends AppCompatActivity implements ICreateKebu
         setContentView(R.layout.activity_create_kebutuhan_rut);
         ButterKnife.bind(this);
         presenter = new CreateKebutuhanPresenter(this);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         this.initViews();
 

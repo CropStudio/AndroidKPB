@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.app.app4g.R;
@@ -72,6 +73,11 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
             this.setData(jadwalUsahaTani);
             this.initViews();
         }
+
+        getActivity().getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         return view ;
     }
 

@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.app.app4g.R;
 import com.app.app4g.features.rut.detailRut.estimasiPanen.EstimasiPanenFragment;
@@ -67,6 +68,11 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
             this.setData(kebutuhanSaprotans, biayaTanams, jadwalUsahaTani);
             this.initViews();
         }
+
+        getActivity().getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         return view;
     }
 

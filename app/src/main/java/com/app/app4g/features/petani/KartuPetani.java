@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,6 +47,10 @@ public class KartuPetani extends AppCompatActivity {
         TextView txtNik = findViewById(R.id.nikTag);
         txtNama.setText(nama);
         txtNik.setText(nik);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
     }
 

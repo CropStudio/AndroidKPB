@@ -26,23 +26,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-
         tools:replace="android:theme">
         <activity android:name=".features.petani.profile.Profile" />
         <activity android:name=".features.rut.editRut.EditRutActivity" />
         <activity
-            android:name=".features.rut.aset.AsetActivity"
-            android:theme="@style/AppThemeSubs" />
+            android:name=".features.rut.aset.AsetActivity" />
         <activity
             android:name=".Splash"
             android:noHistory="true" />
         <activity
-            android:name=".features.rut.createmt.CreateMt"
-            android:theme="@style/AppThemeSubs" />
+            android:name=".features.rut.createmt.CreateMt" />
         <activity
             android:name=".features.rut.aset.createaset.CreateAset"
-            android:label="@string/title_activity_asset"
-            android:theme="@style/AppThemeSubs" />
+            android:label="@string/title_activity_asset" />
         <activity android:name=".features.rut.kebutuhanRut.CreateKebutuhanRut" />
         <activity
             android:name=".features.petani.registrasi.RegistPetaniActivity"
@@ -59,8 +55,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.rut.RutActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeSubs" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".features.cart.CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />

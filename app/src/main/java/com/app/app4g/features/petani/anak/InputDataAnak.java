@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -53,6 +54,11 @@ public class InputDataAnak extends AppCompatActivity {
         ButterKnife.bind(this);
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         iAnakPresenter.setProgressBarVisiblity(View.GONE);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
      }
 
 //     @OnClick(R.id.submitAnak)

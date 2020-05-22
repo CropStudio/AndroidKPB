@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
+import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.petani.dashboard.Dashboard;
 import com.app.app4g.features.petani.profile.createprofile.CreateProfile;
 import com.app.app4g.features.users.login.model.LoginResponse;
@@ -77,7 +78,7 @@ public class Profile extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), MenuUtama.class));
                 finish();
             }
         });

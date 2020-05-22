@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -82,6 +83,10 @@ public class ListDataPupuk extends AppCompatActivity {
         adapter = new AdapterPupuk(this, newsList);
         list.setAdapter(adapter);
         list.setEmptyView(noData);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         getNamaPupuk();
 

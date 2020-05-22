@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -36,6 +37,11 @@ public class RutDetailActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_rut_detail);
         ButterKnife.bind(this);
         item = (List<Item>) getIntent().getExtras().getSerializable("item");
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         initViews();
         RutDetailAdapter adapter = new RutDetailAdapter(item, this);
         mRecyclerView.setAdapter(adapter);

@@ -51,6 +51,7 @@ public class KebutuhanSaprotanFragment extends Fragment implements IKebutuhanSap
         getActivity().getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         return view;
     }
 

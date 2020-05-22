@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.app.app4g.R;
@@ -41,6 +42,11 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
 //        String noKk = (mProfile.getResult().getNoKk().contains(" "))
 //                ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
 //        if(noKk.equals("")){

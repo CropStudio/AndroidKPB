@@ -86,7 +86,7 @@
                 <ImageView
                     android:id="@+id/bannerImage"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="30dp"
                     android:visibility="visible"
                     app:srcCompat="@drawable/ic_icon_add" />
@@ -177,6 +177,7 @@
                                     android:layout_weight="1"
                                     android:hint="@string/jumlah"
                                     android:visibility="gone"
+                                    android:focusable="false"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_rut_desc">
@@ -228,14 +229,14 @@
 
                     <Button
                         android:id="@+id/addMt"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:onClick="onAddMt"
                         android:text="@string/tambah_masatanam"
-                        android:textColor="@color/color_default_black"
+                        android:textColor="@color/white"
                         android:textSize="12sp"
+                        android:backgroundTint="@color/color_default_green"
                         app:boxStrokeColor="@color/color_default_green"
                         app:icon="@drawable/ic_add_black_24dp"
                         app:iconGravity="end"

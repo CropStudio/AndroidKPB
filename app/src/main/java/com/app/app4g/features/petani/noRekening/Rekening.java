@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +63,8 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     ArrayList<String> spinnerKios = new ArrayList<>();
     private LinkedHashMapAdapter<String, String> adapter;
     private LinkedHashMap<String, String> kios;
+    @BindView(R.id.toolbar_default_in)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +77,18 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
         idAset = getIntent().getExtras().getString("_id");
         System.out.println(new Gson().toJson(dataMt));
         System.out.println(idAset);
-        this.initViews();
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Rekening");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
+        this.initViews();
     }
 
     @Override
@@ -119,7 +133,6 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
 
     }
 
-
     @Override
     public void onDataReady(List<Kios> result) {
         kios = new LinkedHashMap<>();
@@ -153,7 +166,6 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
 
     @Override
     public void hideLoadingIndicator() {
-
         sweetAlertDialog.dismiss();
     }
 
@@ -198,7 +210,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
         switch (view.getId()) {
             case R.id.mSubmit:
                 if (mRadioGroupBank.getCheckedRadioButtonId() != -1 && !mNorek.getText().toString().equals("")) {
-                    SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "Pastikan no rekening anda sudah benar!", "Data Berhasil disimpan .", string -> {
+                    SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "Pastikan no rekening anda sudah benar!", "Data Berhasil disimpan.", string -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             this.onCreateRekening();
                         }

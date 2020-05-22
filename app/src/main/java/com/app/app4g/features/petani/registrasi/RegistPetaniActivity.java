@@ -10,6 +10,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -97,6 +98,11 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
         setContentView(R.layout.activity_regist_petani);
         ButterKnife.bind(this);
         presenter = new RegistPetaniPresenter(this);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.initViews();
     }
 
