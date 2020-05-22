@@ -94,40 +94,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <Spinner
+            android:id="@+id/mMt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/shape_spinner"
-                android:gravity="center"
-                android:paddingLeft="40dp"
-                android:paddingRight="25dp">
-
-                <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/mSpinnerKios"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="KIOS"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15sp"
-                    app:ms_hide_arrow="true"
-                    app:ms_hint="KIOS"
-                    app:ms_hint_color="@color/color_default_black"
-                    app:ms_padding_bottom="0dp"
-                    app:ms_padding_left="10dp"
-                    app:ms_padding_top="0dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:layout_height="48dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_spinner"
+            android:paddingLeft="40dp"
+            android:textColor="@color/color_default_black"
+            android:textSize="150sp"
+            app:ms_hint="KIOS"
+            app:ms_hint_color="@color/color_default_black"
+            app:ms_padding_left="5dp" />
 
     </LinearLayout>
 
