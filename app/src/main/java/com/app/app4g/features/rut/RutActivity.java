@@ -308,7 +308,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //            rut.setNomorRekening(noRek);
 //            rut.setBank(Bank);
 //            rut.setTahun(tahun);
-//            rut.setIdPoktan(idPoktan);
+                rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
                 rut.setIdKios(idKios);
                 rut.setIdKabupaten(idKab);
 
@@ -354,7 +354,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void onCreateFailed(String rm) {
-        SweetDialogs.commonError(this,rm,false);
+        SweetDialogs.commonError(this, rm, false);
 
     }
 

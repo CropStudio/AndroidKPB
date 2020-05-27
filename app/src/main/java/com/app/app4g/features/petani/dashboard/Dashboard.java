@@ -36,6 +36,7 @@ import com.app.app4g.features.petani.KartuPetani;
 import com.app.app4g.features.petani.ModelSliderBanner;
 import com.app.app4g.features.petani.jatah.ListDataPupuk;
 import com.app.app4g.features.rut.aset.AsetActivity;
+import com.app.app4g.features.transaksi.TransaksiActivity;
 import com.app.app4g.features.users.login.Login;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
@@ -319,8 +320,10 @@ public class Dashboard extends Fragment implements IDashboardView {
     }
 
     @OnClick(R.id.mCardTransaksi)
-    void tambah_saldo() {
-        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
+    void goToTransaksi() {
+        Intent i = new Intent(getActivity(), TransaksiActivity.class);
+        startActivity(i);
+        getActivity().finish();
     }
 
     @OnClick(R.id.mCardInfoRek)

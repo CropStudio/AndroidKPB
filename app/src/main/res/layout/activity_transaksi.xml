@@ -14,32 +14,34 @@
         tools:context=".MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:minHeight="?attr/actionBarSize">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:minHeight="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/AppTheme">
-
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="enterAlways|snap"
+                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/collapse_image"
+                    android:src="@mipmap/ic_launcher_round"
+                    />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/mBtn"
-        android:text="Munculkan Notif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Layouttoolbar"></Button>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -48,5 +50,20 @@
         android:layout_below="@+id/Layouttoolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp" />
+
+    <LinearLayout
+        android:layout_below="@+id/Layouttoolbar"
+        android:id="@+id/DetailListLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/list_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
 
 </RelativeLayout>

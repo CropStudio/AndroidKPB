@@ -85,6 +85,9 @@ public class Result implements Serializable  {
     @SerializedName("subTotalBiayaUsahaTani")
     private String subTotalBiayaUsahaTani;
 
+    @SerializedName("namaTransaksi")
+    private String namaTransaksi;
+
     @SerializedName("subPrediksiPendapatan")
     private String subPrediksiPendapatan;
 
@@ -99,6 +102,15 @@ public class Result implements Serializable  {
 
     @SerializedName("jadwalUsahaTani")
     private List<JadwalUsahaTani> jadwalUsahaTani;
+
+
+    public String getNamaTransaksi() {
+        return namaTransaksi;
+    }
+
+    public void setNamaTransaksi(String namaTransaksi) {
+        this.namaTransaksi = namaTransaksi;
+    }
 
     public String get_id() {
         return _id;

@@ -7,6 +7,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +31,7 @@ public class Utils {
 
     public static String convertMongoDate(String val) {
         ISO8601DateFormat df = new ISO8601DateFormat();
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM, yyyy");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM, yyyy HH:mm");
         try {
             Date d = df.parse(val);
             String finalStr = outputFormat.format(d);

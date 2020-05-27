@@ -11,6 +11,7 @@ import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.app4g.features.petani.registrasi.model.RegistModel;
 import com.app.app4g.features.rut.createmt.model.DistincKomoditas;
 import com.app.app4g.features.rut.model.Result;
+import com.app.app4g.features.transaksi.model.TransaksiResponse;
 import com.app.app4g.features.users.login.model.LoginResponse;
 
 import org.json.JSONObject;
@@ -84,6 +85,9 @@ public interface NetworkService {
 
     @GET("cekversion/{id}")
     Call<CommonRespon> cekVersion(@Path("id") String id);
+
+    @GET("transaksipetanibynik/{nik}")
+    Call<TransaksiResponse> getTransaksi(@Path("nik") String nik);
 
     @POST("users/signupandcreate")
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);
