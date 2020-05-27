@@ -92,7 +92,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     String idKec, nik, token, idDesa, nomorrekening, idAset, idKab;
     Number idKios, tahun, idPoktan;
     SweetAlertDialog sweetAlertDialog;
-    boolean LayoutStat = false;
+    Boolean LayoutStat = false;
 
     List<KebutuhanSaprotan> models;
     List<DataMt> dataMt;
@@ -274,8 +274,12 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onBackPressed() {
         // ...
-        this.goToDashboard();
-        super.onBackPressed();
+
+        if (LayoutStat)
+            HideDetailKebutuhan();
+        else
+            this.goToDashboard();
+
     }
 
     @Override
@@ -296,7 +300,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onSetuju(Result rut) {
 
-        if(rut.getUpdated()) {
+        if (rut.getUpdated()) {
             if (nomorrekening.equals("")) {
                 SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
 
@@ -306,7 +310,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //            rut.setTahun(tahun);
 //            rut.setIdPoktan(idPoktan);
                 rut.setIdKios(idKios);
-//            rut.setNik(nik);
+                rut.setIdKabupaten(idKab);
 
 //            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
                 presenter.createRut(nik, token, rut);
@@ -317,13 +321,13 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //            });
                 System.out.println(new Gson().toJson(rut));
             }
-        }else{
-            TopSnakbar.showWarning(this , "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
+        } else {
+            TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
         }
     }
 
     @Override
-    public void goToRekening(){
+    public void goToRekening() {
         Intent i = new Intent(this, Rekening.class);
         i.putExtra("data", (Serializable) dataMt);
         i.putExtra("_id", idAset);
@@ -344,7 +348,13 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void onCreateSuccess(String rm) {
-        SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.HideDetailKebutuhan());
+        SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.recreate());
+
+    }
+
+    @Override
+    public void onCreateFailed(String rm) {
+        SweetDialogs.commonError(this,rm,false);
 
     }
 

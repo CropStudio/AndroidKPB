@@ -127,6 +127,7 @@
     <color name="color_default_green">#0DE49C</color>
     <color name="color_default_green_dark">#01BA7B</color>
     <color name="color_default_blue">#3EB2FF</color>
+    <color name="disable_blue">#6b94b0</color>
     <color name="color_default_blue_dark">#2C79AC</color>
     <color name="color_default_orange">#F3B03C</color>
     <color name="color_default_orange_dark">#A6792B</color>

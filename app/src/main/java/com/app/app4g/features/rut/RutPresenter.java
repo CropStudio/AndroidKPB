@@ -50,7 +50,10 @@ public class RutPresenter {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
                         view.hideLoadingIndicator();
-                        view.onCreateSuccess("Success");
+                        if(CommonRespon.body().getSuccess())
+                            view.onCreateSuccess(CommonRespon.body().getmRm());
+                        else
+                            view.onCreateFailed(CommonRespon.body().getmRm());
 
                     }
 
@@ -81,7 +84,7 @@ public class RutPresenter {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
                         view.hideLoadingIndicator();
-//                        System.out.println(new Gson().toJson(response.body()));
+                        System.out.println(new Gson().toJson(response.body()));
                         if (response.body().getmStatus())
                             view.onDataReady(response.body().getResult());
                         else

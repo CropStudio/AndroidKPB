@@ -39,7 +39,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/dark_blue"
-                    android:checked="true"
                     android:text="Bank BRI"
                     android:textColor="@color/dark_blue" />
 
@@ -111,7 +110,7 @@
                 android:paddingLeft="40dp"
                 android:paddingRight="25dp">
 
-                <com.jaredrummler.materialspinner.MaterialSpinner
+                <Spinner
                     android:id="@+id/mSpinnerKios"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

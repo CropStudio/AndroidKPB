@@ -1,9 +1,14 @@
 package com.app.app4g.features.rut;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +58,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         return viewHolder;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(final RutAdapter.ViewHolder holder, final int position) {
         final Result rut = ruts.get(position);
@@ -62,13 +68,13 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         holder.mTotalPendapatan.setText(rut.getPendapatanKotor());
         holder.mTotalBudidaya.setText(rut.getSubTotalBiayaUsahaTani());
         holder.mTotalKeuntungan.setText(rut.getSubPrediksiPendapatan());
-//        if(rut.getStatus().equals("")) {
-//            holder.mStatus.setText("Menunggu Persetujuan Dari anda");
-//            holder.mStatusBar.setBackgroundColor(Color.RED);
-//        }else{
-//            holder.mStatus.setText("Telah Disetujui");
-//            holder.mStatusBar.setBackgroundColor(Color.GREEN);
-//        }
+        if(rut.getStatusSetuju()) {
+            holder.mBtnSetuju.setEnabled(false);
+//            holder.mBtnSetuju.setBackgroundTintMode(context.getResources().getColor(R.color.grey));
+            holder.mBtnSetuju.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.disable_blue)));
+        }else{
+            holder.mBtnSetuju.setEnabled(true);
+        }
         holder.mBtnKebutuhan.setOnClickListener(view->rutListener.onDetailData(rut.getKebutuhanSaprotan(),rut.getGarapDanPemeliharaan(),rut.getJadwalUsahaTani()));
 //        holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalSaprotan())));
 //        holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalGarapDanPemeliharaan())));

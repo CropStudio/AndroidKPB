@@ -37,5 +37,7 @@ public interface IRutView {
 
     void onCreateSuccess(String rm);
 
+    void onCreateFailed(String rm);
+
     void HideDetailKebutuhan();
 }

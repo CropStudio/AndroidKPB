@@ -15,6 +15,8 @@ public class Result implements Serializable  {
     private String idKabupaten;
 
     //end
+    @SerializedName("_id")
+    private String _id;
 
     @SerializedName("tahun")
     private String tahun;
@@ -49,8 +51,9 @@ public class Result implements Serializable  {
     @SerializedName("subsektor")
     private String subsektor;
 
-    @SerializedName("area")
-    private String area;
+    @SerializedName("statusSetuju")
+    private Boolean statusSetuju;
+
 
     @SerializedName("jumlahHasilPanen")
     private String jumlahHasilPanen;
@@ -96,6 +99,22 @@ public class Result implements Serializable  {
 
     @SerializedName("jadwalUsahaTani")
     private List<JadwalUsahaTani> jadwalUsahaTani;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public Boolean getStatusSetuju() {
+        return statusSetuju;
+    }
+
+    public void setStatusSetuju(Boolean statusSetuju) {
+        this.statusSetuju = statusSetuju;
+    }
 
     public Number getIdKios() {
         return idKios;
@@ -201,13 +220,6 @@ public class Result implements Serializable  {
         this.subsektor = subsektor;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
 
     public String getJumlahHasilPanen() {
         return jumlahHasilPanen;
