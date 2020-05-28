@@ -21,4 +21,8 @@ public interface ITransaksiView {
 
 
     void hideDetailList();
+
+    void goToDashboard();
+
+    void refresh();
 }

@@ -24,7 +24,7 @@ public class BiayaTanamAdapter extends RecyclerView.Adapter<BiayaTanamAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_kalender_tanam, parent, false);
+                .inflate(R.layout.item_biaya_tanam, parent, false);
 
         return new ViewHolder(view);
     }

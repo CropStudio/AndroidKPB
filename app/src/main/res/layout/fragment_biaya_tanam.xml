@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         app:layoutManager="LinearLayoutManager"
         tools:context=".features.rut.detailRut.biayaTanam.BiayaTanamFragment"
-        tools:listitem="@layout/item_kalender_tanam" />
+        tools:listitem="@layout/item_biaya_tanam" />
 
 </LinearLayout>

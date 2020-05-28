@@ -62,7 +62,10 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
         final DetailTransaksi transaksi = transaksis.get(position);
         holder.mCount.setText(String.valueOf(position+1));
         holder.mNama.setText(transaksi.getNama());
-        holder.mStatus.setText(String.valueOf(transaksi.getSubsidi()));
+        if(transaksi.getSubsidi())
+            holder.mStatus.setText("SUBSIDI");
+        else
+            holder.mStatus.setText("TIDAK SUBSIDI");
         holder.mJumlah.setText(String.valueOf(transaksi.getJumlah()));
         holder.mHarga.setText(Utils.convertRupiah(String.valueOf(transaksi.getHarga())));
         holder.mTotal.setText(Utils.convertRupiah(String.valueOf(transaksi.getTotal())));

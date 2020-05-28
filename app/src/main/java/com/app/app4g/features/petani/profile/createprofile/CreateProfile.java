@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -334,27 +335,27 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteAnak(View v) {
-//        TextView name = ((TextView) v.getParent()).findViewById(R.id.mNamaAnaks);
-//        System.out.println(name.getText().toString().trim());
-
-//        for (int i = 0; i < dataAnaks.length(); i++) {
-//            try {
-//                if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
-//                    dataAnaks.remove(i);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        parent_anak.removeView((View) v.getParent());
+        TextView namaAnak = ((View) v.getParent()).findViewById(R.id.mNamaAnaks);
+        System.out.println(namaAnak.getText().toString());
+        ((ViewGroup)v.getParent().getParent()).removeView((ViewGroup)v.getParent());
+        for (int i = 0; i < dataAnaks.length(); i++) {
+            try {
+                if (namaAnak.getText().toString().equals(dataAnaks.getJSONObject(i).getString("namaAnak"))) {
+                    dataAnaks.remove(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+//        parent_anak.removeView((View) v.getParent());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDeleteTunggangan(View v) {
         TextView name = ((View) v.getParent()).findViewById(R.id.mNama);
-
+        ((ViewGroup)v.getParent().getParent()).removeView((ViewGroup)v.getParent());
         for (int i = 0; i < dataTanggungans.length(); i++) {
             try {
                 if (name.getText().toString().equals(dataTanggungans.getJSONObject(i).getString("namaLengkap"))) {
@@ -364,7 +365,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 e.printStackTrace();
             }
         }
-        parent_Tanggungan.removeView((View) v.getParent());
     }
 
 

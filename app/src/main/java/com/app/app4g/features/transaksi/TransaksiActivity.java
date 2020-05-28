@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.app.app4g.NewMessageNotification;
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
+import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.rut.RutAdapter;
 import com.app.app4g.features.rut.model.BiayaTanam;
 import com.app.app4g.features.rut.model.JadwalUsahaTani;
@@ -69,6 +71,8 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
     ViewPager mListViewPager;
     @BindView(R.id.collapse_image)
     ImageView mCollapseImage;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.DetailListLayout)
     LinearLayout DetailListLayout;
@@ -90,6 +94,11 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Transaksi");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.initView();
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
@@ -247,10 +256,38 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
     public void hideDetailList() {
         if (slideDown == null) {
             slideDown = AnimationHelper.getAnimation(this, R.anim.slide_down, anim -> {
-                DetailListLayout.setVisibility(View.GONE);
-                mRecyclerView.setVisibility(View.VISIBLE);
+//                DetailListLayout.setVisibility(View.GONE);
+//                mRecyclerView.setVisibility(View.VISIBLE);
+                this.refresh();
             });
         }
         DetailListLayout.startAnimation(slideDown);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        // ...
+        if(DetailListLayout.getVisibility() == View.VISIBLE)
+            hideDetailList();
+        else {
+            this.goToDashboard();
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    public void goToDashboard() {
+        Intent i = new Intent(this, MenuUtama.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void refresh() {
+        Intent i = new Intent(this, TransaksiActivity.class);
+        startActivity(i);
+        finish();
     }
 }

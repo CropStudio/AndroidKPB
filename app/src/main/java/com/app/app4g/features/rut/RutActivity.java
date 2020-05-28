@@ -221,7 +221,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //        idPenyuluh = result.getIdPenuyuluh();
 //        int index = 0;
         this.items = result;
-        System.out.println(new Gson().toJson(result.get(0).getSubTotalKebutuhanSaprotan()));
+        System.out.println(new Gson().toJson(result.get(0).getJadwalUsahaTani()));
 //        for (int i = 0; i < items.size(); i++) {
 //            if (items.get(i).getJenisTanaman().contains("")) {
 //                index = i;

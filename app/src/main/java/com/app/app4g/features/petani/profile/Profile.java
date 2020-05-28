@@ -102,8 +102,8 @@ public class Profile extends AppCompatActivity {
 
     @OnClick(R.id.mEditProfile)
     void onEditProfile() {
-        Toast.makeText(this, "Maaf menu ini belum tersedia", Toast.LENGTH_SHORT).show();
-//        goToUpdateProfile();
+//        Toast.makeText(this, "Maaf menu ini belum tersedia", Toast.LENGTH_SHORT).show();
+        goToUpdateProfile();
     }
 
     public void initView() {

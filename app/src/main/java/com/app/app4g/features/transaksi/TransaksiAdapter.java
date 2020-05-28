@@ -56,7 +56,8 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
     public void onBindViewHolder(final TransaksiAdapter.ViewHolder holder, final int position) {
         final Transaksi transaksi = transaksis.get(position);
         holder.mCount.setText(String.valueOf(position+1));
-        holder.mNamaTransaksi.setText(transaksi.getNamaTransaksi());
+        String namaTransaksi  = transaksi.getNamaTransaksi().replace("/"," Masa Tanam ");
+        holder.mNamaTransaksi.setText(namaTransaksi);
         holder.mIdTransaksi.setText(transaksi.getIdtransaksi());
         holder.mTime.setText(Utils.convertMongoDate(transaksi.getCreated_at()));
         holder.mTotal.setText(Utils.convertRupiah(String.valueOf(transaksi.getGrandtotal())));

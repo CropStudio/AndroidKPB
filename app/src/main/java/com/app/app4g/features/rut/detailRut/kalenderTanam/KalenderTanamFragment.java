@@ -1,6 +1,8 @@
 package com.app.app4g.features.rut.detailRut.kalenderTanam;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,9 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.app.app4g.R;
+import com.app.app4g.features.rut.detailRut.saprotan.KebutuhanSaprotanAdapter;
 import com.app.app4g.features.rut.model.JadwalUsahaTani;
+import com.google.gson.Gson;
 
 
 import java.util.List;
@@ -18,37 +22,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class KalenderTanamFragment extends Fragment implements IKalenderTanamView {
-    @BindView(R.id.tgl1)
-    TextView tgl1;
-    @BindView(R.id.tgl2)
-    TextView tgl2;
-    @BindView(R.id.tgl3)
-    TextView tgl3;
-    @BindView(R.id.tgl4)
-    TextView tgl4;
-    @BindView(R.id.tgl5)
-    TextView tgl5;
-    @BindView(R.id.tgl6)
-    TextView tgl6;
-    @BindView(R.id.tgl7)
-    TextView tgl7;
-    @BindView(R.id.tgl8)
-    TextView tgl8;
-    @BindView(R.id.tgl9)
-    TextView tgl9;
-    @BindView(R.id.tgl10)
-    TextView tgl10;
-    @BindView(R.id.tgl11)
-    TextView tgl11;
-    @BindView(R.id.tgl12)
-    TextView tgl12;
-    @BindView(R.id.tgl13)
-    TextView tgl13;
-    @BindView(R.id.tgl14)
-    TextView tgl14;
-    @BindView(R.id.tgl15)
-    TextView tgl15;
-    List<JadwalUsahaTani> jadwalUsahaTani;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    List<JadwalUsahaTani> jadwals;
+    private KalenderTanamAdapter adapter;
     public KalenderTanamFragment() {
         // Required empty public constructor
     }
@@ -69,8 +46,8 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kalender_tanam, container, false);
         ButterKnife.bind(this,view);
-        if (jadwalUsahaTani != null) {
-            this.setData(jadwalUsahaTani);
+        if (jadwals != null) {
+            this.setData(jadwals);
             this.initViews();
         }
 
@@ -83,29 +60,25 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
 
     @Override
     public void initViews(){
-//        tgl1.setText(kalenderTanam.getTglPengairanAirkeLahan());
-//        tgl2.setText(kalenderTanam.getTglPengolahanLahan());
-//        tgl3.setText(kalenderTanam.getTglPersemaian());
-//        tgl4.setText(kalenderTanam.getTglPenanaman());
-//        tgl5.setText(kalenderTanam.getTglPemeliharaan());
-//        tgl6.setText(kalenderTanam.getTglPemupukanDasar());
-//        tgl7.setText(kalenderTanam.getTglPenyemprotanHerbisida());
-//        tgl8.setText(kalenderTanam.getTglPenyemprotanFungsida1DanZpt1());
-//        tgl9.setText(kalenderTanam.getTglPemupukan1());
-//        tgl10.setText(kalenderTanam.getTglPemupukan2());
-//        tgl11.setText(kalenderTanam.getTglPenyemprotanFungsida2DanZpt2());
-//        tgl12.setText(kalenderTanam.getTglPenyemprotanInsektisida1DanGandasliBuah1());
-//        tgl13.setText(kalenderTanam.getTglPenyemprotanFungsida3DanZpt3());
-//        tgl14.setText(kalenderTanam.getTglPenyemprotanInsektisida2DanGandasliBuah2());
-//        tgl15.setText(kalenderTanam.getTglPanen());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.clearFocus();
     }
 
     @Override
     public void setData(List<JadwalUsahaTani> jadwalUsahaTani) {
 //        Log.d("pengolahan", kalenderTanam.getTglPengolahanLahan());
-        this.jadwalUsahaTani = jadwalUsahaTani;
-        if (this.jadwalUsahaTani != null) {
-//            this.initViews();
+        this.jadwals = jadwalUsahaTani;
+        System.out.println(new Gson().toJson(jadwalUsahaTani.get(0).getJadwal().get(0).getNamaJadwal()));
+        if (mRecyclerView != null) {
+            if (mRecyclerView.getAdapter() == null) {
+                adapter = new KalenderTanamAdapter(jadwalUsahaTani.get(0).getJadwal());
+                mRecyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                this.initViews();
+            }
         }
     }
 }
