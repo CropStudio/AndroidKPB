@@ -103,6 +103,16 @@ public class Result implements Serializable  {
     @SerializedName("jadwalUsahaTani")
     private List<JadwalUsahaTani> jadwalUsahaTani;
 
+    @SerializedName("bank")
+    private String bank;
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
 
     public String getNamaTransaksi() {
         return namaTransaksi;
