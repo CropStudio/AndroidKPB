@@ -7,12 +7,12 @@
     android:paddingTop="2dp"
     android:theme="@style/AppThemeSubs">
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:cardCornerRadius="10dp"-->
-<!--        app:cardElevation="2dp"-->
-<!--        app:cardUseCompatPadding="true">-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -199,6 +199,6 @@
                 app:iconSize="17dp" />
         </LinearLayout>
 
-<!--    </androidx.cardview.widget.CardView>-->
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

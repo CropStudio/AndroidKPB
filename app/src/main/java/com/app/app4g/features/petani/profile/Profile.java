@@ -20,9 +20,11 @@ import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.petani.dashboard.Dashboard;
 import com.app.app4g.features.petani.profile.createprofile.CreateProfile;
+import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
+import com.app.app4g.ui.SweetDialogs;
 
 import java.lang.reflect.Method;
 
@@ -55,6 +57,8 @@ public class Profile extends AppCompatActivity {
     Button detailsProfile;
     @BindView(R.id.mEditProfile)
     Button mEditProfile;
+    @BindView(R.id.viewProfile)
+    Button viewProfile;
     String noKK;
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
@@ -104,6 +108,19 @@ public class Profile extends AppCompatActivity {
     void onEditProfile() {
 //        Toast.makeText(this, "Maaf menu ini belum tersedia", Toast.LENGTH_SHORT).show();
         goToUpdateProfile();
+    }
+
+    @OnClick(R.id.viewProfile)
+    void onViewProfile() {
+//        Toast.makeText(this, "Maaf menu ini belum tersedia", Toast.LENGTH_SHORT).show();
+        if (noKK.equals("")) {
+            SweetDialogs.commonWarningWithIntent(this, "Data Anda belum lengkap"  , "Anda harus melengkapi data terlebih dahulu !", string -> {
+                goToUpdateProfile();
+            });
+        } else {
+            startActivity(new Intent(this, DetailProfile.class));
+            finish();
+        }
     }
 
     public void initView() {

@@ -168,6 +168,8 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
     EditText mPekerjanSelainTani;
     @BindView(R.id.mPekerjanPenghuniRumah)
     EditText mPekerjanPenghuniRumah;
+    @BindView(R.id.mSubmitLayout)
+    LinearLayout mSubmitLayout;
 
     JSONArray dataAnaks = new JSONArray();
     JSONArray dataTanggungans = new JSONArray();
@@ -701,7 +703,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 } else {
                     if (this.isDataKepemilikanReady()) {
                         mStepView.done(true);
-                        mSubmit.setVisibility(View.VISIBLE);
+                        mSubmitLayout.setVisibility(View.VISIBLE);
                         TopSnakbar.showSuccess(this, "Kolom sudah semua terisi, silahkan melanjutkan pendaftaran");
                     }
                 }

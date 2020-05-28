@@ -27,15 +27,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".features.users.reset_password.ResetPasswordActivity"></activity>
         <activity android:name=".features.petani.profile.Profile" />
         <activity android:name=".features.rut.editRut.EditRutActivity" />
-        <activity
-            android:name=".features.rut.aset.AsetActivity" />
+        <activity android:name=".features.rut.aset.AsetActivity" />
         <activity
             android:name=".Splash"
             android:noHistory="true" />
-        <activity
-            android:name=".features.rut.createmt.CreateMt" />
+        <activity android:name=".features.rut.createmt.CreateMt" />
         <activity
             android:name=".features.rut.aset.createaset.CreateAset"
             android:label="@string/title_activity_asset" />

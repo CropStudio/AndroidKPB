@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -162,7 +163,7 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
             final TextView mTglLahirAnaks = rowView.findViewById(R.id.mTglLahirAnaks);
             final TextView mTmptLahirAnaks = rowView.findViewById(R.id.mTmptLahirAnaks);
             final TextView mPendTerakhirAnaks = rowView.findViewById(R.id.mPendTerakhirAnaks);
-            final ImageButton deleteAnak = rowView.findViewById(R.id.deleteAnak);
+            final Button deleteAnak = rowView.findViewById(R.id.deleteAnak);
             deleteAnak.setVisibility(View.GONE);
             mAnakKe.setText("Anak ke " + anak.getAnakKe());
             mNamaAnaks.setText(anak.getNamaAnak());
@@ -182,7 +183,7 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
             final TextView mTglLahir = rowView.findViewById(R.id.mTglLahir);
             final TextView mTmptLahir = rowView.findViewById(R.id.mTmptLahir);
             final TextView mTxtHubKeluarga = rowView.findViewById(R.id.mHubKeluarga);
-            final ImageButton deleteTanggungan = rowView.findViewById(R.id.deleteTanggungan);
+            final Button deleteTanggungan = rowView.findViewById(R.id.deleteTanggungan);
             deleteTanggungan.setVisibility(View.GONE);
             mNama.setText(tanggungan.getNamaLengkap());
             mTglLahir.setText(tanggungan.getTglLahir());

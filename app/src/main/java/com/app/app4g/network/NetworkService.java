@@ -102,4 +102,8 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("getkiosbyarea")
     Call<KiosResponse> getKiosByArea(@FieldMap Map<String, Object> data);
+
+    @FormUrlEncoded
+    @PUT("updatepassword/{nik}")
+    Call<LoginResponse> onResetPassword(@Path("nik") String nik,@FieldMap Map<String, Object> data);
 }

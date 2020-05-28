@@ -36,7 +36,7 @@
             android:paddingTop="10dp"
             android:paddingRight="25dp"
             android:paddingBottom="10dp"
-            android:text="@string/check"
+            android:text="Masukkan Data Anda"
             android:textColor="@color/color_default_blue"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -13,6 +13,7 @@ import com.app.app4g.features.petani.profile.Profile;
 import com.app.app4g.features.petani.profile.ProfileFragment;
 import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.app.app4g.features.users.login.Login;
+import com.app.app4g.features.users.reset_password.ResetPasswordActivity;
 import com.app.app4g.server.App;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
@@ -30,7 +31,8 @@ public class DrawerMenuItem {
     public static final int DRAWER_MENU_ITEM_KOLABORATOR = 2;
     public static final int DRAWER_MENU_ITEM_ABOUT = 3;
     public static final int DRAWER_MENU_ITEM_TERMCONDITION = 4;
-    public static final int DRAWER_MENU_ITEM_LOGOUT = 5;
+    public static final int DRAWER_MENU_ITEM_RESETPASSWORD = 5;
+    public static final int DRAWER_MENU_ITEM_LOGOUT = 6;
 
     private int mMenuPosition;
     private Context mContext;
@@ -70,6 +72,10 @@ public class DrawerMenuItem {
                 itemNameTxt.setText("Syarat dan Ketentuan");
                 itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_term));
                 break;
+            case DRAWER_MENU_ITEM_RESETPASSWORD:
+                itemNameTxt.setText("Ubah Sandi");
+                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_term));
+                break;
             case DRAWER_MENU_ITEM_LOGOUT:
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
                 itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_keluar));
@@ -100,6 +106,10 @@ public class DrawerMenuItem {
                 Toast.makeText(mContext, "Maaf, fitur ini belum tersedia", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onRequestMenuSelected();
                 break;
+            case DRAWER_MENU_ITEM_RESETPASSWORD:
+                gotoResetPassword();
+                if(mCallBack != null)mCallBack.onResetPasswordMenuSelected();
+                break;
             case DRAWER_MENU_ITEM_LOGOUT:
                 SweetDialogs.commonLogout((Activity) mContext, "SIGNOUT",
                         "Apakah Anda yakin akan signout dari aplikasi?",
@@ -119,7 +129,7 @@ public class DrawerMenuItem {
         void onGroupsMenuSelected();
         void onMessagesMenuSelected();
         void onNotificationsMenuSelected();
-        void onSettingsMenuSelected();
+        void onResetPasswordMenuSelected();
         void onTermsMenuSelected();
         void onLogoutMenuSelected();
     }
@@ -133,6 +143,11 @@ public class DrawerMenuItem {
 
     public void goToProfile(){
          mContext.startActivity(new Intent(mContext, Profile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        ((Activity)mContext).finish();
+    }
+
+    public void gotoResetPassword(){
+        mContext.startActivity(new Intent(mContext, ResetPasswordActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         ((Activity)mContext).finish();
     }
     public void goToKontak(){

@@ -52,7 +52,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -898,7 +898,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -1105,10 +1105,11 @@
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/mSubmitLayout"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
-                                    android:gravity="right"
+                                    android:gravity="center"
                                     android:visibility="gone">
 
                                     <Button
