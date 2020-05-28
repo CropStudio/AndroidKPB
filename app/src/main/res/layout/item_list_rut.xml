@@ -229,28 +229,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:orientation="horizontal"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp">
-
-                        <Button
-                            android:id="@+id/mBtnKebutuhan"
-                            android:layout_width="80dp"
-                            android:layout_height="20dp"
-                            android:background="@android:color/transparent"
-                            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
-                            android:gravity="center"
-                            android:text="@string/detail"
-                            android:textAllCaps="false"
-                            android:textColor="@color/color_default_blue"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -282,6 +260,25 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:backgroundTint="@color/color_default_blue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp">
+
+                    <Button
+                        android:id="@+id/mBtnKebutuhan"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:background="@android:color/transparent"
+                        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:text="@string/detail"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_default_blue"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

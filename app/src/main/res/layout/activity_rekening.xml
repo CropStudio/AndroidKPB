@@ -74,7 +74,6 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:hint="Masukkan No Rekening Anda"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"

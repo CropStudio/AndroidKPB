@@ -74,7 +74,7 @@ public class DrawerMenuItem {
                 break;
             case DRAWER_MENU_ITEM_RESETPASSWORD:
                 itemNameTxt.setText("Ubah Sandi");
-                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_term));
+                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_unlock));
                 break;
             case DRAWER_MENU_ITEM_LOGOUT:
 //                itemIcon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_exit_to_app_black_24dp));
