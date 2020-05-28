@@ -25,7 +25,7 @@ import im.delight.android.webview.AdvancedWebView;
 
 public class PortalInformasi extends AppCompatActivity implements AdvancedWebView.Listener {
 
-    String TEST_PAGE_URL = "http://kartupetaniberjaya.com/category/berita/";
+    String TEST_PAGE_URL = "http://info.kpb.lampungprov.go.id";
     private AdvancedWebView mWebView;
 
     ProgressDialog pDialog;

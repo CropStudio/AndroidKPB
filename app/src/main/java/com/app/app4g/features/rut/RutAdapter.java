@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.app.app4g.R;
+import com.app.app4g.Utils.Utils;
 import com.app.app4g.features.rut.model.BiayaTanam;
 import com.app.app4g.features.rut.model.EstimasiPanen;
 import com.app.app4g.features.rut.model.HasilPascaPanen;
@@ -64,10 +65,10 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         final Result rut = ruts.get(position);
         holder.mMt.setText(rut.getMt());
         holder.mKomoditas.setText(rut.getKomoditas());
-        holder.mTotalSaprotan.setText(rut.getSubTotalKebutuhanSaprotan());
-        holder.mTotalPendapatan.setText(rut.getPendapatanKotor());
-        holder.mTotalBudidaya.setText(rut.getSubTotalBiayaUsahaTani());
-        holder.mTotalKeuntungan.setText(rut.getSubPrediksiPendapatan());
+        holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())));
+        holder.mTotalPendapatan.setText(Utils.convertRupiah(String.valueOf(rut.getPendapatanKotor())));
+        holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalBiayaUsahaTani())));
+        holder.mTotalKeuntungan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPrediksiPendapatan())));
         if(rut.getStatusSetuju()) {
             holder.mBtnSetuju.setEnabled(false);
 //            holder.mBtnSetuju.setBackgroundTintMode(context.getResources().getColor(R.color.grey));

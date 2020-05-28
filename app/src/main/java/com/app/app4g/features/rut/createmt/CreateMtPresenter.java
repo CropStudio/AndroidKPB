@@ -70,10 +70,10 @@ public class CreateMtPresenter {
         });
     }
 
-    public void getDistincKomoditas() {
+    public void getDistincKomoditas(String subsektor) {
         view.showLoadingIndicator();
 //        Log.d("idsub", idSub);
-        restService.create(NetworkService.class).getDistincKomoditas()
+        restService.create(NetworkService.class).getDistincKomoditas(subsektor)
                 .enqueue(new Callback<DistincKomoditas>() {
                     @Override
                     public void onResponse(Call<DistincKomoditas> call, Response<DistincKomoditas> response) {

@@ -80,8 +80,8 @@ public interface NetworkService {
     @GET("komoditasbysub/{idSub}")
     Call<AreaResponse> getKomoditas(@Path("idSub") String idSub);
 
-    @GET("distinctkomoditas/")
-    Call<DistincKomoditas> getDistincKomoditas();
+    @GET("distinctkomoditas/{name}")
+    Call<DistincKomoditas> getDistincKomoditas(@Path("name") String name);
 
     @GET("cekversion/{id}")
     Call<CommonRespon> cekVersion(@Path("id") String id);

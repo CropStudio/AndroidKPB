@@ -95,7 +95,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
     private LinkedHashMapAdapter<String, String> adapter;
     private LinkedHashMap<String, String> subsektor;
     private LinkedHashMap<String, String> komoditas;
-    private List<AsetPetani> asetsPetani;
+    private List<AsetPetani> asetsPetani = null ;
     View rowView;
 
     @Override
@@ -144,9 +144,10 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         token = (mProfile.getResult().getToken().contains(" "))
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
-        asetsPetani = (mProfile.getResult().getProfile().getAsetPetani().contains(" "))
-                ? mProfile.getResult().getProfile().getAsetPetani() : mProfile.getResult().getProfile().getAsetPetani();
-        Log.d("aset", new Gson().toJson(asetsPetani));
+        if (mProfile.getResult().getProfile().getAsetPetani() != null) {
+            asetsPetani = (mProfile.getResult().getProfile().getAsetPetani().contains(null))
+                    ? mProfile.getResult().getProfile().getAsetPetani() : mProfile.getResult().getProfile().getAsetPetani();
+        }
         mSubmit.setOnClickListener(view -> onSubmit());
         presenter.getSpinner("", key_subsektors);
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
@@ -168,22 +169,23 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
             totalAset = mJmlhKomoditas.getText().toString();
 
         if (!totalAset.equals("")) {
-            for (AsetPetani asets : asetsPetani) {
-                try {
-                    newAset.put(
-                            new JSONObject()
-                                    .put("namaAset", asets.getNamaAset())
-                                    .put("idSubsektor", asets.getIdSubsektor())
-                                    .put("totalAset", asets.getTotalAset())
-                                    .put("dataPermt", new JSONArray(new Gson().toJson(asets.getDataPermt())))
+            if(asetsPetani !=null) {
+                for (AsetPetani asets : asetsPetani) {
+                    try {
+                        newAset.put(
+                                new JSONObject()
+                                        .put("namaAset", asets.getNamaAset())
+                                        .put("idSubsektor", asets.getIdSubsektor())
+                                        .put("totalAset", asets.getTotalAset())
+                                        .put("dataPermt", new JSONArray(new Gson().toJson(asets.getDataPermt())))
 
-                    );
+                        );
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-            System.out.println(newAset.toString());
             try {
                 newAset.put(
                         new JSONObject()
@@ -205,7 +207,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
                 e.printStackTrace();
             }
             presenter.createAset(nik, token, dataRoot.toString());
-        }else{
+        } else {
             TopSnakbar.showWarning(this, "Anda belum mengisi luas lahan / banyaknya komoditas");
         }
     }
