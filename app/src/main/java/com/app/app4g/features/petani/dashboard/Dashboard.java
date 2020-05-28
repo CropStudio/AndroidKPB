@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
+import com.app.app4g.features.pasar_tani.PasarTaniActivity;
 import com.app.app4g.features.petani.AdapterSliderBanner;
 import com.app.app4g.features.petani.KartuPetani;
 import com.app.app4g.features.petani.ModelSliderBanner;
@@ -71,7 +72,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     @BindView(R.id.mCardInfoRek)
     CardView mCardInfoRek;
     @BindView(R.id.cardPasarTani)
-    CardView cardRdkk;
+    CardView cardPasarTani;
     @BindView(R.id.mCardTransaksi)
     CardView mCardTransaksi;
 
@@ -332,8 +333,10 @@ public class Dashboard extends Fragment implements IDashboardView {
     }
 
     @OnClick(R.id.cardPasarTani)
-    void goToRdkk() {
-        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
+    void goToPasarTani() {
+        Intent i = new Intent(getActivity(), PasarTaniActivity.class);
+        startActivity(i);
+        getActivity().finish();
     }
 
     @OnClick(R.id.cardPupuk)
