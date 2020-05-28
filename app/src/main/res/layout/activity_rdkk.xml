@@ -34,6 +34,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -41,5 +42,8 @@
         android:layout_below="@+id/Layouttoolbar"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
+        android:background="@color/grey_3"
+        android:scrollbars="none"
         android:paddingBottom="20dp" />
+
 </RelativeLayout>

@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@color/grey_3"
         android:gravity="center|top"
         android:orientation="vertical">
 
@@ -77,7 +78,8 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/color_default_green"
                             android:text="@string/selesai"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -129,7 +131,6 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <Spinner
@@ -144,6 +145,14 @@
                                     app:ms_hint_color="@color/color_default_black"
                                     app:ms_padding_left="5dp" />
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Pilihan Masa Tanam"
+                                    android:textColor="@color/gray"
+                                    android:textSize="12sp" />
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
@@ -157,11 +166,9 @@
                                         android:id="@+id/mKomoditas"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Pilih Komoditas"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="14sp"
                                         app:ms_hide_arrow="true"
-                                        app:ms_hint="Pilih Komoditas"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
                                         app:ms_padding_left="10dp"
@@ -169,15 +176,23 @@
 
                                 </LinearLayout>
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Pilihan Komoditas"
+                                    android:textColor="@color/gray"
+                                    android:textSize="12sp" />
+
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/LayoutBanyakKomoditas"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:focusable="false"
                                     android:hint="@string/jumlah"
                                     android:visibility="gone"
-                                    android:focusable="false"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_rut_desc">
@@ -231,16 +246,12 @@
                         android:id="@+id/addMt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
+                        android:layout_marginRight="15dp"
+                        android:backgroundTint="@color/color_default_blue"
                         android:onClick="onAddMt"
                         android:text="@string/tambah_masatanam"
                         android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:backgroundTint="@color/color_default_green"
-                        app:boxStrokeColor="@color/color_default_green"
-                        app:icon="@drawable/ic_add_black_24dp"
-                        app:iconGravity="end"
-                        app:iconSize="17dp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 

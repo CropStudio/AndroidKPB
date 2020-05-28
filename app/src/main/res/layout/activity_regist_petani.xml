@@ -7,8 +7,8 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:weightSum="3"
     android:theme="@style/AppThemeSubs"
+    android:weightSum="3"
     tools:context=".features.users.registrasi.Regist">
 
     <include layout="@layout/toolbar_default" />
@@ -261,41 +261,65 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:gravity="center"
+                android:layout_height="65dp"
                 android:layout_marginTop="7dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <Spinner
-                    android:id="@+id/mProv"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_spinner"
-                    android:paddingLeft="40dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp"
-                    app:ms_hint="Provinsi"
-                    app:ms_hint_color="@color/color_default_black"
-                    app:ms_padding_left="5dp" />
+                    android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/mKab"
+                    <Spinner
+                        android:id="@+id/mProv"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/shape_spinner"
+                        android:paddingLeft="40dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15sp"
+                        app:ms_padding_left="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Provinsi"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="25dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_spinner"
-                    android:paddingLeft="40dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp"
-                    app:ms_hint="Provinsi"
-                    app:ms_hint_color="@color/color_default_black"
-                    app:ms_padding_left="5dp" />
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/mKab"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/shape_spinner"
+                        android:paddingLeft="40dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15sp"
+                        app:ms_padding_left="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Kabupaten"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -307,35 +331,63 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <Spinner
-                    android:id="@+id/mKec"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_spinner"
-                    android:paddingLeft="40dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp"
-                    app:ms_hint="Provinsi"
-                    app:ms_hint_color="@color/color_default_black"
-                    app:ms_padding_left="5dp" />
+                    android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/mDesa"
+                    <Spinner
+                        android:id="@+id/mKec"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/shape_spinner"
+                        android:paddingLeft="40dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp"
+                        app:ms_hint="Provinsi"
+                        app:ms_hint_color="@color/color_default_black"
+                        app:ms_padding_left="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Kecamatan"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="25dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_spinner"
-                    android:paddingLeft="40dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp"
-                    app:ms_hint="Provinsi"
-                    app:ms_hint_color="@color/color_default_black"
-                    app:ms_padding_left="5dp" />
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/mDesa"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/shape_spinner"
+                        android:paddingLeft="40dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15dp"
+                        app:ms_hint="Provinsi"
+                        app:ms_hint_color="@color/color_default_black"
+                        app:ms_padding_left="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Desa"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -343,7 +395,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:hint="@string/alamat"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
@@ -435,7 +486,6 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:padding="15dp"
                 android:text="@string/signup"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/color_default_blue" />

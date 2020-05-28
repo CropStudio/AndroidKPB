@@ -91,7 +91,6 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:padding="15dp"
             android:text="@string/signin"
             android:textColor="@color/white"
             app:backgroundTint="@color/color_default_blue" />
@@ -101,7 +100,6 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:text="@string/go_regist"
             android:textAllCaps="false"
             android:textColor="@color/color_default_black"

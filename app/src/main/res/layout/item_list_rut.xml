@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="8dp"
-    android:paddingTop="2dp"
-    android:paddingRight="8dp"
     android:theme="@style/AppThemeSubs">
 
     <androidx.cardview.widget.CardView
@@ -92,13 +89,13 @@
                             android:gravity="center|right"
                             android:orientation="horizontal">
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/dateUpdateRut"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:text="20 Januari 2020"-->
-<!--                                android:textColor="@color/color_default_blue"-->
-<!--                                android:textSize="12sp" />-->
+                            <!--                            <TextView-->
+                            <!--                                android:id="@+id/dateUpdateRut"-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:text="20 Januari 2020"-->
+                            <!--                                android:textColor="@color/color_default_blue"-->
+                            <!--                                android:textSize="12sp" />-->
 
                             <ImageView
                                 android:id="@+id/indicator"
@@ -269,27 +266,22 @@
 
                 <Button
                     android:id="@+id/mBtnSetuju"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/setuju"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/color_default_blue"
-                    app:icon="@drawable/ic_playlist_add_check_black_24dp"
-                    app:iconSize="20dp" />
+                    app:backgroundTint="@color/color_default_green" />
 
                 <Button
                     android:id="@+id/mBtnEdit"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="@string/Ubah"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/color_default_green"
-                    app:icon="@drawable/ic_edit_black_24dp"
-                    app:iconGravity="end"
-                    app:iconSize="17dp" />
+                    app:backgroundTint="@color/color_default_blue" />
 
             </LinearLayout>
 

@@ -102,7 +102,6 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
         presenter = new TransaksiPresenter(this);
         presenter.getTransaksi(nik , token);
 
-
     }
 
     @Override
@@ -116,8 +115,6 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
         mRecyclerView.clearFocus();
         mCollapseImage.setOnClickListener(view -> this.hideDetailList());
     }
-
-
 
     @Override
     public void clearLightStatusBar(Activity activity) {
@@ -174,9 +171,6 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
 //
 //    }
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -187,6 +181,7 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void showNotif() {
         String NOTIFICATION_CHANNEL_ID = "channel_androidnotif";
         Context context = this.getApplicationContext();
@@ -238,11 +233,10 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
             slideUp = AnimationHelper.getAnimation(this, R.anim.slide_up, anim -> {
                 mRecyclerView.setVisibility(View.GONE);
                 DetailListLayout.setVisibility(View.VISIBLE);
-
             });
         }
         mCollapseImage.setImageDrawable(CustomDrawable.googleMaterialDrawable(
-                this, R.color.colorPrimaryDark, 24, GoogleMaterial.Icon.gmd_keyboard_arrow_down
+                this, R.color.color_default_green, 12, GoogleMaterial.Icon.gmd_keyboard_arrow_down
         ));
 
         DetailListLayout.startAnimation(slideUp);
@@ -255,7 +249,6 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
             slideDown = AnimationHelper.getAnimation(this, R.anim.slide_down, anim -> {
                 DetailListLayout.setVisibility(View.GONE);
                 mRecyclerView.setVisibility(View.VISIBLE);
-
             });
         }
         DetailListLayout.startAnimation(slideDown);

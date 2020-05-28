@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
+        android:background="@color/grey_3"
         android:gravity="center|top"
         android:orientation="vertical">
 
@@ -68,9 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:weightSum="2">
+            android:orientation="vertical">
 
             <Spinner
                 android:id="@+id/mSubsektor"
@@ -78,7 +77,6 @@
                 android:layout_height="48dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_weight="1"
                 android:background="@drawable/shape_spinner"
                 android:paddingLeft="40dp"
                 android:textColor="@color/color_default_black"
@@ -86,6 +84,15 @@
                 app:ms_hint="Provinsi"
                 app:ms_hint_color="@color/color_default_black"
                 app:ms_padding_left="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilihan Subsektor"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="5dp"/>
 
             <Spinner
                 android:id="@+id/mKomoditas"
@@ -94,7 +101,6 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="25dp"
-                android:layout_weight="1"
                 android:background="@drawable/shape_spinner"
                 android:paddingLeft="40dp"
                 android:textColor="@color/color_default_black"
@@ -103,6 +109,17 @@
                 app:ms_hint="Provinsi"
                 app:ms_hint_color="@color/color_default_black"
                 app:ms_padding_left="5dp" />
+
+            <TextView
+                android:id="@+id/titleKomoditas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilihan Komoditas"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:textColor="@color/gray"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="5dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/LayoutLuasTanah"
@@ -163,7 +180,6 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:padding="15dp"
             android:text="@string/add"
             android:textColor="@color/white"
             app:backgroundTint="@color/color_default_blue" />

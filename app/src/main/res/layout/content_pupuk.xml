@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_tambah"
                         android:gravity="center"
-                        android:padding="10dp"
+                        android:padding="8dp"
                         android:text="Rincian Data"
                         android:textColor="@color/white"
                         android:textSize="12sp" />

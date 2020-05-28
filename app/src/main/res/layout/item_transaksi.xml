@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="8dp"
-    android:paddingTop="2dp"
-    android:paddingRight="8dp"
     android:theme="@style/AppThemeSubs">
 
     <androidx.cardview.widget.CardView
@@ -64,8 +61,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingTop="4dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/mNamaTransaksi"
@@ -120,7 +116,6 @@
                         android:background="@drawable/doted_line"
                         android:layerType="software" />
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -132,8 +127,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingTop="4dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -151,7 +145,6 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -159,7 +152,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:orientation="horizontal"
-                        android:paddingTop="10dp"
                         android:paddingRight="10dp">
 
                         <Button

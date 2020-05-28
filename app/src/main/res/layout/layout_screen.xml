@@ -21,7 +21,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="32dp"
-        tools:srcCompat="@drawable/ic_slider_a" />
+        android:src="@drawable/slider_a" />
 
     <TextView
         android:id="@+id/intro_title"

@@ -23,25 +23,25 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@color/white"
                 app:layout_scrollFlags="enterAlways|snap"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                app:title="Transaksi"
+                app:titleTextColor="@color/color_default_black"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:id="@+id/collapse_image"
-                    android:src="@mipmap/ic_launcher_round"
-                    />
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="15dp"
+                    app:srcCompat="@drawable/ic_menu" />
+
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
+
     </RelativeLayout>
-
-
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -49,14 +49,15 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/Layouttoolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp" />
+        android:background="@color/grey_3"
+        android:padding="5dp"/>
 
     <LinearLayout
-        android:layout_below="@+id/Layouttoolbar"
         android:id="@+id/DetailListLayout"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Layouttoolbar"
+        android:visibility="gone">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/list_viewpager"
