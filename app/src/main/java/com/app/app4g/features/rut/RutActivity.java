@@ -89,7 +89,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LoginResponse mProfile;
     public RutAdapter adapter;
     RutPresenter presenter;
-    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab;
+    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab , namaBank;
     Number idKios, tahun, idPoktan;
     SweetAlertDialog sweetAlertDialog;
     Boolean LayoutStat = false;
@@ -126,6 +126,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
         nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+        nomorrekening = (mProfile.getResult().getProfile().getBank().contains(" "))
+                ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
         idKios = mProfile.getResult().getProfile().getIdKios();
         idDesa = (mProfile.getResult().getProfile().getArea().getSub_district_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getSub_district_code() : mProfile.getResult().getProfile().getArea().getSub_district_code();
@@ -306,14 +308,14 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
             } else {
 //            rut.setNomorRekening(noRek);
-//            rut.setBank(Bank);
+                rut.setBank(namaBank);
 //            rut.setTahun(tahun);
                 rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
                 rut.setIdKios(idKios);
                 rut.setIdKabupaten(idKab);
 
 //            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-                presenter.createRut(nik, token, rut);
+//                presenter.createRut(nik, token, rut);
 //           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //                    this.onCreateSuccess("Success");
