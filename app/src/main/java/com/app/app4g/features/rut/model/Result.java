@@ -106,6 +106,17 @@ public class Result implements Serializable  {
     @SerializedName("bank")
     private String bank;
 
+    @SerializedName("noRek")
+    private String noRek;
+
+    public String getNoRek() {
+        return noRek;
+    }
+
+    public void setNoRek(String noRek) {
+        this.noRek = noRek;
+    }
+
     public String getBank() {
         return bank;
     }

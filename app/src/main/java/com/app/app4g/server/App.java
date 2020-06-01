@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import androidx.multidex.MultiDex;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -43,9 +45,9 @@ public class App extends Application
     public void onCreate()
     {
         super.onCreate();
-//        if (Build.VERSION.SDK_INT <= 19){
-//            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-//        }
+        if (Build.VERSION.SDK_INT <= 19){
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        }
 
         mInstance = this;
         sApplication = this;

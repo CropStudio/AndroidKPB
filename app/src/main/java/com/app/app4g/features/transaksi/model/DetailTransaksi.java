@@ -39,6 +39,17 @@ public class DetailTransaksi {
     @SerializedName("idDistributor")
     private String idDistributor ;
 
+    @SerializedName("status")
+    private int status ;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public String get_id() {
         return _id;
     }

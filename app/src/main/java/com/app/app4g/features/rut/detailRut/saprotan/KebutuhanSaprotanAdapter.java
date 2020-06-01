@@ -52,6 +52,8 @@ public class KebutuhanSaprotanAdapter extends RecyclerView.Adapter<KebutuhanSapr
             holder.mHargaNormal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHarga())));
             holder.mHargaSubsidi.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSelected().getHargaSubsidi())));
 //            holder.mSubTotal.setText(Utils.convertRupiah(String.valueOf(kebutuhanSaprotan.getSubTotal())));
+        }else{
+            holder.mNamaBarang.setText(kebutuhanSaprotan.getListBarang().get(0).getNamaBarang());
         }
         holder.mJumlah.setText(String.valueOf(kebutuhanSaprotan.getJumlah()));
         if (kebutuhanSaprotan.getSubsidi())

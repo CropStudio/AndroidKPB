@@ -67,7 +67,7 @@ public class AsetAdapter extends RecyclerView.Adapter<AsetAdapter.ViewHolder> {
         holder.mKomoditas.setText(aset.getTotalAset() + " " + satuan);
         holder.countKomoditi.setText(String.valueOf(position+1));
         holder.buttonSet.setOnClickListener(view -> listener.onSelect(aset));
-        holder.mBtnHapus.setOnClickListener(view -> SweetDialogs.confirmDialog(context, "Apakah Anda Yakin ?" , "Pastikan no rekening anda sudah benar!" , "Data Berhasil disimpan .", string -> {
+        holder.mBtnHapus.setOnClickListener(view -> SweetDialogs.confirmDialog(context, "Apakah Anda Yakin ?" , "ingin menghapus subsektor ini ?" , "Berhasil memuat permintaan .", string -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 listener.onHapus(aset);
             }

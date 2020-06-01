@@ -1,6 +1,8 @@
 package com.app.app4g;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
@@ -29,12 +33,15 @@ public class IntroViewPagerAdapter extends PagerAdapter {
         View layoutScreen = inflater.inflate(R.layout.layout_screen,null);
 
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
+//        @SuppressLint("WrongViewCast") AppCompatImageView image = (AppCompatImageView) layoutScreen.findViewById(R.id.intro_img);
+
         TextView title = layoutScreen.findViewById(R.id.intro_title);
         TextView description = layoutScreen.findViewById(R.id.intro_description);
 
         title.setText(mListScreen.get(position).getTitle());
         description.setText(mListScreen.get(position).getDescription());
-        imgSlide.setImageResource(mListScreen.get(position).getScreenImg());
+
+        imgSlide.setImageDrawable(mListScreen.get(position).getScreenImg());
 
         container.addView(layoutScreen);
 

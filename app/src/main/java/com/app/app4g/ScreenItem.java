@@ -1,11 +1,13 @@
 package com.app.app4g;
 
+import android.graphics.drawable.Drawable;
+
 public class ScreenItem {
 
     String Title, Description;
-    int ScreenImg;
+    Drawable ScreenImg;
 
-    public ScreenItem(String title, String description, int screenImg) {
+    public ScreenItem(String title, String description, Drawable screenImg) {
         Title = title;
         Description = description;
         ScreenImg = screenImg;
@@ -19,7 +21,7 @@ public class ScreenItem {
         Description = description;
     }
 
-    public void setScreenImg(int screenImg) {
+    public void setScreenImg(Drawable screenImg) {
         ScreenImg = screenImg;
     }
 
@@ -31,7 +33,7 @@ public class ScreenItem {
         return Description;
     }
 
-    public int getScreenImg() {
+    public Drawable getScreenImg() {
         return ScreenImg;
     }
 

@@ -3,10 +3,14 @@ package com.app.app4g.features.petani;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +28,12 @@ import com.app.app4g.session.Prefs;
 
 import butterknife.ButterKnife;
 
-public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2 {
-
+public class MenuUtama extends AppCompatActivity implements ComponentCallbacks2 {
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
     boolean BackPress = false;
     LoginResponse mProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +62,7 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
 //        }
     }
 
-    public void goToUpdateProfile(){
+    public void goToUpdateProfile() {
         startActivity(new Intent(this, CreateProfile.class));
         finish();
     }
@@ -92,7 +98,7 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
     @Override
     public void onBackPressed() {
         if (BackPress) {
-            super.onBackPressed();
+            finishAffinity();
             return;
         }
         this.BackPress = true;
@@ -100,10 +106,11 @@ public class MenuUtama extends AppCompatActivity  implements ComponentCallbacks2
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                BackPress=false;
+                BackPress = false;
             }
         }, 2000);
     }
+
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

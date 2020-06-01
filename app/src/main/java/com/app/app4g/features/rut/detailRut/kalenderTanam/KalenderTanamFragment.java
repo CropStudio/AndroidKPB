@@ -69,9 +69,7 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
 
     @Override
     public void setData(List<JadwalUsahaTani> jadwalUsahaTani) {
-//        Log.d("pengolahan", kalenderTanam.getTglPengolahanLahan());
         this.jadwals = jadwalUsahaTani;
-        System.out.println(new Gson().toJson(jadwalUsahaTani.get(0).getJadwal().get(0).getNamaJadwal()));
         if (mRecyclerView != null) {
             if (mRecyclerView.getAdapter() == null) {
                 adapter = new KalenderTanamAdapter(jadwalUsahaTani.get(0).getJadwal());

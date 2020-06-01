@@ -62,6 +62,17 @@ public class profile implements Serializable {
     @SerializedName("idKios")
     private Number idKios;
 
+    @SerializedName("bank")
+    private String bank;
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
     public Number getIdKios() {
         return idKios;
     }

@@ -242,6 +242,7 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
             slideUp = AnimationHelper.getAnimation(this, R.anim.slide_up, anim -> {
                 mRecyclerView.setVisibility(View.GONE);
                 DetailListLayout.setVisibility(View.VISIBLE);
+                mCollapseImage.setVisibility(View.VISIBLE);
             });
         }
         mCollapseImage.setImageDrawable(CustomDrawable.googleMaterialDrawable(
@@ -258,6 +259,7 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
             slideDown = AnimationHelper.getAnimation(this, R.anim.slide_down, anim -> {
 //                DetailListLayout.setVisibility(View.GONE);
 //                mRecyclerView.setVisibility(View.VISIBLE);
+                mCollapseImage.setVisibility(View.GONE);
                 this.refresh();
             });
         }

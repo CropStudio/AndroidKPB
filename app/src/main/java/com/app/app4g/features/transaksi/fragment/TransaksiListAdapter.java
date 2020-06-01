@@ -66,6 +66,15 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
             holder.mStatus.setText("SUBSIDI");
         else
             holder.mStatus.setText("TIDAK SUBSIDI");
+        if(transaksi.getStatus() == 0) {
+            holder.mStatusPengiriman.setText("Belum di transfer");
+            holder.mIndicator.setImageResource(R.drawable.shape_indicator_unactive);
+        }else if(transaksi.getStatus() == 1){
+            holder.mStatusPengiriman.setText("Sudah di transfer");
+            holder.mIndicator.setImageResource(R.drawable.shape_indicator_active);
+        }
+
+
         holder.mJumlah.setText(String.valueOf(transaksi.getJumlah()));
         holder.mHarga.setText(Utils.convertRupiah(String.valueOf(transaksi.getHarga())));
         holder.mTotal.setText(Utils.convertRupiah(String.valueOf(transaksi.getTotal())));
@@ -82,7 +91,8 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mNama, mStatus, mJumlah, mHarga, mTotal,mCount;
+        final TextView mNama, mStatus, mJumlah, mHarga, mTotal,mCount,mStatusPengiriman;
+        final ImageView mIndicator;
 
         ViewHolder(View view) {
             super(view);
@@ -92,6 +102,8 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
             mJumlah = view.findViewById(R.id.mJumlah);
             mHarga = view.findViewById(R.id.mHarga);
             mTotal = view.findViewById(R.id.mTotal);
+            mStatusPengiriman = view.findViewById(R.id.mStatusPengiriman);
+            mIndicator = view.findViewById(R.id.indicator);
 
         }
     }

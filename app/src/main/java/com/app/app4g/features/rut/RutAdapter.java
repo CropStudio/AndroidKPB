@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,14 @@ import com.app.app4g.features.rut.model.JadwalUsahaTani;
 import com.app.app4g.features.rut.model.KebutuhanSaprotan;
 import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.rut.model.Rut;
+import com.app.app4g.ui.SweetDialogs;
+import com.app.app4g.ui.TopSnakbar;
 
 import java.util.List;
 
 public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
     public List<Result> ruts;
-//    private List<Rut> filterList;;
+    //    private List<Rut> filterList;;
     private RutAdapter.onRutSelected rutListener;
     Activity context;
     AlertDialog.Builder dialogBuilder;
@@ -38,9 +41,11 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
 
     public interface onRutSelected {
-        void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> jadwalUsahaTanis );
-//        void onCheckBox(int position);
+        void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> jadwalUsahaTanis);
+
+        //        void onCheckBox(int position);
         void onSetuju(Result rut);
+
         void onEditRut(Result rut);
     }
 
@@ -69,14 +74,14 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         holder.mTotalPendapatan.setText(Utils.convertRupiah(String.valueOf(rut.getPendapatanKotor())));
         holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalBiayaUsahaTani())));
         holder.mTotalKeuntungan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPrediksiPendapatan())));
-        if(rut.getStatusSetuju()) {
+        if (rut.getStatusSetuju()) {
             holder.mBtnSetuju.setEnabled(false);
 //            holder.mBtnSetuju.setBackgroundTintMode(context.getResources().getColor(R.color.grey));
             holder.mBtnSetuju.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.disable_blue)));
-        }else{
+        } else {
             holder.mBtnSetuju.setEnabled(true);
         }
-        holder.mBtnKebutuhan.setOnClickListener(view->rutListener.onDetailData(rut.getKebutuhanSaprotan(),rut.getGarapDanPemeliharaan(),rut.getJadwalUsahaTani()));
+        holder.mBtnKebutuhan.setOnClickListener(view -> rutListener.onDetailData(rut.getKebutuhanSaprotan(), rut.getGarapDanPemeliharaan(), rut.getJadwalUsahaTani()));
 //        holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalSaprotan())));
 //        holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalGarapDanPemeliharaan())));
 //        holder.mTotalPendapatan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPendapatanKotor())));
@@ -101,9 +106,10 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
 //        }
         holder.mBtnSetuju.setOnClickListener(view->rutListener.onSetuju(rut));
-        holder.mBtnEdit.setOnClickListener(view->rutListener.onEditRut(rut));
-    }
 
+
+        holder.mBtnEdit.setOnClickListener(view -> rutListener.onEditRut(rut));
+    }
 
 
     @Override
@@ -117,10 +123,11 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mMt, mTotalSaprotan , mTotalBudidaya, mTotalPendapatan , mTotalKeuntungan, mStatus, mToko, mSubsidi , mKomoditas;
-        Button mBtnKebutuhan ,mBtnSetuju,mBtnEdit;
-        View mStatusBar ;
+        TextView mMt, mTotalSaprotan, mTotalBudidaya, mTotalPendapatan, mTotalKeuntungan, mStatus, mToko, mSubsidi, mKomoditas;
+        Button mBtnKebutuhan, mBtnSetuju, mBtnEdit;
+        View mStatusBar;
         CheckBox mCheckBox;
+
         ViewHolder(View view) {
             super(view);
             mMt = view.findViewById(R.id.mMt);

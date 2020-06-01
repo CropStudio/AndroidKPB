@@ -415,12 +415,13 @@ public class Dashboard extends Fragment implements IDashboardView {
 //                else drawer.closeDrawer(Gravity.START);
 //            }
 //        });
-        mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!drawer.isDrawerOpen(Gravity.END)) drawer.openDrawer(Gravity.END);
-                else drawer.closeDrawer(Gravity.START);
-            }
-        });
+//        mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("WrongConstant")
+//            @Override
+//            public void onClick(View view) {
+//                if (!drawer.isDrawerOpen(Gravity.END)) drawer.openDrawer(Gravity.END);
+//                else drawer.closeDrawer(Gravity.START);
+//            }
+//        });
     }
 }

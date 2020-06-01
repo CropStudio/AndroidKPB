@@ -89,7 +89,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LoginResponse mProfile;
     public RutAdapter adapter;
     RutPresenter presenter;
-    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab , namaBank;
+    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab, namaBank;
     Number idKios, tahun, idPoktan;
     SweetAlertDialog sweetAlertDialog;
     Boolean LayoutStat = false;
@@ -124,10 +124,13 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         token = (mProfile.getResult().getToken().contains(" "))
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
-        nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
+        nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(""))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
-        nomorrekening = (mProfile.getResult().getProfile().getBank().contains(" "))
-                ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+        if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
+
+            namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
+                    ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+        }
         idKios = mProfile.getResult().getProfile().getIdKios();
         idDesa = (mProfile.getResult().getProfile().getArea().getSub_district_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getSub_district_code() : mProfile.getResult().getProfile().getArea().getSub_district_code();
@@ -301,31 +304,25 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void onSetuju(Result rut) {
-
         if (rut.getUpdated()) {
             if (nomorrekening.equals("")) {
                 SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
-
             } else {
-//            rut.setNomorRekening(noRek);
+                rut.setNoRek(nomorrekening);
                 rut.setBank(namaBank);
-//            rut.setTahun(tahun);
                 rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
                 rut.setIdKios(idKios);
                 rut.setIdKabupaten(idKab);
-
-//            Toast.makeText(this, "Maaf Menu ini masih dalam pengembangan", Toast.LENGTH_SHORT).show();
-//                presenter.createRut(nik, token, rut);
-//           SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "ingin menyetujui RUT ini " , "Data Berhasil disimpan .", string -> {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    this.onCreateSuccess("Success");
-//                }
-//            });
-                System.out.println(new Gson().toJson(rut));
+                SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", string -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        presenter.createRut(nik, token, rut);
+                    }
+                });
             }
         } else {
             TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
         }
+
     }
 
     @Override
