@@ -12,6 +12,8 @@ public interface IAsetView {
 
     void onDeleteSuccess(LoginResponse response);
 
+    void onRequestFailed(LoginResponse response);
+
     void onNetworkError(String cause);
 
     void showLoadingIndicator();

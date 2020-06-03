@@ -42,6 +42,11 @@ public class DetailTransaksi {
     @SerializedName("status")
     private int status ;
 
+    @SerializedName("statusApp")
+    private statusApp statusApp ;
+
+
+
     public int getStatus() {
         return status;
     }
@@ -144,5 +149,37 @@ public class DetailTransaksi {
 
     public void setIdDistributor(String idDistributor) {
         this.idDistributor = idDistributor;
+    }
+
+    public DetailTransaksi.statusApp getStatusApp() {
+        return statusApp;
+    }
+
+    public void setStatusApp(DetailTransaksi.statusApp statusApp) {
+        this.statusApp = statusApp;
+    }
+
+    public class statusApp{
+        @SerializedName("id")
+        private int id ;
+
+        @SerializedName("keterangan")
+        private String keterangan ;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getKeterangan() {
+            return keterangan;
+        }
+
+        public void setKeterangan(String keterangan) {
+            this.keterangan = keterangan;
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.app.app4g.features.users.registrasi;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -11,8 +12,11 @@ import android.media.Image;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.app.app4g.ui.SweetDialogs;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +53,7 @@ import com.app.app4g.features.users.registrasi.presenter.IRegisterPresenter;
 import com.app.app4g.features.users.registrasi.presenter.RegisterPresenter;
 import com.app.app4g.features.users.registrasi.view.IRegisterView;
 import com.app.app4g.ui.TopSnakbar;
+import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -202,12 +207,14 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         txtNama.setText(nama);
                         txtAlamat.setText(alamat);
                     } else {
-                        imgView.setVisibility(View.VISIBLE);
-                        dataPetani.setVisibility(View.GONE);
-                        PasswordLayout.setVisibility(View.GONE);
-                        btnRegistrasiLayout.setVisibility(View.GONE);
-                        txtNama.setText(null);
-                        goToDaftar();
+//                        imgView.setVisibility(View.VISIBLE);
+//                        dataPetani.setVisibility(View.GONE);
+//                        PasswordLayout.setVisibility(View.GONE);
+//                        btnRegistrasiLayout.setVisibility(View.GONE);
+//                        txtNama.setText(null);
+                        SweetDialogs.commonWarningWithIntent(Regist.this, "Nik Anda tidak terdaftar di Rdkk"  , "silahkan registrasi ", string -> {
+                            goToDaftar();
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -321,14 +328,25 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     @Override
     public void onRegisterResult(Boolean result, String msg) {
         iRegisterPresenter.setProgressBarVisiblity(View.GONE);
-        if (result) {
-            Intent a = new Intent(Regist.this, Login.class);
-            startActivity(a);
-            finish();
-            Toast.makeText(getApplicationContext(), "Berhasil Melakukan Registrasi , Silahkan Login ", Toast.LENGTH_LONG).show();
-        } else {
-            TopSnakbar.showWarning(this, msg);
-        }
+        new AlertDialog.Builder(this)
+                .setTitle("SYARAT DAN KETENTUAN")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (result) {
+                            Intent a = new Intent(Regist.this, Login.class);
+                            startActivity(a);
+                            finish();
+                            Toast.makeText(getApplicationContext(), "Berhasil Melakukan Registrasi , Silahkan Login ", Toast.LENGTH_LONG).show();
+                        } else {
+                            TopSnakbar.showWarning(Regist.this, msg);
+                        }
+                    }
+                })
+                .setNegativeButton("No", null)
+                .setMessage(Html.fromHtml(String.format(App.getApplication().getString(R.string.termCondition))))
+                .show();
+
     }
 
     @Override

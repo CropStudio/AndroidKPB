@@ -3,7 +3,10 @@ package com.app.app4g.features.rut.aset.createaset;
 
 import android.util.Log;
 
+import com.app.app4g.common.CommonRespon;
+import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
+import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.network.NetworkService;
 import com.app.app4g.network.RestService;
@@ -75,9 +78,7 @@ public class CreateAsetPresenter {
         }
     }
 
-    public void createAset(String nik, String token, String body) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("data", body);
+    public void createAset(String nik, String token, AsetPetani aset) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -90,15 +91,12 @@ public class CreateAsetPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik, params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateAset(nik, aset).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
                     view.onCreateAsetSuccess(response.body());
-                    Log.d("RESPONNYA" ,new Gson().toJson(response.body()));
-                } else {
-
                 }
             }
 
@@ -109,6 +107,8 @@ public class CreateAsetPresenter {
             }
         });
     }
+
+
 
 
 }

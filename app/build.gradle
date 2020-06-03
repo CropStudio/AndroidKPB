@@ -22,8 +22,8 @@ android {
         applicationId "com.app.app4g"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 4
-        versionName "3.0"
+        versionCode 7
+        versionName "6.1"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

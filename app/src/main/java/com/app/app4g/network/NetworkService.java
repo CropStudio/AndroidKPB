@@ -5,6 +5,7 @@ import com.app.app4g.common.CommonResponse;
 import com.app.app4g.features.e_commerce.model.RutResponse;
 import com.app.app4g.features.e_commerce.model.Saldo;
 import com.app.app4g.features.petani.noRekening.model.KiosResponse;
+import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.features.petani.profile.model.ProfileResponse;
 import com.app.app4g.common.CommonRespon;
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
@@ -91,6 +92,9 @@ public interface NetworkService {
 
     @POST("users/signupandcreate")
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);
+
+    @PUT("petani/updateaset/{nik}")
+    Call<LoginResponse> updateAset(@Path("nik") String nik,@Body AsetPetani model);
 
     @FormUrlEncoded
     @PUT("petani/createasset/{id}/{nik}")

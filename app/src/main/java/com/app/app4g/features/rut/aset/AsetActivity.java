@@ -172,6 +172,11 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
     }
 
     @Override
+    public void onRequestFailed(LoginResponse response) {
+        SweetDialogs.commonError(this,"Subsektor ini tidak dapat dihapus , karna anda telah melakukan transaksi",false);
+    }
+
+    @Override
     public void onNetworkError(String cause) {
         Log.d("Error", cause);
         SweetDialogs.endpointError(this);

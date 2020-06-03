@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class DataMt implements Serializable {
+
+    @SerializedName("_id")
+    public String _id ;
+
     @SerializedName("masaTanam")
     public String masaTanam ;
 

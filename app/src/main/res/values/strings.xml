@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Kpb</string>
     <string name="app_name_detail">Kartu Petani Berjaya</string>
-    <string name="app_id">v2.0</string>
+    <string name="app_id">v6.1</string>
     <string name="app_name_country">Provinsi Lampung</string>
 <!--        <string name="end_point">http://150.107.142.62:5050</string>-->
     <string name="end_point">http://103.230.48.151:5050/</string>

@@ -66,13 +66,23 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
             holder.mStatus.setText("SUBSIDI");
         else
             holder.mStatus.setText("TIDAK SUBSIDI");
-        if(transaksi.getStatus() == 0) {
-            holder.mStatusPengiriman.setText("Belum di transfer");
+//        if(transaksi.getStatus() == 0) {
+//            holder.mStatusPengiriman.setText("Belum di transfer");
+//            holder.mIndicator.setImageResource(R.drawable.shape_indicator_unactive);
+//        }else if(transaksi.getStatus() == 1){
+//            holder.mStatusPengiriman.setText("Sudah di transfer");
+//            holder.mIndicator.setImageResource(R.drawable.shape_indicator_active);
+//        }
+
+        holder.mStatusPengiriman.setText(transaksi.getStatusApp().getKeterangan());
+        if(transaksi.getStatusApp().getId()==0)
             holder.mIndicator.setImageResource(R.drawable.shape_indicator_unactive);
-        }else if(transaksi.getStatus() == 1){
-            holder.mStatusPengiriman.setText("Sudah di transfer");
+        else if(transaksi.getStatusApp().getId()==1 ||transaksi.getStatusApp().getId()==2 || transaksi.getStatusApp().getId()==3 )
+            holder.mIndicator.setImageResource(R.drawable.shape_indicator_orange);
+        else  if(transaksi.getStatusApp().getId()==4)
+            holder.mIndicator.setImageResource(R.drawable.shape_indicator_blue);
+        else  if(transaksi.getStatusApp().getId()==5)
             holder.mIndicator.setImageResource(R.drawable.shape_indicator_active);
-        }
 
 
         holder.mJumlah.setText(String.valueOf(transaksi.getJumlah()));

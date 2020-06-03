@@ -35,6 +35,7 @@ import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.features.petani.registrasi.model.FormModel.Result;
 import com.app.app4g.features.rut.aset.AsetActivity;
 import com.app.app4g.features.rut.aset.AsetAdapter;
+import com.app.app4g.features.rut.aset.model.Aset;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
 import com.app.app4g.session.Prefs;
@@ -95,7 +96,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
     private LinkedHashMapAdapter<String, String> adapter;
     private LinkedHashMap<String, String> subsektor;
     private LinkedHashMap<String, String> komoditas;
-    private List<AsetPetani> asetsPetani = null ;
+    private List<AsetPetani> asetsPetani = null;
     View rowView;
 
     @Override
@@ -158,58 +159,27 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
 
     @Override
     public void onSubmit() {
+        AsetPetani model = new AsetPetani();
         String totalAset = "";
         String idSub = idSubsektor;
         String namaAset = subsektors;
+
 
         if (namaAset.equals("Tanaman Pangan") || namaAset.equals("Perkebunan")
                 || namaAset.equals("Hortikultura")) {
             totalAset = mLuasLahan.getText().toString();
         } else
             totalAset = mJmlhKomoditas.getText().toString();
-
+//
         if (!totalAset.equals("")) {
-            if(asetsPetani !=null) {
-                for (AsetPetani asets : asetsPetani) {
-                    try {
-                        newAset.put(
-                                new JSONObject()
-                                        .put("namaAset", asets.getNamaAset())
-                                        .put("idSubsektor", asets.getIdSubsektor())
-                                        .put("totalAset", asets.getTotalAset())
-                                        .put("dataPermt", new JSONArray(new Gson().toJson(asets.getDataPermt())))
-
-                        );
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            try {
-                newAset.put(
-                        new JSONObject()
-                                .put("namaAset", namaAset)
-                                .put("idSubsektor", idSub)
-                                .put("totalAset", totalAset)
-
-                );
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            JSONObject dataRoot = new JSONObject();
-            JSONObject asetPetani = new JSONObject();
-            try {
-                asetPetani.put("asetPetani", newAset);
-                dataRoot.put("data", asetPetani);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            presenter.createAset(nik, token, dataRoot.toString());
+            model.setIdSubsektor(idSub);
+            model.setNamaAset(namaAset);
+            model.setTotalAset(totalAset);
+            presenter.createAset(nik, token, model);
         } else {
             TopSnakbar.showWarning(this, "Anda belum mengisi luas lahan / banyaknya komoditas");
         }
+
     }
 
     @Override

@@ -58,7 +58,8 @@ public class AsetPresenter {
                 if (response.body().getSuccess()) {
                     view.onDeleteSuccess(response.body());
                     Log.d("RESPONNYA" ,new Gson().toJson(response.body()));
-                }
+                }else
+                    view.onRequestFailed(response.body());
             }
 
             @Override

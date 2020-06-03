@@ -15,7 +15,7 @@
                 </shape>
             </item>
 
-            <item android:drawable="@drawable/ic_check_circle_black_24dp" android:gravity="center|left" android:left="6dp" />
+            <item android:drawable="@drawable/ic_list" android:gravity="center|left" android:left="6dp" />
 
             <item android:drawable="@drawable/ic_arrow_drop_down_black_24dp" android:gravity="center|right" />
 
