@@ -201,7 +201,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
                 subsektor.put(subsektors.getId(), subsektors.getName());
             }
 
-            adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, subsektor);
+            adapter = new LinkedHashMapAdapter<String, String>(this, R.layout.spinnermt, subsektor);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mSubsektor.setAdapter(adapter);
             mSubsektor.setOnItemSelectedListener(this);

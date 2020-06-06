@@ -75,8 +75,8 @@
                         <Button
                             android:id="@+id/mSubmit"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/color_default_green"
+                            android:layout_height="30dp"
+                            android:background="@drawable/btnrounded_green"
                             android:text="@string/selesai"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
@@ -133,17 +133,30 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <Spinner
-                                    android:id="@+id/mMt"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
                                     android:background="@drawable/shape_spinner"
-                                    android:paddingLeft="40dp"
-                                    android:textColor="@color/color_default_black"
-                                    android:textSize="150sp"
-                                    app:ms_hint="Provinsi"
-                                    app:ms_hint_color="@color/color_default_black"
-                                    app:ms_padding_left="5dp" />
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
+
+                                    <Spinner
+                                        android:id="@+id/mMt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="20dp"
+                                        android:textColor="@color/color_default_black"
+                                        app:ms_hint="Provinsi"
+                                        app:ms_hint_color="@color/color_default_black"
+                                        app:ms_padding_left="30dp" />
+
+                                </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -159,16 +172,22 @@
                                     android:layout_marginTop="5dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mKomoditas"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="14sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
                                         app:ms_padding_left="10dp"
@@ -203,7 +222,7 @@
                                         android:layout_height="match_parent"
                                         android:inputType="numberDecimal"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15sp" />
+                                        android:textSize="14sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -212,9 +231,8 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
                                     android:hint="@string/luas_lahan"
-                                    android:visibility="gone"
+                                    android:visibility="visible"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_rut_desc">
@@ -225,7 +243,7 @@
                                         android:layout_height="match_parent"
                                         android:inputType="numberDecimal"
                                         android:textColor="@color/color_default_black"
-                                        android:textSize="15sp" />
+                                        android:textSize="14sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -244,10 +262,10 @@
 
                     <Button
                         android:id="@+id/addMt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:backgroundTint="@color/color_default_blue"
+                        android:layout_width="155dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnrounded_blue"
                         android:onClick="onAddMt"
                         android:text="@string/tambah_masatanam"
                         android:textColor="@color/white"

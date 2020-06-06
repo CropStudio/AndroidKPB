@@ -211,8 +211,8 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         builder.setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.icon_kpb)
-                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.icon_kpb))
+                .setSmallIcon(R.drawable.iconkpb)
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.iconkpb))
                 .setTicker("notif starting")
                 .setAutoCancel(true)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})

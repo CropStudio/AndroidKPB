@@ -68,69 +68,90 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="35dp"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/mSubsektor"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
                 android:background="@drawable/shape_spinner"
-                android:paddingLeft="40dp"
-                android:textColor="@color/color_default_black"
-                android:textSize="12sp"
-                app:ms_hint="Provinsi"
-                app:ms_hint_color="@color/color_default_black"
-                app:ms_padding_left="5dp" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ic_list" />
+
+                <Spinner
+                    android:id="@+id/mSubsektor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="12sp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="30dp" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Pilihan Subsektor"
-                android:textSize="12sp"
                 android:textColor="@color/gray"
-                android:layout_marginLeft="25dp"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="12sp" />
 
-            <Spinner
-                android:id="@+id/mKomoditas"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="25dp"
                 android:background="@drawable/shape_spinner"
-                android:paddingLeft="40dp"
-                android:textColor="@color/color_default_black"
-                android:textSize="12sp"
-                android:visibility="gone"
-                app:ms_hint="Provinsi"
-                app:ms_hint_color="@color/color_default_black"
-                app:ms_padding_left="5dp" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ic_list" />
+
+                <Spinner
+                    android:id="@+id/mKomoditas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/color_default_black"
+                    android:textSize="12sp"
+                    app:ms_hint="Provinsi"
+                    app:ms_hint_color="@color/color_default_black"
+                    app:ms_padding_left="30dp" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/titleKomoditas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pilihan Komoditas"
-                android:textSize="12sp"
-                android:visibility="gone"
-                android:textColor="@color/gray"
                 android:layout_marginLeft="25dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:text="Pilihan Komoditas"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/LayoutLuasTanah"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Luas Tanah "
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:visibility="gone"
+                android:hint="Luas Tanah"
+                android:visibility="visible"
                 app:boxBackgroundColor="@color/white"
                 app:boxStrokeColor="@color/color_default_blue"
                 app:hintTextColor="@color/color_default_black"
@@ -143,7 +164,7 @@
                     android:inputType="numberDecimal"
                     android:padding="5dp"
                     android:textColor="@color/color_default_black"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,10 +173,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:hint="@string/banyaknya"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
                 android:visibility="gone"
                 app:boxBackgroundColor="@color/white"
                 app:boxStrokeColor="@color/color_default_blue"
@@ -169,7 +187,7 @@
                     android:inputType="numberDecimal"
                     android:padding="5dp"
                     android:textColor="@color/color_default_black"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,12 +195,14 @@
 
         <Button
             android:id="@+id/mSubmit"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/btnrounded_blue"
             android:text="@string/add"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/color_default_blue" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

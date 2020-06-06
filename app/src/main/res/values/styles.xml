@@ -65,6 +65,10 @@
         <item name="colorAccent">@color/red</item> <!-- Whatever color you want-->
     </style>
 
+    <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="Nganu">
         <item name="colorAccent">@color/c_white</item> <!-- Whatever color you want-->
     </style>

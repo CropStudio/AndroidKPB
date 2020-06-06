@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.petani.MenuUtama;
+import com.app.app4g.features.petani.profile.Profile;
 import com.app.app4g.features.users.login.Login;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
@@ -240,7 +241,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         mTidakTanggungan.setChecked(true);
         mSubmit.setOnClickListener(this);
         this.setDataPribadiVisible(true);
-
     }
 
     public void onSelect(View v) {
@@ -256,7 +256,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 //        System.out.println(dataTambahan);
 
     }
-
 
     public void onAddField(View v) {
         if (v == mAddAnak) {
@@ -324,7 +323,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                                     .put("tglLahir", mTmptLahir.getText().toString())
                                     .put("hubungandDenganKepalaKeluarga", mTxtHubKeluarga.getText().toString())
                     );
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -334,7 +332,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 SweetDialogs.commonWarning(this,"DATA TIDAK LENGKAP !","Mohon cek kembali kelengkapan data tanggungan lain dan pastkan anda sudah menekan tombol tambah data !" ,false);
             }
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -369,7 +366,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         }
     }
 
-
     @Override
     public boolean isDataPribadiLayoutReady() {
         boolean valid = false;
@@ -385,7 +381,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         String perkawinan = mPerkawinan.getText().toString();
         String nama_ibu = mNamaIbu.getText().toString();
         String no_kk = mNoKK.getText().toString();
-
 
         if (!name.equals("")) {
             if (!nik.equals("")) {
@@ -418,7 +413,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                     "Harap isi nik lengkap sesuai E-KTP!");
         } else TopSnakbar.showWarning(this,
                 "Harap isi nama lengkap sesuai E-KTP!");
-
         return valid;
     }
 
@@ -428,7 +422,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
             mDataPribadiLayout.setVisibility(View.VISIBLE);
             this.setDataKeluargaVisible(false);
             this.setDataKepemilikanVisible(false);
-
         } else mDataPribadiLayout.setVisibility(View.GONE);
     }
 
@@ -468,7 +461,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
             mDataKeluargaLayout.setVisibility(View.VISIBLE);
             this.setDataPribadiVisible(false);
             this.setDataKepemilikanVisible(false);
-
         } else mDataKeluargaLayout.setVisibility(View.GONE);
     }
 
@@ -481,7 +473,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         String kendaraan_hak_milik = mJenisKendaraan.getText().toString();
         String jenis_ternak = mJenisTernak.getText().toString();
         String keterangan_ternak = mKetTernak.getText().toString();
-
 
         if (!status_rumah.equals("Status Kepemilikan Rumah")) {
             if (!status_lahan.equals("Status Kepemilikan Lahan")) {
@@ -499,7 +490,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                     "Harap pilih status lahan terlebih dahulu !");
         } else TopSnakbar.showWarning(this,
                 "Harap status kepemilikan rumah terlebih dahulu !");
-
         return valid;
     }
 
@@ -509,7 +499,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
             mDataKepemilikanLayout.setVisibility(View.VISIBLE);
             this.setDataPribadiVisible(false);
             this.setDataKeluargaVisible(false);
-
         } else mDataKepemilikanLayout.setVisibility(View.GONE);
     }
 
@@ -522,11 +511,9 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         JSONObject ternak = new JSONObject();
         JSONObject pekerjaan = new JSONObject();
         try {
-
             dataKeluarga.put("namaKepalaKeluarga", mKepalaKeluarga.getText().toString());
             dataKeluarga.put("dataAnak", dataAnaks);
             dataKeluarga.put("tanggunganLain", dataTanggungans);
-
             dataKepemilikan.put("statusRumah", mStatusRumah.getText().toString());
             dataKepemilikan.put("statusLahan", mStatusLahan.getText().toString());
             dataKepemilikan.put("fasilitasListrik", mFasilitasListrik.getText().toString());
@@ -537,7 +524,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
             pekerjaan.put("pekerjanSelainTani", mPekerjanSelainTani.getText().toString());
             pekerjaan.put("pekerjanPenghuniRumah", mPekerjanPenghuniRumah.getText().toString());
             dataKepemilikan.put("pekerjaan", pekerjaan);
-
             dataUser.put("nama", mName.getText().toString());
             dataUser.put("nik", mNik.getText().toString());
             dataUser.put("jenisKelamin", kelamin);
@@ -560,8 +546,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 //        String Data = gson.toJson(dataRoot);
         System.out.println(dataRoot);
         presenter.onUpdateProfile(nik,token, dataRoot.toString(),mNoKK.getText().toString());
-
-
     }
 
     @Override
@@ -572,7 +556,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan" , string -> {
             this.goToDashBoard();
         });
-
     }
 
     @Override
@@ -603,7 +586,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     @Override
     public void hideLoadingIndicator() {
-
         sweetAlertDialog.dismiss();
     }
 
@@ -642,9 +624,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                     mTglLahirAnak.setText(dateFormatter.format(newDate.getTime()));
                 else if (v == mBtnDateTanggungan)
                     mTglLahirTanggungan.setText(dateFormatter.format(newDate.getTime()));
-
             }
-
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
         /**
@@ -653,14 +633,12 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
         datePickerDialog.show();
     }
 
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             goToDashboard();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -672,7 +650,7 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
 
     @Override
     public void goToDashboard() {
-        Intent i = new Intent(this, MenuUtama.class);
+        Intent i = new Intent(this, Profile.class);
         startActivity(i);
         finish();
     }
@@ -690,7 +668,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                                 this.setDataKeluargaVisible(true);
                             }
                             break;
-
                         case 1:
                             if (this.isDataKeluargaReady()) {
                                 currentStep++;
@@ -698,7 +675,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                                 this.setDataKepemilikanVisible(true);
                             }
                             break;
-
                     }
                 } else {
                     if (this.isDataKepemilikanReady()) {
@@ -717,13 +693,10 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                         this.setDataKeluargaVisible(true);
                     else if (currentStep == 2)
                         this.setDataKepemilikanVisible(true);
-
-
                 }
                 mStepView.done(false);
                 mStepView.go(currentStep, true);
                 break;
-
             case R.id.mSubmit:
                 SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?" , "Pastikan semua data anda sudah benar!" , "Data Berhasil disimpan .", string -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -733,7 +706,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                 break;
         }
     }
-
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -754,7 +726,6 @@ public class CreateProfile extends AppCompatActivity implements IProfileView, Vi
                         break;
                 }
                 break;
-
             case R.id.mRadioTanggungan:
                 switch (checkedId) {
                     case R.id.mYaTanggungan:

@@ -54,10 +54,10 @@ public class PagerActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-//        if (restorePrefData()) {
-//            startActivity(new Intent(getApplicationContext(), Splash.class));
-//            Animatoo.animateZoom(PagerActivity.this);
-//        }
+        if (restorePrefData()) {
+            startActivity(new Intent(getApplicationContext(), Splash.class));
+            Animatoo.animateZoom(PagerActivity.this);
+        }
         requestAppPermissions();
         if(App.getPref().getBoolean(Prefs.PREF_FIRST_TIME,false)){
             startActivity(new Intent(getApplicationContext(), Splash.class));

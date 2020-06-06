@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.petani.MenuUtama;
+import com.app.app4g.features.petani.profile.Profile;
 import com.app.app4g.features.petani.profile.model.profile;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
@@ -37,7 +38,6 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
     SweetAlertDialog sweetAlertDialog;
     String nik;
     DetailProfilePresenter presenter;
-
     @BindView(R.id.mNama)
     TextView mNama;
     @BindView(R.id.mNik)
@@ -46,7 +46,6 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
     TextView mAddress;
     @BindView(R.id.mNokk)
     TextView mNokk;
-
     @BindView(R.id.mTmptLahir)
     TextView mTmptLahir;
     @BindView(R.id.mPendTerakhir)
@@ -83,19 +82,14 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
     LinearLayout mLayoutAnak;
     @BindView(R.id.LayoutTanggungan)
     LinearLayout mLayoutTanggungan;
-
     @BindView(R.id.collapseAnak)
     LinearLayout mCollapseAnak;
-
     @BindView(R.id.collapseTanggungan)
     LinearLayout mCollapseTanggungan;
-
     @BindView(R.id.imgCollapseAnak)
     ImageButton imgCollapseAnak;
-
     @BindView(R.id.imgCollapseTanggungan)
     ImageButton imgCollapseTanggungan;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,11 +105,9 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         this.initViews();
         presenter.onGetProfile(nik);
-
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
     }
 
     @Override
@@ -195,8 +187,6 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
             mTxtHubKeluarga.setEnabled(false);
             mLayoutTanggungan.addView(rowView, 0);
         }
-
-
     }
 
     @Override
@@ -228,13 +218,12 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
         if (id == android.R.id.home) {
             goToDashboard();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void goToDashboard() {
-        Intent i = new Intent(this, MenuUtama.class);
+        Intent i = new Intent(this, Profile.class);
         startActivity(i);
         finish();
     }
@@ -253,7 +242,6 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
 
     @Override
     public void hideAnakList() {
-
         mLayoutAnak.setVisibility(View.GONE);
         imgCollapseAnak.setImageDrawable(CustomDrawable.googleMaterialDrawable(
                 this, R.color.c_black, 18, GoogleMaterial.Icon.gmd_keyboard_arrow_up
@@ -262,21 +250,17 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
 
     @Override
     public void showTanggunganList() {
-        imgCollapseTanggungan.setImageDrawable(CustomDrawable.googleMaterialDrawable(
-                this, R.color.c_black, 18, GoogleMaterial.Icon.gmd_keyboard_arrow_down
-        ));
+        imgCollapseTanggungan.setImageDrawable(CustomDrawable.googleMaterialDrawable(this, R.color.c_black, 18, GoogleMaterial.Icon.gmd_keyboard_arrow_down));
         mLayoutTanggungan.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideTanggunganList() {
-
         mLayoutTanggungan.setVisibility(View.GONE);
         imgCollapseTanggungan.setImageDrawable(CustomDrawable.googleMaterialDrawable(
                 this, R.color.c_black, 18, GoogleMaterial.Icon.gmd_keyboard_arrow_up
         ));
     }
-
 
     @Override
     public void onClick(View v) {
@@ -286,7 +270,6 @@ public class DetailProfile extends AppCompatActivity implements IDetailProfileVi
                     this.hideAnakList();
                 else this.showAnakList();
                 break;
-
             case R.id.collapseTanggungan:
                 if (mLayoutTanggungan.getVisibility() == View.VISIBLE)
                     this.hideTanggunganList();

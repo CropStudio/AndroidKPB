@@ -1,4 +1,4 @@
-package com.app.app4g.features.petani;
+package com.app.app4g.features.petani.dashboard;
 
 public class ModelSliderBanner {
 

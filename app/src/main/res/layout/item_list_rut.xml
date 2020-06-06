@@ -237,46 +237,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="0"
-                android:background="@drawable/card_list_rut"
-                android:gravity="center|bottom|start"
+                android:gravity="center|start"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp">
 
                 <Button
                     android:id="@+id/mBtnSetuju"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:text="@string/setuju"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/color_default_green" />
+                    android:background="@drawable/btnrounded_green" />
 
                 <Button
                     android:id="@+id/mBtnEdit"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="5dp"
                     android:text="@string/Ubah"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/color_default_blue" />
+                    android:background="@drawable/btnrounded_blue" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:gravity="center|right"
                     android:paddingRight="20dp">
 
                     <Button
                         android:id="@+id/mBtnKebutuhan"
-                        android:layout_width="80dp"
+                        android:layout_width="70dp"
                         android:layout_height="20dp"
                         android:background="@android:color/transparent"
-                        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                         android:text="@string/detail"
                         android:textAllCaps="false"
                         android:textColor="@color/color_default_blue"
                         android:textSize="12sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_blue_24dp"/>
 
                 </LinearLayout>
 

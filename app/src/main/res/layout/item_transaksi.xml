@@ -59,25 +59,55 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/mNamaTransaksi"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Nama Transaksi"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mNamaTransaksi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Transaksi"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right|center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/mTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="02 Jun, 2020 00:51"
+                                        android:textColor="@color/color_default_blue"
+                                        android:textSize="12sp" />
+
+                                    <ImageView
+                                        android:id="@+id/indicator"
+                                        android:layout_width="10dp"
+                                        android:layout_height="10dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:src="@drawable/shape_indicator_active" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
 
                             <TextView
                                 android:id="@+id/mIdTransaksi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TRNSKKDKFHJGK"
+                                android:text="TRNS-9331-12421025-1591037077564392"
                                 android:textColor="@color/color_default_blue"
-                                android:textSize="15sp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -88,20 +118,6 @@
                             android:gravity="center|right"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/mTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/color_default_blue"
-                                android:textSize="12sp" />
-
-                            <ImageView
-                                android:id="@+id/indicator"
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:layout_marginLeft="10dp"
-                                android:src="@drawable/shape_indicator_active" />
-
                         </LinearLayout>
 
                     </LinearLayout>
@@ -111,7 +127,6 @@
                         android:layout_height="5dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
                         android:background="@drawable/doted_line"
                         android:layerType="software" />
 
@@ -149,7 +164,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="right|center"
                         android:orientation="horizontal"
                         android:paddingRight="10dp">
 
@@ -158,12 +173,16 @@
                             android:layout_width="80dp"
                             android:layout_height="20dp"
                             android:background="@android:color/transparent"
-                            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                             android:gravity="center"
                             android:text="@string/detail"
                             android:textAllCaps="false"
                             android:textColor="@color/color_default_blue"
                             android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/ic_keyboard_arrow_right_blue_24dp" />
 
                     </LinearLayout>
 

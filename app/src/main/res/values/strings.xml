@@ -222,9 +222,9 @@
     <string name="signin">Masuk</string>
     <string name="signup">Daftar</string>
     <string name="go_login">Sudah punya akun ? silahkan masuk !</string>
-    <string name="go_regist">Belum punya akun ? <font fgcolor='#3EB2FF'>Daftar Sekarang !</font></string>
-    <string name="popup_a">Keuntungan bergabung dengan <b><font fgcolor='#3EB2FF'>KPB ?</font></b></string>
-    <string name="popup_b">Syarat untuk bergabung <b><font fgcolor='#3EB2FF'>KPB !</font></b></string>
+    <string name="go_regist">Belum punya akun ? Daftar Sekarang !</string>
+    <string name="popup_a">Keuntungan bergabung dengan KPB ?</string>
+    <string name="popup_b">Syarat untuk bergabung KPB !</string>
 
     <string name="lorem_title">Lorem Ipsum</string>
     <string name="lorem_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>

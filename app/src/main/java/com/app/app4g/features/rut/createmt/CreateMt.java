@@ -161,11 +161,10 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         mt.put("8", "Masa Tanam 8");
         mt.put("9", "Masa Tanam 9");
         mt.put("10", "Masa Tanam 10");
-        adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, mt);
+        adapter = new LinkedHashMapAdapter<String, String>(this, R.layout.spinnermt, mt);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mMt.setAdapter(adapter);
         mMt.setOnItemSelectedListener(this);
-
     }
 
     @Override

@@ -109,10 +109,26 @@
             android:orientation="horizontal">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total komoditas"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textColor="@color/color_default_black_dark"
+                android:textSize="13sp" />
+
+            <TextView
                 android:id="@+id/mIdMt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Komoditas"
+                android:layout_marginLeft="3dp"
+                android:text="satuan"
                 android:textColor="@color/color_default_black_dark"
                 android:textSize="13sp" />
 
@@ -121,13 +137,14 @@
         <Button
             android:id="@+id/DeleteMt"
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="end"
+            android:background="@drawable/btnrounded_red"
             android:onClick="onDeleteMt"
             android:text="Hapus"
-            android:textSize="12sp"
             android:textColor="@color/white"
-            android:backgroundTint="@color/orange_red" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 

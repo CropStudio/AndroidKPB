@@ -83,7 +83,7 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_kpb" />
+                                    android:src="@drawable/iconkpb" />
 
                                 <TextView
                                     android:id="@+id/pilihlokasi"

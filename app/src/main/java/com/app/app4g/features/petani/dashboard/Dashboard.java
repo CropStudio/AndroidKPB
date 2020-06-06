@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,6 @@ import androidx.cardview.widget.CardView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -32,9 +30,7 @@ import android.widget.Toast;
 import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.pasar_tani.PasarTaniActivity;
-import com.app.app4g.features.petani.AdapterSliderBanner;
 import com.app.app4g.features.petani.KartuPetani;
-import com.app.app4g.features.petani.ModelSliderBanner;
 import com.app.app4g.features.petani.jatah.ListDataPupuk;
 import com.app.app4g.features.rut.aset.AsetActivity;
 import com.app.app4g.features.transaksi.TransaksiActivity;
@@ -76,6 +72,8 @@ public class Dashboard extends Fragment implements IDashboardView {
     @BindView(R.id.mCardTransaksi)
     CardView mCardTransaksi;
 
+    CardView headerScroller;
+
     ImageView banners;
     NavigationView navigation;
     ImageButton menu;
@@ -107,6 +105,9 @@ public class Dashboard extends Fragment implements IDashboardView {
         presenter = new DashboardPresenter(this);
         this.setupDrawer();
         this.initViews();
+
+        headerScroller = view.findViewById(R.id.cardInfoBeasiswa);
+        headerScroller.setPreventCornerOverlap(false);
 
         indicatorDot = view.findViewById(R.id.bannerDot);
         viewPager = view.findViewById(R.id.viewPager);

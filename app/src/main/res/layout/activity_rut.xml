@@ -76,6 +76,7 @@
                         android:id="@+id/statusHide"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="5dp"
                         android:background="@color/grey_3">
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -118,9 +119,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#46B854"
-            android:drawableRight="@drawable/ic_edit_black_24dp"
             android:gravity="center"
-            android:text="EDIT"
+            android:text="UBAH"
             android:textColor="@color/white"
             android:visibility="gone" />
 

@@ -60,6 +60,7 @@
             android:layout_height="match_parent"
             android:divider="@android:color/transparent"
             android:scrollbars="none"
+            tools:listitem="@layout/content_pupuk"
             android:dividerHeight="0dp">
 
         </ListView>

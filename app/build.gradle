@@ -29,7 +29,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release2
         aaptOptions { cruncherEnabled = false }
-
     }
 
     buildTypes {

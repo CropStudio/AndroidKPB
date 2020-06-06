@@ -169,8 +169,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         this.initView();
         System.out.println(data.toString());
         presenter.getRut(nik, token, data.toString());
-
-
     }
 
     @Override
@@ -236,10 +234,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         adapter = new RutAdapter(items, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-
     }
-
 
     @Override
     public void onRequestFailed(String rm) {
@@ -279,12 +274,10 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onBackPressed() {
         // ...
-
         if (LayoutStat)
             HideDetailKebutuhan();
         else
             this.goToDashboard();
-
     }
 
     @Override
@@ -322,7 +315,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         } else {
             TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
         }
-
     }
 
     @Override
@@ -348,13 +340,11 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onCreateSuccess(String rm) {
         SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.recreate());
-
     }
 
     @Override
     public void onCreateFailed(String rm) {
         SweetDialogs.commonError(this, rm, false);
-
     }
 
 //    @androidx.annotation.RequiresApi(api = Build.VERSION_CODES.N)
@@ -376,7 +366,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //        return subTotal;
 //    }
 //
-
     @Override
     public void HideDetailKebutuhan() {
         LayoutStat = false;
@@ -392,7 +381,6 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
             else
                 this.goToDashboard();
         }
-
         return false;
         // Disable back button..............
     }

@@ -54,7 +54,7 @@
                 <TextView
                     android:id="@+id/thnRdkk"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
                     android:text="2019"
                     android:textSize="18sp" />
@@ -66,7 +66,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_10"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -78,7 +77,9 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -99,7 +100,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Subsektor"
-                                android:textColor="#4D000000" />
+                                android:textColor="@color/color_default_black"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -114,7 +116,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total Pupuk"
-                                android:textColor="#4D000000" />
+                                android:textColor="@color/color_default_black"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -137,8 +140,7 @@
                                 android:id="@+id/subsektor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Panganan Tanam"
-                                android:textStyle="bold" />
+                                android:text="Panganan Tanam" />
 
                         </LinearLayout>
 
@@ -153,8 +155,7 @@
                                 android:id="@+id/totPupuk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="200 Kg"
-                                android:textStyle="bold" />
+                                android:text="200 Kg" />
 
                         </LinearLayout>
 

@@ -28,7 +28,6 @@ public class DashboardPresenter {
                         view.hideLoadingIndicator();
                         if(response.body().getSuccess())
                             view.goUpdateVersion(response.body().getmRm());
-
                     }
 
                     @Override

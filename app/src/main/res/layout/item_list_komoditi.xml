@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true">
@@ -103,29 +103,29 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/card_list_rut"
+                android:layout_height="35dp"
                 android:gravity="center|right"
-                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buttonSet"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:text="@string/atur_rut"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/color_default_blue" />
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/btnrounded_blue" />
 
                 <Button
                     android:id="@+id/mBtnHapus"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:text="HAPUS"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:backgroundTint="@color/orange_red" />
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/btnrounded_red" />
 
             </LinearLayout>
 

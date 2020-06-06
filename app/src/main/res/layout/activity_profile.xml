@@ -147,8 +147,8 @@
                             <Button
                                 android:id="@+id/mEditProfile"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/color_default_green"
+                                android:layout_height="30dp"
+                                android:background="@drawable/btnrounded_green"
                                 android:drawablePadding="5dp"
                                 android:text="@string/edit"
                                 android:textColor="@color/white"
@@ -162,8 +162,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:gravity="center"
-                        android:visibility="gone"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="3">
 
                         <LinearLayout
@@ -330,15 +330,19 @@
 
                         <Button
                             android:id="@+id/viewProfile"
-                            android:layout_width="80dp"
+                            android:layout_width="70dp"
                             android:layout_height="20dp"
                             android:background="@android:color/transparent"
-                            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                             android:gravity="center"
                             android:text="@string/detail"
                             android:textAllCaps="false"
                             android:textColor="@color/color_default_blue"
                             android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/ic_keyboard_arrow_right_blue_24dp" />
 
                     </LinearLayout>
 

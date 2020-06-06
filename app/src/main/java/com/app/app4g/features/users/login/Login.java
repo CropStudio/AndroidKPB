@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -99,7 +100,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
             this.initViews();
         }
 
-        dialog = new Dialog(this);
+        dialog = new Dialog(this, R.style.FullHeightDialog);
         keuntungan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -55,11 +55,9 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         this.rutListener = rutListener;
     }
 
-
     @Override
     public RutAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_rut, parent, false);
-
         RutAdapter.ViewHolder viewHolder = new RutAdapter.ViewHolder(view);
         return viewHolder;
     }
@@ -106,11 +104,8 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
 //        }
         holder.mBtnSetuju.setOnClickListener(view->rutListener.onSetuju(rut));
-
-
         holder.mBtnEdit.setOnClickListener(view -> rutListener.onEditRut(rut));
     }
-
 
     @Override
     public int getItemCount() {
@@ -120,14 +115,11 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
             return ruts.size();
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView mMt, mTotalSaprotan, mTotalBudidaya, mTotalPendapatan, mTotalKeuntungan, mStatus, mToko, mSubsidi, mKomoditas;
         Button mBtnKebutuhan, mBtnSetuju, mBtnEdit;
         View mStatusBar;
         CheckBox mCheckBox;
-
         ViewHolder(View view) {
             super(view);
             mMt = view.findViewById(R.id.mMt);

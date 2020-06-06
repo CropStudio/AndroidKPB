@@ -98,6 +98,7 @@
                                     android:layout_height="wrap_content"
                                     android:hint="@string/nik"
                                     android:paddingLeft="25dp"
+                                    android:layout_marginTop="5dp"
                                     android:paddingRight="25dp"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:endIconMode="custom"
@@ -291,17 +292,23 @@
                                     android:layout_marginTop="5dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mAgama"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Agama"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Agama"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -316,17 +323,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mPendTerakhir"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Pendidikan Terakhir"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Pendidikan Terakhir"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -341,17 +354,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mPerkawinan"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Perkawinan"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Perkawinan"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -374,6 +393,7 @@
                                     android:hint="@string/mom"
                                     android:paddingLeft="25dp"
                                     android:paddingRight="25dp"
+                                    android:layout_marginTop="5dp"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_list">
@@ -396,6 +416,7 @@
                                     android:hint="@string/no_kk"
                                     android:paddingLeft="25dp"
                                     android:paddingRight="25dp"
+                                    android:layout_marginTop="5dp"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
                                     app:startIconDrawable="@drawable/ic_list">
@@ -519,17 +540,23 @@
                                         android:layout_height="48dp"
                                         android:background="@drawable/shape_spinner"
                                         android:gravity="center"
-                                        android:paddingLeft="40dp"
-                                        android:paddingRight="25dp">
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
+                                            app:srcCompat="@drawable/ic_list" />
 
                                         <com.jaredrummler.materialspinner.MaterialSpinner
                                             android:id="@+id/SpinnerAnak"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
                                             android:text="@string/anak_ke"
                                             android:textColor="@color/color_default_black"
                                             android:textSize="15sp"
-                                            app:ms_hide_arrow="true"
+                                            app:ms_hide_arrow="false"
                                             app:ms_hint="@string/anak_ke"
                                             app:ms_hint_color="@color/color_default_black"
                                             app:ms_padding_bottom="0dp"
@@ -542,6 +569,7 @@
                                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
                                         android:hint="@string/nama_anak"
                                         app:boxStrokeColor="@color/color_default_blue"
                                         app:hintTextColor="@color/color_default_black"
@@ -612,6 +640,7 @@
                                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
                                         android:hint="@string/place_birth"
                                         app:boxStrokeColor="@color/color_default_blue"
                                         app:hintTextColor="@color/color_default_black"
@@ -634,17 +663,23 @@
                                         android:layout_marginTop="10dp"
                                         android:background="@drawable/shape_spinner"
                                         android:gravity="center"
-                                        android:paddingLeft="40dp"
-                                        android:paddingRight="25dp">
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
+                                            app:srcCompat="@drawable/ic_list" />
 
                                         <com.jaredrummler.materialspinner.MaterialSpinner
                                             android:id="@+id/mPendTerakhirAnak"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
                                             android:text="Pendidikan Sekarang"
                                             android:textColor="@color/color_default_black"
                                             android:textSize="15sp"
-                                            app:ms_hide_arrow="true"
+                                            app:ms_hide_arrow="false"
                                             app:ms_hint="Pendidikan Sekarang"
                                             app:ms_hint_color="@color/color_default_black"
                                             app:ms_padding_bottom="0dp"
@@ -662,8 +697,8 @@
                                         <Button
                                             android:id="@+id/mAddAnak"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/btn_tambah"
+                                            android:layout_height="40dp"
+                                            android:background="@drawable/btnrounded_green"
                                             android:onClick="onAddField"
                                             android:paddingLeft="15dp"
                                             android:paddingRight="15dp"
@@ -809,6 +844,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/place_birth"
+                                        android:layout_marginTop="5dp"
                                         app:boxStrokeColor="@color/color_default_blue"
                                         app:hintTextColor="@color/color_default_black"
                                         app:startIconDrawable="@drawable/ic_list">
@@ -830,17 +866,23 @@
                                         android:layout_marginTop="10dp"
                                         android:background="@drawable/shape_spinner"
                                         android:gravity="center"
-                                        android:paddingLeft="40dp"
-                                        android:paddingRight="25dp">
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
+                                            app:srcCompat="@drawable/ic_list" />
 
                                         <com.jaredrummler.materialspinner.MaterialSpinner
                                             android:id="@+id/mHubKeluarga"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
                                             android:text="Hubungan Keluarga"
                                             android:textColor="@color/color_default_black"
                                             android:textSize="15sp"
-                                            app:ms_hide_arrow="true"
+                                            app:ms_hide_arrow="false"
                                             app:ms_hint="Hubungan Keluarga"
                                             app:ms_hint_color="@color/color_default_black"
                                             app:ms_padding_bottom="0dp"
@@ -858,8 +900,8 @@
                                         <Button
                                             android:id="@+id/mAddTanggungan"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/btn_tambah"
+                                            android:layout_height="40dp"
+                                            android:background="@drawable/btnrounded_green"
                                             android:onClick="onAddField"
                                             android:paddingLeft="15dp"
                                             android:paddingRight="15dp"
@@ -917,17 +959,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mStatusRumah"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Kepemilikan Rumah"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Kepemilikan Rumah"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -942,17 +990,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mStatusLahan"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Kepemilikan Lahan"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Kepemilikan Lahan"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -967,17 +1021,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mFasilitasListrik"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Fasilitas Listrik"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Fasilitas Listrik"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -992,17 +1052,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mJenisKendaraan"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Kepemilikan Kendaraan"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Kepemilikan Kendaraan"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -1017,17 +1083,23 @@
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_spinner"
                                     android:gravity="center"
-                                    android:paddingLeft="40dp"
-                                    android:paddingRight="25dp">
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        app:srcCompat="@drawable/ic_list" />
 
                                     <com.jaredrummler.materialspinner.MaterialSpinner
                                         android:id="@+id/mJenisTernak"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
                                         android:text="Status Kepemilikan Ternak"
                                         android:textColor="@color/color_default_black"
                                         android:textSize="15sp"
-                                        app:ms_hide_arrow="true"
+                                        app:ms_hide_arrow="false"
                                         app:ms_hint="Status Kepemilikan Ternak"
                                         app:ms_hint_color="@color/color_default_black"
                                         app:ms_padding_bottom="0dp"
@@ -1040,6 +1112,7 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
                                     android:hint="Jenis ternak anda (cth : ikan mas)"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
@@ -1060,6 +1133,7 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
                                     android:hint="Pekerjaan Selain Bertani"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
@@ -1080,6 +1154,7 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
                                     android:hint="Pekerjaan Penghuni Rumah"
                                     app:boxStrokeColor="@color/color_default_blue"
                                     app:hintTextColor="@color/color_default_black"
@@ -1101,14 +1176,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
-                                    android:gravity="center"
+                                    android:gravity="right"
                                     android:visibility="gone">
 
                                     <Button
                                         android:id="@+id/mSubmit"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/btn_tambah"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/btnrounded_green"
                                         android:paddingLeft="15dp"
                                         android:paddingRight="15dp"
                                         android:text="Tambah Data"

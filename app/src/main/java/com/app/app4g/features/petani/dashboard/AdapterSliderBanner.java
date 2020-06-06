@@ -1,4 +1,4 @@
-package com.app.app4g.features.petani;
+package com.app.app4g.features.petani.dashboard;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 
 
@@ -42,11 +43,11 @@ public class AdapterSliderBanner extends PagerAdapter {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_card_banner, container, false);
 
-        ImageView imageView;
+        CardView imageView;
         TextView title, desc;
 
-        imageView = view.findViewById(R.id.banner);
-        imageView.setImageResource(models.get(position).getImage());
+        imageView = view.findViewById(R.id.cardInfoBeasiswa);
+        imageView.setBackgroundResource(models.get(position).getImage());
         container.addView(view, 0);
         return view;
     }
