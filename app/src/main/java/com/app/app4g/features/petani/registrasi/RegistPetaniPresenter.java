@@ -51,12 +51,12 @@ public class RegistPetaniPresenter {
 
     void getArea(String id, String key) {
         if (key.equals("kabupaten")) {
-//            view.showLoadingIndicator();
+            view.showLoadingIndicator();
             restService.create(NetworkService.class).getKab(id)
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
-                            view.hideLoadingIndicator();
+//                            view.hideLoadingIndicator();
                             if (response.body().getStatus())
                                 view.onDataReady(response.body().getResult(), key);
 
@@ -64,7 +64,7 @@ public class RegistPetaniPresenter {
 
                         @Override
                         public void onFailure(Call<AreaResponse> call, Throwable t) {
-                            view.hideLoadingIndicator();
+//                            view.hideLoadingIndicator();
                             view.onNetworkError(t.getLocalizedMessage());
                         }
                     });
@@ -74,7 +74,7 @@ public class RegistPetaniPresenter {
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
-                            view.hideLoadingIndicator();
+//                            view.hideLoadingIndicator();
                             if (response.body().getStatus())
                                 view.onDataReady(response.body().getResult(), key);
 
@@ -82,7 +82,7 @@ public class RegistPetaniPresenter {
 
                         @Override
                         public void onFailure(Call<AreaResponse> call, Throwable t) {
-                            view.hideLoadingIndicator();
+//                            view.hideLoadingIndicator();
                             view.onNetworkError(t.getLocalizedMessage());
                         }
                     });

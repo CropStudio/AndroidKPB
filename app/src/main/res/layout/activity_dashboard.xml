@@ -180,7 +180,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="3dp"
-                                            android:text="@string/menu_pupuk"
+                                            android:text="Program Bantuan"
                                             android:textColor="#999C9E" />
 
                                     </LinearLayout>

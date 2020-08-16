@@ -15,6 +15,12 @@ public class Transaksi {
     @SerializedName("status")
     private String status ;
 
+    @SerializedName("verifiedKur")
+    private Boolean verifiedKur ;
+
+    @SerializedName("statusKur")
+    private Boolean statusKur ;
+
     @SerializedName("created_at")
     private String created_at ;
 
@@ -29,6 +35,22 @@ public class Transaksi {
 
     @SerializedName("detailTransaksi")
     private List<DetailTransaksi> detailTransaksi ;
+
+    public Boolean getStatusKur() {
+        return statusKur;
+    }
+
+    public void setStatusKur(Boolean statusKur) {
+        this.statusKur = statusKur;
+    }
+
+    public Boolean getVerifiedKur() {
+        return verifiedKur;
+    }
+
+    public void setVerifiedKur(Boolean verifiedKur) {
+        this.verifiedKur = verifiedKur;
+    }
 
     public List<DetailTransaksi> getDetailTransaksi() {
         return detailTransaksi;

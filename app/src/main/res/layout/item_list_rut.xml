@@ -245,7 +245,7 @@
                     android:id="@+id/mBtnSetuju"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="@string/setuju"
+                    android:text="TRANSAKSI"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:background="@drawable/btnrounded_green" />

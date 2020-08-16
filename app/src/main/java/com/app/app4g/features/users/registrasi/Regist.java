@@ -206,6 +206,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         PasswordLayout.setVisibility(View.VISIBLE);
                         txtNama.setText(nama);
                         txtAlamat.setText(alamat);
+                        edNik.setEnabled(false);
                     } else {
 //                        imgView.setVisibility(View.VISIBLE);
 //                        dataPetani.setVisibility(View.GONE);
@@ -235,7 +236,9 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     }
 
     public void goToDaftar() {
-        startActivity(new Intent(this, RegistPetaniActivity.class));
+        Intent i = new Intent(this, RegistPetaniActivity.class);
+        i.putExtra("nik" , edNik.getText().toString());
+        startActivity(i);
         finish();
     }
 

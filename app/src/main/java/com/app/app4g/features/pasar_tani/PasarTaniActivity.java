@@ -1,14 +1,17 @@
 package com.app.app4g.features.pasar_tani;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -60,6 +63,8 @@ public class PasarTaniActivity extends AppCompatActivity implements IPasarTaniVi
         this.initViews();
     }
 
+
+    @SuppressLint("JavascriptInterface")
     @Override
     public void initViews() {
 //        pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
@@ -67,8 +72,8 @@ public class PasarTaniActivity extends AppCompatActivity implements IPasarTaniVi
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
-
         mWebView = findViewById(R.id.webview);
+        mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setListener(this, this);
         mWebView.setGeolocationEnabled(false);
         mWebView.setMixedContentAllowed(true);
@@ -103,6 +108,20 @@ public class PasarTaniActivity extends AppCompatActivity implements IPasarTaniVi
 
         mWebView.addHttpHeader("X-Requested-With", "");
         mWebView.loadUrl(BASE_URL+nik);
+    }
+
+    public class JavaScriptInterface {
+        Context mContext;
+
+        /** Instantiate the interface and set the context */
+        JavaScriptInterface(Context c) {
+            mContext = c;
+        }
+
+        public void showToast()
+        {
+            Toast.makeText(mContext, "Button Clicked", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -1,505 +1,514 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center"
     android:orientation="vertical"
     android:theme="@style/AppThemeSubs"
     android:weightSum="3"
     tools:context=".features.users.registrasi.Regist">
 
-    <include layout="@layout/toolbar_default" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_default" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="center|top"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_check" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="25dp"
-            android:paddingTop="10dp"
-            android:paddingRight="25dp"
-            android:paddingBottom="10dp"
-            android:text="Masukkan Data Anda"
-            android:textColor="@color/color_default_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        android:layout_below="@id/toolbar">
 
         <LinearLayout
-            android:id="@+id/nameHide"
+            android:id="@+id/LayoutRegist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/nama"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                app:boxStrokeColor="@color/color_default_blue"
-                app:hintTextColor="@color/color_default_black"
-                app:startIconDrawable="@drawable/ic_userz">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mNama"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextFieldNik"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/nik"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                app:boxStrokeColor="@color/color_default_blue"
-                app:endIconMode="custom"
-                app:hintTextColor="@color/color_default_black"
-                app:startIconDrawable="@drawable/ic_card">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mNik"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:padding="5dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="3"
+            android:gravity="center|top"
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/btnCari"
-                android:layout_width="25dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="-65dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="20dp"
-                android:alpha="0.5"
-                android:scaleX="-1"
-                app:srcCompat="@drawable/ic_seeker" />
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_check" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="10dp"
+                android:paddingRight="25dp"
+                android:paddingBottom="10dp"
+                android:text="Masukkan Data Anda"
+                android:textColor="@color/color_default_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/dataPetani"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
-            android:visibility="gone">
+            <LinearLayout
+                android:id="@+id/nameHide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nama"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_userz">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextFieldNik"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nik"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:endIconMode="custom"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_card">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mNik"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/btnCari"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="-65dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="20dp"
+                    android:alpha="0.5"
+                    android:scaleX="-1"
+                    app:srcCompat="@drawable/ic_seeker" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dataPetani"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_info_body"
-                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_info_body"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:layout_weight="0"
+                            android:background="@drawable/shape_info_header"
+                            android:padding="5dp"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:paddingLeft="10dp"
+                                android:text="@string/find"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:paddingRight="10dp"
+                                android:text="@string/poktan"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:tint="@color/color_default_blue"
+                                    app:srcCompat="@drawable/ic_userz" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/nama_lengkap"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtNama"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="John Charley"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/gender"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtJenisKelamin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Laki-Laki"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/alamat"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtAlamat"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jl. Pegangsaan Timur No. 26 Jakarta Selatan"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addressHide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:layout_weight="0"
-                        android:background="@drawable/shape_info_header"
-                        android:padding="5dp"
-                        android:weightSum="2">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/mProv"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/shape_spinner"
+                            android:paddingLeft="40dp"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="15sp"
+                            app:ms_padding_left="5dp" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:text="@string/find"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|right"
-                            android:paddingRight="10dp"
-                            android:text="@string/poktan"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:text="Pilihan Provinsi"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:weightSum="2">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <Spinner
+                            android:id="@+id/mKab"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center">
+                            android:layout_height="48dp"
+                            android:background="@drawable/shape_spinner"
+                            android:paddingLeft="40dp"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="15sp"
+                            app:ms_padding_left="5dp" />
 
-                            <ImageView
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:tint="@color/color_default_blue"
-                                app:srcCompat="@drawable/ic_userz" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/nama_lengkap"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtNama"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="John Charley"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/gender"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtJenisKelamin"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Laki-Laki"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/alamat"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtAlamat"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Jl. Pegangsaan Timur No. 26 Jakarta Selatan"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pilihan Kabupaten"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/mKec"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/shape_spinner"
+                            android:paddingLeft="40dp"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="15dp"
+                            app:ms_hint="Provinsi"
+                            app:ms_hint_color="@color/color_default_black"
+                            app:ms_padding_left="5dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pilihan Kecamatan"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/mDesa"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/shape_spinner"
+                            android:paddingLeft="40dp"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="15dp"
+                            app:ms_hint="Provinsi"
+                            app:ms_hint_color="@color/color_default_black"
+                            app:ms_padding_left="5dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pilihan Desa"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/alamat"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:hintTextColor="@color/color_default_black"
+                    app:startIconDrawable="@drawable/ic_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_black"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/addressHide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible">
 
             <LinearLayout
+                android:id="@+id/passwordHide"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="7dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/pass"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:hintTextColor="@color/color_default_black"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_unlock">
 
-                    <Spinner
-                        android:id="@+id/mProv"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/shape_spinner"
-                        android:paddingLeft="40dp"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword"
+                        android:padding="5dp"
                         android:textColor="@color/color_default_black"
-                        android:textSize="15sp"
-                        app:ms_padding_left="5dp" />
+                        android:textSize="15dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Provinsi"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/confirm_pass"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    app:boxStrokeColor="@color/color_default_blue"
+                    app:hintTextColor="@color/color_default_black"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_unlock">
 
-                    <Spinner
-                        android:id="@+id/mKab"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mRePassword"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/shape_spinner"
-                        android:paddingLeft="40dp"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword"
+                        android:padding="5dp"
                         android:textColor="@color/color_default_black"
-                        android:textSize="15sp"
-                        app:ms_padding_left="5dp" />
+                        android:textSize="15dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Kabupaten"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/buttonHide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/mKec"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/shape_spinner"
-                        android:paddingLeft="40dp"
-                        android:textColor="@color/color_default_black"
-                        android:textSize="15dp"
-                        app:ms_hint="Provinsi"
-                        app:ms_hint_color="@color/color_default_black"
-                        app:ms_padding_left="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Kecamatan"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/mDesa"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/shape_spinner"
-                        android:paddingLeft="40dp"
-                        android:textColor="@color/color_default_black"
-                        android:textSize="15dp"
-                        app:ms_hint="Provinsi"
-                        app:ms_hint_color="@color/color_default_black"
-                        app:ms_padding_left="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Desa"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
+                <Button
+                    android:id="@+id/mSubmit"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/signup"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/color_default_blue" />
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/alamat"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                app:boxStrokeColor="@color/color_default_blue"
-                app:hintTextColor="@color/color_default_black"
-                app:startIconDrawable="@drawable/ic_address">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mAlamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/passwordHide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible">
+    </androidx.core.widget.NestedScrollView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:hint="@string/pass"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                app:boxStrokeColor="@color/color_default_blue"
-                app:hintTextColor="@color/color_default_black"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_unlock">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword"
-                    android:padding="5dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:hint="@string/confirm_pass"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                app:boxStrokeColor="@color/color_default_blue"
-                app:hintTextColor="@color/color_default_black"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_unlock">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mRePassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword"
-                    android:padding="5dp"
-                    android:textColor="@color/color_default_black"
-                    android:textSize="15dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/buttonHide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible">
-
-            <Button
-                android:id="@+id/mSubmit"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/signup"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/color_default_blue" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_weight="0"
-        android:gravity="center">
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -508,4 +517,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

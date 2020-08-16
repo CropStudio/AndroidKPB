@@ -54,6 +54,11 @@ public class Result implements Serializable  {
     @SerializedName("statusSetuju")
     private Boolean statusSetuju;
 
+    @SerializedName("statusKur")
+    private Boolean statusKur;
+
+    @SerializedName("verifiedKur")
+    private Boolean verifiedKur;
 
     @SerializedName("jumlahHasilPanen")
     private String jumlahHasilPanen;
@@ -108,6 +113,22 @@ public class Result implements Serializable  {
 
     @SerializedName("noRek")
     private String noRek;
+
+    public Boolean getVerifiedKur() {
+        return verifiedKur;
+    }
+
+    public void setVerifiedKur(Boolean verifiedKur) {
+        this.verifiedKur = verifiedKur;
+    }
+
+    public Boolean getStatusKur() {
+        return statusKur;
+    }
+
+    public void setStatusKur(Boolean statusKur) {
+        this.statusKur = statusKur;
+    }
 
     public String getNoRek() {
         return noRek;

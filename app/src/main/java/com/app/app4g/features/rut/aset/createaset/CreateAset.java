@@ -124,7 +124,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         presenter.storeProfile(profile);
 
         SweetDialogs.commonSuccessWithIntent(this, profile.getRm(), string -> {
-            this.refreshPage();
+            this.goToDashboard();
         });
     }
 

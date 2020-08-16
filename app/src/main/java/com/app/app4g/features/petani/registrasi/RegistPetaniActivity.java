@@ -92,13 +92,15 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
     @BindView(R.id.mSubmit)
     Button mSubmit;
 
+    String nik ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist_petani);
         ButterKnife.bind(this);
         presenter = new RegistPetaniPresenter(this);
-
+        nik = getIntent().getExtras().getString("nik");
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
@@ -108,6 +110,7 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
 
     @Override
     public void initViews() {
+        mNik.setText(nik);
         presenter.getArea("", key_subsektor);
         mSubmit.setOnClickListener(view -> this.onRegisPetani());
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
@@ -242,22 +245,23 @@ public class RegistPetaniActivity extends AppCompatActivity implements IRegistPe
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mDesa.setAdapter(adapter);
             mDesa.setOnItemSelectedListener(this);
-        } else if (key.equals(key_subsektor)) {
-            for (Result subsektors : result) {
-
-                subsektor.put(subsektors.getId(), subsektors.getName());
-            }
-
-            adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, subsektor);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        } else if (key.equals(key_komoditas)) {
-            for (Result komoditass : result) {
-                komoditas.put(komoditass.getId(), komoditass.getName());
-            }
-
-            adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, komoditas);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
+//        else if (key.equals(key_subsektor)) {
+//            for (Result subsektors : result) {
+//
+//                subsektor.put(subsektors.getId(), subsektors.getName());
+//            }
+//
+//            adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, subsektor);
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        } else if (key.equals(key_komoditas)) {
+//            for (Result komoditass : result) {
+//                komoditas.put(komoditass.getId(), komoditass.getName());
+//            }
+//
+//            adapter = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, komoditas);
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        }
 
     }
 

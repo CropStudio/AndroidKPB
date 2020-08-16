@@ -2,6 +2,7 @@ package com.app.app4g.features.rut;
 
 import android.app.Activity;
 
+import com.app.app4g.features.rut.model.BarangTidakAda;
 import com.app.app4g.features.rut.model.Result;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public interface IRutView {
 
     void onCreateSuccess(String rm);
 
-    void onCreateFailed(String rm);
+    void onCreateFailed(String rm , Result rut, List<BarangTidakAda> val);
 
     void HideDetailKebutuhan();
 }

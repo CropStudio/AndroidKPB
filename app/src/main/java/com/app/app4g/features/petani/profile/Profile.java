@@ -19,6 +19,7 @@ import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.petani.dashboard.Dashboard;
+import com.app.app4g.features.petani.noRekening.Rekening;
 import com.app.app4g.features.petani.profile.createprofile.CreateProfile;
 import com.app.app4g.features.petani.profile.detailProfile.DetailProfile;
 import com.app.app4g.features.users.login.model.LoginResponse;
@@ -51,6 +52,14 @@ public class Profile extends AppCompatActivity {
     TextView mMt2;
     @BindView(R.id.mMt3)
     TextView mMt3;
+    @BindView(R.id.mRekening)
+    TextView mNorek;
+    @BindView(R.id.mKios)
+    TextView mKios;
+    @BindView(R.id.mNamaBank)
+    TextView mNamaBank;
+    @BindView(R.id.mBtnUpdateRek)
+    Button mBtnUpdateRek;
     @BindView(R.id.profile_image)
     CircleImageView mProfileImg;
     LoginResponse mProfile;
@@ -124,7 +133,9 @@ public class Profile extends AppCompatActivity {
     }
 
     public void initView() {
-        String no_hp;
+        String no_hp = "-";
+        String nomorrekening= "-";
+        String namaBank= "-";
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
@@ -135,42 +146,43 @@ public class Profile extends AppCompatActivity {
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         String nama = (mProfile.getResult().getNama().contains(" "))
                 ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
-        if ((mProfile.getResult().getProfile().getNo_hp() != null)) {
+        if (mProfile.getResult().getProfile().getNo_hp() != null && !mProfile.getResult().getProfile().getNo_hp().equals(" ")) {
             no_hp = (mProfile.getResult().getProfile().getNo_hp().contains(""))
                     ? mProfile.getResult().getProfile().getNo_hp() : mProfile.getResult().getProfile().getNo_hp();
+
         } else
             no_hp = "-";
 
+        String alamat =  mProfile.getResult().getProfile().getAddress();
+        String kecamatan = mProfile.getResult().getProfile().getArea().getDistrict();
+        String kabupaten = mProfile.getResult().getProfile().getArea().getCity();
+        String provinsi =  mProfile.getResult().getProfile().getArea().getProvince();
+        nomorrekening =  mProfile.getResult().getProfile().getNomorRekening();
+        Number idKios = (mProfile.getResult().getProfile().getIdKios());
+        String namaKios = (mProfile.getResult().getProfile().getNamaKios());
+        if(namaKios!=null)
+            mKios.setText(namaKios);
+        if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
 
-        String alamat = (mProfile.getResult().getProfile().getAddress().contains(" "))
-                ? mProfile.getResult().getProfile().getAddress() : mProfile.getResult().getProfile().getAddress();
-        String kecamatan = (mProfile.getResult().getProfile().getArea().getDistrict().contains(" "))
-                ? mProfile.getResult().getProfile().getArea().getDistrict() : mProfile.getResult().getProfile().getArea().getDistrict();
-        String kabupaten = (mProfile.getResult().getProfile().getArea().getCity().contains(" "))
-                ? mProfile.getResult().getProfile().getArea().getCity() : mProfile.getResult().getProfile().getArea().getCity();
-        String provinsi = (mProfile.getResult().getProfile().getArea().getProvince().contains(" "))
-                ? mProfile.getResult().getProfile().getArea().getProvince() : mProfile.getResult().getProfile().getArea().getProvince();
-//        String namaPoktan = (mProfile.getResult().getNama_poktan().contains(" "))
-//                ? mProfile.getResult().getNama_poktan() : mProfile.getResult().getNama_poktan();
-//        String mt1 = (mProfile.getResult().getMt1().contains(" "))
-//                ? mProfile.getResult().getMt1() : mProfile.getResult().getMt1();
-//        String mt2 = (mProfile.getResult().getMt2().contains(" "))
-//                ? mProfile.getResult().getMt2() : mProfile.getResult().getMt2();
-//        String mt3 = (mProfile.getResult().getMt3().contains(" "))
-//                ? mProfile.getResult().getMt3() : mProfile.getResult().getMt3();
-//        String idKec = (mProfile.getResult().getIdKecamatan().contains(" "))
-//                ? mProfile.getResult().getIdKecamatan() : mProfile.getResult().getIdKecamatan();
+            namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
+                    ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+            mNamaBank.setText(namaBank);
+            mNorek.setText(nomorrekening);
+        }
         mNik.setText(nik);
         mNama.setText(nama);
         mAddress.setText(alamat + ", KEC. " + kecamatan + ", " + kabupaten + ", " + provinsi);
         mPoktan.setText("-");
         mPhone.setText(no_hp);
-//        mMt1.setText(mt1);
-//        mMt2.setText(mt2);
-//        mMt3.setText(mt3);
         mAddress.setEnabled(false);
         mPhone.setEnabled(false);
         mPoktan.setEnabled(false);
+        mBtnUpdateRek.setOnClickListener(view -> this.goToUpdateRek());
 
+    }
+
+    void goToUpdateRek(){
+        startActivity(new Intent(this, Rekening.class));
+        finish();
     }
 }

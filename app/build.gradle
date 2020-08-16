@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
 
-
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.appcompat:appcompat:1.1.0-rc01'
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -17,13 +21,13 @@ android {
             keyPassword '12421025'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.app.app4g"
         minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 7
-        versionName "6.1"
+        targetSdkVersion 29
+        versionCode 10
+        versionName "2.2"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

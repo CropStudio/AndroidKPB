@@ -27,7 +27,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.pasar_tani.PasarTaniActivity"></activity>
+        <activity android:name=".features.petani.program_bantuan.bantuan.BantuanActivity"></activity>
+        <activity android:name=".features.petani.program_bantuan.autp.AutpActivity" />
+        <activity android:name=".features.petani.program_bantuan.ProgramBantuanActivity" />
+        <activity android:name=".features.petani.program_bantuan.alokasi.AlokasiPupukActivity" />
+        <activity android:name=".features.rut.editRut2.RutEditActivity" />
+        <activity android:name=".features.pasar_tani.PasarTaniActivity" />
         <activity android:name=".features.users.reset_password.ResetPasswordActivity" />
         <activity android:name=".features.petani.profile.Profile" />
         <activity android:name=".features.rut.editRut.EditRutActivity" />

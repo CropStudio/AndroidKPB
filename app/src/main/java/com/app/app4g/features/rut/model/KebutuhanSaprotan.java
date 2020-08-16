@@ -7,11 +7,14 @@ import java.util.List;
 
 public class KebutuhanSaprotan implements Serializable {
 
+    @SerializedName("_id")
+    private String _id;
+
     @SerializedName("nama")
     private String nama;
 
     @SerializedName("jumlah")
-    private long jumlah;
+    private float jumlah;
 
     @SerializedName("subsidi")
     private Boolean subsidi;
@@ -24,6 +27,14 @@ public class KebutuhanSaprotan implements Serializable {
 
     @SerializedName("subTotal")
     private Long subTotal;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public Long getSubTotal() {
         return subTotal;
@@ -49,11 +60,11 @@ public class KebutuhanSaprotan implements Serializable {
         this.nama = nama;
     }
 
-    public long getJumlah() {
+    public float getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(long jumlah) {
+    public void setJumlah(float jumlah) {
         this.jumlah = jumlah;
     }
 

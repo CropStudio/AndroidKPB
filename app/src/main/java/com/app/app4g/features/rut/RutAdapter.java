@@ -74,10 +74,14 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
         holder.mTotalKeuntungan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPrediksiPendapatan())));
         if (rut.getStatusSetuju()) {
             holder.mBtnSetuju.setEnabled(false);
+            holder.mBtnEdit.setEnabled(false);
 //            holder.mBtnSetuju.setBackgroundTintMode(context.getResources().getColor(R.color.grey));
-            holder.mBtnSetuju.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.disable_blue)));
+//            holder.mBtnSetuju.setBackgroundColor(ColorStateList.valueOf(context.getResources().getColor(R.color.disable_blue)));
+            holder.mBtnSetuju.setBackgroundColor(context.getResources().getColor(R.color.disable_blue));
+            holder.mBtnEdit.setBackgroundColor(context.getResources().getColor(R.color.disable_blue));
         } else {
             holder.mBtnSetuju.setEnabled(true);
+            holder.mBtnEdit.setEnabled(true);
         }
         holder.mBtnKebutuhan.setOnClickListener(view -> rutListener.onDetailData(rut.getKebutuhanSaprotan(), rut.getGarapDanPemeliharaan(), rut.getJadwalUsahaTani()));
 //        holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalSaprotan())));

@@ -10,6 +10,8 @@ public interface IAsetView {
 
     void goToDashboard();
 
+    void goToCreateMt(AsetPetani aset);
+
     void onDeleteSuccess(LoginResponse response);
 
     void onRequestFailed(LoginResponse response);

@@ -22,4 +22,6 @@ public interface IRekeningView {
     void hideLoadingIndicator();
 
     void goToRut();
+
+    void goToProfile();
 }

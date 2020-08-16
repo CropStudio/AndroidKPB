@@ -147,10 +147,10 @@
 
                             <Button
                                 android:id="@+id/mEditProfile"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="30dp"
                                 android:background="@drawable/btnrounded_green"
-                                android:text="@string/edit"
+                                android:text="Perbaharui Data Lengkap"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 
@@ -342,7 +342,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_blue_24dp"/>
+                            app:srcCompat="@drawable/ic_keyboard_arrow_right_blue_24dp" />
 
                     </LinearLayout>
 
@@ -352,22 +352,43 @@
                         android:orientation="vertical"
                         android:padding="15dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="@string/alamat"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/mAddress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/lorem_desc"
-                            android:textColor="@color/color_default_black"
-                            android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/labelAlamat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/alamat"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_toLeftOf="@+id/mBtnUpdateAddressPhone"
+                                android:layout_below="@+id/labelAlamat"
+                                android:id="@+id/mAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/lorem_ipsum"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+                            <Button
+                                android:visibility="gone"
+                                android:id="@+id/mBtnUpdateAddressPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/btnrounded_green"
+                                android:text="@string/edit"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
@@ -375,22 +396,142 @@
                             android:layout_marginTop="10dp"
                             android:background="#F3EFEF" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/telp"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/mPhone"
+                            <TextView
+                                android:id="@+id/labelPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/telp"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/labelPhone"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/telp_number"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+                            <Button
+                                android:visibility="gone"
+                                android:id="@+id/mBtnUpdtePhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/btnrounded_green"
+                                android:text="@string/edit"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#F3EFEF" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/labelNoRek"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Info rekening"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mNamaBank"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/labelNoRek"
+                                android:layout_marginTop="5dp"
+                                android:text="  -"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/mRekening"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/mNamaBank"
+                                android:layout_marginTop="5dp"
+                                android:text="  -"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+
+<!--                            <Button-->
+<!--                                android:id="@+id/mBtnUpdteRek"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_marginEnd="5dp"-->
+<!--                                android:background="@drawable/btnrounded_green"-->
+<!--                                android:text="@string/edit"-->
+<!--                                android:textColor="@color/white"-->
+<!--                                android:textSize="12sp" />-->
+
+
+
+                        <Button
+                            android:id="@+id/mBtnUpdateRek"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/telp_number"
-                            android:textColor="@color/color_default_black"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/btnrounded_green"
+                            android:text="@string/edit"
+                            android:textColor="@color/white"
                             android:textSize="12sp" />
+
+
+                            <TextView
+                                android:layout_below="@id/mRekening"
+                                android:id="@+id/labelKios"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Nama Kios"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mKios"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/labelKios"
+                                android:layout_marginTop="5dp"
+                                android:text="-"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+<!--                            <Button-->
+<!--                                android:id="@+id/mBtnUpdteKios"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_marginEnd="5dp"-->
+<!--                                android:background="@drawable/btnrounded_green"-->
+<!--                                android:text="@string/edit"-->
+<!--                                android:textColor="@color/white"-->
+<!--                                android:textSize="12sp" />-->
+                        </RelativeLayout>
 
                     </LinearLayout>
 

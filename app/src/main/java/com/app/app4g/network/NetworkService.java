@@ -4,10 +4,13 @@ import com.app.app4g.features.cart.model.Cart;
 import com.app.app4g.common.CommonResponse;
 import com.app.app4g.features.e_commerce.model.RutResponse;
 import com.app.app4g.features.e_commerce.model.Saldo;
+import com.app.app4g.features.petani.program_bantuan.alokasi.model.AlokasiResponse;
 import com.app.app4g.features.petani.noRekening.model.KiosResponse;
 import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.features.petani.profile.model.ProfileResponse;
 import com.app.app4g.common.CommonRespon;
+import com.app.app4g.features.petani.program_bantuan.autp.model.AutpResponse;
+import com.app.app4g.features.petani.program_bantuan.bantuan.model.BantuanResponse;
 import com.app.app4g.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.app4g.features.petani.registrasi.model.RegistModel;
 import com.app.app4g.features.rut.createmt.model.DistincKomoditas;
@@ -15,17 +18,13 @@ import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.transaksi.model.TransaksiResponse;
 import com.app.app4g.features.users.login.model.LoginResponse;
 
-import org.json.JSONObject;
-
 import java.util.Map;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -64,7 +63,7 @@ public interface NetworkService {
 
     @FormUrlEncoded
     @POST("rutpetani/{nik}")
-    Call<com.app.app4g.features.rut.model.RutResponse> getRut(@Path("nik") String nik , @FieldMap Map<String, Object> data);
+    Call<com.app.app4g.features.rut.model.RutResponse> getRut(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
     @GET("kabupaten/{id}")
     Call<AreaResponse> getKab(@Path("id") String id);
@@ -87,6 +86,15 @@ public interface NetworkService {
     @GET("cekversion/{id}")
     Call<CommonRespon> cekVersion(@Path("id") String id);
 
+    @GET("getalokasipetani/{nik}")
+    Call<AlokasiResponse> getAlokasi(@Path("nik") String nik);
+
+    @GET("getautp/{nik}")
+    Call<AutpResponse> getAutp(@Path("nik") String nik);
+
+    @GET("getbantuanpetani/{nik}")
+    Call<BantuanResponse> getBantuan(@Path("nik") String nik);
+
     @GET("transaksipetanibynik/{nik}")
     Call<TransaksiResponse> getTransaksi(@Path("nik") String nik);
 
@@ -94,14 +102,14 @@ public interface NetworkService {
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);
 
     @PUT("petani/updateaset/{nik}")
-    Call<LoginResponse> updateAset(@Path("nik") String nik,@Body AsetPetani model);
+    Call<LoginResponse> updateAset(@Path("nik") String nik, @Body AsetPetani model);
 
     @FormUrlEncoded
     @PUT("petani/createasset/{id}/{nik}")
     Call<LoginResponse> createMt(@Path("id") String id, @Path("nik") String nik, @FieldMap Map<String, Object> data);
 
     @PUT("hapusasetpetani/{idasset}/{nik}")
-    Call<LoginResponse> deleteAset(@Path("idasset") String idasset,@Path("nik") String nik);
+    Call<LoginResponse> deleteAset(@Path("idasset") String idasset, @Path("nik") String nik);
 
     @FormUrlEncoded
     @POST("getkiosbyarea")
@@ -109,5 +117,5 @@ public interface NetworkService {
 
     @FormUrlEncoded
     @PUT("updatepassword/{nik}")
-    Call<LoginResponse> onResetPassword(@Path("nik") String nik,@FieldMap Map<String, Object> data);
+    Call<LoginResponse> onResetPassword(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 }

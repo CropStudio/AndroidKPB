@@ -53,7 +53,7 @@ public class RutPresenter {
                         if(CommonRespon.body().getSuccess())
                             view.onCreateSuccess(CommonRespon.body().getmRm());
                         else
-                            view.onCreateFailed(CommonRespon.body().getmRm());
+                            view.onCreateFailed(CommonRespon.body().getmRm(),rut , CommonRespon.body().getValue());
 
                     }
 

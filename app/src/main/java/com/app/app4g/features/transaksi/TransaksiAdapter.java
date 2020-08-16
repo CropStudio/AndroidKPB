@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -62,6 +64,17 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
         holder.mTime.setText(Utils.convertMongoDate(transaksi.getCreated_at()));
         holder.mTotal.setText(Utils.convertRupiah(String.valueOf(transaksi.getGrandtotal())));
         holder.mBtnDetail.setOnClickListener(view ->transaksiListener.showList(transaksi.getDetailTransaksi()));
+        if(transaksi.getStatusKur()){
+            holder.layoutKur.setVisibility(View.VISIBLE);
+            if(transaksi.getVerifiedKur()) {
+                holder.indicator.setImageResource(R.drawable.shape_indicator_active);
+                holder.mStatuskur.setText("Kur disetujui");
+            }else{
+                holder.indicator.setImageResource(R.drawable.shape_indicator_orange);
+                holder.mStatuskur.setText("Proses pengajuan Kur");
+            }
+        }else
+            holder.layoutKur.setVisibility(View.GONE);
     }
 
 
@@ -77,8 +90,10 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        final TextView mNamaTransaksi , mIdTransaksi , mTime,mTotal,mCount ;
+        final TextView mNamaTransaksi , mIdTransaksi , mTime,mTotal,mCount ,mStatuskur;
         final Button mBtnDetail ;
+        final ImageView indicator ;
+        final LinearLayout layoutKur;
         ViewHolder(View view) {
             super(view);
             mCount = view.findViewById(R.id.mCount);
@@ -87,6 +102,9 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
             mTime = view.findViewById(R.id.mTime);
             mTotal = view.findViewById(R.id.mTotal);
             mBtnDetail = view.findViewById(R.id.mBtnDetail);
+            indicator = view.findViewById(R.id.indicator);
+            mStatuskur = view.findViewById(R.id.mStatusKur);
+            layoutKur = view.findViewById(R.id.layoutKur);
         }
 
     }

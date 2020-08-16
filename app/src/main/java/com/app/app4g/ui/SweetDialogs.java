@@ -3,16 +3,25 @@ package com.app.app4g.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.app.app4g.R;
+import com.app.app4g.features.rut.model.BarangTidakAda;
 import com.app.app4g.features.users.login.Login;
 import com.app.app4g.server.App;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SweetDialogs {
@@ -267,6 +276,7 @@ public class SweetDialogs {
             sweetAlertDialog.dismissWithAnimation();
             listener.onClosed(suksesBody);
         });
+
         dialog.show();
 
         Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
@@ -277,6 +287,115 @@ public class SweetDialogs {
         btnC.setScaleY((float) 0.8);
         btnC.setTextSize((float) 16.5);
 
+        btnCc.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnCc.setScaleX((float) 1);
+        btnCc.setScaleY((float) 0.8);
+        btnCc.setTextSize((float) 16.5);
+    }
+
+    public static void validasiRekening(Activity context, String Title , String body, String suksesBody, onDialogClosed listener , onDialogClosed editRekening) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+        dialog.setTitleText(Title);
+        dialog.setContentText(body);
+        dialog.setCancelText("Ubah");
+        dialog.setConfirmText("Lanjutkan");
+        dialog.showCancelButton(true);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            listener.onClosed(suksesBody);
+        });
+        dialog.setCancelClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            editRekening.onClosed("");
+        });
+        dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+        Button btnCc = (Button) dialog.findViewById(R.id.cancel_button);
+
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
+
+        btnCc.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnCc.setScaleX((float) 1);
+        btnCc.setScaleY((float) 0.8);
+        btnCc.setTextSize((float) 16.5);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void validasiKur(Activity context, String Title , String body, String suksesBody, onDialogClosed listener , onDialogClosed editRekening) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+        dialog.setTitleText(Title);
+        dialog.setContentText(body);
+        dialog.setCancelText("Tidak");
+        dialog.setConfirmText("Iya");
+        dialog.showCancelButton(true);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            listener.onClosed(suksesBody);
+        });
+        dialog.setCancelClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            editRekening.onClosed("");
+        });
+        dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+        Button btnCc = (Button) dialog.findViewById(R.id.cancel_button);
+        TextView text = dialog.findViewById(R.id.title_text);
+        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        text.setSingleLine(false);
+        text.setLines(2);
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
+//
+        btnCc.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnCc.setScaleX((float) 1);
+        btnCc.setScaleY((float) 0.8);
+        btnCc.setTextSize((float) 16.5);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void validasiListBarang(Activity context, String Title , List<BarangTidakAda> val, String suksesBody, onDialogClosed listener) {
+        SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+        String body = "" ;
+        dialog.setCanceledOnTouchOutside(true);
+        ArrayList<String> list = new ArrayList<>();
+        dialog.setTitleText(Title);
+        for (BarangTidakAda value : val){
+            list.add(value.getNama());
+        }
+        Log.d("SWEETDIALOG" ,list.toString());
+        dialog.setContentText(list.toString());
+        dialog.setCancelText("Tidak");
+        dialog.setConfirmText("Iya");
+        dialog.showCancelButton(true);
+        dialog.setCancelable(true);
+        dialog.setConfirmClickListener(sweetAlertDialog -> {
+            sweetAlertDialog.dismissWithAnimation();
+            listener.onClosed(suksesBody);
+        });
+        dialog.show();
+
+        Button btnC = (Button) dialog.findViewById(R.id.confirm_button);
+        Button btnCc = (Button) dialog.findViewById(R.id.cancel_button);
+        TextView text = dialog.findViewById(R.id.title_text);
+        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        text.setSingleLine(false);
+        text.setLines(5);
+        btnC.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
+        btnC.setScaleX((float) 1);
+        btnC.setScaleY((float) 0.8);
+        btnC.setTextSize((float) 16.5);
+//
         btnCc.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dialogbtn));
         btnCc.setScaleX((float) 1);
         btnCc.setScaleY((float) 0.8);

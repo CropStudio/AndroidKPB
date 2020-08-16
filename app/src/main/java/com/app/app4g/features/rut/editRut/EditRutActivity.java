@@ -8,13 +8,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
@@ -56,7 +59,7 @@ public class EditRutActivity extends AppCompatActivity implements AdvancedWebVie
 
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
-
+    String urls = BASE_URL+nik+"/"+idAset+"/"+idMt ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,35 +97,41 @@ public class EditRutActivity extends AppCompatActivity implements AdvancedWebVie
         mWebView.setMixedContentAllowed(true);
         mWebView.setCookiesEnabled(true);
         mWebView.setThirdPartyCookiesEnabled(true);
-
-        mWebView.setWebViewClient(new WebViewClient(){
-
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-                showLoadingIndicator();
-                view.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                hideLoadingIndicator();
-            }
-        });
-
-        mWebView.setWebChromeClient(new WebChromeClient() {
-
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-                //Toast.makeText(WebViews.this, title, Toast.LENGTH_SHORT).show();
-                // hideDialog();
-            }
-
-        });
+        mWebView.setWebViewClient(new WebViewClient());
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+//        if (AdvancedWebView.Browsers.hasAlternative(this)) {
+//            AdvancedWebView.Browsers.openUrl(this, urls);
+//        }
+//        mWebView.loadUrl("javascript:fn()");
+//        mWebView.setWebViewClient(new WebViewClient(){
+//
+//
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//
+//                showLoadingIndicator();
+//                view.loadUrl(url);
+//                return true;
+//            }
+//
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                hideLoadingIndicator();
+//            }
+//        });
+//
+//        mWebView.setWebChromeClient(new WebChromeClient() {
+//
+//            @Override
+//            public void onReceivedTitle(WebView view, String title) {
+//                super.onReceivedTitle(view, title);
+//                //Toast.makeText(WebViews.this, title, Toast.LENGTH_SHORT).show();
+//                // hideDialog();
+//            }
+//
+//        });
 
         mWebView.addHttpHeader("X-Requested-With", "");
         mWebView.loadUrl(BASE_URL+nik+"/"+idAset+"/"+idMt);
@@ -228,4 +237,6 @@ public class EditRutActivity extends AppCompatActivity implements AdvancedWebVie
     }
 
 
+
 }
+

@@ -31,7 +31,8 @@ import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.pasar_tani.PasarTaniActivity;
 import com.app.app4g.features.petani.KartuPetani;
-import com.app.app4g.features.petani.jatah.ListDataPupuk;
+import com.app.app4g.features.petani.program_bantuan.ProgramBantuanActivity;
+import com.app.app4g.features.petani.program_bantuan.alokasi.AlokasiPupukActivity;
 import com.app.app4g.features.rut.aset.AsetActivity;
 import com.app.app4g.features.transaksi.TransaksiActivity;
 import com.app.app4g.features.users.login.Login;
@@ -311,6 +312,7 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     @Override
     public void goUpdateApps(){
+        App.getPref().clear();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.app.app4g"));
         startActivity(intent);
@@ -343,7 +345,7 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     @OnClick(R.id.cardPupuk)
     void infoPupuk() {
-        Intent i = new Intent(getActivity(), ListDataPupuk.class);
+        Intent i = new Intent(getActivity(), ProgramBantuanActivity.class);
         startActivity(i);
         getActivity().finish();
     }

@@ -1,6 +1,9 @@
 package com.app.app4g.common;
 
+import com.app.app4g.features.rut.model.BarangTidakAda;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class CommonRespon {
     @SerializedName("rc")
@@ -11,6 +14,17 @@ public class CommonRespon {
 
     @SerializedName("status")
     private Boolean mStatus;
+
+    @SerializedName("result")
+    private List<BarangTidakAda> value;
+
+    public List<BarangTidakAda> getValue() {
+        return value;
+    }
+
+    public void setValue(List<BarangTidakAda> value) {
+        this.value = value;
+    }
 
     public String getmRc() {
         return mRc;

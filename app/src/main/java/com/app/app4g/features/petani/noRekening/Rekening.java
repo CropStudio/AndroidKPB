@@ -22,6 +22,7 @@ import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.Utils.LinkedHashMapAdapter;
 import com.app.app4g.features.petani.noRekening.model.Kios;
+import com.app.app4g.features.petani.profile.Profile;
 import com.app.app4g.features.petani.profile.model.DataMt;
 import com.app.app4g.features.rut.RutActivity;
 import com.app.app4g.features.rut.createmt.CreateMtPresenter;
@@ -54,10 +55,18 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     Spinner mSpinnerKios;
     @BindView(R.id.mRadioGroupBank)
     RadioGroup mRadioGroupBank;
+    @BindView(R.id.r1)
+    RadioButton r1;
+    @BindView(R.id.r2)
+    RadioButton r2;
+    @BindView(R.id.r3)
+    RadioButton r3;
+    @BindView(R.id.r4)
+    RadioButton r4;
     RekeningPresenter presenter;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
-    private String nik, nama, alamat, token, Bank, idAset, idDesa, idKec, idKab;
+    private String nik, nama, alamat, token, Bank, idAset, idDesa, idKec, idKab , noRek , namaKios , namaBank;
     private Number idKios;
     List<DataMt> dataMt;
     ArrayList<String> spinnerKios = new ArrayList<>();
@@ -65,6 +74,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     private LinkedHashMap<String, String> kios;
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
+    Bundle bundle ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +82,12 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
         setContentView(R.layout.activity_rekening);
         ButterKnife.bind(this);
         presenter = new RekeningPresenter(this);
-        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
-
-        idAset = getIntent().getExtras().getString("_id");
-        System.out.println(new Gson().toJson(dataMt));
-        System.out.println(idAset);
+        Intent intent = this.getIntent();
+        bundle = intent.getExtras();
+        if(bundle!=null) {
+            dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+            idAset = getIntent().getExtras().getString("_id");
+        }
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Rekening");
@@ -93,7 +104,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
 
     @Override
     public void initViews() {
-
+//        Bank = ((RadioButton) findViewById(mRadioGroupBank.getCheckedRadioButtonId())).getText().toString();
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
@@ -108,6 +119,23 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
                 ? mProfile.getResult().getProfile().getArea().getDistrict_code() : mProfile.getResult().getProfile().getArea().getDistrict_code();
         idKab = (mProfile.getResult().getProfile().getArea().getCity_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
+        noRek = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
+                ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+        namaBank =  mProfile.getResult().getProfile().getBank();
+        if(!noRek.equals("")) {
+            mNorek.setText(noRek);
+            if(namaBank.equals("Bank BNI")){
+                r1.setChecked(true);
+            }else if(namaBank.equals("Bank MANDIRI")){
+                r2.setChecked(true);
+            }else if(namaBank.equals("Bank BRI")){
+                r3.setChecked(true);
+            }else if(namaBank.equals("Bank LAMPUNG")){
+                r4.setChecked(true);
+            }
+
+
+        }
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         presenter.getKios(idKab, idDesa, idKec);
@@ -130,7 +158,6 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
             e.printStackTrace();
         }
         presenter.onCreateRekening(nik, token, dataRoot.toString(), mNorek.getText().toString());
-
     }
 
     @Override
@@ -147,9 +174,14 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
 
     @Override
     public void onCreateRekeningSuksess(LoginResponse profile, String noRek) {
+//        profile.getResult().getProfile().setNamaKios(namaKios);
         presenter.storeProfile(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan", string -> {
-            this.goToRut();
+            if(bundle!=null)
+                this.goToRut();
+            else
+                this.goToProfile();
+
         });
     }
 
@@ -179,10 +211,20 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     }
 
     @Override
+    public void goToProfile() {
+        Intent i = new Intent(this, Profile.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            this.goToRut();
+            if(bundle!=null)
+                this.goToRut();
+            else
+                this.goToProfile();
         }
 
         return super.onOptionsItemSelected(item);
@@ -198,6 +240,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Map.Entry<String, String> itemSubsektor = (Map.Entry<String, String>) mSpinnerKios.getSelectedItem();
         idKios = Integer.parseInt(itemSubsektor.getKey());
+        namaKios = itemSubsektor.getValue();
     }
 
     @Override
@@ -216,7 +259,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
                         }
                     });
                 } else
-                    TopSnakbar.showWarning(this, "anda harus mengisi semua data terlebih dahulu");
+                    TopSnakbar.showWarning(this, "Pastikan anda sudah memilih Bank dan mengisi nomor rekening");
                 break;
         }
     }

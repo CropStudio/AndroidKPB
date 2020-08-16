@@ -22,6 +22,7 @@ import com.app.app4g.features.petani.MenuUtama;
 import com.app.app4g.features.petani.profile.model.AsetPetani;
 import com.app.app4g.features.rut.RutActivity;
 import com.app.app4g.features.rut.aset.createaset.CreateAset;
+import com.app.app4g.features.rut.aset.model.Aset;
 import com.app.app4g.features.rut.createmt.CreateMt;
 import com.app.app4g.features.users.login.model.LoginResponse;
 import com.app.app4g.server.App;
@@ -148,14 +149,21 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
             finish();
 //            Toast.makeText(this, "ada", Toast.LENGTH_SHORT).show();
         }else{
-            Intent i = new Intent(this, CreateMt.class);
-            i.putExtra("subsektor", aset.getNamaAset());
-            i.putExtra("idSubsektor", aset.getIdSubsektor());
-            i.putExtra("totalAset", aset.getTotalAset());
-            i.putExtra("_id", aset.get_id());
-            startActivity(i);
-            finish();
+           SweetDialogs.commonWarningWithIntent(this,"Data Anda belum lengkap" , "Anda belum mengatur Masa Tanam / Usia Tanam, Silahkan tekan 'OK' untuk melengkapi data",string -> {
+               this.goToCreateMt(aset);
+           });
         }
+    }
+
+    @Override
+    public void goToCreateMt(AsetPetani aset){
+        Intent i = new Intent(this, CreateMt.class);
+        i.putExtra("subsektor", aset.getNamaAset());
+        i.putExtra("idSubsektor", aset.getIdSubsektor());
+        i.putExtra("totalAset", aset.getTotalAset());
+        i.putExtra("_id", aset.get_id());
+        startActivity(i);
+        finish();
     }
 
     @Override

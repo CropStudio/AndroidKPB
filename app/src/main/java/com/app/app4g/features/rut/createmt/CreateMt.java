@@ -80,6 +80,18 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     @BindView(R.id.mMt)
     Spinner mMt;
 
+    @BindView(R.id.mLabel)
+    TextView mLabel;
+
+    @BindView(R.id.label)
+    TextView mLabelTop;
+
+    @BindView(R.id.labelSpinner)
+    TextView labelSpinner;
+
+    @BindView(R.id.labelView)
+    TextView labelView;
+
     @BindView(R.id.containerMt)
     LinearLayout parent_datas;
     @BindView(R.id.detailInput)
@@ -126,7 +138,17 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     @Override
     public void initViews() {
-
+        String label = "";
+        if (subsektor.equals("Perkebunan")) {
+            label = "Usia Tanam";
+            mLabel.setText(label);
+        } else {
+            label = "Masa Tanam";
+            mLabel.setText(label);
+        }
+        mLabelTop.setText(label);
+        labelSpinner.setText("Pilihan "+label);
+        labelView.setText("Data "+label);
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         sweetAlertDialog.setCancelable(false);
@@ -151,16 +173,16 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         asetPetani = (mProfile.getResult().getProfile().getAsetPetani().contains(" "))
                 ? mProfile.getResult().getProfile().getAsetPetani() : mProfile.getResult().getProfile().getAsetPetani();
         mt = new LinkedHashMap<String, String>();
-        mt.put("1", "Masa Tanam 1");
-        mt.put("2", "Masa Tanam 2");
-        mt.put("3", "Masa Tanam 3");
-        mt.put("4", "Masa Tanam 4");
-        mt.put("5", "Masa Tanam 5");
-        mt.put("6", "Masa Tanam 6");
-        mt.put("7", "Masa Tanam 7");
-        mt.put("8", "Masa Tanam 8");
-        mt.put("9", "Masa Tanam 9");
-        mt.put("10", "Masa Tanam 10");
+        mt.put("1", label + " 1");
+        mt.put("2", label + " 2");
+        mt.put("3", label + " 3");
+        mt.put("4", label + " 4");
+        mt.put("5", label + " 5");
+        mt.put("6", label + " 6");
+        mt.put("7", label + " 7");
+        mt.put("8", label + " 8");
+        mt.put("9", label + " 9");
+        mt.put("10", label + "10");
         adapter = new LinkedHashMapAdapter<String, String>(this, R.layout.spinnermt, mt);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mMt.setAdapter(adapter);
@@ -336,7 +358,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 //        }
         TextView _id = ((View) v.getParent()).findViewById(R.id.mIdMt);
         Toast.makeText(this, _id.getText().toString(), Toast.LENGTH_SHORT).show();
-        ((ViewGroup)v.getParent().getParent()).removeView((ViewGroup)v.getParent());
+        ((ViewGroup) v.getParent().getParent()).removeView((ViewGroup) v.getParent());
         for (int i = 0; i < dataMt.length(); i++) {
             try {
                 if (_id.getText().toString().equals(dataMt.getJSONObject(i).getString("masaTanam"))) {

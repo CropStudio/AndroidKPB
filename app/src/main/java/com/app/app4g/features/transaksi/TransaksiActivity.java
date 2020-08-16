@@ -135,7 +135,7 @@ public class TransaksiActivity extends AppCompatActivity implements ITransaksiVi
 
     @Override
     public void onDataReady(List<Transaksi> result) {
-        System.out.println(new Gson().toJson(result));
+        Log.d("Transaksi",new Gson().toJson(result));
         adapter = new TransaksiAdapter(result, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
