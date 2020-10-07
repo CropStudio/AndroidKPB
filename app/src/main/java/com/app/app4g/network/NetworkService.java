@@ -28,6 +28,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface NetworkService {
 
@@ -64,6 +65,9 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("rutpetani/{nik}")
     Call<com.app.app4g.features.rut.model.RutResponse> getRut(@Path("nik") String nik, @FieldMap Map<String, Object> data);
+
+    @GET("getrutpetanibynikdantahun")
+    Call<com.app.app4g.features.rut.model.RutResponse> getAllRut(@QueryMap Map<String, String> params);
 
     @GET("kabupaten/{id}")
     Call<AreaResponse> getKab(@Path("id") String id);

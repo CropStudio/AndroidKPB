@@ -68,6 +68,17 @@ public class profile implements Serializable {
     @SerializedName("bank")
     private String bank;
 
+    @SerializedName("si")
+    private Si si;
+
+    public Si getSi() {
+        return si;
+    }
+
+    public void setSi(Si si) {
+        this.si = si;
+    }
+
     public String getNamaKios() {
         return namaKios;
     }
@@ -606,6 +617,30 @@ public class profile implements Serializable {
 
         public void setSub_district_code(String sub_district_code) {
             this.sub_district_code = sub_district_code;
+        }
+    }
+
+    public class Si{
+        @SerializedName("status")
+        private Boolean status;
+
+        @SerializedName("created_at")
+        private String created_at;
+
+        public Boolean getStatus() {
+            return status;
+        }
+
+        public void setStatus(Boolean status) {
+            this.status = status;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public void setCreated_at(String created_at) {
+            this.created_at = created_at;
         }
     }
 }

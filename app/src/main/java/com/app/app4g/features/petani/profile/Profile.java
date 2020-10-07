@@ -144,8 +144,8 @@ public class Profile extends AppCompatActivity {
         noKK = App.getPref().getString(Prefs.PREF_NO_KK, "");
         String nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
-        String nama = (mProfile.getResult().getNama().contains(" "))
-                ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
+        String nama = (mProfile.getResult().getProfile().getNama().contains(" "))
+                ? mProfile.getResult().getProfile().getNama() : mProfile.getResult().getProfile().getNama();
         if (mProfile.getResult().getProfile().getNo_hp() != null && !mProfile.getResult().getProfile().getNo_hp().equals(" ")) {
             no_hp = (mProfile.getResult().getProfile().getNo_hp().contains(""))
                     ? mProfile.getResult().getProfile().getNo_hp() : mProfile.getResult().getProfile().getNo_hp();
@@ -158,10 +158,10 @@ public class Profile extends AppCompatActivity {
         String kabupaten = mProfile.getResult().getProfile().getArea().getCity();
         String provinsi =  mProfile.getResult().getProfile().getArea().getProvince();
         nomorrekening =  mProfile.getResult().getProfile().getNomorRekening();
-        Number idKios = (mProfile.getResult().getProfile().getIdKios());
-        String namaKios = (mProfile.getResult().getProfile().getNamaKios());
-        if(namaKios!=null)
-            mKios.setText(namaKios);
+        Number idKios = mProfile.getResult().getProfile().getIdKios();
+        String namaKios = mProfile.getResult().getProfile().getNamaKios();
+        if(idKios!=null)
+            mKios.setText(String.valueOf(idKios));
         if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
 
             namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))

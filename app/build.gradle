@@ -92,6 +92,7 @@ dependencies {
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     implementation 'com.github.ganfra:material-spinner:2.0.0'
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'
     implementation 'com.github.mohammadatif:Animatoo:master'

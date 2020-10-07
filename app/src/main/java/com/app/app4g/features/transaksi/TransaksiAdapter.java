@@ -64,17 +64,19 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
         holder.mTime.setText(Utils.convertMongoDate(transaksi.getCreated_at()));
         holder.mTotal.setText(Utils.convertRupiah(String.valueOf(transaksi.getGrandtotal())));
         holder.mBtnDetail.setOnClickListener(view ->transaksiListener.showList(transaksi.getDetailTransaksi()));
-        if(transaksi.getStatusKur()){
-            holder.layoutKur.setVisibility(View.VISIBLE);
-            if(transaksi.getVerifiedKur()) {
-                holder.indicator.setImageResource(R.drawable.shape_indicator_active);
-                holder.mStatuskur.setText("Kur disetujui");
-            }else{
-                holder.indicator.setImageResource(R.drawable.shape_indicator_orange);
-                holder.mStatuskur.setText("Proses pengajuan Kur");
-            }
-        }else
-            holder.layoutKur.setVisibility(View.GONE);
+        if(transaksi.getStatusKur() != null) {
+            if (transaksi.getStatusKur()) {
+                holder.layoutKur.setVisibility(View.VISIBLE);
+                if (transaksi.getVerifiedKur()) {
+                    holder.indicator.setImageResource(R.drawable.shape_indicator_active);
+                    holder.mStatuskur.setText("Kur disetujui");
+                } else {
+                    holder.indicator.setImageResource(R.drawable.shape_indicator_orange);
+                    holder.mStatuskur.setText("Proses pengajuan Kur");
+                }
+            } else
+                holder.layoutKur.setVisibility(View.GONE);
+        }
     }
 
 

@@ -215,8 +215,9 @@ public class SweetDialogs {
         dialog.setContentText(body);
         dialog.setConfirmText("OK");
         dialog.setConfirmClickListener(sweetAlertDialog -> {
-                sweetAlertDialog.dismissWithAnimation();
+
                 listener.onClosed("Sukses");
+                sweetAlertDialog.dismiss();
         });
         dialog.show();
 

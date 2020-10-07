@@ -61,6 +61,7 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -102,6 +103,8 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
     TextView txtAlamat;
     @BindView(R.id.txtJenisKelamin)
     TextView txtJenisKelmain;
+    @BindView(R.id.mPoktan)
+    TextView mPoktan;
     @BindView(R.id.imgView)
     ImageView imgView;
     @BindView(R.id.dataPetani)
@@ -113,7 +116,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
-
+    SweetAlertDialog sweetAlertDialog;
     RetryPolicy policy = new DefaultRetryPolicy(5000,
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
@@ -142,6 +145,9 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
         setContentView(R.layout.activity_regist);
         ButterKnife.bind(this);
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
+        sweetAlertDialog.setCancelable(false);
         if (Build.VERSION.SDK_INT >= 24) {
             try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
@@ -173,7 +179,15 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
+    @Override
+    public void showLoadingIndicator() {
+        sweetAlertDialog.show();
+    }
 
+    @Override
+    public void hideLoadingIndicator() {
+        sweetAlertDialog.dismiss();
+    }
     @OnClick(R.id.btnCari)
     void cariPetani() {
         String nikPetani = edNik.getText().toString();
@@ -186,11 +200,11 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     public void cekPetani(String nikPetani) {
         String tag_string_req = "req_login";
+        this.showLoadingIndicator();
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 Config_URL.cekPetani + nikPetani, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     final JSONObject jObj = new JSONObject(response);
                     final boolean status = jObj.getBoolean("status");
@@ -206,21 +220,26 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         PasswordLayout.setVisibility(View.VISIBLE);
                         txtNama.setText(nama);
                         txtAlamat.setText(alamat);
+                        if(poktan!=null)
+                            mPoktan.setText(poktan);
                         edNik.setEnabled(false);
+                        SweetDialogs.commonSuccess(Regist.this,"Anda terdaftar di RDKK dengan nama poktan "+poktan,true);
                     } else {
 //                        imgView.setVisibility(View.VISIBLE);
 //                        dataPetani.setVisibility(View.GONE);
 //                        PasswordLayout.setVisibility(View.GONE);
 //                        btnRegistrasiLayout.setVisibility(View.GONE);
 //                        txtNama.setText(null);
-                        SweetDialogs.commonWarningWithIntent(Regist.this, "Nik Anda tidak terdaftar di Rdkk"  , "silahkan registrasi ", string -> {
-                            goToDaftar();
-                        });
+//                        SweetDialogs.commonWarningWithIntent(Regist.this, "Nik Anda tidak terdaftar di Rdkk"  , "silahkan registrasi ", string -> {
+//                            goToDaftar();
+//                        });
+                        SweetDialogs.commonWarning(Regist.this,"Nik anda tidak ditemukan" , "Saat ini anda tidak terdaftar di POKTAN manapun. Untuk menjadi member PKPB silahkan menghubungi POKTAN anda untuk mendaftar dan melanjutkan proses Registrasi Member PKPB." ,false );
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
 
+                }
+                hideLoadingIndicator();
             }
         }, new Response.ErrorListener() {
 

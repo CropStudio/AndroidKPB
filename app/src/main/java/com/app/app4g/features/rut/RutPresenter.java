@@ -2,6 +2,7 @@ package com.app.app4g.features.rut;
 
 
 import com.app.app4g.common.CommonRespon;
+import com.app.app4g.features.petani.profile.model.ProfileResponse;
 import com.app.app4g.features.rut.model.Result;
 import com.app.app4g.features.rut.model.RutResponse;
 import com.app.app4g.network.NetworkService;
@@ -93,6 +94,26 @@ public class RutPresenter {
 
                     @Override
                     public void onFailure(Call<RutResponse> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
+    }
+
+    void onGetProfile(String nik) {
+        view.showLoadingIndicator();
+        restService.create(NetworkService.class).getProfilePetani(nik)
+                .enqueue(new Callback<ProfileResponse>() {
+                    @Override
+                    public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                        view.hideLoadingIndicator();
+                        //Log.d("Messg", String.valueOf(CommonRespon.body().getmResult()));
+                        view.onCekStatus(response.body().getResult());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ProfileResponse> call, Throwable t) {
                         view.hideLoadingIndicator();
                         view.onNetworkError(t.getLocalizedMessage());
                     }

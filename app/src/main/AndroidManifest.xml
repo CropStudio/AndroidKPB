@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.program_bantuan.bantuan.BantuanActivity"></activity>
+        <activity android:name=".features.petani.keuangan.KeuanganActivity"></activity>
+        <activity android:name=".features.petani.suratkuasa_pernyataan.SuratKuasaActivity" />
+        <activity android:name=".features.petani.program_bantuan.bantuan.BantuanActivity" />
         <activity android:name=".features.petani.program_bantuan.autp.AutpActivity" />
         <activity android:name=".features.petani.program_bantuan.ProgramBantuanActivity" />
         <activity android:name=".features.petani.program_bantuan.alokasi.AlokasiPupukActivity" />

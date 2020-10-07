@@ -3,10 +3,14 @@ package com.app.app4g.features.petani;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.app4g.R;
@@ -23,21 +27,40 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class KartuPetani extends AppCompatActivity {
 
     private Bitmap qRBit;
-    String nik , nama ;
-
+    String nik , nama , namaBank ;
+    @BindView(R.id.baseLayout)
+    LinearLayout baseLaouyout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kartu_petani);
+        ButterKnife.bind(this);
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
         nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
-        nama = (mProfile.getResult().getNama().contains(" "))
-                ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
-        qRBit = printQRCode(nik);
+        nama = (mProfile.getResult().getProfile().getNama().contains(" "))
+                ? mProfile.getResult().getProfile().getNama() : mProfile.getResult().getProfile().getNama();
+        if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
+            namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
+                    ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+            if(namaBank.equals("Bank LAMPUNG")){
+                baseLaouyout.setBackgroundResource(R.drawable.bank_lampung);
+            }else if(namaBank.equals("Bank BNI")){
+                baseLaouyout.setBackgroundResource(R.drawable.bank_bni);
+            }else if(namaBank.equals("Bank MANDIRI")){
+                baseLaouyout.setBackgroundResource(R.drawable.bank_mandiri);
+            }else if(namaBank.equals("Bank BRI")){
+                baseLaouyout.setBackgroundResource(R.drawable.bank_bri);
+            }else {
+                baseLaouyout.setBackgroundResource(R.drawable.default_kartu);
+            }
+
+        }
+        Log.d("namabank" , namaBank);
+        qRBit = printQRCode("http://aplikasi.kartupetaniberjaya.com/#/profil/"+nik);
 //        qRBit = getIntent().getParcelableExtra("bitmap");
         Log.v("QR = ", String.valueOf(qRBit));
         ImageView image = findViewById(R.id.imageView);

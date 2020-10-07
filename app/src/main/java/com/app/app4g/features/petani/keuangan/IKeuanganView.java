@@ -1,4 +1,4 @@
-package com.app.app4g.features.rut;
+package com.app.app4g.features.petani.keuangan;
 
 import android.app.Activity;
 
@@ -12,11 +12,9 @@ import java.util.List;
  * Created by omgimbot on 7/19/2019.
  */
 
-public interface IRutView {
+public interface IKeuanganView {
 
     void initView();
-
-//    void onSubmit();
 
     void clearLightStatusBar(Activity activity);
 
@@ -25,7 +23,6 @@ public interface IRutView {
     void hideLoadingIndicator();
 
 
-    void onCekStatus(profile profile);
 
     void onDataReady(List<Result> result);
 
@@ -37,13 +34,4 @@ public interface IRutView {
 
 //    void onDataDetailReady(List<KebutuhanSaprotan> kebutuhanSaprotans);
 
-    void goToRekening();
-
-    void goToSuratKuasa(Result rut);
-
-    void onCreateSuccess(String rm);
-
-    void onCreateFailed(String rm , Result rut, List<BarangTidakAda> val);
-
-    void HideDetailKebutuhan();
 }

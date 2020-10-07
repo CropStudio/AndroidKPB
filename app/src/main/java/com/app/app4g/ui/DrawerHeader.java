@@ -48,8 +48,8 @@ public class DrawerHeader {
         );
 //        String user_photo = (mProfile.getResult().getUser_photo().contains(" "))
 //                ? mProfile.getResult().getUser_photo() : mProfile.getResult().getUser_photo();
-        String nama = (mProfile.getResult().getNama().contains(" "))
-                ? mProfile.getResult().getNama() : mProfile.getResult().getNama();
+        String nama = (mProfile.getResult().getProfile().getNama().contains(" "))
+                ? mProfile.getResult().getProfile().getNama() : mProfile.getResult().getProfile().getNama();
         String nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         nameTxt.setText(nama);

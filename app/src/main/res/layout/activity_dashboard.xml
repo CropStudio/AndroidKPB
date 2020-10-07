@@ -230,7 +230,7 @@
                                         android:padding="8dp">
 
                                         <androidx.cardview.widget.CardView
-                                            android:id="@+id/mCardInfoRek"
+                                            android:id="@+id/mCardKeuangan"
                                             android:layout_width="95dp"
                                             android:layout_height="75dp"
                                             app:cardBackgroundColor="@color/white"

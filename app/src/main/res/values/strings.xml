@@ -5,7 +5,7 @@
     <string name="app_name_country">Provinsi Lampung</string>
     <!--        <string name="end_point">http://150.107.142.62:5050</string>-->
     <string name="end_point">http://103.230.48.151:5050/</string>
-    <!--    <string name="end_point">http://192.168.18.9:5050/</string>-->
+<!--        <string name="end_point">http://192.168.43.156:5050/</string>-->
     <string name="img_end_point">http://testing.kartupetaniberjaya.com/admin/gambar_barang/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -39,15 +39,16 @@
 
     <string name="termCondition"> <![CDATA[
         <b><p>1. Membuka rekening Bank pada Bank yang telah bekerjasama dengan aplikasi Kartu Petani Berjaya ( Bank Lampung, Bank Mandiri, Bank BRI dan Bank BNI ). </p>
-        <p>2. Jika sudah memiliki rekening salah satu Bank tersebut, maka wajib mengosongkan rekening yang ada untuk keperluan transaksi pada program kartu petani Berjaya.</p>
-        <p>3. Memasukan Nomor Rekening Kedalam Akun Aplikasi KPB</p>
-        <p>4. Bersedia menyiapkan modal untuk Usaha Tani sesuai dengan yang tertera dalam Rencana Usaha Tani (RUT) dalam aplikasi KPB</p>
-        <p>5. Bersedia untuk mengajukan akses Permodalan baik KUR dari Bank ataupun lembaga keuangan lain yang telah menjadi Member KPB</p>
-        <p>6. Bersedia untuk melakukan standing instruction  untuk transaksi pembayaran yang ada dalam Rencana Usaha Tani pada aplikasi KPB</p>
-        <p>7. Dana  yang telah disimpan di bank atau dana hasil Pinjaman dari KUR maupun dari lembaga keuangan lainnya bersedia disimpan ( hold ) sementara untuk keperluan rencana usaha tani</p>
-        <p>8. Bersedia menjual hasil panen kepada member KPB sesuai harga pasar yang berlaku.</p>
-        <p>9. Pengambilan Produk-Produk usaha Tani yang dipesan sesuai dengan Rencana Usaha Tani seperti : Pupuk/Pestisida dan benih dilakukan satu kali diawal masa tanam.</p>
-        <p>10. Mengikuti segala persyaratan dan ketentuan yang berlaku dalam Aplikasi Kartu Petani Berjaya.</p></b>
+        <p>2. Bersedia menyetorkan dana sebagai modal usaha tani pada rekening Petani yang terdaftar pada program PKPB.</p>
+        <p>3. Memasukan Nomor Rekening Kedalam Akun Aplikasi KPB.</p>
+        <p>4. Jika membutuhkan permodalan usaha tani, petani mengajukan KUR dan pinjaman melalui aplikasi PKPB.</p>
+        <p>5. Bersedia untuk melakukan standing instruction  untuk transaksi pembayaran yang ada dalam Rencana Usaha Tani pada aplikasi KPB.</p>
+        <p>6. Dana  yang telah disimpan di bank atau dana hasil Pinjaman dari KUR maupun dari lembaga keuangan lainnya bersedia disimpan ( hold ) sementara untuk keperluan rencana usaha tani</p>
+        <p>7. Bersedia menjual hasil panen kepada member KPB sesuai harga pasar yang berlaku.</p>
+        <p>8. Bersedia mengambil atau menebus pesanan pupuk subsidi maupun non subsidi perstisida benih dll, paling lambat 7 hari dari tanggal yang tertera dalam Rencana Usaha yang di setujui.</p>
+        <p>9. Mengikuti segala persyaratan dan ketentuan yang berlaku dalam Aplikasi Kartu Petani Berjaya.</p></b>
+        <p></p>
+        <p>Menyatakan bahwa data data yang telai di isi adalah benar, dan saya bertanggung jawab atas pengisian data palsu akan di ancam sesuai dengan hukum dan undang undang yang berlaku.</p></b>
         ]]>
         </string>
 
@@ -200,7 +201,7 @@
     <string name="confirm_pass">Ulangi Kata Sandi</string>
     <string name="gender">Jenis Kelamin</string>
 
-    <string name="menu_rut">RUT</string>
+    <string name="menu_rut">Rencana Usaha</string>
     <string name="menu_rut_desc">Rencana Usaha Tani</string>
     <string name="menu_pupuk">Pupuk</string>
     <string name="menu_pasar">Pasar Tani</string>

@@ -31,6 +31,7 @@ import com.app.app4g.R;
 import com.app.app4g.Utils.GsonHelper;
 import com.app.app4g.features.pasar_tani.PasarTaniActivity;
 import com.app.app4g.features.petani.KartuPetani;
+import com.app.app4g.features.petani.keuangan.KeuanganActivity;
 import com.app.app4g.features.petani.program_bantuan.ProgramBantuanActivity;
 import com.app.app4g.features.petani.program_bantuan.alokasi.AlokasiPupukActivity;
 import com.app.app4g.features.rut.aset.AsetActivity;
@@ -66,7 +67,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     PlaceHolderView mDrawerView;
     @BindView(R.id.mainMenu)
     ImageButton mainMenuDashboard;
-    @BindView(R.id.mCardInfoRek)
+    @BindView(R.id.mCardKeuangan)
     CardView mCardInfoRek;
     @BindView(R.id.cardPasarTani)
     CardView cardPasarTani;
@@ -175,39 +176,6 @@ public class Dashboard extends Fragment implements IDashboardView {
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarMain);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-//        menu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                drawer.openDrawer(navigation);
-//            }
-//        });
-//        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int id = item.getItemId();
-//                if (id == R.id.profile){
-//
-//                }else if (id == R.id.kolaborator){
-//
-//                }else if (id == R.id.about){
-//
-//                }else if (id == R.id.term){
-//
-//                }else if (id == R.id.exit){
-//                    poupExit();
-//                }
-//                return true;
-//            }
-//        });
-
-//        carouselView = view.findViewById(R.id.carousel);
-//        carouselView.setPageCount(mImages.length);
-//        carouselView.setImageListener(new ImageListener() {
-//            @Override
-//            public void setImageForPosition(int position, ImageView imageView) {
-//                imageView.setImageResource(mImages[position]);
-//            }
-//        });
 
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
@@ -331,9 +299,11 @@ public class Dashboard extends Fragment implements IDashboardView {
         getActivity().finish();
     }
 
-    @OnClick(R.id.mCardInfoRek)
+    @OnClick(R.id.mCardKeuangan)
     void info_rek() {
-        Toast.makeText(getActivity(), "Maaf menu ini belum tersedia !", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), KeuanganActivity.class);
+        startActivity(i);
+        getActivity().finish();
     }
 
     @OnClick(R.id.cardPasarTani)
@@ -405,20 +375,14 @@ public class Dashboard extends Fragment implements IDashboardView {
         mDrawerView
                 .addView(new DrawerHeader(getActivity()))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_PROFILE))
-                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_KOLABORATOR))
-                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_ABOUT))
-                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_TERMCONDITION))
+//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_KOLABORATOR))
+//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_ABOUT))
+//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_TERMCONDITION))
+//                .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_SURATKUASA))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_RESETPASSWORD))
                 .addView(new DrawerMenuItem(getActivity(), DrawerMenuItem.DRAWER_MENU_ITEM_LOGOUT));
 
-//        menu.setOnClickListener(new View.OnClickListener() {
-//            @SuppressLint("WrongConstant")
-//            @Override
-//            public void onClick(View v) {
-//                if (!drawer.isDrawerOpen(Gravity.END)) drawer.openDrawer(Gravity.END);
-//                else drawer.closeDrawer(Gravity.START);
-//            }
-//        });
+
         mainMenuDashboard.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override

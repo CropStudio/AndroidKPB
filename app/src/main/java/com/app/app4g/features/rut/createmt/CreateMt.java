@@ -118,7 +118,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         setContentView(R.layout.activity_create_mt);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Tambah Masa Tanam");
+
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
@@ -142,10 +142,15 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         if (subsektor.equals("Perkebunan")) {
             label = "Usia Tanam";
             mLabel.setText(label);
-        } else {
+        } else if(subsektor.equals("Hortikultura")){
             label = "Masa Tanam";
             mLabel.setText(label);
+        }else if(subsektor.equals("Peternakan")){
+            label = "Pembibitan / Penggemukan";
+            mLabel.setText(label);
         }
+        getSupportActionBar().setTitle("Tambah "+label);
+
         mLabelTop.setText(label);
         labelSpinner.setText("Pilihan "+label);
         labelView.setText("Data "+label);
