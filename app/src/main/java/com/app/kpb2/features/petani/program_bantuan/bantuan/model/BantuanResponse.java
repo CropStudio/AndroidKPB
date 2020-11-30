@@ -1,0 +1,52 @@
+package com.app.kpb2.features.petani.program_bantuan.bantuan.model;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class BantuanResponse {
+    @SerializedName("result")
+    private List<Result> result ;
+
+    @SerializedName("message")
+    private String mRm;
+
+    @SerializedName("status")
+    private Boolean mStatus;
+
+    @SerializedName("rc")
+    private String mRc;
+
+    public List<Result> getResult() {
+        return result;
+    }
+
+    public void setResult(List<Result> result) {
+        this.result = result;
+    }
+
+    public String getmRm() {
+        return mRm;
+    }
+
+    public void setmRm(String mRm) {
+        this.mRm = mRm;
+    }
+
+    public Boolean getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(Boolean mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public String getmRc() {
+        return mRc;
+    }
+
+    public void setmRc(String mRc) {
+        this.mRc = mRc;
+    }
+
+}

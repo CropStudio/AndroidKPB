@@ -81,7 +81,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nik"
+                android:hint="NIK"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 app:boxStrokeColor="@color/color_default_blue"

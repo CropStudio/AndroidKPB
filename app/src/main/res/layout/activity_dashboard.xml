@@ -361,6 +361,42 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardDokterHewan"
+                                            android:layout_width="95dp"
+                                            android:layout_height="75dp"
+                                            app:cardBackgroundColor="@color/white"
+                                            app:cardCornerRadius="5dp"
+                                            app:cardElevation="2dp"
+                                            app:cardUseCompatPadding="true"
+                                            app:contentPadding="12dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                app:srcCompat="@drawable/dokter_hewan" />
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:text="Dokter Hewan"
+                                            android:textColor="#999C9E" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                             </HorizontalScrollView>
@@ -530,6 +566,79 @@
                                                         android:layout_height="wrap_content"
                                                         android:layout_marginTop="25dp"
                                                         android:text="@string/menu_portal_desc"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="12sp" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="80dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="0">
+
+                                                    <ImageView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:alpha="0.7"
+                                                        app:srcCompat="@drawable/ic_portal" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardPortalPeternakan"
+                                            android:layout_width="250dp"
+                                            android:layout_height="match_parent"
+                                            android:clickable="true"
+                                            android:foreground="?android:attr/selectableItemBackground"
+                                            app:cardBackgroundColor="@color/color_default_green"
+                                            app:cardCornerRadius="10dp"
+                                            app:cardElevation="2dp"
+                                            app:cardUseCompatPadding="true"
+                                            app:contentPadding="7dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="horizontal"
+                                                android:weightSum="2">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="2"
+                                                    android:gravity="center"
+                                                    android:orientation="vertical"
+                                                    android:padding="5dp">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Portal informasi - ternak"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="15sp"
+                                                        android:textStyle="bold" />
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="25dp"
+                                                        android:text="@string/menu_portal_peternakan"
                                                         android:textColor="@color/white"
                                                         android:textSize="12sp" />
 

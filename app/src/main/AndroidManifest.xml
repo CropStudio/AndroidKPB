@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.app.app4g">
+    package="com.app.kpb2">
 
     <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
 
@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.keuangan.KeuanganActivity"></activity>
+        <activity android:name=".features.petani.dokter_hewan.DokterHewanActivity"></activity>
+        <activity android:name=".features.webview.PasarOnlineNasionalTernak" />
+        <activity android:name=".features.petani.keuangan.KeuanganActivity" />
         <activity android:name=".features.petani.suratkuasa_pernyataan.SuratKuasaActivity" />
         <activity android:name=".features.petani.program_bantuan.bantuan.BantuanActivity" />
         <activity android:name=".features.petani.program_bantuan.autp.AutpActivity" />

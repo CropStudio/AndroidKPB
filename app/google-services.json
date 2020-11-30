@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:449521588235:android:0f11a7a802c06de94a0f0e",
         "android_client_info": {
-          "package_name": "com.app.app4g"
+          "package_name": "com.app.kpb2"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "449521588235-5c943fttc8va9399u9iv1vafbjbkh8le.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.app.app4g",
+            "package_name": "com.app.kpb2",
             "certificate_hash": "55a108633874654de758bbc175f3f3e69dad9b7c"
           }
         },
