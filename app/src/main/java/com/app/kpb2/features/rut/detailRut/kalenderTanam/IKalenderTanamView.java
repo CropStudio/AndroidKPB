@@ -8,6 +8,7 @@ public interface IKalenderTanamView {
 
 
 
-    void setData(List<JadwalUsahaTani> jadwalUsahaTani);
     void initViews();
+
+    void setData(String waktuTnaam, String tglPengambilan, String tglTrf);
 }

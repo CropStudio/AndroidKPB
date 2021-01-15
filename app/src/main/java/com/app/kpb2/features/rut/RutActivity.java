@@ -2,11 +2,13 @@ package com.app.kpb2.features.rut;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,13 +20,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
+import com.app.kpb2.Utils.LinkedHashMapAdapter;
 import com.app.kpb2.Utils.Utils;
 import com.app.kpb2.features.petani.noRekening.Rekening;
 import com.app.kpb2.features.petani.profile.model.DataMt;
@@ -43,6 +49,7 @@ import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
 import com.app.kpb2.ui.TopSnakbar;
+import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONArray;
@@ -50,13 +57,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import im.delight.android.webview.AdvancedWebView;
 
-public class RutActivity extends AppCompatActivity implements IRutView, RutAdapter.onRutSelected {
+public class RutActivity extends AppCompatActivity implements IRutView, RutAdapter.onRutSelected, AdapterView.OnItemSelectedListener {
     //    String TEST_PAGE_URL = "http://192.168.1.14:8080/rut/";
     String TEST_PAGE_URL = "http://kpb.lampungprov.go.id/#/rut/";
     private AdvancedWebView mWebView;
@@ -70,6 +78,12 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LinearLayout list_layout;
     @BindView(R.id.mLabel)
     TextView mLabel;
+    AlertDialog.Builder dialog;
+    LayoutInflater inflater;
+    View dialogView;
+
+    private LinkedHashMapAdapter<String, String> adapterSpinner;
+    private LinkedHashMap<String, String> poktan;
     //    @BindView(R.id.layoutCheckout)
 //    RelativeLayout layoutCheckout;
 //    @BindView(R.id.mBtnTutup)
@@ -139,49 +153,55 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 ? mProfile.getResult().getProfile().getArea().getDistrict_code() : mProfile.getResult().getProfile().getArea().getDistrict_code();
         idKab = (mProfile.getResult().getProfile().getArea().getCity_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
-        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
-        idAset = getIntent().getExtras().getString("_id");
+        idPoktan = mProfile.getResult().getProfile().getId_poktan();
+        if (idPoktan == null || idPoktan.equals("")) {
+            DialogForm();
+        } else {
+            dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+            idAset = getIntent().getExtras().getString("_id");
+//        System.out.println(namaBank);
+            if (dataMt != null) {
+                for (DataMt datas : dataMt) {
+                    try {
+                        DataJsonMt.put(
+                                new JSONObject()
+                                        .put("masaTanam", datas.getMasaTanam())
+                                        .put("jumlahAset", datas.getJumlahAset())
+                                        .put("subsektor", datas.getSubsektor())
+                                        .put("namaKomoditas", datas.getNamaKomoditas())
 
-        if (dataMt != null) {
-            for (DataMt datas : dataMt) {
+                        );
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
                 try {
-                    DataJsonMt.put(
-                            new JSONObject()
-                                    .put("masaTanam", datas.masaTanam)
-                                    .put("jumlahAset", datas.jumlahAset)
-                                    .put("subsektor", datas.getSubsektor())
-                                    .put("namaKomoditas", datas.getNamaKomoditas())
-
-                    );
+                    data.put("nik", nik);
+                    data.put("idAsset", idAset);
+                    data.put("dataPermt", DataJsonMt);
+                    data.put("idDesa", idDesa);
+                    data.put("idKecamatan", idKec);
+                    data.put("idKabupaten", idKab);
+                    data.put("id_poktan", idPoktan);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            try {
-                data.put("nik", nik);
-                data.put("idAsset", idAset);
-                data.put("dataPermt", DataJsonMt);
-                data.put("idDesa", idDesa);
-                data.put("idKecamatan", idKec);
-                data.put("idKabupaten", idKab);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            this.initView();
+            String susbs = dataMt.get(0).getSubsektor();
+            if (susbs.equals("Perkebunan")) {
+                label = "Usia Tanam";
+                mLabel.setText(label);
+            } else if (susbs.equals("Peternakan")) {
+                label = "Pembibitan / Penggemukan";
+                mLabel.setText(label);
+            } else {
+                label = "Masa Tanam";
+                mLabel.setText(label);
             }
+            Log.d("BODY", new Gson().toJson(data));
+            presenter.getRut(nik, token, data.toString());
         }
-        this.initView();
-        String susbs = dataMt.get(0).getSubsektor();
-        if (susbs.equals("Perkebunan")) {
-            label = "Usia Tanam";
-            mLabel.setText(label);
-        } else if (susbs.equals("Peternakan")) {
-            label = "Pembibitan / Penggemukan";
-            mLabel.setText(label);
-        } else {
-            label = "Masa Tanam";
-            mLabel.setText(label);
-        }
-        presenter.getRut(nik, token, data.toString());
-
     }
 
     @Override
@@ -240,7 +260,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     @Override
     public void onDataReady(List<Result> result) {
         this.items = result;
-        System.out.println(result.get(0).getKebutuhanSaprotan().get(0).get_id());
+        Log.d("Hasil ", new Gson().toJson(result));
+//        System.out.println(result.get(0).getKebutuhanSaprotan().get(0).get_id());
         adapter = new RutAdapter(items, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -289,15 +310,15 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> kalenderTanams) {
-//        Layouttoolbar.setVisibility(View.GONE);
+    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, String waktuTanam ,String tglPengambilan , String tglTrf) {
+        Log.d("waktuTanam" , waktuTanam);
+        Log.d("tglPengambilan" , tglPengambilan);
+        Log.d("tglTrf" , tglTrf);
         list_layout.setVisibility(View.VISIBLE);
-//        mBtnTutup.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
-//        layoutCheckout.setVisibility(View.GONE);
         final RutPageAdapter adapter = new RutPageAdapter(getSupportFragmentManager());
         MainDetailFragment fragmentMainDetail = new MainDetailFragment();
-        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, kalenderTanams);
+        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, waktuTanam , tglPengambilan , tglTrf);
         adapter.addFragment(fragmentMainDetail);
         mListViewPager.setAdapter(adapter);
         LayoutStat = true;
@@ -306,135 +327,180 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     public void onSetuju(Result rut) {
-        if (nomorrekening.equals("")) {
-            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
-        }else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "Dana yang anda butuhkan untuk pembelian saprotan " + Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())), "Berhasil memuat permintaan .",
-                        onConfirmKur -> {
+//        if (nomorrekening.equals("")) {
+//            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
+//        }else {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "Dana yang anda butuhkan untuk pembelian saprotan " + Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())), "Berhasil memuat permintaan .",
+//                        onConfirmKur -> {
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                if (statusSi == null || !statusSi) {
+//                                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
+//                                } else {
+//                                    if (rut.getUpdated()) {
+//                                        if (idKios == null || idKios.equals(0)) {
+//                                            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
+//                                        } else {
+//                                            rut.setNoRek(nomorrekening);
+//                                            rut.setBank(namaBank);
+//                                            rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+//                                            rut.setIdKios(idKios);
+//                                            rut.setIdKabupaten(idKab);
+//                                            SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui Rencana Usaha berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
+//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                                    SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
+//                                                            onConfirmRekening -> {
+//
+//                                                                rut.setStatusKur(true);
+//                                                                presenter.createRut(nik, token, rut);
+//
+//
+//                                                            },
+//                                                            onUbahRekening -> {
+//                                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                                                    this.goToRekening();
+//                                                                }
+//                                                            });
+//                                                }
+//                                            });
+//                                        }
+//                                    } else {
+//                                        TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
+//                                    }
+//                                }
+//                            }
+//                        },
+//                        onRejectKur -> {
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                if (rut.getUpdated()) {
+//                                    if (idKios == null || idKios.equals(0)) {
+//                                        SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
+//                                    } else {
+//                                        rut.setNoRek(nomorrekening);
+//                                        rut.setBank(namaBank);
+//                                        rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+//                                        rut.setIdKios(idKios);
+//                                        rut.setIdKabupaten(idKab);
+//                                        SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
+//                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                                SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
+//                                                        onConfirmRekening -> {
+//                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//
+//
+//                                                                rut.setStatusKur(false);
+//                                                                presenter.createRut(nik, token, rut);
+//
+//                                                            }
+//                                                        },
+//                                                        onUbahRekening -> {
+//                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                                                this.goToRekening();
+//                                                            }
+//                                                        });
+//                                            }
+//                                        });
+//                                    }
+//                                } else {
+//                                    TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
+//                                }
+//                            }
+//                        });
+//            }
+//        }
+        if (namaBank.equals("Bank BNI")) {
+            if (statusSi == null || !statusSi) {
+                SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
+            } else {
+                if (rut.getUpdated()) {
+                    if (nomorrekening.equals("")) {
+                        SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
+                    } else if (idKios == null || idKios.equals(0)) {
+                        SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
+                    } else {
+                        rut.setNoRek(nomorrekening);
+                        rut.setBank(namaBank);
+                        rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+                        rut.setIdKios(idKios);
+                        rut.setIdKabupaten(idKab);
+                        SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                if (statusSi == null || !statusSi) {
-                                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
-                                } else {
-                                    if (rut.getUpdated()) {
-                                        if (idKios == null || idKios.equals(0)) {
-                                            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
-                                        } else {
-                                            rut.setNoRek(nomorrekening);
-                                            rut.setBank(namaBank);
-                                            rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
-                                            rut.setIdKios(idKios);
-                                            rut.setIdKabupaten(idKab);
-                                            SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui Rencana Usaha berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                    SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
-                                                            onConfirmRekening -> {
-
+                                SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
+                                        onConfirmRekening -> {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "", "Berhasil memuat permintaan .",
+                                                        onConfirmKur -> {
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                                                 rut.setStatusKur(true);
                                                                 presenter.createRut(nik, token, rut);
-
-
-                                                            },
-                                                            onUbahRekening -> {
-                                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                                    this.goToRekening();
-                                                                }
-                                                            });
-                                                }
-                                            });
-                                        }
-                                    } else {
-                                        TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
-                                    }
-                                }
-                            }
-                        },
-                        onRejectKur -> {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                if (rut.getUpdated()) {
-                                    if (idKios == null || idKios.equals(0)) {
-                                        SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
-                                    } else {
-                                        rut.setNoRek(nomorrekening);
-                                        rut.setBank(namaBank);
-                                        rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
-                                        rut.setIdKios(idKios);
-                                        rut.setIdKabupaten(idKab);
-                                        SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
-                                                        onConfirmRekening -> {
-                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
-
-                                                                rut.setStatusKur(false);
-                                                                presenter.createRut(nik, token, rut);
-
+//                                                            Log.d("DATANYA", new Gson().toJson(rut.getKebutuhanSaprotan().get(0).get_id()));
                                                             }
                                                         },
-                                                        onUbahRekening -> {
+                                                        onRejectKur -> {
                                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                                this.goToRekening();
+                                                                rut.setStatusKur(false);
+                                                                presenter.createRut(nik, token, rut);
                                                             }
                                                         });
                                             }
+                                        },
+                                        onUbahRekening -> {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                this.goToRekening();
+                                            }
                                         });
-                                    }
-                                } else {
-                                    TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
-                                }
                             }
                         });
+                    }
+                } else {
+                    TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
+                }
+            }
+        } else {
+            if (rut.getUpdated()) {
+                if (nomorrekening.equals("")) {
+                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
+                } else if (idKios == null || idKios.equals(0)) {
+                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
+                } else {
+                    rut.setNoRek(nomorrekening);
+                    rut.setBank(namaBank);
+                    rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+                    rut.setIdKios(idKios);
+                    rut.setIdKabupaten(idKab);
+                    SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
+                                    onConfirmRekening -> {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "", "Berhasil memuat permintaan .",
+                                                    onConfirmKur -> {
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                            rut.setStatusKur(true);
+                                                            presenter.createRut(nik, token, rut);
+//                                                            Log.d("DATANYA", new Gson().toJson(rut.getKebutuhanSaprotan().get(0).get_id()));
+                                                        }
+                                                    },
+                                                    onRejectKur -> {
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                            rut.setStatusKur(false);
+                                                            presenter.createRut(nik, token, rut);
+                                                        }
+                                                    });
+                                        }
+                                    },
+                                    onUbahRekening -> {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            this.goToRekening();
+                                        }
+                                    });
+                        }
+                    });
+                }
+            } else {
+                TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
             }
         }
-
-//        if (statusSi == null || !statusSi) {
-//            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
-//        } else {
-//            if (rut.getUpdated()) {
-//                if (nomorrekening.equals("")) {
-//                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
-//                } else if (idKios == null || idKios.equals(0)) {
-//                    SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
-//                } else {
-//                    rut.setNoRek(nomorrekening);
-//                    rut.setBank(namaBank);
-//                    rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
-//                    rut.setIdKios(idKios);
-//                    rut.setIdKabupaten(idKab);
-//                    SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  ?", "Berhasil memuat permintaan .", confirm -> {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                            SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
-//                                    onConfirmRekening -> {
-//                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                            SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "", "Berhasil memuat permintaan .",
-//                                                    onConfirmKur -> {
-//                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                                            rut.setStatusKur(true);
-//                                                            presenter.createRut(nik, token, rut);
-//                                                            Log.d("DATANYA", new Gson().toJson(rut.getKebutuhanSaprotan().get(0).get_id()));
-//                                                        }
-//                                                    },
-//                                                    onRejectKur -> {
-//                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                                            rut.setStatusKur(false);
-//                                                            presenter.createRut(nik, token, rut);
-//                                                        }
-//                                                    });
-//                                        }
-//                                    },
-//                                    onUbahRekening -> {
-//                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                            this.goToRekening();
-//                                        }
-//                                    });
-//                        }
-//                    });
-//                }
-//            } else {
-//                TopSnakbar.showWarning(this, "Anda harus mengubah kebutuhan saprotan terlebih dahulu , silahkan klik tombol ubah");
-//            }
-//        }
     }
 
     @Override
@@ -537,7 +603,52 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
     @Override
     protected void onDestroy() {
-        hideLoadingIndicator();
+//        hideLoadingIndicator();
         super.onDestroy();
+    }
+
+    private void DialogForm() {
+        dialog = new AlertDialog.Builder(this);
+        inflater = getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.pilih_poktan_dialog, null);
+        dialog.setView(dialogView);
+        dialog.setCancelable(true);
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setTitle("Form Biodata");
+        poktan = new LinkedHashMap<String, String>();
+        Spinner spinnerPoktan    = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
+        adapterSpinner = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, poktan);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPoktan.setAdapter(adapterSpinner);
+        spinnerPoktan.setOnItemSelectedListener(this);
+
+        dialog.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

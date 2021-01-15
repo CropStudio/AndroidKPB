@@ -81,7 +81,7 @@
                             android:gravity="center"
                             android:text="@string/lorem_title"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -91,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/nik"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="12sp" />
 
                         <TextView
@@ -497,40 +497,49 @@
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 
-
-                            <TextView
-                                android:layout_below="@id/mRekening"
-                                android:id="@+id/labelKios"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Nama Kios"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/mKios"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/labelKios"
-                                android:layout_marginTop="5dp"
-                                android:text="-"
-                                android:textColor="@color/color_default_black"
-                                android:textSize="12sp" />
-
-                            <!--                            <Button-->
-                            <!--                                android:id="@+id/mBtnUpdteKios"-->
-                            <!--                                android:layout_width="wrap_content"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:layout_alignParentEnd="true"-->
-                            <!--                                android:layout_centerVertical="true"-->
-                            <!--                                android:layout_marginEnd="5dp"-->
-                            <!--                                android:background="@drawable/btnrounded_green"-->
-                            <!--                                android:text="@string/edit"-->
-                            <!--                                android:textColor="@color/white"-->
-                            <!--                                android:textSize="12sp" />-->
                         </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#F3EFEF" />
 
+                        <TextView
+                            android:id="@+id/labelKios"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Nama Kios"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mKios"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/labelKios"
+                            android:layout_marginTop="5dp"
+                            android:text="-"
+                            android:textColor="@color/color_default_black"
+                            android:textSize="12sp" />
+
+                        <!--                            <Button-->
+                        <!--                                android:id="@+id/mBtnUpdteKios"-->
+                        <!--                                android:layout_width="wrap_content"-->
+                        <!--                                android:layout_height="30dp"-->
+                        <!--                                android:layout_alignParentEnd="true"-->
+                        <!--                                android:layout_centerVertical="true"-->
+                        <!--                                android:layout_marginEnd="5dp"-->
+                        <!--                                android:background="@drawable/btnrounded_green"-->
+                        <!--                                android:text="@string/edit"-->
+                        <!--                                android:textColor="@color/white"-->
+                        <!--                                android:textSize="12sp" />-->
+                        <!--                        </RelativeLayout>-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#F3EFEF" />
                     </LinearLayout>
 
                 </LinearLayout>

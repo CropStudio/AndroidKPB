@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class AsetPetani implements Serializable {
+public class    AsetPetani implements Serializable {
     @SerializedName("_id")
     public String _id;
 

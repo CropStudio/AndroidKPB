@@ -23,6 +23,7 @@ import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
+import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONObject;
@@ -134,6 +135,7 @@ public class AsetActivity extends AppCompatActivity implements IAsetView, AsetAd
     @Override
     public void onSelect(AsetPetani aset) {
         JSONObject data = new JSONObject();
+        Log.d("datadariaset" , new Gson().toJson(aset.getDataPermt()));
         if (aset.getDataPermt().size() > 0) {
             Intent i = new Intent(this, RutActivity.class);
             i.putExtra("data", (Serializable) aset.getDataPermt());

@@ -46,6 +46,7 @@ public class AlokasiAdapter extends RecyclerView.Adapter<AlokasiAdapter.ViewHold
         holder.mNpk.setText(String.valueOf(alokasi.getNpk())+satuan);
         holder.mZa.setText(String.valueOf(alokasi.getZa())+satuan);
         holder.mOrganik.setText(String.valueOf(alokasi.getOrganik())+satuan);
+        holder.mTahun.setText(alokasi.getTahun());
     }
 
     @Override
@@ -57,13 +58,14 @@ public class AlokasiAdapter extends RecyclerView.Adapter<AlokasiAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mMt, mKomoditas, mTotal, mUrea, mSp36, mNpk, mZa, mOrganik;
+        TextView mMt, mKomoditas, mTotal, mUrea, mSp36, mNpk, mZa, mOrganik, mTahun;
         ViewHolder(View view) {
             super(view);
             mMt = view.findViewById(R.id.mMt);
             mKomoditas = view.findViewById(R.id.mKomoditas);
-            mTotal = view.findViewById(R.id.mTotal);
             mUrea = view.findViewById(R.id.mUrea);
+            mTotal = view.findViewById(R.id.mTotal);
+            mTahun = view.findViewById(R.id.mTahun);
             mSp36 = view.findViewById(R.id.mSp36);
             mNpk = view.findViewById(R.id.mNpk);
             mZa = view.findViewById(R.id.mZa);

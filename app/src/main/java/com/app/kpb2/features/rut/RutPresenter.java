@@ -9,6 +9,8 @@ import com.app.kpb2.network.NetworkService;
 import com.app.kpb2.network.RestService;
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
@@ -69,6 +71,7 @@ public class RutPresenter {
     void getRut(String nik, String token , String body) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("data", body);
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request original = chain.request();
             Request request = original.newBuilder()
@@ -85,7 +88,7 @@ public class RutPresenter {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
                         view.hideLoadingIndicator();
-                        System.out.println(new Gson().toJson(response.body()));
+//                        System.out.println(new Gson().toJson(response.body()));
                         if (response.body().getmStatus())
                             view.onDataReady(response.body().getResult());
                         else

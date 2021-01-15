@@ -149,16 +149,30 @@ public class Profile extends AppCompatActivity {
 
         } else
             no_hp = "-";
-
+        String namaPoktan ,namaKios;
         String alamat =  mProfile.getResult().getProfile().getAddress();
         String kecamatan = mProfile.getResult().getProfile().getArea().getDistrict();
         String kabupaten = mProfile.getResult().getProfile().getArea().getCity();
         String provinsi =  mProfile.getResult().getProfile().getArea().getProvince();
         nomorrekening =  mProfile.getResult().getProfile().getNomorRekening();
+        Number id_poktan =  mProfile.getResult().getProfile().getId_poktan();
+
+
+        if(mProfile.getResult().getProfile().getKios().size()>0){
+            namaKios = mProfile.getResult().getProfile().getKios().get(0).getName();
+
+        }else{
+            namaKios = "-";
+        }
+        if(mProfile.getResult().getProfile().getPoktan().size()>0){
+            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
+
+        }else{
+            namaPoktan = "-";
+        }
         Number idKios = mProfile.getResult().getProfile().getIdKios();
-        String namaKios = mProfile.getResult().getProfile().getNamaKios();
         if(idKios!=null)
-            mKios.setText(String.valueOf(idKios));
+            mKios.setText(namaKios);
         if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
 
             namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
@@ -169,12 +183,13 @@ public class Profile extends AppCompatActivity {
         mNik.setText(nik);
         mNama.setText(nama);
         mAddress.setText(alamat + ", KEC. " + kecamatan + ", " + kabupaten + ", " + provinsi);
-        mPoktan.setText("-");
+        mPoktan.setText(namaPoktan);
         mPhone.setText(no_hp);
         mAddress.setEnabled(false);
         mPhone.setEnabled(false);
         mPoktan.setEnabled(false);
         mBtnUpdateRek.setOnClickListener(view -> this.goToUpdateRek());
+
 
     }
 

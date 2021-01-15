@@ -2,6 +2,9 @@ package com.app.kpb2.features.petani.dashboard;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,6 +28,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
@@ -48,6 +52,16 @@ import com.app.kpb2.ui.DrawerMenuItem;
 import com.app.kpb2.ui.SweetDialogs;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.Task;
 import com.google.gson.Gson;
 import com.mindorks.placeholderview.PlaceHolderView;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
@@ -61,8 +75,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Dashboard extends Fragment implements IDashboardView {
 
+    private static final int MY_REQUEST_CODE =2 ;
     @BindView(R.id.drawerView)
     PlaceHolderView mDrawerView;
     @BindView(R.id.mainMenu)
@@ -94,7 +111,8 @@ public class Dashboard extends Fragment implements IDashboardView {
     DashboardPresenter presenter ;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
-
+    AppUpdateManager appUpdateManager;
+    Task<AppUpdateInfo> appUpdateInfoTask;
 //    static {
 //        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 //    }
@@ -106,6 +124,10 @@ public class Dashboard extends Fragment implements IDashboardView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
+        appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+
+        // Returns an intent object that you use to check for an update.
+        appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         presenter = new DashboardPresenter(this);
         this.setupDrawer();
         this.initViews();
@@ -268,9 +290,11 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     @Override
     public void initViews() {
+
         sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
         presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
+
     }
 
     @Override
@@ -278,13 +302,62 @@ public class Dashboard extends Fragment implements IDashboardView {
         SweetDialogs.commonWarningWithIntent(getActivity(),"Mohon perbaharui aplikasi", rm, string -> {
             this.goUpdateApps();
         });
+
+
+    }
+
+
+    public void forceUpdate(){
+
+        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+
+// Returns an intent object that you use to check for an update.
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+// Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    // For a flexible update, use AppUpdateType.FLEXIBLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                try {
+                    appUpdateManager.startUpdateFlowForResult(
+                            // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                            appUpdateInfo,
+                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                            AppUpdateType.FLEXIBLE,
+                            // The current activity making the update request.
+                            getActivity(),
+                            // Include a request code to later monitor this update request.
+                            MY_REQUEST_CODE);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                Toast.makeText(getActivity(), "update tidak tersedia", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    @SuppressLint("LongLogTag")
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MY_REQUEST_CODE) {
+
+            if (resultCode != RESULT_OK) {
+                Log.d("Update flow failed! Result code: " + resultCode, "");
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+            }
+        }
     }
 
     @Override
     public void goUpdateApps(){
         App.getPref().clear();
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.app.kpb2"));
+        intent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.app.kpb2"));
         startActivity(intent);
         getActivity().finishAffinity();
     }

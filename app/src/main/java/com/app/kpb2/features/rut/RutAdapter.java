@@ -32,7 +32,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
 
 
     public interface onRutSelected {
-        void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, List<JadwalUsahaTani> jadwalUsahaTanis);
+        void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, String WaktuTanam , String tglPengambilan , String tglTrf);
 
         //        void onCheckBox(int position);
         void onSetuju(Result rut);
@@ -74,7 +74,7 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
             holder.mBtnSetuju.setEnabled(true);
             holder.mBtnEdit.setEnabled(true);
         }
-        holder.mBtnKebutuhan.setOnClickListener(view -> rutListener.onDetailData(rut.getKebutuhanSaprotan(), rut.getGarapDanPemeliharaan(), rut.getJadwalUsahaTani()));
+        holder.mBtnKebutuhan.setOnClickListener(view -> rutListener.onDetailData(rut.getKebutuhanSaprotan(), rut.getGarapDanPemeliharaan(), rut.getWaktuTanam() , rut.getTanggalPengambilanPupuk() , rut.getTanggalTransfer()));
 //        holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalSaprotan())));
 //        holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalGarapDanPemeliharaan())));
 //        holder.mTotalPendapatan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPendapatanKotor())));

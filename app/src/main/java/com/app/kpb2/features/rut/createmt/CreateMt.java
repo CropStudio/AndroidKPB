@@ -27,7 +27,10 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.LinkedHashMapAdapter;
+import com.app.kpb2.features.e_commerce.model.Item;
 import com.app.kpb2.features.petani.profile.model.AsetPetani;
+import com.app.kpb2.features.petani.profile.model.DataMt;
+import com.app.kpb2.features.rut.RutActivity;
 import com.app.kpb2.features.rut.aset.AsetActivity;
 import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
@@ -35,6 +38,7 @@ import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
 import com.app.kpb2.ui.TopSnakbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -42,16 +46,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CreateMt extends AppCompatActivity implements ICreateMtView, AdapterView.OnItemSelectedListener, View.OnClickListener {
-    String subsektor, idSubsektor, totalAset, _id;
+    String subsektor, idSubsektor, totalAset, idAset;
     SweetAlertDialog sweetAlertDialog;
     @BindView(R.id.LayoutLuasTanah)
     TextInputLayout LayoutLuasTanah;
@@ -103,6 +109,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     View rowView;
     LoginResponse mProfile;
     JSONArray dataMt = new JSONArray();
+    JSONObject dataPermt ;
     ArrayList<String> spinnerKomoditas = new ArrayList<>();
     CreateMtPresenter presenter;
     private LinkedHashMap<String, String> mt;
@@ -121,7 +128,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         presenter = new CreateMtPresenter(this);
         subsektor = getIntent().getExtras().getString("subsektor");
-        _id = getIntent().getExtras().getString("_id");
+        idAset = getIntent().getExtras().getString("_id");
         idSubsektor = getIntent().getExtras().getString("idSubsektor");
         totalAset = getIntent().getExtras().getString("totalAset");
 
@@ -200,12 +207,13 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreateMtSuccess(LoginResponse profile) {
         presenter.storeProfile(profile);
 
         SweetDialogs.commonSuccessWithIntent(this, profile.getRm(), string -> {
-            this.gotoAsset();
+            this.gotoGetRut(profile.getResult().getProfile().getAsetPetani());
         });
     }
 
@@ -239,6 +247,23 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
     @Override
     public void gotoAsset() {
         startActivity(new Intent(this, AsetActivity.class));
+        finish();
+    }
+
+    @Override
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void gotoGetRut(List<AsetPetani> asetPetani) {
+
+        List<AsetPetani> filters = new ArrayList<>();
+        filters = asetPetani.stream()
+                .filter(id -> id.get_id().equals(idAset))
+                .collect(Collectors.toList());
+
+        Log.d("FILTER" , new Gson().toJson(filters.get(0).getDataPermt()));
+        Intent i = new Intent(this, RutActivity.class);
+        i.putExtra("data", (Serializable) filters.get(0).getDataPermt());
+        i.putExtra("_id", idAset);
+        startActivity(i);
         finish();
     }
 
@@ -295,7 +320,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                JSONObject dataPermt = new JSONObject();
+                                dataPermt = new JSONObject();
                                 try {
                                     dataPermt.put("dataPermt", dataMt);
                                 } catch (JSONException e) {
@@ -324,7 +349,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            JSONObject dataPermt = new JSONObject();
+                            dataPermt = new JSONObject();
                             try {
                                 dataPermt.put("dataPermt", dataMt);
                             } catch (JSONException e) {
@@ -391,7 +416,7 @@ public class CreateMt extends AppCompatActivity implements ICreateMtView, Adapte
 
     @Override
     public void CreateMt() {
-        presenter.createMt(nik, token, _id, dataMt.toString());
+        presenter.createMt(nik, token, idAset, dataMt.toString());
     }
 
     @Override

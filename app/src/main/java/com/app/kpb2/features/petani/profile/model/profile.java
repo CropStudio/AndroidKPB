@@ -2,6 +2,7 @@ package com.app.kpb2.features.petani.profile.model;
 
 import androidx.annotation.NonNull;
 
+import com.app.kpb2.features.petani.noRekening.model.Kios;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -70,6 +71,39 @@ public class profile implements Serializable {
 
     @SerializedName("si")
     private Si si;
+
+    @SerializedName("id_poktan")
+    private Number id_poktan;
+
+    @SerializedName("kios")
+    private List<Kios> kios;
+
+    @SerializedName("poktan")
+    private List<Poktan> poktan;
+
+    public List<Kios> getKios() {
+        return kios;
+    }
+
+    public void setKios(List<Kios> kios) {
+        this.kios = kios;
+    }
+
+    public List<Poktan> getPoktan() {
+        return poktan;
+    }
+
+    public void setPoktan(List<Poktan> poktan) {
+        this.poktan = poktan;
+    }
+
+    public Number getId_poktan() {
+        return id_poktan;
+    }
+
+    public void setId_poktan(Number id_poktan) {
+        this.id_poktan = id_poktan;
+    }
 
     public Si getSi() {
         return si;

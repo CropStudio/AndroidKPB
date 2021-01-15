@@ -70,7 +70,7 @@ public class Result implements Serializable  {
     private String hargaSatuan;
 
     @SerializedName("hasilPanen")
-    private String hasilPanen;
+    private List<HasilPanen> hasilPanen;
 
     @SerializedName("keterangan")
     private String keterangan;
@@ -107,6 +107,15 @@ public class Result implements Serializable  {
 
     @SerializedName("jadwalUsahaTani")
     private List<JadwalUsahaTani> jadwalUsahaTani;
+
+    @SerializedName("waktuTanam")
+    private String waktuTanam;
+
+    @SerializedName("tanggalPengambilanPupuk")
+    private String tanggalPengambilanPupuk;
+
+    @SerializedName("tanggalTransfer")
+    private String tanggalTransfer;
 
     @SerializedName("bank")
     private String bank;
@@ -299,11 +308,11 @@ public class Result implements Serializable  {
         this.hargaSatuan = hargaSatuan;
     }
 
-    public String getHasilPanen() {
+    public List<HasilPanen> getHasilPanen() {
         return hasilPanen;
     }
 
-    public void setHasilPanen(String hasilPanen) {
+    public void setHasilPanen(List<HasilPanen> hasilPanen) {
         this.hasilPanen = hasilPanen;
     }
 
@@ -349,6 +358,30 @@ public class Result implements Serializable  {
 
     public List<BiayaTanam> getGarapDanPemeliharaan() {
         return garapDanPemeliharaan;
+    }
+
+    public String getWaktuTanam() {
+        return waktuTanam;
+    }
+
+    public void setWaktuTanam(String waktuTanam) {
+        this.waktuTanam = waktuTanam;
+    }
+
+    public String getTanggalPengambilanPupuk() {
+        return tanggalPengambilanPupuk;
+    }
+
+    public void setTanggalPengambilanPupuk(String tanggalPengambilanPupuk) {
+        this.tanggalPengambilanPupuk = tanggalPengambilanPupuk;
+    }
+
+    public String getTanggalTransfer() {
+        return tanggalTransfer;
+    }
+
+    public void setTanggalTransfer(String tanggalTransfer) {
+        this.tanggalTransfer = tanggalTransfer;
     }
 
     public void setGarapDanPemeliharaan(List<BiayaTanam> garapDanPemeliharaan) {

@@ -1,7 +1,24 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/admin/AndroidStudioProjects/AndroidKPB/kpb.jks')
+            storePassword '12421025'
+            keyAlias = 'keykpb'
+            keyPassword '12421025'
+        }
+    }
 
+
+//    signingConfigs {
+//        release {
+//            storeFile file('/Users/admin/AndroidStudioProjects/AndroidKPB/kpb2.jks')
+//            storePassword '12421025'
+//            keyAlias = 'keykpb2'
+//            keyPassword '12421025'
+//        }
+//    }
     configurations.all {
         resolutionStrategy {
             force 'androidx.appcompat:appcompat:1.1.0-rc01'
@@ -18,16 +35,20 @@ android {
         applicationId "com.app.kpb2"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 12
-        versionName "2.5"
+        versionCode 13
+        versionName "2.7"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
         aaptOptions { cruncherEnabled = false }
     }
 
     buildTypes {
         release {
+            testCoverageEnabled false
+//            signingConfig signingConfigs.release
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -73,7 +94,7 @@ dependencies {
     implementation 'com.mikepenz:iconics-core:2.5.9@aar'
     implementation 'com.github.castorflex.smoothprogressbar:library-circular:1.3.0'
     implementation 'com.github.thomper:sweet-alert-dialog:v1.4.0'
-//    implementation 'cn.pedant.sweetalert:library:1.3'
+    implementation 'cn.pedant.sweetalert:library:1.3'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'com.androidadvance:topsnackbar:1.1.1'
     implementation 'com.nex3z:notification-badge:1.0.2'
@@ -84,6 +105,7 @@ dependencies {
     implementation 'com.github.ganfra:material-spinner:2.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
+    implementation 'com.google.android.play:core:1.6.4'
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'
     implementation 'com.github.mohammadatif:Animatoo:master'

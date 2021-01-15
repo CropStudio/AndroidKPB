@@ -33,7 +33,7 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
 
     List<KebutuhanSaprotan> kebutuhanSaprotans = new ArrayList<>();
     List<BiayaTanam> biayaTanams = new ArrayList<>();
-    List<JadwalUsahaTani> jadwalUsahaTani;
+    String waktuTanam , tglPengambilan, tglTrf ;
     EstimasiPanen estimasiPanen ;
     HasilPascaPanen hasilPascaPanen ;
 
@@ -65,7 +65,7 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
         ButterKnife.bind(this, view);
 
         if (kebutuhanSaprotans.size() > 0) {
-            this.setData(kebutuhanSaprotans, biayaTanams, jadwalUsahaTani);
+            this.setData(kebutuhanSaprotans, biayaTanams, waktuTanam ,tglPengambilan,tglTrf);
             this.initViews();
         }
 
@@ -83,7 +83,7 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
         BiayaTanamFragment biayaTanamFragment = new BiayaTanamFragment();
         EstimasiPanenFragment estimasiPanenFragment = new EstimasiPanenFragment();
         saprotanFragment.setData(kebutuhanSaprotans);
-        kalenderTanamFragment.setData(jadwalUsahaTani);
+        kalenderTanamFragment.setData(waktuTanam , tglPengambilan , tglTrf);
         biayaTanamFragment.setData(biayaTanams);
 //        estimasiPanenFragment.setData(estimasiPanen);
         FragmentManager cfManager= getChildFragmentManager();
@@ -99,10 +99,12 @@ public class MainDetailFragment extends Fragment implements IMainDetailView {
 
 
     @Override
-    public void setData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams , List<JadwalUsahaTani> jadwalUsahaTani) {
+    public void setData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, String waktuTanam, String tglPengambilan, String tglTrf) {
         this.kebutuhanSaprotans = kebutuhanSaprotans;
         this.biayaTanams = biayaTanams;
-        this.jadwalUsahaTani = jadwalUsahaTani;
+        this.waktuTanam = waktuTanam;
+        this.tglPengambilan = tglPengambilan;
+        this.tglTrf = tglTrf;
 
     }
 

@@ -10,7 +10,7 @@ public class DataMt implements Serializable {
     public String _id ;
 
     @SerializedName("masaTanam")
-    public String masaTanam ;
+    public int masaTanam ;
 
     @SerializedName("namaKomoditas")
     public String namaKomoditas ;
@@ -21,11 +21,19 @@ public class DataMt implements Serializable {
     @SerializedName("jumlahAset")
     public String jumlahAset ;
 
-    public String getMasaTanam() {
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public int getMasaTanam() {
         return masaTanam;
     }
 
-    public void setMasaTanam(String masaTanam) {
+    public void setMasaTanam(int masaTanam) {
         this.masaTanam = masaTanam;
     }
 

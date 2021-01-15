@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.app.kpb2.R;
+import com.app.kpb2.Utils.Utils;
 import com.app.kpb2.features.rut.model.JadwalUsahaTani;
 
 
@@ -19,10 +21,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class KalenderTanamFragment extends Fragment implements IKalenderTanamView {
-    @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
-    List<JadwalUsahaTani> jadwals;
+    @BindView(R.id.mWaktuTanam)
+    TextView mWaktuTanam;
+
+    @BindView(R.id.mTglPengambilan)
+    TextView mTglPengambilan;
+
+    @BindView(R.id.mTglTrf)
+    TextView mTglTrf;
+
     private KalenderTanamAdapter adapter;
+    String waktuTanam , tglPengambilan, tglTrf ;
     public KalenderTanamFragment() {
         // Required empty public constructor
     }
@@ -43,8 +52,8 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kalender_tanam, container, false);
         ButterKnife.bind(this,view);
-        if (jadwals != null) {
-            this.setData(jadwals);
+        if (waktuTanam != null || !waktuTanam.equals("") && tglTrf != null || !tglTrf.equals("") && tglPengambilan != null || !tglPengambilan.equals("")) {
+            this.setData(waktuTanam , tglPengambilan , tglTrf);
             this.initViews();
         }
 
@@ -57,23 +66,16 @@ public class KalenderTanamFragment extends Fragment implements IKalenderTanamVie
 
     @Override
     public void initViews(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.clearFocus();
+        mWaktuTanam.setText(Utils.convertMongoDate(waktuTanam));
+        mTglPengambilan.setText(Utils.convertMongoDate(tglPengambilan));
+        mTglTrf.setText(Utils.convertMongoDate(tglTrf));
     }
 
     @Override
-    public void setData(List<JadwalUsahaTani> jadwalUsahaTani) {
-        this.jadwals = jadwalUsahaTani;
-        if (mRecyclerView != null) {
-            if (mRecyclerView.getAdapter() == null) {
-                adapter = new KalenderTanamAdapter(jadwalUsahaTani.get(0).getJadwal());
-                mRecyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                this.initViews();
-            }
-        }
+    public void setData(String waktuTnaam, String tglPengambilan, String tglTrf) {
+        this.waktuTanam = waktuTnaam;
+        this.tglPengambilan = tglPengambilan;
+        this.tglTrf = tglTrf;
+//        this.initViews();
     }
 }
