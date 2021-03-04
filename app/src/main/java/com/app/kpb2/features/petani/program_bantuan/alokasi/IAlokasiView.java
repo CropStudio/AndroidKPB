@@ -13,7 +13,7 @@ public interface IAlokasiView {
 
     void onDataReady(List<Result> result);
 
-    void onRequestFailed(String rm);
+    void onRequestFailed(String rm ,String rc);
 
     void onNetworkError(String cause);
 

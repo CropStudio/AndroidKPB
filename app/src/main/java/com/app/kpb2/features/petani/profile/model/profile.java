@@ -129,7 +129,7 @@ public class profile implements Serializable {
         this.bank = bank;
     }
 
-    public Number getIdKios() {
+    public Number   getIdKios() {
         return idKios;
     }
 

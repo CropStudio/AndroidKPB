@@ -2,9 +2,11 @@ package com.app.kpb2.features.petani.program_bantuan.alokasi;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +49,14 @@ public class AlokasiAdapter extends RecyclerView.Adapter<AlokasiAdapter.ViewHold
         holder.mZa.setText(String.valueOf(alokasi.getZa())+satuan);
         holder.mOrganik.setText(String.valueOf(alokasi.getOrganik())+satuan);
         holder.mTahun.setText(alokasi.getTahun());
+        Log.d("alokasistatus" , String.valueOf(alokasi.isStatus()));
+        if(alokasi.isStatus()){
+            holder.layoutStatus.setBackgroundResource(R.drawable.shape_indicator_active);
+            holder.mStatus.setText("Sudah Digunakan");
+        }else{
+            holder.layoutStatus.setBackgroundResource(R.drawable.shape_indicator_unactive);
+            holder.mStatus.setText("Belium Digunakan");
+        }
     }
 
     @Override
@@ -58,7 +68,8 @@ public class AlokasiAdapter extends RecyclerView.Adapter<AlokasiAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mMt, mKomoditas, mTotal, mUrea, mSp36, mNpk, mZa, mOrganik, mTahun;
+        TextView mMt, mKomoditas, mTotal, mUrea, mSp36, mNpk, mZa, mOrganik, mTahun,mStatus;
+        LinearLayout layoutStatus ;
         ViewHolder(View view) {
             super(view);
             mMt = view.findViewById(R.id.mMt);
@@ -70,6 +81,8 @@ public class AlokasiAdapter extends RecyclerView.Adapter<AlokasiAdapter.ViewHold
             mNpk = view.findViewById(R.id.mNpk);
             mZa = view.findViewById(R.id.mZa);
             mOrganik = view.findViewById(R.id.mOrganik);
+            mStatus = view.findViewById(R.id.mStatus);
+            layoutStatus = view.findViewById(R.id.layoutStatus);
 
         }
 

@@ -93,10 +93,14 @@ public class AlokasiPupukActivity extends AppCompatActivity implements IAlokasiV
     }
 
     @Override
-    public void onRequestFailed(String rm) {
-        SweetDialogs.commonError(this, "Gagal Memuat Permintaan", rm, string -> {
-            this.goToDashboard();
-        });
+    public void onRequestFailed(String rm , String rc) {
+        if(rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                    rm);
+        else
+            SweetDialogs.commonError(this, "Gagal Memuat Permintaan", rm, string -> {
+                this.goToDashboard();
+            });
     }
 
     @Override

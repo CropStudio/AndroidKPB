@@ -1,5 +1,6 @@
 package com.app.kpb2.features.petani.profile;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -8,6 +9,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,12 +22,20 @@ import com.app.kpb2.features.petani.MenuUtama;
 import com.app.kpb2.features.petani.noRekening.Rekening;
 import com.app.kpb2.features.petani.profile.createprofile.CreateProfile;
 import com.app.kpb2.features.petani.profile.detailProfile.DetailProfile;
+import com.app.kpb2.features.petani.profile.komoditas.KomoditasActivity;
+import com.app.kpb2.features.petani.profile.model.AsetPetani;
+import com.app.kpb2.features.petani.profile.model.DataMt;
 import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,8 +66,12 @@ public class Profile extends AppCompatActivity {
     TextView mKios;
     @BindView(R.id.mNamaBank)
     TextView mNamaBank;
+    @BindView(R.id.mKomoditas)
+    TextView mKomoditas;
     @BindView(R.id.mBtnUpdateRek)
     Button mBtnUpdateRek;
+    @BindView(R.id.mBtnUpdteKomoditas)
+    Button mBtnUpdateKomoditas;
     @BindView(R.id.profile_image)
     CircleImageView mProfileImg;
     LoginResponse mProfile;
@@ -69,6 +84,7 @@ public class Profile extends AppCompatActivity {
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +104,7 @@ public class Profile extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MenuUtama.class));
-                finish();
+               gotoDashBoard();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -129,6 +144,7 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void initView() {
         String no_hp = "-";
         String nomorrekening= "-";
@@ -137,7 +153,7 @@ public class Profile extends AppCompatActivity {
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-
+        Log.d("Profilenya" , String.valueOf(mProfile.getResult().getProfile().getAsetPetani().size()));
         noKK = App.getPref().getString(Prefs.PREF_NO_KK, "");
         String nik = (mProfile.getResult().getNik().contains(" "))
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
@@ -158,25 +174,50 @@ public class Profile extends AppCompatActivity {
         Number id_poktan =  mProfile.getResult().getProfile().getId_poktan();
 
 
-        if(mProfile.getResult().getProfile().getKios().size()>0){
+        Number idKios = mProfile.getResult().getProfile().getIdKios() ;
+        Log.d("idkios" , new Gson().toJson(mProfile.getResult()));
+        if(idKios !=null && Integer.parseInt(String.valueOf(idKios)) != 0 ){
+
             namaKios = mProfile.getResult().getProfile().getKios().get(0).getName();
 
         }else{
             namaKios = "-";
-        }
-        if(mProfile.getResult().getProfile().getPoktan().size()>0){
-            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
 
+        }
+        mKios.setText(namaKios);
+        if(mProfile.getResult().getProfile().getId_poktan() != null && !mProfile.getResult().getProfile().getId_poktan().equals(0)){
+            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
         }else{
             namaPoktan = "-";
         }
-        Number idKios = mProfile.getResult().getProfile().getIdKios();
-        if(idKios!=null)
-            mKios.setText(namaKios);
+        List<String> asets = new ArrayList<>();
+
+        if(mProfile.getResult().getProfile().getAsetPetani().size() > 0){
+//            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
+
+            List<AsetPetani> asetPetani = mProfile.getResult().getProfile().getAsetPetani();
+            List<DataMt> datamt ;
+
+                datamt = asetPetani.stream().flatMap(e->e.getDataPermt().stream())
+                        .collect(Collectors.toList());
+
+            for(DataMt result : datamt){
+                if(!asets.contains(result.getNamaKomoditas())){
+                    asets.add(result.getNamaKomoditas());
+
+                }
+            }
+            String s = TextUtils.join(", ", asets);
+            mKomoditas.setText(s);
+
+
+
+        }else{
+            mKomoditas.setText("-");
+        }
         if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
 
-            namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
-                    ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+            namaBank =  mProfile.getResult().getProfile().getBank();
             mNamaBank.setText(namaBank);
             mNorek.setText(nomorrekening);
         }
@@ -189,6 +230,7 @@ public class Profile extends AppCompatActivity {
         mPhone.setEnabled(false);
         mPoktan.setEnabled(false);
         mBtnUpdateRek.setOnClickListener(view -> this.goToUpdateRek());
+        mBtnUpdateKomoditas.setOnClickListener(view -> this.goToUpdateKomoditas());
 
 
     }
@@ -196,5 +238,21 @@ public class Profile extends AppCompatActivity {
     void goToUpdateRek(){
         startActivity(new Intent(this, Rekening.class));
         finish();
+    }
+
+    void goToUpdateKomoditas(){
+        startActivity(new Intent(this, KomoditasActivity.class));
+        finish();
+    }
+
+    void gotoDashBoard(){
+        startActivity(new Intent(this, MenuUtama.class));
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // ...
+       this.gotoDashBoard();
     }
 }

@@ -25,6 +25,16 @@ public class Result {
     private float sp36;
     @SerializedName("organik")
     private float organik;
+    @SerializedName("sudahDigunakan")
+    private boolean status;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public String getCreated_at() {
         return created_at;

@@ -43,6 +43,7 @@ import com.app.kpb2.features.rut.model.BarangTidakAda;
 import com.app.kpb2.features.rut.model.BiayaTanam;
 import com.app.kpb2.features.rut.model.JadwalUsahaTani;
 import com.app.kpb2.features.rut.model.KebutuhanSaprotan;
+import com.app.kpb2.features.rut.model.Poktan;
 import com.app.kpb2.features.rut.model.Result;
 import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
@@ -59,6 +60,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,11 +104,12 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     LoginResponse mProfile;
     public RutAdapter adapter;
     RutPresenter presenter;
-    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab, namaBank;
-    Number idKios, tahun, idPoktan;
+    String idKec, nik, token, idDesa, nomorrekening, idAset, idKab, namaBank ,id_poktan;
+    Number  tahun, idPoktan,idKios;
+//    int idKios;
     SweetAlertDialog sweetAlertDialog;
     Boolean LayoutStat = false;
-
+    List<Poktan> listPoktan;
     List<KebutuhanSaprotan> models;
     List<DataMt> dataMt;
     JSONObject data = new JSONObject();
@@ -146,7 +149,10 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
             namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
                     ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
         }
-        idKios = mProfile.getResult().getProfile().getIdKios();
+        if(mProfile.getResult().getProfile().getIdKios() != null) {
+            idKios = mProfile.getResult().getProfile().getIdKios();
+//            idKios = Integer.parseInt(String.valueOf(mProfile.getResult().getProfile().getIdKios())) ;
+        }
         idDesa = (mProfile.getResult().getProfile().getArea().getSub_district_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getSub_district_code() : mProfile.getResult().getProfile().getArea().getSub_district_code();
         idKec = (mProfile.getResult().getProfile().getArea().getDistrict_code().contains(" "))
@@ -154,11 +160,15 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         idKab = (mProfile.getResult().getProfile().getArea().getCity_code().contains(" "))
                 ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
         idPoktan = mProfile.getResult().getProfile().getId_poktan();
+        this.initView();
+        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+        idAset = getIntent().getExtras().getString("_id");
         if (idPoktan == null || idPoktan.equals("")) {
-            DialogForm();
+            presenter.ListPoktan(nik,token,idDesa);
+
         } else {
-            dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
-            idAset = getIntent().getExtras().getString("_id");
+
+            Log.d("DATAMTNYA" , new Gson().toJson(dataMt));
 //        System.out.println(namaBank);
             if (dataMt != null) {
                 for (DataMt datas : dataMt) {
@@ -186,21 +196,22 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                String susbs = dataMt.get(0).getSubsektor();
+                if (susbs.equals("Perkebunan")) {
+                    label = "Usia Tanam";
+                    mLabel.setText(label);
+                } else if (susbs.equals("Peternakan")) {
+                    label = "Pembibitan / Penggemukan";
+                    mLabel.setText(label);
+                } else {
+                    label = "Masa Tanam";
+                    mLabel.setText(label);
+                }
+                Log.d("BODY", new Gson().toJson(data));
+                presenter.getRut(nik, token, data.toString());
             }
-            this.initView();
-            String susbs = dataMt.get(0).getSubsektor();
-            if (susbs.equals("Perkebunan")) {
-                label = "Usia Tanam";
-                mLabel.setText(label);
-            } else if (susbs.equals("Peternakan")) {
-                label = "Pembibitan / Penggemukan";
-                mLabel.setText(label);
-            } else {
-                label = "Masa Tanam";
-                mLabel.setText(label);
-            }
-            Log.d("BODY", new Gson().toJson(data));
-            presenter.getRut(nik, token, data.toString());
+
+
         }
     }
 
@@ -408,14 +419,14 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 //                        });
 //            }
 //        }
-        if (namaBank.equals("Bank BNI")) {
+        if (namaBank != null && namaBank.equals("Bank BNI")) {
             if (statusSi == null || !statusSi) {
                 SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
             } else {
                 if (rut.getUpdated()) {
                     if (nomorrekening.equals("")) {
                         SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
-                    } else if (idKios == null || idKios.equals(0)) {
+                    } else if (idKios!=null && idKios.equals(0)) {
                         SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
                     } else {
                         rut.setNoRek(nomorrekening);
@@ -460,7 +471,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
             if (rut.getUpdated()) {
                 if (nomorrekening.equals("")) {
                     SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
-                } else if (idKios == null || idKios.equals(0)) {
+                } else if (idKios!=null && idKios.equals(0)) {
                     SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda belum memilih kios", string -> this.goToRekening());
                 } else {
                     rut.setNoRek(nomorrekening);
@@ -607,17 +618,27 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         super.onDestroy();
     }
 
-    private void DialogForm() {
-        dialog = new AlertDialog.Builder(this);
-        inflater = getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.pilih_poktan_dialog, null);
-        dialog.setView(dialogView);
-        dialog.setCancelable(true);
-        dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setTitle("Form Biodata");
+    @Override
+    public void onListPoktanReady(List<Poktan> result){
         poktan = new LinkedHashMap<String, String>();
-        Spinner spinnerPoktan    = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
-        adapterSpinner = new LinkedHashMapAdapter<String, String>(this, android.R.layout.simple_spinner_item, poktan);
+        for (Poktan poktans : result) {
+            poktan.put(poktans.get_id(), poktans.getNama());
+        }
+
+        this.DialogForm();
+    }
+
+    private void DialogForm() {
+
+        dialog = new AlertDialog.Builder(RutActivity.this);
+        dialogView = getLayoutInflater().inflate(R.layout.pilih_poktan_dialog, null);
+        dialog.setView(dialogView);
+        dialog.setCancelable(false);
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setTitle("ANDA HARUS MENGISI POKTAN TERLEBIH DAHULU !");
+
+        final Spinner spinnerPoktan    = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
+        adapterSpinner = new LinkedHashMapAdapter<String, String>(RutActivity.this, android.R.layout.simple_spinner_item, poktan);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPoktan.setAdapter(adapterSpinner);
         spinnerPoktan.setOnItemSelectedListener(this);
@@ -626,8 +647,8 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                dialog.dismiss();
+                Log.d("spiner", String.valueOf(spinnerPoktan.getSelectedItem()));
+                onCreatePoktan();
             }
         });
 
@@ -635,7 +656,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                goToDashboard();
             }
         });
 
@@ -643,12 +664,47 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onCreatePoktan() {
 
+        JSONObject dataRoot = new JSONObject();
+        JSONObject data = new JSONObject();
+
+        try {
+            data.put("id_poktan", id_poktan);
+            dataRoot.put("data", data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        presenter.onCreatePoktan(nik, token, dataRoot.toString());
+    }
+
+    @Override
+    public void onCreatePoktanSuccess(LoginResponse profile) {
+        presenter.storeProfile(profile);
+        SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan", string -> {
+            this.refresh();
+        });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Map.Entry<String, String> itemSubsektor = (Map.Entry<String, String>) parent.getSelectedItem();
+        id_poktan = itemSubsektor.getKey();
+        Log.d("NAMA POKTAN" , id_poktan);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void refresh() {
+        Intent i = new Intent(this, RutActivity.class);
+        i.putExtra("data", (Serializable) dataMt);
+        i.putExtra("_id", idAset);
+        startActivity(i);
+        finish();
     }
 }

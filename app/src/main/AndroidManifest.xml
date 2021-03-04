@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.dokter_hewan.DokterHewanActivity"></activity>
+        <activity android:name=".features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity"></activity>
+        <activity android:name=".features.petani.profile.komoditas.KomoditasActivity" />
+        <activity android:name=".features.petani.dokter_hewan.DokterHewanActivity" />
         <activity android:name=".features.webview.PasarOnlineNasionalTernak" />
         <activity android:name=".features.petani.keuangan.KeuanganActivity" />
         <activity android:name=".features.petani.suratkuasa_pernyataan.SuratKuasaActivity" />

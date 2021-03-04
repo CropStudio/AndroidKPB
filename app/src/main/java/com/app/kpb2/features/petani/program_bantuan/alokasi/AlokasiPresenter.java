@@ -1,6 +1,8 @@
 package com.app.kpb2.features.petani.program_bantuan.alokasi;
 
 
+import android.util.Log;
+
 import com.app.kpb2.features.petani.program_bantuan.alokasi.model.AlokasiResponse;
 import com.app.kpb2.network.NetworkService;
 import com.app.kpb2.network.RestService;
@@ -44,10 +46,11 @@ public class AlokasiPresenter {
                     @Override
                     public void onResponse(Call<AlokasiResponse> call, Response<AlokasiResponse> response) {
                         view.hideLoadingIndicator();
+                        Log.d("Responalokasi" , String.valueOf(response.body()));
                         if (response.body().getmStatus())
                             view.onDataReady(response.body().getResult());
                         else
-                            view.onRequestFailed(response.body().getmRm());
+                            view.onRequestFailed(response.body().getmRm() , response.body().getmRc());
                     }
 
                     @Override

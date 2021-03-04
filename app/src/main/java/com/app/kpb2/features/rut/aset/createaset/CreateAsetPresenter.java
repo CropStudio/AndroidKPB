@@ -35,6 +35,7 @@ public class CreateAsetPresenter {
 
     public void getSpinner(String id, String key) {
         if (key.equals("subsektor")) {
+            view.showLoadingIndicator();
             restService.create(NetworkService.class).getSubsektor()
                     .enqueue(new Callback<AreaResponse>() {
                         @Override

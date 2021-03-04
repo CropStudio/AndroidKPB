@@ -30,6 +30,7 @@ import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
 import com.app.kpb2.ui.TopSnakbar;
+import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONException;
@@ -173,6 +174,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     @Override
     public void onCreateRekeningSuksess(LoginResponse profile, String noRek) {
 //        profile.getResult().getProfile().setNamaKios(namaKios);
+        Log.d("ProfileRekening" , new Gson().toJson(profile));
         presenter.storeProfile(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan", string -> {
             if(bundle!=null)

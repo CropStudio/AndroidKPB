@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:backgroundTint="@color/color_default_green"
-            android:text="KIRIM"
+            android:text="SIMPAN"
             android:textColor="@color/white" />
 
     </LinearLayout>

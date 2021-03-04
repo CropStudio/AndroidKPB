@@ -376,6 +376,7 @@
                                 android:textSize="12sp" />
 
                             <Button
+                                android:visibility="gone"
                                 android:id="@+id/mBtnUpdateAddressPhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
@@ -419,6 +420,7 @@
                                 android:textSize="12sp" />
 
                             <Button
+                                android:visibility="gone"
                                 android:id="@+id/mBtnUpdtePhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
@@ -535,6 +537,66 @@
                         <!--                                android:textColor="@color/white"-->
                         <!--                                android:textSize="12sp" />-->
                         <!--                        </RelativeLayout>-->
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#F3EFEF" />
+
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginTop="10dp"-->
+                        <!--                            android:text="Komoditas"-->
+                        <!--                            android:textSize="12sp"-->
+                        <!--                            android:textStyle="bold" />-->
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/mKomoditas"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_below="@+id/labelKios"-->
+                        <!--                            android:layout_marginTop="5dp"-->
+                        <!--                            android:text="-"-->
+                        <!--                            android:textColor="@color/color_default_black"-->
+                        <!--                            android:textSize="12sp" />-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/labelKomoditas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Komoditas"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/mKomoditas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/labelKomoditas"
+                                android:layout_marginTop="5dp"
+                                android:text="-"
+                                android:textColor="@color/color_default_black"
+                                android:textSize="12sp" />
+
+                            <Button
+                                android:id="@+id/mBtnUpdteKomoditas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/btnrounded_green"
+                                android:text="@string/edit"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"

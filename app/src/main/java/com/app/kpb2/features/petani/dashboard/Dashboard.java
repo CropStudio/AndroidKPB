@@ -37,6 +37,7 @@ import com.app.kpb2.features.petani.KartuPetani;
 import com.app.kpb2.features.petani.dokter_hewan.DokterHewanActivity;
 import com.app.kpb2.features.petani.keuangan.KeuanganActivity;
 import com.app.kpb2.features.petani.program_bantuan.ProgramBantuanActivity;
+import com.app.kpb2.features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity;
 import com.app.kpb2.features.rut.aset.AsetActivity;
 import com.app.kpb2.features.transaksi.TransaksiActivity;
 import com.app.kpb2.features.users.login.Login;
@@ -56,6 +57,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.common.IntentSenderForResultStarter;
 import com.google.android.play.core.install.InstallState;
 import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
@@ -75,11 +77,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE;
 
 public class Dashboard extends Fragment implements IDashboardView {
 
-    private static final int MY_REQUEST_CODE =2 ;
+    private static final int MY_REQUEST_CODE = 999 ;
+    private static final int IMMEDIATE_APP_UPDATE_REQ_CODE = 124;
     @BindView(R.id.drawerView)
     PlaceHolderView mDrawerView;
     @BindView(R.id.mainMenu)
@@ -92,6 +97,8 @@ public class Dashboard extends Fragment implements IDashboardView {
     CardView mCardTransaksi;
     @BindView(R.id.cardDokterHewan)
     CardView cardDokterHewan;
+    @BindView(R.id.mCardTransaksiNonTunai)
+    CardView mCardTransaksiNonTunai;
 
     CardView headerScroller;
 
@@ -112,7 +119,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
     AppUpdateManager appUpdateManager;
-    Task<AppUpdateInfo> appUpdateInfoTask;
+//    Task<AppUpdateInfo> appUpdateInfoTask;
 //    static {
 //        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 //    }
@@ -124,10 +131,6 @@ public class Dashboard extends Fragment implements IDashboardView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
         ButterKnife.bind(this, view);
-        appUpdateManager = AppUpdateManagerFactory.create(getActivity());
-
-        // Returns an intent object that you use to check for an update.
-        appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         presenter = new DashboardPresenter(this);
         this.setupDrawer();
         this.initViews();
@@ -293,7 +296,10 @@ public class Dashboard extends Fragment implements IDashboardView {
 
         sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
-        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
+//        Toast.makeText(getActivity(), "yang lama", Toast.LENGTH_SHORT).show();
+        appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+//        this.forceUpdate();
+//        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
 
     }
 
@@ -307,50 +313,133 @@ public class Dashboard extends Fragment implements IDashboardView {
     }
 
 
-    public void forceUpdate(){
+//    public void forceUpdate(){
+//        Toast.makeText(getActivity(), "memeriksa pembaharuan", Toast.LENGTH_SHORT).show();
+//        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+//
+//        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+//            Log.d("appUpdateInfo" , String.valueOf(appUpdateInfo));
+//            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.UPDATE_AVAILABLE));
+//            Log.d("appUpdateInfo" , String.valueOf(AppUpdateType.IMMEDIATE));
+//            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS));
+//            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+//                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+//                startUpdateFlow(appUpdateInfo);
+//            } else if  (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
+//                startUpdateFlow(appUpdateInfo);
+//            }
+//        });
+//
+//
+//
+//    }
+//
+//    private void startUpdateFlow(AppUpdateInfo appUpdateInfo) {
+//        try {
+//            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, getActivity(),IMMEDIATE_APP_UPDATE_REQ_CODE);
+//        } catch (IntentSender.SendIntentException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == IMMEDIATE_APP_UPDATE_REQ_CODE) {
+//            if (resultCode == RESULT_CANCELED) {
+//                Toast.makeText(getActivity(), "Update canceled by user! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//            } else if (resultCode == RESULT_OK) {
+//                Toast.makeText(getActivity(), "Update success! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(getActivity(), "Update Failed! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//                forceUpdate();
+//            }
+//        }
+//    }
 
-        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+////        if (requestCode == MY_REQUEST_CODE) {
+////            InstallStateUpdatedListener listener = state -> {
+////                // (Optional) Provide a download progress bar.
+////                if (state.installStatus() == InstallStatus.DOWNLOADING) {
+//////                    popupSnackbarForCompleteUpdate();
+////                    // Implement progress bar.
+////                    onStateUpdate(state);
+////                }
+////
+////                // Log state or install the update.
+////            };
+////
+////// Before starting an update, register a listener for updates.
+////            appUpdateManager.registerListener(listener);
+////
+////// Start an update.
+////
+////// When status updates are no longer needed, unregister the listener.
+////            appUpdateManager.unregisterListener(listener);
+////            if (resultCode != RESULT_OK) {
+////                Log.d("Update flow failed! Result code: " + resultCode, "");
+////                // If the update is cancelled or fails,
+////                // you can request to start the update again.
+////            }
+////        }
+//
+//        if (requestCode == IMMEDIATE_APP_UPDATE_REQ_CODE) {
+//            if (resultCode == RESULT_CANCELED) {
+//                Toast.makeText(getActivity(), "Update canceled by user! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//            } else if (resultCode == RESULT_OK) {
+//                Toast.makeText(getActivity(), "Update success! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(getActivity(), "Update Failed! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
+//                forceUpdate();
+//            }
+//        }
+//    }
 
-// Returns an intent object that you use to check for an update.
-        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-// Checks that the platform will allow the specified type of update.
-        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    // For a flexible update, use AppUpdateType.FLEXIBLE
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                try {
-                    appUpdateManager.startUpdateFlowForResult(
-                            // Pass the intent that is returned by 'getAppUpdateInfo()'.
-                            appUpdateInfo,
-                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                            AppUpdateType.FLEXIBLE,
-                            // The current activity making the update request.
-                            getActivity(),
-                            // Include a request code to later monitor this update request.
-                            MY_REQUEST_CODE);
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
-                }
-            }else{
-                Toast.makeText(getActivity(), "update tidak tersedia", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+    public void onStateUpdate(InstallState state) {
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            // After the update is downloaded, show a notification
+            // and request user confirmation to restart the app.
+            popupSnackbarForCompleteUpdate();
+        }
     }
 
-    @SuppressLint("LongLogTag")
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MY_REQUEST_CODE) {
+    private void popupSnackbarForCompleteUpdate() {
+        Snackbar.make(getActivity().findViewById(android.R.id.content).getRootView(), "New app is ready!", Snackbar.LENGTH_INDEFINITE)
 
-            if (resultCode != RESULT_OK) {
-                Log.d("Update flow failed! Result code: " + resultCode, "");
-                // If the update is cancelled or fails,
-                // you can request to start the update again.
-            }
-        }
+                .setAction("Install", view -> {
+                    if (appUpdateManager != null) {
+                        appUpdateManager.completeUpdate();
+                    }
+                })
+                .setActionTextColor(getResources().getColor(R.color.success_stroke_color))
+                .show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        appUpdateManager
+                .getAppUpdateInfo()
+                .addOnSuccessListener(
+                        appUpdateInfo -> {
+                            if (appUpdateInfo.updateAvailability()
+                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                                // If an in-app update is already running, resume the update.
+                                try {
+                                    appUpdateManager.startUpdateFlowForResult(
+                                            appUpdateInfo,
+                                            IMMEDIATE,
+                                            (IntentSenderForResultStarter) this,
+                                            MY_REQUEST_CODE);
+                                } catch (IntentSender.SendIntentException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
     }
 
     @Override
@@ -399,6 +488,14 @@ public class Dashboard extends Fragment implements IDashboardView {
     void goToRut() {
         this.gotoAset();
     }
+
+    @OnClick(R.id.mCardTransaksiNonTunai)
+    void goToTransaksiNonTunai() {
+        Intent i = new Intent(getActivity(), TransaksiNonTunaiActivity.class);
+        startActivity(i);
+        getActivity().finish();
+    }
+
 
     void gotoAset(){
         Intent i = new Intent(getActivity(), AsetActivity.class);

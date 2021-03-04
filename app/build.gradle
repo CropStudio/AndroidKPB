@@ -33,10 +33,10 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.app.kpb2"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 13
-        versionName "2.7"
+        versionCode 33
+        versionName "3.3"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -105,7 +105,9 @@ dependencies {
     implementation 'com.github.ganfra:material-spinner:2.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
-    implementation 'com.google.android.play:core:1.6.4'
+    implementation 'com.google.android.play:core:1.7.3'
+    implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
+
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'
     implementation 'com.github.mohammadatif:Animatoo:master'

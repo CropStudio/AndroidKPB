@@ -5,6 +5,7 @@ import com.app.kpb2.common.CommonResponse;
 import com.app.kpb2.features.e_commerce.model.RutResponse;
 import com.app.kpb2.features.e_commerce.model.Saldo;
 import com.app.kpb2.features.petani.dokter_hewan.model.DokterHewanResponse;
+import com.app.kpb2.features.petani.profile.komoditas.model.KomoditasResponse;
 import com.app.kpb2.features.petani.program_bantuan.alokasi.model.AlokasiResponse;
 import com.app.kpb2.features.petani.noRekening.model.KiosResponse;
 import com.app.kpb2.features.petani.profile.model.AsetPetani;
@@ -15,6 +16,7 @@ import com.app.kpb2.features.petani.program_bantuan.bantuan.model.BantuanRespons
 import com.app.kpb2.features.petani.registrasi.model.FormModel.AreaResponse;
 import com.app.kpb2.features.petani.registrasi.model.RegistModel;
 import com.app.kpb2.features.rut.createmt.model.DistincKomoditas;
+import com.app.kpb2.features.rut.model.PoktanResponse;
 import com.app.kpb2.features.rut.model.Result;
 import com.app.kpb2.features.transaksi.model.TransaksiResponse;
 import com.app.kpb2.features.users.login.model.LoginResponse;
@@ -69,10 +71,13 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("rutpetani/{nik}")
     Call<com.app.kpb2.features.rut.model.RutResponse> getRut(@Path("nik") String nik, @FieldMap Map<String, Object> data);
-//    @FormUrlEncoded
+
+    //    @FormUrlEncoded
 //    @Headers({"Content-Type:application/json"})
 //    @POST("rutpetani/{nik}")
 //    Call<com.app.kpb2.features.rut.model.RutResponse> getRut(@Path("nik") String nik, @Body JSONObject body);
+    @GET("gettransaksipetanibypoktan/{nik}")
+    Call<com.app.kpb2.features.rut.model.RutResponse> getTransaksiNonTunai(@Path("nik") String nik);
 
     @GET("getrutpetanibynikdantahun")
     Call<com.app.kpb2.features.rut.model.RutResponse> getAllRut(@QueryMap Map<String, String> params);
@@ -82,6 +87,9 @@ public interface NetworkService {
 
     @GET("kabupaten/{id}")
     Call<AreaResponse> getKab(@Path("id") String id);
+
+    @GET("poktandesa/{id}")
+    Call<PoktanResponse> getPoktan(@Path("id") String id);
 
     @GET("kecamatan/{id}")
     Call<AreaResponse> getKec(@Path("id") String id);
@@ -94,6 +102,9 @@ public interface NetworkService {
 
     @GET("komoditasbysub/{idSub}")
     Call<AreaResponse> getKomoditas(@Path("idSub") String idSub);
+
+    @GET("komoditas/")
+    Call<KomoditasResponse> getAllKomoditas();
 
     @GET("distinctkomoditas/{name}")
     Call<DistincKomoditas> getDistincKomoditas(@Path("name") String name);

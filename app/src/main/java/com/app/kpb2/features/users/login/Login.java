@@ -181,6 +181,9 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                 this.goToDashboardPetani();
             } else if (response.getResult().getRole().equals("gubernur")) {
                 this.goToDashboardGubernur();
+            }else{
+                Toast.makeText(this, "Anda tidak dapat mengakses halaman ini, silahkan daftar sebagai petani ", Toast.LENGTH_SHORT).show();
+                App.getPref().clear();
             }
         }
     }

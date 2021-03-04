@@ -8,6 +8,7 @@ import com.app.kpb2.network.NetworkService;
 import com.app.kpb2.network.RestService;
 import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
+import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -67,8 +68,8 @@ public class LoginPresenter {
             @Override
             public void onResponse(retrofit2.Call<LoginResponse> call, Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
-                System.out.println(response);
-                System.out.println(response.body().getSuccess());
+                System.out.println(new Gson().toJson(response.body()));
+//                System.out.println(response.body().getSuccess());
                 if (response.body().getSuccess()) {
                     App.getPref().put(Prefs.PREF_IS_LOGEDIN, true);
                     App.getPref().put(Prefs.PREF_ACCESS_TOKEN, response.body().getResult().getToken());

@@ -119,6 +119,9 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
 
     @Override
     public void initViews() {
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
+        sweetAlertDialog.setCancelable(false);
 
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
@@ -134,9 +137,7 @@ public class CreateAset extends AppCompatActivity implements ICreateAsetView, Ad
         }
         mSubmit.setOnClickListener(view -> onSubmit());
         presenter.getSpinner("", key_subsektors);
-        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
-        sweetAlertDialog.setCancelable(false);
+
         mSubsektor.setOnItemSelectedListener(this);
     }
 

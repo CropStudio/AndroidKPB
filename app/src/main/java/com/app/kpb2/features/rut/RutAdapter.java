@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.Utils;
@@ -57,12 +58,16 @@ public class RutAdapter extends RecyclerView.Adapter<RutAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final RutAdapter.ViewHolder holder, final int position) {
         final Result rut = ruts.get(position);
+//        Toast.makeText(context, context.getClass().getSimpleName(), Toast.LENGTH_SHORT).show();
         holder.mMt.setText(rut.getMt());
         holder.mKomoditas.setText(rut.getKomoditas());
         holder.mTotalSaprotan.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())));
         holder.mTotalPendapatan.setText(Utils.convertRupiah(String.valueOf(rut.getPendapatanKotor())));
         holder.mTotalBudidaya.setText(Utils.convertRupiah(String.valueOf(rut.getSubTotalBiayaUsahaTani())));
         holder.mTotalKeuntungan.setText(Utils.convertRupiah(String.valueOf(rut.getSubPrediksiPendapatan())));
+        if(context.getClass().getSimpleName().equals("TransaksiNonTunaiActivity")) {
+            holder.mBtnEdit.setVisibility(View.GONE);
+        }
         if (rut.getStatusSetuju()) {
             holder.mBtnSetuju.setEnabled(false);
             holder.mBtnEdit.setEnabled(false);

@@ -45,7 +45,8 @@ public class BiayaTanamAdapter extends RecyclerView.Adapter<BiayaTanamAdapter.Vi
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final BiayaTanam model = biayaTanams.get(position);
         holder.mJenis.setText(model.getJenis());
-        holder.mHarga.setText(Utils.convertRupiah(model.getHarga()));
+        if(model.getHarga()!=null)
+            holder.mHarga.setText(Utils.convertRupiah(model.getHarga()));
         holder.mJumlah.setText(model.getJumlah());
 
 //        holder.mJenisTanaman.setText(JenisTnm);
