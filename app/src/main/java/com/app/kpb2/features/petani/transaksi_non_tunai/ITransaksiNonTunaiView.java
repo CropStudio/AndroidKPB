@@ -1,6 +1,9 @@
 package com.app.kpb2.features.petani.transaksi_non_tunai;
 
 import android.app.Activity;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.app.kpb2.features.petani.profile.model.profile;
 import com.app.kpb2.features.rut.model.BarangTidakAda;
@@ -33,6 +36,10 @@ public interface ITransaksiNonTunaiView {
     void onNetworkError(String cause);
 
     void goToDashboard();
+
+    void onCreateSuccess(String rm);
+
+    void onCreateFailed(String rm, Result rut, List<BarangTidakAda> val);
 
     void HideDetailKebutuhan();
 }

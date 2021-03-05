@@ -99,7 +99,7 @@ public class MenuUtama extends AppCompatActivity implements ComponentCallbacks2 
     public void forceUpdate(){
 //        Toast.makeText(this, "memeriksa pembaharuan", Toast.LENGTH_SHORT).show();
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
+        Log.d("appUpdateInfoTask" , String.valueOf(appUpdateInfoTask));
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
             Log.d("appUpdateInfo" , String.valueOf(appUpdateInfo));
             Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.UPDATE_AVAILABLE));
@@ -121,12 +121,12 @@ public class MenuUtama extends AppCompatActivity implements ComponentCallbacks2 
         });
 
 
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                new Dashboard()).commit();
-//
-//        getWindow().setFlags(
-//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new Dashboard()).commit();
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
     }
 
     private void startUpdateFlow(AppUpdateInfo appUpdateInfo) {

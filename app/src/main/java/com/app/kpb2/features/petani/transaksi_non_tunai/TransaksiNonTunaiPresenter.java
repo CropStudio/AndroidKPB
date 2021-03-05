@@ -75,6 +75,40 @@ public class TransaksiNonTunaiPresenter {
     }
 
 
+    void createRut(String nik, String token, Result rut) {
+//        System.out.println(body);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+            Request original = chain.request();
+            Request request = original.newBuilder()
+                    .header("x-access-token", token)
+                    .header("username", nik)
+                    .header("Content-Type", "application/json")
+                    .method(original.method(), original.body())
+                    .build();
+
+            return chain.proceed(request);
+        }).build();
+        view.showLoadingIndicator();
+        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).transaksiNonTunai(rut)
+                .enqueue(new Callback<CommonRespon>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
+                        view.hideLoadingIndicator();
+                        if (CommonRespon.body().getSuccess())
+                            view.onCreateSuccess(CommonRespon.body().getmRm());
+                        else
+                            view.onCreateFailed(CommonRespon.body().getmRm(), rut, CommonRespon.body().getValue());
+
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<CommonRespon> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
+    }
+
 
 
 }

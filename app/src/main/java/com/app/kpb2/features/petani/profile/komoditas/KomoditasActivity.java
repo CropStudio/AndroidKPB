@@ -133,6 +133,7 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
             list.add(value.getKomoditas());
         }
 
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mKomoditas.setAdapter(adapter);

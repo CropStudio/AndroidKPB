@@ -64,6 +64,9 @@ public interface NetworkService {
     @POST("transaksirutpetani")
     Call<CommonRespon> createRut(@Body Result rut);
 
+    @POST("transaksi-multi-beneficiary")
+    Call<CommonRespon> transaksiNonTunai(@Body Result rut);
+
     @FormUrlEncoded
     @PUT("petaniedit/{nik}")
     Call<LoginResponse> updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);

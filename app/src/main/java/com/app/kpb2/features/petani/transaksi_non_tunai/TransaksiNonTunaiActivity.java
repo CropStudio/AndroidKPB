@@ -1,5 +1,6 @@
 package com.app.kpb2.features.petani.transaksi_non_tunai;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,12 +24,14 @@ import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.features.petani.MenuUtama;
 import com.app.kpb2.features.petani.dashboard.Dashboard;
+import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.petani.profile.model.profile;
 import com.app.kpb2.features.rut.RutAdapter;
 import com.app.kpb2.features.rut.RutPageAdapter;
 import com.app.kpb2.features.rut.RutPresenter;
 import com.app.kpb2.features.rut.aset.AsetActivity;
 import com.app.kpb2.features.rut.detailRut.MainDetailFragment;
+import com.app.kpb2.features.rut.model.BarangTidakAda;
 import com.app.kpb2.features.rut.model.BiayaTanam;
 import com.app.kpb2.features.rut.model.KebutuhanSaprotan;
 import com.app.kpb2.features.rut.model.Result;
@@ -39,6 +42,7 @@ import com.app.kpb2.ui.SweetDialogs;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -121,6 +125,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onDataReady(List<Result> result) {
+
         adapter = new RutAdapter(result, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -184,7 +189,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onSetuju(Result rut) {
-
+        presenter.createRut(nik, token, rut);
     }
 
     @Override
@@ -192,6 +197,31 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     }
 
+
+    @Override
+    public void onCreateSuccess(String rm) {
+        SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.recreate());
+    }
+
+
+    @Override
+    public void onCreateFailed(String rm, Result rut, List<BarangTidakAda> val) {
+        Result ruts = rut;
+        SweetDialogs.validasiListBarang(this, "Barang dibawah ini tidak ada, total harga kebutuhan saprotan akan disesuaikan. apakah anda ingin melanjutkan transaksi ?", val, "Berhasil memuat permintaan .",
+                onConfirmKur -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        for (int i = 0; i < ruts.getKebutuhanSaprotan().size(); i++) {
+                            for (BarangTidakAda value : val) {
+                                if (ruts.getKebutuhanSaprotan().get(i).get_id().equals(value.getIdKebutuhanSaprotan()))
+                                    ruts.getKebutuhanSaprotan().remove(i);
+                            }
+                        }
+                        presenter.createRut(nik, token, ruts);
+                    }
+                });
+
+//        Log.d("RESULTAPUS",new Gson().toJson(val));
+    }
     @Override
     public void HideDetailKebutuhan() {
         LayoutStat = false;
