@@ -63,7 +63,8 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     SweetAlertDialog sweetAlertDialog ;
     TransaksiNonTunaiPresenter presenter ;
     Boolean LayoutStat = false;
-    private String nik , token ;
+    private String nik , token , nomorrekening , namaBank ,idKab;
+    Number idKios ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +85,18 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         token = (mProfile.getResult().getToken().contains(" "))
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
+        nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(""))
+                ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+        if (!mProfile.getResult().getProfile().getNomorRekening().equals("")) {
+
+            namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
+                    ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
+        }
+        if(mProfile.getResult().getProfile().getIdKios() != null) {
+            idKios = mProfile.getResult().getProfile().getIdKios();
+//            idKios = Integer.parseInt(String.valueOf(mProfile.getResult().getProfile().getIdKios())) ;
+        }
+        idKab = mProfile.getResult().getProfile().getArea().getCity_code();
         this.initView();
 
 
@@ -189,6 +202,11 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onSetuju(Result rut) {
+        rut.setNoRek(nomorrekening);
+        rut.setBank(namaBank);
+        rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+        rut.setIdKios(idKios);
+        rut.setIdKabupaten(idKab);
         presenter.createRut(nik, token, rut);
     }
 
