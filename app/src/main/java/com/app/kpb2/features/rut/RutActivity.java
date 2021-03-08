@@ -643,7 +643,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
         spinnerPoktan.setAdapter(adapterSpinner);
         spinnerPoktan.setOnItemSelectedListener(this);
 
-        dialog.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -652,7 +652,7 @@ public class RutActivity extends AppCompatActivity implements IRutView, RutAdapt
             }
         });
 
-        dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

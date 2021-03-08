@@ -29,6 +29,18 @@ public class ListBarang implements Serializable {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("hargaKiosSubsidi")
+    private String hargaKiosSubsidi;
+
+    @SerializedName("feeKios")
+    private String feeKios;
+
+    @SerializedName("feeKiosSubsidi")
+    private String feeKiosSubsidi;
+
+    @SerializedName("feeBita")
+    private String feeBita;
+
     @SerializedName("statusSubsidi")
     private Boolean statusSubsidi;
 
@@ -49,6 +61,38 @@ public class ListBarang implements Serializable {
 
     @SerializedName("pabrikan")
     private Pabrikan pabrikan;
+
+    public String getHargaKiosSubsidi() {
+        return hargaKiosSubsidi;
+    }
+
+    public void setHargaKiosSubsidi(String hargaKiosSubsidi) {
+        this.hargaKiosSubsidi = hargaKiosSubsidi;
+    }
+
+    public String getFeeKios() {
+        return feeKios;
+    }
+
+    public void setFeeKios(String feeKios) {
+        this.feeKios = feeKios;
+    }
+
+    public String getFeeKiosSubsidi() {
+        return feeKiosSubsidi;
+    }
+
+    public void setFeeKiosSubsidi(String feeKiosSubsidi) {
+        this.feeKiosSubsidi = feeKiosSubsidi;
+    }
+
+    public String getFeeBita() {
+        return feeBita;
+    }
+
+    public void setFeeBita(String feeBita) {
+        this.feeBita = feeBita;
+    }
 
     public int getNama() {
         return nama;

@@ -1,6 +1,7 @@
 package com.app.kpb2.features.petani.transaksi_non_tunai;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -17,15 +20,21 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
+import com.app.kpb2.Utils.LinkedHashMapAdapter;
 import com.app.kpb2.features.petani.MenuUtama;
 import com.app.kpb2.features.petani.dashboard.Dashboard;
 import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.petani.profile.model.profile;
+import com.app.kpb2.features.rut.RutActivity;
 import com.app.kpb2.features.rut.RutAdapter;
 import com.app.kpb2.features.rut.RutPageAdapter;
 import com.app.kpb2.features.rut.RutPresenter;
@@ -48,7 +57,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITransaksiNonTunaiView, RutAdapter.onRutSelected {
+public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITransaksiNonTunaiView, RutAdapter.onRutSelected, AdapterView.OnItemSelectedListener {
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
     @BindView(R.id.recycler_view)
@@ -65,6 +74,9 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     Boolean LayoutStat = false;
     private String nik , token , nomorrekening , namaBank ,idKab;
     Number idKios ;
+    View dialogView;
+    AlertDialog.Builder dialog;
+    private ArrayList<String> listBank = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,12 +214,15 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onSetuju(Result rut) {
+
+//        DialogForm(rut);
         rut.setNoRek(nomorrekening);
         rut.setBank(namaBank);
         rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
-        rut.setIdKios(idKios);
+//        rut.setIdKios(idKios);
         rut.setIdKabupaten(idKab);
-        presenter.createRut(nik, token, rut);
+        presenter.createRut(nik , token , rut);
+
     }
 
     @Override
@@ -263,5 +278,61 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     protected void onDestroy() {
 //        hideLoadingIndicator();
         super.onDestroy();
+    }
+
+    private void DialogForm(Result rut) {
+        listBank.add("Bank BNI");
+        listBank.add("Bank MANDIRI");
+        listBank.add("Bank BRI");
+        listBank.add("Bank LAMPUNG");
+
+        dialog = new AlertDialog.Builder(TransaksiNonTunaiActivity.this);
+        dialogView = getLayoutInflater().inflate(R.layout.pilih_poktan_dialog, null);
+        dialog.setView(dialogView);
+        dialog.setCancelable(true);
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setTitle("ANDA HARUS MEMILIH BANK TERLEBIH DAHULU !");
+
+        final Spinner spinnerBank    = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TransaksiNonTunaiActivity.this, android.R.layout.simple_spinner_item, listBank);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBank.setAdapter(adapter);
+        spinnerBank.setOnItemSelectedListener(this);
+
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Log.d("spiner", String.valueOf(spinnerBank.getSelectedItem().toString()));
+//                Toast.makeText(TransaksiNonTunaiActivity.this, spinnerBank.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                rut.setNoRek(nomorrekening);
+                rut.setBank(spinnerBank.getSelectedItem().toString());
+                rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+                rut.setIdKios(idKios);
+                rut.setIdKabupaten(idKab);
+                presenter.createRut(nik, token, rut);
+
+            }
+        });
+
+        dialog.setNegativeButton("kembali", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                goToDashboard();
+            }
+        });
+
+        dialog.show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
