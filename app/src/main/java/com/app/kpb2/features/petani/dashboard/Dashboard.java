@@ -28,14 +28,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
+import com.app.kpb2.Utils.Utils;
 import com.app.kpb2.features.pasar_tani.PasarTaniActivity;
 import com.app.kpb2.features.petani.KartuPetani;
 import com.app.kpb2.features.petani.dokter_hewan.DokterHewanActivity;
 import com.app.kpb2.features.petani.keuangan.KeuanganActivity;
+import com.app.kpb2.features.petani.noRekening.model.Balance;
 import com.app.kpb2.features.petani.program_bantuan.ProgramBantuanActivity;
 import com.app.kpb2.features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity;
 import com.app.kpb2.features.rut.aset.AsetActivity;
@@ -68,6 +71,8 @@ import com.google.gson.Gson;
 import com.mindorks.placeholderview.PlaceHolderView;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -99,6 +104,9 @@ public class Dashboard extends Fragment implements IDashboardView {
     CardView cardDokterHewan;
     @BindView(R.id.mCardTransaksiNonTunai)
     CardView mCardTransaksiNonTunai;
+
+    @BindView(R.id.mSaldo)
+    TextView mSaldo;
 
     CardView headerScroller;
 
@@ -296,8 +304,25 @@ public class Dashboard extends Fragment implements IDashboardView {
 
         sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
+        mProfile = (LoginResponse) GsonHelper.parseGson(
+                App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
+                new LoginResponse()
+        );
+
+        String nik = (mProfile.getResult().getNik().contains(" "))
+                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
+        String token = (mProfile.getResult().getToken().contains(" "))
+                ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
+
+        String nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(""))
+                ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
+
+        if(!nomorrekening.equals(""))
+            presenter.getSaldo(nik , token ,nomorrekening);
+
 //        Toast.makeText(getActivity(), "yang lama", Toast.LENGTH_SHORT).show();
         appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+//        presenter.getSaldo();
 //        this.forceUpdate();
 //        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
 
@@ -309,6 +334,13 @@ public class Dashboard extends Fragment implements IDashboardView {
             this.goUpdateApps();
         });
 
+
+    }
+
+    @Override
+    public void onDataReady(Balance result) {
+
+        mSaldo.setText(Utils.convertRupiah(result.getAvailable_balance()));
 
     }
 

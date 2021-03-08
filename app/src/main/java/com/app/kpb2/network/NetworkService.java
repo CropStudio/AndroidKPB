@@ -5,6 +5,7 @@ import com.app.kpb2.common.CommonResponse;
 import com.app.kpb2.features.e_commerce.model.RutResponse;
 import com.app.kpb2.features.e_commerce.model.Saldo;
 import com.app.kpb2.features.petani.dokter_hewan.model.DokterHewanResponse;
+import com.app.kpb2.features.petani.noRekening.model.BalanceResponse;
 import com.app.kpb2.features.petani.profile.komoditas.model.KomoditasResponse;
 import com.app.kpb2.features.petani.program_bantuan.alokasi.model.AlokasiResponse;
 import com.app.kpb2.features.petani.noRekening.model.KiosResponse;
@@ -51,6 +52,9 @@ public interface NetworkService {
 
     @GET("barang")
     Call<RutResponse> showProduct();
+
+    @GET("getbalance/{norek}")
+    Call<BalanceResponse> getBalance(@Path("norek") String norek);
 
     @GET("cart/{nik}")
     Call<Cart> getCart(@Path("nik") String nik);
