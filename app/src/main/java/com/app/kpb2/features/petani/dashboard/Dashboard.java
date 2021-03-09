@@ -352,7 +352,7 @@ public class Dashboard extends Fragment implements IDashboardView {
             SweetDialogs.commonInvalidToken(getActivity(), "Gagal Memuat Permintaan",
                     result.getRm());
         else
-            mSaldo.setText(0);
+            mSaldo.setText("0");
 
     }
 

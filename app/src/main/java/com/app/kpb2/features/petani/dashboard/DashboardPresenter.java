@@ -50,7 +50,7 @@ public class DashboardPresenter {
             Request request = original.newBuilder()
                     .header("x-access-token", token)
                     .header("username", nik)
-                    .header("Content-Type", "application/json")
+//                    .header("Content-Type", "application/json")
                     .method(original.method(), original.body())
                     .build();
 
