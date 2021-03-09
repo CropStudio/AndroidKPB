@@ -10,7 +10,7 @@ public class BalanceResponse {
     private Boolean status ;
 
     @SerializedName("message")
-    private String message ;
+    private String rm ;
 
     @SerializedName("rc")
     private String rc ;
@@ -26,12 +26,12 @@ public class BalanceResponse {
         this.status = status;
     }
 
-    public String getMessage() {
-        return message;
+    public String getRm() {
+        return rm;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setRm(String rm) {
+        this.rm = rm;
     }
 
     public String getRc() {

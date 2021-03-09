@@ -65,6 +65,8 @@ public class DashboardPresenter {
                         Log.d("hann" , new Gson().toJson(response.body()));
                         if(response.body().getStatus())
                             view.onDataReady(response.body().getResult());
+                        else
+                            view.onGetSaldoFailed(response.body());
                     }
 
                     @Override

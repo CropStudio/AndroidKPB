@@ -39,6 +39,7 @@ import com.app.kpb2.features.petani.KartuPetani;
 import com.app.kpb2.features.petani.dokter_hewan.DokterHewanActivity;
 import com.app.kpb2.features.petani.keuangan.KeuanganActivity;
 import com.app.kpb2.features.petani.noRekening.model.Balance;
+import com.app.kpb2.features.petani.noRekening.model.BalanceResponse;
 import com.app.kpb2.features.petani.program_bantuan.ProgramBantuanActivity;
 import com.app.kpb2.features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity;
 import com.app.kpb2.features.rut.aset.AsetActivity;
@@ -341,6 +342,17 @@ public class Dashboard extends Fragment implements IDashboardView {
     public void onDataReady(Balance result) {
 
         mSaldo.setText(Utils.convertRupiah(result.getAvailable_balance()));
+
+    }
+
+    @Override
+    public void onGetSaldoFailed(BalanceResponse result) {
+
+        if(result.getRc().equals(Prefs.DEFAULT_INVALID_TOKEN))
+            SweetDialogs.commonInvalidToken(getActivity(), "Gagal Memuat Permintaan",
+                    result.getRm());
+        else
+            mSaldo.setText(0);
 
     }
 
