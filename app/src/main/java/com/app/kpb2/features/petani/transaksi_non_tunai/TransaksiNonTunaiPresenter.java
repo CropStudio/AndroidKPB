@@ -94,6 +94,7 @@ public class TransaksiNonTunaiPresenter {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
                         view.hideLoadingIndicator();
+                        Log.d("Responnya" , new Gson().toJson(CommonRespon.body()));
                         if (CommonRespon.body().getSuccess())
                             view.onCreateSuccess(CommonRespon.body().getmRm());
                         else
@@ -103,6 +104,7 @@ public class TransaksiNonTunaiPresenter {
 
                     @Override
                     public void onFailure(retrofit2.Call<CommonRespon> call, Throwable t) {
+                        Log.d("ksini" , "");
                         view.hideLoadingIndicator();
                         view.onNetworkError(t.getLocalizedMessage());
                     }

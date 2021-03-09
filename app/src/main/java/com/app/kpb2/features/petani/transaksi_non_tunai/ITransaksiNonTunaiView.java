@@ -29,13 +29,15 @@ public interface ITransaksiNonTunaiView {
 
     void hideLoadingIndicator();
 
-    void onDataReady(List<Result> result);
+    void onDataReady(List<Result> result)   ;
 
     void onRequestFailed(String rm);
 
     void onNetworkError(String cause);
 
     void goToDashboard();
+
+    void refresh();
 
     void onCreateSuccess(String rm);
 

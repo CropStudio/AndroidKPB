@@ -74,6 +74,7 @@ import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -341,7 +342,11 @@ public class Dashboard extends Fragment implements IDashboardView {
     @Override
     public void onDataReady(Balance result) {
 
-        mSaldo.setText(Utils.convertRupiah(result.getAvailable_balance()));
+        mSaldo.setText(Utils.convertRupiahBigDecimal(result.getAvailable_balance()));
+
+//        DecimalFormat formatter = new DecimalFormat("###.###.###,00");
+//        mSaldo.setText(formatter.format(Double.parseDouble(result.getAvailable_balance())));
+
 
     }
 

@@ -2,11 +2,15 @@ package com.app.kpb2.Utils;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Currency;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,4 +78,20 @@ public class Utils {
 //        return biaya ;
     }
 
+    public static String convertRupiahBigDecimal(String val) {
+
+//        double money = 100.1;
+        BigDecimal amount = new BigDecimal(val);
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        formatter.setDecimalFormatSymbols(formatRp);
+        String moneyString = formatter.format(amount);
+        System.out.println(moneyString);
+        return moneyString;
+    }
 }

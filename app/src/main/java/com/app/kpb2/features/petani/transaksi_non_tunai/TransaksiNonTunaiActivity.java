@@ -189,6 +189,13 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     }
 
     @Override
+    public void refresh() {
+        Intent a = new Intent(this, TransaksiNonTunaiActivity.class);
+        startActivity(a);
+        finish();
+    }
+
+    @Override
     public void onBackPressed() {
         // ...
         if (LayoutStat)
@@ -255,6 +262,9 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
 //        Log.d("RESULTAPUS",new Gson().toJson(val));
     }
+
+
+
     @Override
     public void HideDetailKebutuhan() {
         LayoutStat = false;
