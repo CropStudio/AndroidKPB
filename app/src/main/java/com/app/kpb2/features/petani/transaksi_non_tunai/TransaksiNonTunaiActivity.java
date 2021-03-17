@@ -30,10 +30,13 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.LinkedHashMapAdapter;
+import com.app.kpb2.Utils.Utils;
 import com.app.kpb2.features.petani.MenuUtama;
 import com.app.kpb2.features.petani.dashboard.Dashboard;
+import com.app.kpb2.features.petani.noRekening.Rekening;
 import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.petani.profile.model.profile;
+import com.app.kpb2.features.petani.suratkuasa_pernyataan.SuratKuasaActivity;
 import com.app.kpb2.features.rut.RutActivity;
 import com.app.kpb2.features.rut.RutAdapter;
 import com.app.kpb2.features.rut.RutPageAdapter;
@@ -48,9 +51,11 @@ import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
+import com.app.kpb2.ui.TopSnakbar;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,14 +74,16 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     @BindView(R.id.mLabel)
     TextView mLabel;
     public RutAdapter adapter;
-    SweetAlertDialog sweetAlertDialog ;
-    TransaksiNonTunaiPresenter presenter ;
+    SweetAlertDialog sweetAlertDialog;
+    TransaksiNonTunaiPresenter presenter;
     Boolean LayoutStat = false;
-    private String nik , token , nomorrekening , namaBank ,idKab;
-    Number idKios ;
+    private String nik, token, nomorrekening, namaBank, idKab;
+    Number idKios;
     View dialogView;
     AlertDialog.Builder dialog;
     private ArrayList<String> listBank = new ArrayList<>();
+    Boolean statusSi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +95,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//        Toast.makeText(this, getClass().getSimpleName(), Toast.LENGTH_SHORT).show();
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
@@ -104,7 +111,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
             namaBank = (mProfile.getResult().getProfile().getBank().contains(" "))
                     ? mProfile.getResult().getProfile().getBank() : mProfile.getResult().getProfile().getBank();
         }
-        if(mProfile.getResult().getProfile().getIdKios() != null) {
+        if (mProfile.getResult().getProfile().getIdKios() != null) {
             idKios = mProfile.getResult().getProfile().getIdKios();
 //            idKios = Integer.parseInt(String.valueOf(mProfile.getResult().getProfile().getIdKios())) ;
         }
@@ -124,7 +131,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.clearFocus();
-        presenter.getTransaksi(nik , token);
+        presenter.getTransaksi(nik, token);
 
     }
 
@@ -147,13 +154,13 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     }
 
 
-
     @Override
     public void onDataReady(List<Result> result) {
 
         adapter = new RutAdapter(result, this, this);
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        presenter.onGetProfile(nik);
     }
 
     @Override
@@ -205,31 +212,95 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     }
 
     @Override
-    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, String waktuTanam , String tglPengambilan , String tglTrf) {
-        Log.d("waktuTanam" , waktuTanam);
-        Log.d("tglPengambilan" , tglPengambilan);
-        Log.d("tglTrf" , tglTrf);
+    public void onDetailData(List<KebutuhanSaprotan> kebutuhanSaprotans, List<BiayaTanam> biayaTanams, String waktuTanam, String tglPengambilan, String tglTrf) {
+//
         list_layout.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
         final RutPageAdapter adapter = new RutPageAdapter(getSupportFragmentManager());
         MainDetailFragment fragmentMainDetail = new MainDetailFragment();
-        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, waktuTanam , tglPengambilan , tglTrf);
+        fragmentMainDetail.setData(kebutuhanSaprotans, biayaTanams, waktuTanam, tglPengambilan, tglTrf);
         adapter.addFragment(fragmentMainDetail);
         mListViewPager.setAdapter(adapter);
         LayoutStat = true;
     }
 
     @Override
+    public void onCekStatus(profile profile) {
+        if (profile.getSi() != null)
+            statusSi = profile.getSi().getStatus();
+        else
+            statusSi = null;
+    }
+
+    @Override
     public void onSetuju(Result rut) {
+        if (namaBank != null && namaBank.equals("Bank BNI")) {
+            if (statusSi == null || !statusSi) {
+                SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
+            }
+        }
+        if (nomorrekening == null && nomorrekening.equals("")) {
+            SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "anda harus mengisi nomor rekening dan memilih kios terlebih dahulu", string -> this.goToRekening());
+        } else {
+            rut.setNoRek(nomorrekening);
+            rut.setBank(namaBank);
+            rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
+            rut.setIdKabupaten(idKab);
+            SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  .", "Berhasil memuat permintaan .", confirm -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    SweetDialogs.confirmDialog(this, "Total yang harus di bayar", Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())), "Berhasil memuat permintaan", confirms -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            SweetDialogs.validasiRekening(this, "Anda menggunakan rekening ", namaBank + "\n" + nomorrekening, "Berhasil memuat permintaan .",
+                                    onConfirmRekening -> {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            SweetDialogs.validasiKur(this, "Apakah anda ingin menggunakan Kur?", "", "Berhasil memuat permintaan .",
+                                                    onConfirmKur -> {
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                            rut.setStatusKur(true);
+                                                            presenter.createRut(nik, token, rut);
+//                                                            Log.d("DATANYA", new Gson().toJson(rut.getKebutuhanSaprotan().get(0).get_id()));
+                                                        }
+                                                    },
+                                                    onRejectKur -> {
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                            rut.setStatusKur(false);
+                                                            presenter.createRut(nik, token, rut);
+                                                        }
+                                                    });
+                                        }
+                                    },
+                                    onUbahRekening -> {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            this.goToRekening();
+                                        }
+                                    });
+                        }
+                    });
+                }
+            });
 
-//        DialogForm(rut);
-        rut.setNoRek(nomorrekening);
-        rut.setBank(namaBank);
-        rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
-//        rut.setIdKios(idKios);
-        rut.setIdKabupaten(idKab);
-        presenter.createRut(nik , token , rut);
+        }
 
+
+    }
+
+    @Override
+    public void goToRekening() {
+        Intent i = new Intent(this, Rekening.class);
+        i.putExtra("className", this.getClass().getSimpleName());
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void goToSuratKuasa(Result rut) {
+        Intent i = new Intent(this, SuratKuasaActivity.class);
+        i.putExtra("className", this.getClass().getSimpleName());
+//        i.putExtra("dataMt", (Serializable) dataMt);
+//        i.putExtra("idAset", idAset);
+//        i.putExtra("nik", nik);
+//        i.putExtra("idMt", rut.getMt());
+        startActivity(i);
     }
 
     @Override
@@ -245,24 +316,26 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
 
     @Override
-    public void onCreateFailed(String rm, Result rut, List<BarangTidakAda> val) {
+    public void onCreateFailed(String rm, String rc, Result rut, List<BarangTidakAda> val) {
         Result ruts = rut;
-        SweetDialogs.validasiListBarang(this, "Barang dibawah ini tidak ada, total harga kebutuhan saprotan akan disesuaikan. apakah anda ingin melanjutkan transaksi ?", val, "Berhasil memuat permintaan .",
-                onConfirmKur -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        for (int i = 0; i < ruts.getKebutuhanSaprotan().size(); i++) {
-                            for (BarangTidakAda value : val) {
-                                if (ruts.getKebutuhanSaprotan().get(i).get_id().equals(value.getIdKebutuhanSaprotan()))
-                                    ruts.getKebutuhanSaprotan().remove(i);
+        if (rc.equals(App.getApplication().getString(R.string.invalidToken))) {
+            SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
+                    rm);
+        } else {
+            SweetDialogs.validasiListBarang(this, "Barang dibawah ini tidak ada, total harga kebutuhan saprotan akan disesuaikan. apakah anda ingin melanjutkan transaksi ?", val, "Berhasil memuat permintaan .",
+                    onConfirmKur -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            for (int i = 0; i < ruts.getKebutuhanSaprotan().size(); i++) {
+                                for (BarangTidakAda value : val) {
+                                    if (ruts.getKebutuhanSaprotan().get(i).get_id().equals(value.getIdKebutuhanSaprotan()))
+                                        ruts.getKebutuhanSaprotan().remove(i);
+                                }
                             }
+                            presenter.createRut(nik, token, ruts);
                         }
-                        presenter.createRut(nik, token, ruts);
-                    }
-                });
-
-//        Log.d("RESULTAPUS",new Gson().toJson(val));
+                    });
+        }
     }
-
 
 
     @Override
@@ -303,7 +376,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
         dialog.setIcon(R.mipmap.ic_launcher);
         dialog.setTitle("ANDA HARUS MEMILIH BANK TERLEBIH DAHULU !");
 
-        final Spinner spinnerBank    = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
+        final Spinner spinnerBank = (Spinner) dialogView.findViewById(R.id.mSpinnerPoktan);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TransaksiNonTunaiActivity.this, android.R.layout.simple_spinner_item, listBank);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerBank.setAdapter(adapter);

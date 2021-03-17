@@ -13,6 +13,18 @@ public class KebutuhanSaprotan implements Serializable {
     @SerializedName("nama")
     private String nama;
 
+    @SerializedName("sisa")
+    private String sisa;
+
+    @SerializedName("total")
+    private String total;
+
+    @SerializedName("sisaDari")
+    private String sisaDari;
+
+    @SerializedName("sudahAmbil")
+    private String sudahAmbil;
+
     @SerializedName("jumlah")
     private float jumlah;
 
@@ -85,6 +97,35 @@ public class KebutuhanSaprotan implements Serializable {
     }
 
 
+    public String getSisa() {
+        return sisa;
+    }
 
+    public void setSisa(String sisa) {
+        this.sisa = sisa;
+    }
 
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getSisaDari() {
+        return sisaDari;
+    }
+
+    public void setSisaDari(String sisaDari) {
+        this.sisaDari = sisaDari;
+    }
+
+    public String getSudahAmbil() {
+        return sudahAmbil;
+    }
+
+    public void setSudahAmbil(String sudahAmbil) {
+        this.sudahAmbil = sudahAmbil;
+    }
 }

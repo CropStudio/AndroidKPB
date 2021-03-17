@@ -374,7 +374,7 @@ public class SweetDialogs {
         for (BarangTidakAda value : val){
             list.add(value.getNama());
         }
-        Log.d("SWEETDIALOG" ,list.toString());
+//        Log.d("SWEETDIALOG" ,list.toString());
         dialog.setContentText(list.toString());
         dialog.setCancelText("Tidak");
         dialog.setConfirmText("Iya");

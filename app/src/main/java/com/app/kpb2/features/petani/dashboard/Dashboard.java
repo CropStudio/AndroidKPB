@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.Utils;
+import com.app.kpb2.features.e_commerce.EcommerceActivity;
 import com.app.kpb2.features.pasar_tani.PasarTaniActivity;
 import com.app.kpb2.features.petani.KartuPetani;
 import com.app.kpb2.features.petani.dokter_hewan.DokterHewanActivity;
@@ -319,7 +320,7 @@ public class Dashboard extends Fragment implements IDashboardView {
         String nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(""))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
 
-        if(!nomorrekening.equals(""))
+        if(!nomorrekening.equals("") && nomorrekening.equals("Bank LAMPUNG"))
             presenter.getSaldo(nik , token ,nomorrekening);
 
 //        Toast.makeText(getActivity(), "yang lama", Toast.LENGTH_SHORT).show();

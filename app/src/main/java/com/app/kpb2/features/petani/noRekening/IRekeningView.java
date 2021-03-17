@@ -15,6 +15,8 @@ public interface IRekeningView {
 
     void onCreateRekeningSuksess(LoginResponse commonRespon, String noRek);
 
+    void onRequestFailed(String rm, String rc);
+
     void onNetworkError(String cause);
 
     void showLoadingIndicator();
@@ -24,4 +26,6 @@ public interface IRekeningView {
     void goToRut();
 
     void goToProfile();
+
+    void goToTransaksiNonTunai();
 }

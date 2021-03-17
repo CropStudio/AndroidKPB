@@ -39,9 +39,15 @@ public interface ITransaksiNonTunaiView {
 
     void refresh();
 
+    void onCekStatus(profile profile);
+
+    void goToRekening();
+
+    void goToSuratKuasa(Result rut);
+
     void onCreateSuccess(String rm);
 
-    void onCreateFailed(String rm, Result rut, List<BarangTidakAda> val);
+    void onCreateFailed(String rm,String rc, Result rut, List<BarangTidakAda> val);
 
     void HideDetailKebutuhan();
 }

@@ -47,13 +47,14 @@ public class RekeningPresenter {
         view.showLoadingIndicator();
 //        System.out.println(body);
 
-        System.out.println(params);
         restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
                 if (response.body().getSuccess()) {
                     view.onCreateRekeningSuksess(response.body(),noRek);
+                }else{
+                    view.onRequestFailed(response.body().getRm(),response.body().getRc());
                 }
             }
 

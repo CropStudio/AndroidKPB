@@ -94,17 +94,37 @@ public class TransaksiNonTunaiPresenter {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
                         view.hideLoadingIndicator();
-                        Log.d("Responnya" , new Gson().toJson(CommonRespon.body()));
+//                        Log.d("Responnya" , new Gson().toJson(CommonRespon.body()));
                         if (CommonRespon.body().getSuccess())
                             view.onCreateSuccess(CommonRespon.body().getmRm());
                         else
-                            view.onCreateFailed(CommonRespon.body().getmRm(), rut, CommonRespon.body().getValue());
+                            view.onCreateFailed(CommonRespon.body().getmRm(),CommonRespon.body().getmRm(), rut, CommonRespon.body().getValue());
 
                     }
 
                     @Override
                     public void onFailure(retrofit2.Call<CommonRespon> call, Throwable t) {
-                        Log.d("ksini" , "");
+//                        Log.d("ksini" , "");
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
+    }
+
+    void onGetProfile(String nik) {
+        view.showLoadingIndicator();
+        restService.create(NetworkService.class).getProfilePetani(nik)
+                .enqueue(new Callback<ProfileResponse>() {
+                    @Override
+                    public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                        view.hideLoadingIndicator();
+                        //Log.d("Messg", String.valueOf(CommonRespon.body().getmResult()));
+                        view.onCekStatus(response.body().getResult());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ProfileResponse> call, Throwable t) {
                         view.hideLoadingIndicator();
                         view.onNetworkError(t.getLocalizedMessage());
                     }

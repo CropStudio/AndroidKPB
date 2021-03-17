@@ -2,6 +2,7 @@ package com.app.kpb2.features.petani.suratkuasa_pernyataan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import im.delight.android.webview.AdvancedWebView;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.features.petani.profile.model.DataMt;
+import com.app.kpb2.features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity;
 import com.app.kpb2.features.rut.RutActivity;
 import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
@@ -36,7 +38,9 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
     Toolbar mToolbar;
     ProgressDialog pDialog;
     List<DataMt> dataMt;
-    String idAset ,idMt;
+    String idAset, idMt, className, nik;
+    Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +55,18 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-        String nik = (mProfile.getResult().getNik().contains(" "))
-                ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
-        dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("dataMt");
-        nik = getIntent().getExtras().getString("nik");
-        idAset = getIntent().getExtras().getString("idAset");
-        idMt = getIntent().getExtras().getString("idMt");
+        Intent intent = this.getIntent();
+        bundle = intent.getExtras();
+        if (bundle != null) {
+            className = getIntent().getExtras().getString("className");
+            if (className.equals("RutActivity")) {
+                dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("dataMt");
+                nik = getIntent().getExtras().getString("nik");
+                idAset = getIntent().getExtras().getString("idAset");
+                idMt = getIntent().getExtras().getString("idMt");
+            }
+        }
+
 
         pDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         //pDialog.setCancelable(false);
@@ -67,7 +77,7 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
         mWebView.setMixedContentAllowed(true);
         mWebView.setCookiesEnabled(true);
         mWebView.setThirdPartyCookiesEnabled(true);
-        mWebView.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient() {
 
 
             @Override
@@ -84,7 +94,7 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(pDialog!=null){
+                if (pDialog != null) {
                     pDialog.dismiss();
                 }
             }
@@ -102,7 +112,7 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
         });
 
         mWebView.addHttpHeader("X-Requested-With", "");
-        mWebView.loadUrl(TEST_PAGE_URL+nik);
+        mWebView.loadUrl(TEST_PAGE_URL + nik);
     }
 
     @SuppressLint("NewApi")
@@ -150,7 +160,7 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) {
-        Toast.makeText(SuratKuasaActivity.this, "onPageError(errorCode = "+errorCode+",  description = "+description+",  failingUrl = "+failingUrl+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SuratKuasaActivity.this, "onPageError(errorCode = " + errorCode + ",  description = " + description + ",  failingUrl = " + failingUrl + ")", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -161,26 +171,33 @@ public class SuratKuasaActivity extends AppCompatActivity implements AdvancedWeb
             // download successfully handled
             //AdvancedWebView.handleDownload(this, url, suggestedFilename);
             Toast.makeText(getApplicationContext(), "Berhasil didownload", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             // download couldn't be handled because user has disabled download manager app on the device
         }
     }
 
     @Override
     public void onExternalPageRequest(String url) {
-        Toast.makeText(SuratKuasaActivity.this, "onExternalPageRequest(url = "+url+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SuratKuasaActivity.this, "onExternalPageRequest(url = " + url + ")", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBackPressed() {
-        if (!mWebView.onBackPressed()) { return; }
+        if (!mWebView.onBackPressed()) {
+            return;
+        }
         // ...
-        Intent a = new Intent(SuratKuasaActivity.this, RutActivity.class);
-        a.putExtra("_id" , idAset) ;
-        a.putExtra("data" , (Serializable) dataMt);
-        startActivity(a);
-        finish();
+        if (className.equals("RutActivity")) {
+            Intent a = new Intent(SuratKuasaActivity.this, RutActivity.class);
+            a.putExtra("_id", idAset);
+            a.putExtra("data", (Serializable) dataMt);
+            startActivity(a);
+            finish();
+        }else{
+            Intent i = new Intent(SuratKuasaActivity.this, TransaksiNonTunaiActivity.class);
+            startActivity(i);
+            finish();
+        }
         super.onBackPressed();
     }
 

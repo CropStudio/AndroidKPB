@@ -78,6 +78,7 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
         ButterKnife.bind(this);
         this.initViews();
         setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         LoginResponse mProfile = (LoginResponse) GsonHelper.parseGson(
@@ -134,46 +135,46 @@ public class EcommerceActivity extends AppCompatActivity implements IEcommerceVi
 //        tabLayout.addTab(tabLayout.newTab().setText("Benih"));
 
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                List<Item> filters = new ArrayList<>();
-                if (tab.getPosition() == 1) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        filters = product.stream()
-                                .filter(kategori -> kategori.getKategori().equals("Pupuk"))
-                                .collect(Collectors.toList());
-                    }
-                } else if (tab.getPosition() == 2) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        filters = product.stream()
-                                .filter(kategori -> kategori.getKategori().equals("Alat Tani"))
-                                .collect(Collectors.toList());
-                    }
-                } else {
-                    filters = product;
-                }
-
-                adapter = new EcommerceAdapter(filters, EcommerceActivity.this, EcommerceActivity.this);
-                mRecyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-                //tab.getText().setColorFilter(Color.DKGRAY,PorterDuff.Mode.SRC_IN);
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-
-            }
-
-        });
+//        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                List<Item> filters = new ArrayList<>();
+//                if (tab.getPosition() == 1) {
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                        filters = product.stream()
+//                                .filter(kategori -> kategori.getKategori().equals("Pupuk"))
+//                                .collect(Collectors.toList());
+//                    }
+//                } else if (tab.getPosition() == 2) {
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                        filters = product.stream()
+//                                .filter(kategori -> kategori.getKategori().equals("Alat Tani"))
+//                                .collect(Collectors.toList());
+//                    }
+//                } else {
+//                    filters = product;
+//                }
+//
+//                adapter = new EcommerceAdapter(filters, EcommerceActivity.this, EcommerceActivity.this);
+//                mRecyclerView.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
+//
+//
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//                //tab.getText().setColorFilter(Color.DKGRAY,PorterDuff.Mode.SRC_IN);
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//
+//            }
+//
+//        });
     }
 
     @Override

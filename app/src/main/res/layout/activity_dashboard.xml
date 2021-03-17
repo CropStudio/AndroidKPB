@@ -190,7 +190,40 @@
                                             android:textColor="#999C9E" />
 
                                     </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
 
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/mCardTransaksiNonTunai"
+                                            android:layout_width="95dp"
+                                            android:layout_height="75dp"
+                                            app:cardBackgroundColor="@color/white"
+                                            app:cardCornerRadius="5dp"
+                                            app:cardElevation="2dp"
+                                            app:cardUseCompatPadding="true"
+                                            app:contentPadding="12dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                app:srcCompat="@drawable/ic_rut" />
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:text="Transaksi Non Tunai"
+                                            android:textColor="#999C9E" />
+
+                                    </LinearLayout>
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -226,40 +259,7 @@
 
                                     </LinearLayout>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:padding="8dp">
 
-                                        <androidx.cardview.widget.CardView
-                                            android:id="@+id/mCardTransaksiNonTunai"
-                                            android:layout_width="95dp"
-                                            android:layout_height="75dp"
-                                            app:cardBackgroundColor="@color/white"
-                                            app:cardCornerRadius="5dp"
-                                            app:cardElevation="2dp"
-                                            app:cardUseCompatPadding="true"
-                                            app:contentPadding="12dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                app:srcCompat="@drawable/ic_rut" />
-
-                                        </androidx.cardview.widget.CardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:text="Transaksi Non Tunai"
-                                            android:textColor="#999C9E" />
-
-                                    </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -434,6 +434,43 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="3dp"
                                             android:text="Dokter Hewan"
+                                            android:textColor="#999C9E" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardECommerce"
+                                            android:layout_width="95dp"
+                                            android:layout_height="75dp"
+                                            app:cardBackgroundColor="@color/white"
+                                            app:cardCornerRadius="5dp"
+                                            app:cardElevation="2dp"
+                                            app:cardUseCompatPadding="true"
+                                            app:contentPadding="12dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                app:srcCompat="@drawable/dokter_hewan" />
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:text="E-com"
                                             android:textColor="#999C9E" />
 
                                     </LinearLayout>
