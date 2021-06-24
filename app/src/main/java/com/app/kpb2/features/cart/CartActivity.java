@@ -137,6 +137,7 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
     public void onCheckout() {
 
         Checkout checkouts = new Checkout();
+
         List<Item> items = adapter.ruts.stream()
                 .filter(status -> status.isSelected == true)
                 .collect(Collectors.toList());

@@ -3,6 +3,7 @@ package com.app.kpb2.features.petani.profile.model;
 import androidx.annotation.NonNull;
 
 import com.app.kpb2.features.petani.noRekening.model.Kios;
+import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -80,6 +81,17 @@ public class profile implements Serializable {
 
     @SerializedName("poktan")
     private List<Poktan> poktan;
+
+    @SerializedName("komoditas")
+    private List<Komoditas> komoditas;
+
+    public List<Komoditas> getKomoditas() {
+        return komoditas;
+    }
+
+    public void setKomoditas(List<Komoditas> komoditas) {
+        this.komoditas = komoditas;
+    }
 
     public List<Kios> getKios() {
         return kios;

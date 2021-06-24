@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.app.kpb2.BuildConfig;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.features.petani.dashboard.Dashboard;
@@ -31,6 +32,9 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
+import com.sanojpunchihewa.updatemanager.UpdateManager;
+import com.sanojpunchihewa.updatemanager.UpdateManager.UpdateInfoListener;
+import com.sanojpunchihewa.updatemanager.UpdateManagerConstant;
 
 import butterknife.ButterKnife;
 
@@ -38,79 +42,64 @@ import static com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 
 public class MenuUtama extends AppCompatActivity implements ComponentCallbacks2 {
     private static final int TIME_INTERVAL = 2000;
-    private static final int MY_REQUEST_CODE = 999 ;
+    private static final int MY_REQUEST_CODE = 999;
     private long mBackPressed;
     boolean BackPress = false;
     LoginResponse mProfile;
-    AppUpdateManager appUpdateManager ;
+    AppUpdateManager appUpdateManager;
     private static final int IMMEDIATE_APP_UPDATE_REQ_CODE = 124;
+    UpdateManager mUpdateManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_utama);
         ButterKnife.bind(this);
-        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
-        forceUpdate();
-//        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-//        bottomNav.setOnNavigationItemSelectedListener(navListener);
-//        appUpdateManager = AppUpdateManagerFactory.create(this);
-//
-//// Returns an intent object that you use to check for an update.
-//        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-//        Log.d("appUpdateInfo" , String.valueOf(appUpdateManager));
-// Checks that the platform will allow the specified type of update.
-//        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-//            Log.d("appUpdateInfo" , String.valueOf(appUpdateInfo));
-//            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-//                    // For a flexible update, use AppUpdateType.FLEXIBLE
-//                    && appUpdateInfo.isUpdateTypeAllowed(IMMEDIATE)) {
-//                try {
-//                    appUpdateManager.startUpdateFlowForResult(
-//                            // Pass the intent that is returned by 'getAppUpdateInfo()'.
-//                            appUpdateInfo,
-//                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-//                            IMMEDIATE,
-//                            // The current activity making the update request.
-//                            this,
-//                            // Include a request code to later monitor this update request.
-//                            MY_REQUEST_CODE);
-//                } catch (IntentSender.SendIntentException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }else{
-//                Log.d("status update" ,"tidak ada ") ;
-//            }
-//        });
+//        Toast.makeText(MenuUtama.this, String.valueOf(BuildConfig.VERSION_CODE ), Toast.LENGTH_SHORT).show();
+        mUpdateManager = UpdateManager.Builder(this).mode(UpdateManagerConstant.IMMEDIATE);
+        mUpdateManager.start();
 
+        mUpdateManager.addUpdateInfoListener(new UpdateInfoListener() {
+            @Override
+            public void onReceiveVersionCode(final int code) {
+                Toast.makeText(MenuUtama.this, String.valueOf(code), Toast.LENGTH_SHORT).show();
+                if (code != BuildConfig.VERSION_CODE) {
+                    mUpdateManager.mode(UpdateManagerConstant.IMMEDIATE).start();
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new Dashboard()).commit();
 
-//        String noKk = (mProfile.getResult().getNoKk().contains(" "))
-//                ? mProfile.getResult().getNoKk() : mProfile.getResult().getNoKk();
-//        if(noKk.equals("")){
-//            SweetDialogs.commonWarningWithIntent(this, "Anda harus melengkapi data terlebih dahulu !" , string -> {
-//                this.goToUpdateProfile();
-//            });
-//        }
+                    getWindow().setFlags(
+                            WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                            WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+                }
+            }
 
+            @Override
+            public void onReceiveStalenessDays(final int days) {
 
+            }
+        });
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new Dashboard()).commit();
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
     }
 
-    public void forceUpdate(){
+    public void forceUpdate() {
 //        Toast.makeText(this, "memeriksa pembaharuan", Toast.LENGTH_SHORT).show();
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-        Log.d("appUpdateInfoTask" , String.valueOf(appUpdateInfoTask));
+        Log.d("appUpdateInfoTask", String.valueOf(appUpdateInfoTask));
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-            Log.d("appUpdateInfo" , String.valueOf(appUpdateInfo));
-            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.UPDATE_AVAILABLE));
-            Log.d("appUpdateInfo" , String.valueOf(AppUpdateType.IMMEDIATE));
-            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS));
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                     && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
                 startUpdateFlow(appUpdateInfo);
-            } else if  (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
+            } else if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
                 startUpdateFlow(appUpdateInfo);
-            }else{
+            } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Dashboard()).commit();
 
@@ -121,17 +110,17 @@ public class MenuUtama extends AppCompatActivity implements ComponentCallbacks2 
         });
 
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Dashboard()).commit();
-
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                new Dashboard()).commit();
+//
+//        getWindow().setFlags(
+//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
     }
 
     private void startUpdateFlow(AppUpdateInfo appUpdateInfo) {
         try {
-            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this,IMMEDIATE_APP_UPDATE_REQ_CODE);
+            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, IMMEDIATE_APP_UPDATE_REQ_CODE);
         } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
         }

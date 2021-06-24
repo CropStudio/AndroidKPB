@@ -234,6 +234,9 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onSetuju(Result rut) {
+        if(namaBank != null && namaBank.equals("Bank LAMPUNG")){
+            SweetDialogs.commonError(this , "Transaksi dengan Bank Lampung belum bisa di lakukan" , false);
+        }else{
         if (namaBank != null && namaBank.equals("Bank BNI")) {
             if (statusSi == null || !statusSi) {
                 SweetDialogs.commonWarningWithIntent(this, "Data anda belum lengkap !", "Silahkan menyetujui surat kuasa dan pernyataan", string -> this.goToSuratKuasa(rut));
@@ -280,7 +283,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
             });
 
         }
-
+}
 
     }
 
@@ -311,7 +314,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 
     @Override
     public void onCreateSuccess(String rm) {
-        SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.recreate());
+        SweetDialogs.commonSuccessWithIntent(this, "Berhasil Memuat Permintaan", view -> this.refresh());
     }
 
 

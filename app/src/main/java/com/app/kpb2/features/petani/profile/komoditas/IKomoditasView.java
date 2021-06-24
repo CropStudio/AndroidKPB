@@ -23,4 +23,6 @@ public interface IKomoditasView {
     void hideLoadingIndicator();
 
     void gotoKomoditas();
+
+    void onDeleteSuksess(LoginResponse profile, int index);
 }

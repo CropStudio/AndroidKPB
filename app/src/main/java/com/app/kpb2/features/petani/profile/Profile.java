@@ -23,6 +23,7 @@ import com.app.kpb2.features.petani.noRekening.Rekening;
 import com.app.kpb2.features.petani.profile.createprofile.CreateProfile;
 import com.app.kpb2.features.petani.profile.detailProfile.DetailProfile;
 import com.app.kpb2.features.petani.profile.komoditas.KomoditasActivity;
+import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.petani.profile.model.AsetPetani;
 import com.app.kpb2.features.petani.profile.model.DataMt;
 import com.app.kpb2.features.users.login.model.LoginResponse;
@@ -185,30 +186,39 @@ public class Profile extends AppCompatActivity {
 
         }
         mKios.setText(namaKios);
+//        Log.d("idPoktan" , mProfile.getResult().getProfile().getPoktan());
         if(mProfile.getResult().getProfile().getId_poktan() != null && !mProfile.getResult().getProfile().getId_poktan().equals(0)){
-            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
+            if(mProfile.getResult().getProfile().getPoktan().size() >0 )
+                namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
+            else
+                namaPoktan = "-";
         }else{
             namaPoktan = "-";
         }
-        List<String> asets = new ArrayList<>();
+        List<String> komoditass = new ArrayList<>();
 
-        if(mProfile.getResult().getProfile().getAsetPetani().size() > 0){
-//            namaPoktan = mProfile.getResult().getProfile().getPoktan().get(0).getName();
-
-            List<AsetPetani> asetPetani = mProfile.getResult().getProfile().getAsetPetani();
-            List<DataMt> datamt ;
-
-                datamt = asetPetani.stream().flatMap(e->e.getDataPermt().stream())
-                        .collect(Collectors.toList());
-
-            for(DataMt result : datamt){
-                if(!asets.contains(result.getNamaKomoditas())){
-                    asets.add(result.getNamaKomoditas());
-
-                }
+//        Log.d("toyib" , new Gson().toJson(mProfile.getResult().getProfile()));
+        if(mProfile.getResult().getProfile().getKomoditas()!= null && mProfile.getResult().getProfile().getKomoditas().size() > 0){
+//            List<AsetPetani> asetPetani = mProfile.getResult().getProfile().getAsetPetani();
+//            List<DataMt> datamt ;
+//
+//                datamt = asetPetani.stream().flatMap(e->e.getDataPermt().stream())
+//                        .collect(Collectors.toList());
+//
+//            for(DataMt result : datamt){
+//                if(!asets.contains(result.getNamaKomoditas())){
+//                    asets.add(result.getNamaKomoditas());
+//
+//                }
+//            }
+            List<Komoditas> listKomoditas = mProfile.getResult().getProfile().getKomoditas();
+            for(Komoditas result : listKomoditas ){
+                komoditass.add(result.getNamaKomoditas()) ;
             }
-            String s = TextUtils.join(", ", asets);
+            String s = TextUtils.join(", ", komoditass);
             mKomoditas.setText(s);
+
+
 
 
 

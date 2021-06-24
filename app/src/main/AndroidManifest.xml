@@ -27,7 +27,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity"></activity>
+        <activity android:name=".features.data_produksi.editProduksi.EditProduksiActivity"></activity>
+        <activity android:name=".features.data_produksi.createProduksi.CreateProduksiActivity" />
+        <activity android:name=".features.data_produksi.DataProduksiActivity" />
+        <activity android:name=".features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity" />
         <activity android:name=".features.petani.profile.komoditas.KomoditasActivity" />
         <activity android:name=".features.petani.dokter_hewan.DokterHewanActivity" />
         <activity android:name=".features.webview.PasarOnlineNasionalTernak" />

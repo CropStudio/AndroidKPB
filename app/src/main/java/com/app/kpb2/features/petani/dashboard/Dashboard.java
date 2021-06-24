@@ -1,6 +1,7 @@
 package com.app.kpb2.features.petani.dashboard;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageInfo;
@@ -13,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.cardview.widget.CardView;
@@ -34,6 +37,7 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.Utils;
+import com.app.kpb2.features.data_produksi.DataProduksiActivity;
 import com.app.kpb2.features.e_commerce.EcommerceActivity;
 import com.app.kpb2.features.pasar_tani.PasarTaniActivity;
 import com.app.kpb2.features.petani.KartuPetani;
@@ -62,12 +66,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.appupdate.testing.FakeAppUpdateManager;
 import com.google.android.play.core.common.IntentSenderForResultStarter;
 import com.google.android.play.core.install.InstallState;
 import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
 import com.google.gson.Gson;
 import com.mindorks.placeholderview.PlaceHolderView;
@@ -88,11 +94,12 @@ import butterknife.OnClick;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE;
+import static com.mikepenz.iconics.Iconics.TAG;
 
 public class Dashboard extends Fragment implements IDashboardView {
 
-    private static final int MY_REQUEST_CODE = 999 ;
-    private static final int IMMEDIATE_APP_UPDATE_REQ_CODE = 124;
+    private static final int MY_REQUEST_CODE = 199;
+    private static final int IMMEDIATE_APP_UPDATE_REQ_CODE = 80008;
     @BindView(R.id.drawerView)
     PlaceHolderView mDrawerView;
     @BindView(R.id.mainMenu)
@@ -126,7 +133,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     private int dotsCount;
     private ImageView[] dots;
 
-    DashboardPresenter presenter ;
+    DashboardPresenter presenter;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
     AppUpdateManager appUpdateManager;
@@ -135,7 +142,7 @@ public class Dashboard extends Fragment implements IDashboardView {
 //        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 //    }
 
-    int asetPetani ;
+    int asetPetani;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -211,23 +218,23 @@ public class Dashboard extends Fragment implements IDashboardView {
         mTogle = new ActionBarDrawerToggle(getActivity(), drawer, R.string.open, R.string.close);
         drawer.setDrawerListener(mTogle);
         mTogle.syncState();
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarMain);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarMain);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
         );
-        if(mProfile.getResult().getProfile().getAsetPetani() !=null)
-            asetPetani  = mProfile.getResult().getProfile().getAsetPetani().size();
+        if (mProfile.getResult().getProfile().getAsetPetani() != null)
+            asetPetani = mProfile.getResult().getProfile().getAsetPetani().size();
         else
-            asetPetani = 0 ;
+            asetPetani = 0;
         Log.d("Result", new Gson().toJson(mProfile.getResult().getProfile()));
         return view;
     }
 
-    void poupExit(){
+    void poupExit() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View v = getLayoutInflater().inflate(R.layout.custom_dialog_exit, null);
 
@@ -320,11 +327,11 @@ public class Dashboard extends Fragment implements IDashboardView {
         String nomorrekening = (mProfile.getResult().getProfile().getNomorRekening().contains(""))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
 
-        if(!nomorrekening.equals("") && nomorrekening.equals("Bank LAMPUNG"))
-            presenter.getSaldo(nik , token ,nomorrekening);
+        if (!nomorrekening.equals("") && nomorrekening.equals("Bank LAMPUNG"))
+            presenter.getSaldo(nik, token, nomorrekening);
 
 //        Toast.makeText(getActivity(), "yang lama", Toast.LENGTH_SHORT).show();
-        appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+
 //        presenter.getSaldo();
 //        this.forceUpdate();
 //        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
@@ -333,7 +340,7 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     @Override
     public void goUpdateVersion(String rm) {
-        SweetDialogs.commonWarningWithIntent(getActivity(),"Mohon perbaharui aplikasi", rm, string -> {
+        SweetDialogs.commonWarningWithIntent(getActivity(), "Mohon perbaharui aplikasi", rm, string -> {
             this.goUpdateApps();
         });
 
@@ -354,7 +361,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     @Override
     public void onGetSaldoFailed(BalanceResponse result) {
 
-        if(result.getRc().equals(Prefs.DEFAULT_INVALID_TOKEN))
+        if (result.getRc().equals(Prefs.DEFAULT_INVALID_TOKEN))
             SweetDialogs.commonInvalidToken(getActivity(), "Gagal Memuat Permintaan",
                     result.getRm());
         else
@@ -362,50 +369,159 @@ public class Dashboard extends Fragment implements IDashboardView {
 
     }
 
+    InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
+        @Override
+        public void onStateUpdate(InstallState state) {
+            if (state.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else if (state.installStatus() == InstallStatus.INSTALLED){
+                if (appUpdateManager != null){
+                    appUpdateManager.unregisterListener(installStateUpdatedListener);
+                }
 
-//    public void forceUpdate(){
+            } else {
+                Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
+            }
+        }
+    };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        this.forceUpdate();
+    }
+
+    private void forceUpdate() {
 //        Toast.makeText(getActivity(), "memeriksa pembaharuan", Toast.LENGTH_SHORT).show();
-//        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-//
-//        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-//            Log.d("appUpdateInfo" , String.valueOf(appUpdateInfo));
-//            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.UPDATE_AVAILABLE));
-//            Log.d("appUpdateInfo" , String.valueOf(AppUpdateType.IMMEDIATE));
-//            Log.d("appUpdateInfo" , String.valueOf(UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS));
-//            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-//                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                startUpdateFlow(appUpdateInfo);
-//            } else if  (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
-//                startUpdateFlow(appUpdateInfo);
+        appUpdateManager = AppUpdateManagerFactory.create(getActivity());
+        appUpdateManager.registerListener(installStateUpdatedListener);
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo appUpdateInfo) {
+                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        // For a flexible update, use AppUpdateType.FLEXIBLE
+                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(
+                                // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                                appUpdateInfo,
+                                // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                                AppUpdateType.IMMEDIATE,
+                                // The current activity making the update request.
+                                getActivity(),
+                                // Include a request code to later monitor this update request.
+                                MY_REQUEST_CODE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+                }else if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        // For a flexible update, use AppUpdateType.FLEXIBLE
+                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)){
+
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(
+                                // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                                appUpdateInfo,
+                                // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                                AppUpdateType.FLEXIBLE,
+                                // The current activity making the update request.
+                                getActivity(),
+                                // Include a request code to later monitor this update request.
+                                MY_REQUEST_CODE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                else if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                        // For a flexible update, use AppUpdateType.FLEXIBLE
+                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)){
+
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(
+                                // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                                appUpdateInfo,
+                                // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                                AppUpdateType.IMMEDIATE,
+                                // The current activity making the update request.
+                                getActivity(),
+                                // Include a request code to later monitor this update request.
+                                MY_REQUEST_CODE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+
+    }
+
+
+
+    private void popupSnackbarForCompleteUpdate() {
+
+        Snackbar snackbar =
+                Snackbar.make(
+                        getActivity().findViewById(R.id.layout),
+                        "Aplikasi Berhasil diperbaharui !",
+                        Snackbar.LENGTH_INDEFINITE);
+
+        snackbar.setAction("Install", view -> {
+            if (appUpdateManager != null){
+                appUpdateManager.completeUpdate();
+            }
+        });
+
+
+        snackbar.setActionTextColor(getResources().getColor(R.color.success_stroke_color));
+        snackbar.show();
+    }
+
+//        FakeAppUpdateManager fakeAppUpdateManager = new FakeAppUpdateManager(getActivity());
+//        fakeAppUpdateManager.setUpdateAvailable(35); // add app version code greater than current version.
+//        fakeAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+//            @Override
+//            public void onSuccess(AppUpdateInfo appUpdateInfo) {
+//                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+//                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+//                    Log.d("updateannya" , " ada");
+//                    startUpdateFlow(appUpdateInfo);
+//                }
 //            }
 //        });
-//
-//
-//
-//    }
-//
+
+
+
 //    private void startUpdateFlow(AppUpdateInfo appUpdateInfo) {
 //        try {
-//            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, getActivity(),IMMEDIATE_APP_UPDATE_REQ_CODE);
+//            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, getActivity(), IMMEDIATE_APP_UPDATE_REQ_CODE);
 //        } catch (IntentSender.SendIntentException e) {
 //            e.printStackTrace();
+//            Log.d("updatean error", e.getLocalizedMessage());
 //        }
 //    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == IMMEDIATE_APP_UPDATE_REQ_CODE) {
-//            if (resultCode == RESULT_CANCELED) {
-//                Toast.makeText(getActivity(), "Update canceled by user! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
-//            } else if (resultCode == RESULT_OK) {
-//                Toast.makeText(getActivity(), "Update success! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
-//            } else {
-//                Toast.makeText(getActivity(), "Update Failed! Result Code: " + resultCode, Toast.LENGTH_LONG).show();
-//                forceUpdate();
-//            }
-//        }
-//    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode == RESULT_CANCELED) {
+                forceUpdate();
+            } else if (resultCode == RESULT_OK) {
+                Toast.makeText(getActivity(), "Pembaharuan aplikasi berhasil", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity(), "Pembaharuan gagal , mohon coba kembali", Toast.LENGTH_LONG).show();
+                forceUpdate();
+            }
+        }
+    }
+
+
 
 //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -448,52 +564,40 @@ public class Dashboard extends Fragment implements IDashboardView {
 //        }
 //    }
 
-    public void onStateUpdate(InstallState state) {
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            // After the update is downloaded, show a notification
-            // and request user confirmation to restart the app.
-            popupSnackbarForCompleteUpdate();
-        }
-    }
-
-    private void popupSnackbarForCompleteUpdate() {
-        Snackbar.make(getActivity().findViewById(android.R.id.content).getRootView(), "New app is ready!", Snackbar.LENGTH_INDEFINITE)
-
-                .setAction("Install", view -> {
-                    if (appUpdateManager != null) {
-                        appUpdateManager.completeUpdate();
-                    }
-                })
-                .setActionTextColor(getResources().getColor(R.color.success_stroke_color))
-                .show();
-    }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        appUpdateManager
-                .getAppUpdateInfo()
-                .addOnSuccessListener(
-                        appUpdateInfo -> {
-                            if (appUpdateInfo.updateAvailability()
-                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                                // If an in-app update is already running, resume the update.
-                                try {
-                                    appUpdateManager.startUpdateFlowForResult(
-                                            appUpdateInfo,
-                                            IMMEDIATE,
-                                            (IntentSenderForResultStarter) this,
-                                            MY_REQUEST_CODE);
-                                } catch (IntentSender.SendIntentException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+//        appUpdateManager
+//                .getAppUpdateInfo()
+//                .addOnSuccessListener(
+//                        appUpdateInfo -> {
+//                            if (appUpdateInfo.updateAvailability()
+//                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+//                                // If an in-app update is already running, resume the update.
+//                                try {
+//                                    appUpdateManager.startUpdateFlowForResult(
+//                                            appUpdateInfo,
+//                                            IMMEDIATE,
+//                                            (IntentSenderForResultStarter) this,
+//                                            MY_REQUEST_CODE);
+//                                } catch (IntentSender.SendIntentException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
     }
 
     @Override
-    public void goUpdateApps(){
+    public void onStop() {
+        super.onStop();
+//        if (appUpdateManager != null) {
+//            appUpdateManager.unregisterListener(installStateUpdatedListener);
+//        }
+    }
+
+    @Override
+    public void goUpdateApps() {
         App.getPref().clear();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.app.kpb2"));
@@ -520,6 +624,13 @@ public class Dashboard extends Fragment implements IDashboardView {
         getActivity().finish();
     }
 
+    @OnClick(R.id.mCardDataProduksi)
+    void goToDataProduksi() {
+        Intent i = new Intent(getActivity(), DataProduksiActivity.class);
+        startActivity(i);
+        getActivity().finish();
+    }
+
     @OnClick(R.id.cardPasarTani)
     void goToPasarTani() {
         Intent i = new Intent(getActivity(), PasarTaniActivity.class);
@@ -537,6 +648,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     @OnClick(R.id.mCardRut)
     void goToRut() {
         this.gotoAset();
+//        Toast.makeText(getActivity(), "Menu ini sedang dalam Pengembangan", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.mCardTransaksiNonTunai)
@@ -547,7 +659,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     }
 
 
-    void gotoAset(){
+    void gotoAset() {
         Intent i = new Intent(getActivity(), AsetActivity.class);
         startActivity(i);
         getActivity().finish();

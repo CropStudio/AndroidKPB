@@ -2,6 +2,8 @@ package com.app.kpb2.network;
 
 import com.app.kpb2.features.cart.model.Cart;
 import com.app.kpb2.common.CommonResponse;
+import com.app.kpb2.features.data_produksi.model.DataProduksi;
+import com.app.kpb2.features.data_produksi.model.DataProduksiResponse;
 import com.app.kpb2.features.e_commerce.model.RutResponse;
 import com.app.kpb2.features.e_commerce.model.Saldo;
 import com.app.kpb2.features.petani.dokter_hewan.model.DokterHewanResponse;
@@ -28,6 +30,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -74,6 +77,10 @@ public interface NetworkService {
     @FormUrlEncoded
     @PUT("petaniedit/{nik}")
     Call<LoginResponse> updateProfile(@Path("nik") String nik, @FieldMap Map<String, Object> data);
+
+    @FormUrlEncoded
+    @PUT("add-komoditas-petani/{nik}")
+    Call<LoginResponse> addKomoditas(@Path("nik") String nik, @FieldMap Map<String, Object> data);
 
     @FormUrlEncoded
     @POST("rutpetani/{nik}")
@@ -128,11 +135,26 @@ public interface NetworkService {
     @GET("getbantuanpetani/{nik}")
     Call<BantuanResponse> getBantuan(@Path("nik") String nik);
 
+    @GET("get-data-produksi/{nik}")
+    Call<DataProduksiResponse> getDataProduksi(@Path("nik") String nik);
+
+    @DELETE("hapus-data-produksi-by-id/{id}")
+    Call<CommonRespon> deleteDataProduksi(@Path("id") String id);
+
+    @PUT("remove-komoditas-petani/{nik}/{id}")
+    Call<LoginResponse> deleteKomoditas(@Path("nik") String nik,@Path("id") String id);
+
+    @PUT("edit-data-produksi-by-id/{id}")
+    Call<CommonRespon> editDataProduksi(@Path("id") String id,@Body DataProduksi model);
+
     @GET("transaksipetanibynik/{nik}")
     Call<TransaksiResponse> getTransaksi(@Path("nik") String nik);
 
     @POST("users/signupandcreate")
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);
+
+    @POST("input-data-produksi")
+    Call<CommonRespon> createProduksi(@Body DataProduksi model);
 
     @PUT("petani/updateaset/{nik}")
     Call<LoginResponse> updateAset(@Path("nik") String nik, @Body AsetPetani model);

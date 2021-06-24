@@ -2,6 +2,8 @@ package com.app.kpb2.features.petani.profile.komoditas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -17,12 +19,16 @@ import android.widget.Spinner;
 
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
+import com.app.kpb2.features.data_produksi.DataProduksiAdapter;
+import com.app.kpb2.features.data_produksi.model.DataProduksi;
 import com.app.kpb2.features.petani.MenuUtama;
+import com.app.kpb2.features.petani.profile.Profile;
 import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.users.login.model.LoginResponse;
 import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
+import com.app.kpb2.ui.TopSnakbar;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -38,18 +44,23 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class KomoditasActivity extends AppCompatActivity implements IKomoditasView, AdapterView.OnItemSelectedListener {
+public class KomoditasActivity extends AppCompatActivity implements IKomoditasView, AdapterView.OnItemSelectedListener, KomoditasAdapter.OnItemSelected {
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
     SweetAlertDialog sweetAlertDialog;
     @BindView(R.id.mKomoditas)
     SearchableSpinner mKomoditas;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
 
     @BindView(R.id.mSubmit)
     Button mSubmit;
     private LoginResponse mProfile;
-    private String nik , token ;
-    KomoditasPresenter presenter ;
+    private String nik, token;
+    KomoditasPresenter presenter;
+    List<Komoditas> listKomoditas = new ArrayList<>();
+    KomoditasAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +72,13 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle("Komoditas");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoDashBoard();
+                gotoProfile();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,7 +94,7 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
         this.initViews();
     }
 
-    void gotoDashBoard(){
+    void gotoDashBoard() {
         startActivity(new Intent(this, MenuUtama.class));
         finish();
     }
@@ -92,7 +103,10 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
     public void initViews() {
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.setTitleText(App.getApplication().getString(R.string.loading));
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.clearFocus();
         mProfile = (LoginResponse) GsonHelper.parseGson(
                 App.getPref().getString(Prefs.PREF_STORE_PROFILE, ""),
                 new LoginResponse()
@@ -102,53 +116,66 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
                 ? mProfile.getResult().getNik() : mProfile.getResult().getNik();
         token = (mProfile.getResult().getToken().contains(" "))
                 ? mProfile.getResult().getToken() : mProfile.getResult().getToken();
-        presenter.getKomoditas(nik , token);
+        if (mProfile.getResult().getProfile().getKomoditas() != null && mProfile.getResult().getProfile().getKomoditas().size() > 0) {
+            listKomoditas = mProfile.getResult().getProfile().getKomoditas();
+//            items = dataProduksis ;
+            adapter = new KomoditasAdapter(listKomoditas, this, this);
+            mRecyclerView.setAdapter(adapter);
+
+        }
+        presenter.getKomoditas(nik, token);
         mSubmit.setOnClickListener(v -> this.onCreateKomoditas());
     }
 
     @Override
     public void onCreateKomoditas() {
-        JSONObject dataRoot = new JSONObject();
-        JSONObject data = new JSONObject();
-        JSONArray value = new JSONArray();
-        JSONObject komoditas = new JSONObject();
+        boolean confirm = false;
+        for (Komoditas val : listKomoditas) {
+            if (val.getNamaKomoditas().equals(mKomoditas.getSelectedItem().toString()))
+                confirm = true;
 
-        try {
-            komoditas.put("nama" , mKomoditas.getSelectedItem().toString());
-            value.put(komoditas);
-            data.put("komoditas", value);
-            dataRoot.put("data", data);
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-        Log.d("Datanya" , dataRoot.toString());
-        presenter.onCreateKomoditas(nik, token, dataRoot.toString());
+        if (confirm)
+            TopSnakbar.showWarning(this, " Anda sudah memilih komoditas ini !");
+        else
+            presenter.onCreateKomoditas(nik, token, mKomoditas.getSelectedItem().toString());
+
+
     }
 
     @Override
     public void onDataReady(List<Komoditas> result) {
 //        Log.d("datanya" ,new Gson().toJson(result));
         ArrayList<String> list = new ArrayList<>();
-        for (Komoditas value : result){
+        for (Komoditas value : result) {
             list.add(value.getKomoditas());
         }
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mKomoditas.setAdapter(adapter);
         mKomoditas.setOnItemSelectedListener(this);
         mKomoditas.setTitle("Cari Komoditas");
-
     }
 
     @Override
     public void onCreateKomoditasSuksess(LoginResponse profile) {
+//        Log.d("datanyacuy" , new Gson().toJson(profile.getResult().getProfile()));
         presenter.storeProfile(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan", string -> {
-            this.gotoKomoditas();
+            this.initViews();
 
         });
+    }
+
+    public void gotoProfile() {
+        startActivity(new Intent(this, Profile.class));
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // ...
+        this.gotoProfile();
     }
 
     @Override
@@ -179,6 +206,21 @@ public class KomoditasActivity extends AppCompatActivity implements IKomoditasVi
 
     @Override
     public void gotoKomoditas() {
-        startActivity(new Intent(this , KomoditasActivity.class));
+        startActivity(new Intent(this, KomoditasActivity.class));
+    }
+
+
+    @Override
+    public void onHapus(Komoditas komoditas, int index) {
+        presenter.onDeleteKomoditas(nik, token, komoditas.get_id(), index);
+    }
+
+    @Override
+    public void onDeleteSuksess(LoginResponse profile, int index) {
+        presenter.storeProfile(profile);
+        SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil dihapus", string -> {
+            this.initViews();
+
+        });
     }
 }

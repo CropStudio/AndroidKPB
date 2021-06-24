@@ -575,12 +575,17 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:padding="3dp"
+                                android:layout_toLeftOf="@+id/mBtnUpdteKomoditas"
                                 android:id="@+id/mKomoditas"
-                                android:layout_width="wrap_content"
+                                android:inputType="textMultiLine"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/labelKomoditas"
                                 android:layout_marginTop="5dp"
                                 android:text="-"
+                                android:maxLines="10"
+                                android:singleLine="false"
                                 android:textColor="@color/color_default_black"
                                 android:textSize="12sp" />
 

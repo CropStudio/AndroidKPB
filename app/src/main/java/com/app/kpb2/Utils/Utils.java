@@ -1,5 +1,8 @@
 package com.app.kpb2.Utils;
 
+import android.graphics.Rect;
+import android.text.TextPaint;
+
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import java.math.BigDecimal;
@@ -21,6 +24,26 @@ import java.util.regex.Pattern;
  */
 
 public class Utils {
+
+    public static int getHeightOfMultiLineText(String text, int textSize, int maxWidth) {
+        TextPaint paint = new TextPaint();
+        paint.setTextSize(textSize);
+        int index = 0;
+        int lineCount = 0;
+        while (index < text.length()) {
+            index += paint.breakText(text, index, text.length(), true, maxWidth, null);
+            lineCount++;
+        }
+
+        Rect bounds = new Rect();
+        paint.getTextBounds("Yy", 0, 2, bounds);
+        // obtain space between lines
+        double lineSpacing = Math.max(0, ((lineCount - 1) * bounds.height() * 0.25));
+
+        return (int) Math.floor(lineSpacing + lineCount * bounds.height());
+    }
+
+
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 

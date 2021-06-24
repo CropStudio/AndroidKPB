@@ -25,7 +25,7 @@ android {
         }
     }
     lintOptions {
-        checkReleaseBuilds false
+        checkReleaseBuilds true
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
         abortOnError false
@@ -35,8 +35,8 @@ android {
         applicationId "com.app.kpb2"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 33
-        versionName "3.3"
+        versionCode 42
+        versionName "3.9.3"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -111,6 +111,8 @@ dependencies {
     //prefs
     implementation 'net.grandcentrix.tray:tray:0.12.0'
     implementation 'com.github.mohammadatif:Animatoo:master'
+    //update manager
+    implementation 'com.github.SanojPunchihewa:InAppUpdater:1.0.5'
     //retrofit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'

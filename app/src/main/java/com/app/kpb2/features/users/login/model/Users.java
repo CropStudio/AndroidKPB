@@ -1,5 +1,6 @@
 package com.app.kpb2.features.users.login.model;
 
+import com.app.kpb2.features.petani.profile.komoditas.model.Komoditas;
 import com.app.kpb2.features.petani.profile.model.profile;
 import com.google.gson.annotations.SerializedName;
 
@@ -39,6 +40,8 @@ public class Users {
 
     @SerializedName("profile")
     private profile profile;
+
+
 
     public com.app.kpb2.features.petani.profile.model.profile getProfile() {
         return profile;
