@@ -39,7 +39,7 @@ public class BantuanPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getBantuan(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getBantuan(nik)
                 .enqueue(new Callback<BantuanResponse>() {
                     @Override
                     public void onResponse(Call<BantuanResponse> call, Response<BantuanResponse> response) {

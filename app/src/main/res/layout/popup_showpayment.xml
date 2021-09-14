@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="Pilih Metode Pembayaran"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <ImageButton
+                android:id="@+id/closePopKeuntungan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <LinearLayout
+                android:id="@+id/main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:visibility="gone"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_va_bni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="0dp"
+                    app:cardUseCompatPadding="false"
+                    app:contentPadding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/icon_image"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="false"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:padding="8dp"
+                            android:src="@drawable/bni_va" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/icon_image"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="BNI Virtual Account"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Bayar dengan BNI virtual account"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:visibility="gone"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_payment_gateway"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="0dp"
+                    app:cardUseCompatPadding="false"
+                    app:contentPadding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/icon_image"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="false"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_bank_transfer" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/icon_image"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/mNama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Payment Gateway"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:id="@+id/mToko"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Bayar dengan ATM bersama , Prima , Gopay atau Qris"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_bank_transfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="3dp"
+                    app:cardMaxElevation="0dp"
+                    app:cardUseCompatPadding="false"
+                    app:contentPadding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/icon_image"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="false"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_bank_transfer" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toRightOf="@id/icon_image"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/mNama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Bank Transfer"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:id="@+id/mToko"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Bayar dengan ATM bersama , Prima atau alto"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

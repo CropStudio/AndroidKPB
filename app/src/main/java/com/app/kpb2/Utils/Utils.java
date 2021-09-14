@@ -2,6 +2,7 @@ package com.app.kpb2.Utils;
 
 import android.graphics.Rect;
 import android.text.TextPaint;
+import android.util.Log;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 

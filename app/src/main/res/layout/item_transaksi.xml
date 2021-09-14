@@ -78,7 +78,7 @@
 
                                 <LinearLayout
                                     android:id="@+id/layoutKur"
-                                    android:visibility="gone"
+                                    android:visibility="visible"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="right|center_vertical"
@@ -89,7 +89,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Proses pengajuan kur"
-                                        android:textColor="@color/color_default_blue"
+                                        android:textColor="@color/blue"
                                         android:textSize="12sp" />
 
                                     <ImageView
@@ -109,7 +109,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="TRNS-9331-12421025-1591037077564392"
                                 android:textColor="@color/color_default_blue"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
 
                         </LinearLayout>
 
@@ -159,6 +159,20 @@
                                 android:text="1000"
                                 android:textSize="12sp" />
 
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/grey" />
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/blue"
+                                android:id="@+id/paymentType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="BNI"
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </LinearLayout>

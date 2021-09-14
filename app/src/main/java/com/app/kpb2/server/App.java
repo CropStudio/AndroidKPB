@@ -12,14 +12,28 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.app.kpb2.Utils.Glide.MyGlideModule;
 import com.app.kpb2.session.Prefs;
+import com.bumptech.glide.Glide;
+
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /*
  * 	We are creating a Application Singleton Object by extending Application, so it should be declared as a application in the "AndroidMainFests" file
  * */
 
-public class App extends Application
-{
+public class App extends Application {
     public static final String TAG = App.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
@@ -27,25 +41,28 @@ public class App extends Application
     private static Prefs preferences;
     private static App mInstance;
     private static Application sApplication;
+
     public static Application getApplication() {
         return sApplication;
     }
 
+
     public static Context getContext() {
         return getApplication().getApplicationContext();
     }
+
     public static Prefs getPref() {
         return preferences;
     }
-    static
-    {
+
+    static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
-        if (Build.VERSION.SDK_INT <= 19){
+        if (Build.VERSION.SDK_INT <= 19) {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         }
 
@@ -53,6 +70,7 @@ public class App extends Application
         sApplication = this;
         preferences = new Prefs(sApplication);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
 
     }
 

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="3dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
+    app:cardMaxElevation="0dp"
+    app:cardUseCompatPadding="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/closePopKeuntungan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/closePopKeuntungan"
+                android:gravity="center_vertical"
+                android:text="Cara Pembayaran VA BNI"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <LinearLayout
+                    android:id="@+id/main_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="3dp"
+                        app:cardMaxElevation="0dp"
+                        app:cardUseCompatPadding="false"
+                        app:contentPadding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_toRightOf="@id/icon_image"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:padding="3dp">
+
+                                <TextView
+                                    android:id="@+id/expired"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="Harap selesaikan pembayaran sebelum"
+                                    android:textSize="18dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@id/icon_image"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:padding="3dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:maxLines="1"
+                                    android:text="Nomor Rekening"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+
+                                <TextView
+                                    android:id="@+id/mNorek"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:maxLines="3"
+                                    android:text="390 2000 200 "
+                                    android:textColor="@color/black"
+                                    android:textSize="20dp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@id/icon_image"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:padding="3dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:maxLines="1"
+                                    android:text="Jumlah"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+
+                                <TextView
+                                    android:id="@+id/mJumlah"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:maxLines="3"
+                                    android:text="RP. 200.200.000"
+                                    android:textColor="@color/black"
+                                    android:textSize="20dp" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@color/grey" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="3dp">
+
+                                <TextView
+                                    android:id="@+id/mJumlah"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:maxLines="1"
+                                    android:text="Order ID"
+                                    android:textSize="13dp"
+                                    android:textStyle="bold" />
+
+
+                                <TextView
+                                    android:id="@+id/mOrderId"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_toRightOf="@+id/mJumlah"
+                                    android:gravity="center_vertical"
+                                    android:maxLines="3"
+                                    android:text="TRNS-5fcf872968e701176cf36eaf-1627298768718994"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="10sp"
+                                    tools:ignore="RtlCompat" />
+
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/white">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:tabBackground="@drawable/white_grey_border_top"
+                            app:tabGravity="fill"
+                            app:tabMode="fixed"></com.google.android.material.tabs.TabLayout>
+
+                    </LinearLayout>
+
+
+
+                        <include layout="@layout/content_tab1_vabni" />
+
+                        <include layout="@layout/content_tab2_vabni" />
+
+                        <include layout="@layout/content_tab3_vabni" />
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

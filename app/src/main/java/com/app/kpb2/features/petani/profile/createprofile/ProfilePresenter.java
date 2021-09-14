@@ -42,7 +42,7 @@ public class ProfilePresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.kpb2">
+
 
     <uses-sdk tools:overrideLibrary="moe.feng.common.stepperview" />
 
@@ -10,12 +13,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
+
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".server.App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -25,9 +33,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:theme">
-        <activity android:name=".features.data_produksi.editProduksi.EditProduksiActivity"></activity>
+        tools:replace="android:allowBackup">
+        <meta-data
+            android:name="com.app.kpb2.network.UnsafeOkHttpClient"
+            android:value="AppGlideModule" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="AIzaSyDk0QgS3V9J4kPXYINKKWwSg9ZWL1lwTjo"/>-->
+
+        <activity android:name=".features.pasar_bebas.transaksi.TransaksiPasarBebasActivity"></activity>
+        <activity android:name=".features.pasar_bebas.PasarBebasActivity" />
+        <activity android:name=".features.data_produksi.editProduksi.EditProduksiActivity" />
         <activity android:name=".features.data_produksi.createProduksi.CreateProduksiActivity" />
         <activity android:name=".features.data_produksi.DataProduksiActivity" />
         <activity android:name=".features.petani.transaksi_non_tunai.TransaksiNonTunaiActivity" />
@@ -71,8 +87,7 @@
             android:name=".features.rut.RutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".features.cart.CartActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".features.cart.CartActivity" />
         <activity android:name=".InformasiRekening" />
         <activity android:name=".features.petani.detailpupuk.DetailPupukActivity" />
         <activity

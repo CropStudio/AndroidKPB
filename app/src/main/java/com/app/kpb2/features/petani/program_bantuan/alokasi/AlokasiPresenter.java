@@ -41,7 +41,7 @@ public class AlokasiPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getAlokasi(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getAlokasi(nik)
                 .enqueue(new Callback<AlokasiResponse>() {
                     @Override
                     public void onResponse(Call<AlokasiResponse> call, Response<AlokasiResponse> response) {

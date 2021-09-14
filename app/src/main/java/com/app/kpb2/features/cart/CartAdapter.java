@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.app.kpb2.features.cart.model.Cart;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
@@ -23,7 +24,7 @@ import java.util.List;
 
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
-    public List<Item> ruts;
+    public List<Cart> carts;
     private CartAdapter.OnItemSelected listener;
     private String matkul;
     Activity context;
@@ -36,8 +37,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         void onCheckbox();
     }
 
-    public CartAdapter(List<Item> data, Activity context, OnItemSelected listener) {
-        this.ruts = data;
+    public CartAdapter(List<Cart> data, Activity context, OnItemSelected listener) {
+        this.carts = data;
         this.context = context;
         this.listener = listener;
     }
@@ -57,22 +58,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final CartAdapter.ViewHolder holder, final int position) {
-        final Item rut = ruts.get(position);
-        if (rut.getTipe().equals("Subsidi")) {
-            holder.mSubsidi.setVisibility(View.VISIBLE);
-            holder.mStok.setText("Sisa Subsidi : " +rut.getStok() + " " + rut.getSatuan());
-        } else {
-            holder.mSubsidi.setVisibility(View.GONE);
-            holder.mStok.setText("Stok : " +rut.getStok() + " " + rut.getSatuan());
-        }
-        holder.mHarga.setText(Utils.convertRupiah(String.valueOf(rut.getHarga())));
-        holder.mNama.setText(rut.getNamaItem());
-        holder.mToko.setText(rut.getKios());
+        final Cart cart = carts.get(position);
+        cart.setSelected(false);
+
+        holder.mHarga.setText(Utils.convertRupiah(String.valueOf(cart.getItem().getHargaBarang())));
+        holder.mNama.setText(cart.getItem().getNamaBarang());
+//        holder.mToko.setText(rut.getKios());
 
         holder.itemView.setOnClickListener(view -> listener.onSelect("ini itemview"));
-        if (!rut.getFoto().equals(""))
+        if (cart.getItem().getFoto().size()>0)
             Glide.with(context)
-                    .load(App.getApplication().getResources().getString(R.string.img_end_point) + rut.getFoto())
+                    .load(App.getApplication().getResources().getString(R.string.img_end_point) + cart.getItem().getFoto().get(0).getNamaFile())
                     .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                     .into(holder.mIconImage);
         else Glide.with(context)
@@ -80,20 +76,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 .apply(new RequestOptions().placeholder(R.drawable.loading_ios))
                 .into(holder.mIconImage);
         holder.mNama.setOnClickListener(view -> listener.onCartSelect("ini CartSelect"));
-        //holder.mCheckbox.setOnClickListener(view ->listener.onCheckbox(rut.getHarga()));
-        //holder.mCheckBox.setTag(rut.getHarga());
-        //rut.setQty(Integer.parseInt(holder.mQty.getNumber()));
-        holder.mCheckBox.setOnCheckedChangeListener(null);
-//        holder.mCheckBox.setSelected(rut.isSelected());
+        holder.mCheckBox.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) context);
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    rut.setSelected(true);
+                    cart.setSelected(true);
+
                 } else {
-                    rut.setSelected(false);
+                    cart.setSelected(false);
                 }
-                rut.setQty(Integer.parseInt(holder.mQty.getNumber()));
+                cart.setJumlahBeli(Integer.parseInt(holder.mQty.getNumber()));
                 listener.onCheckbox();
             }
         });
@@ -102,18 +95,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
 
-                rut.setQty(newValue);
+//                rut.setQty(newValue);
+                cart.setJumlahBeli(newValue);
                 listener.onCheckbox();
 
             }
         });
-        holder.mCheckBox.setChecked(rut.isSelected());
+        holder.mCheckBox.setChecked(cart.isSelected());
     }
 
 
     @Override
     public int getItemCount() {
-        return ruts.size();
+        return carts.size();
     }
 
 

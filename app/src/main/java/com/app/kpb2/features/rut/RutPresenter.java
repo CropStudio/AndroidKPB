@@ -56,7 +56,7 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createRut(rut)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).createRut(rut)
                 .enqueue(new Callback<CommonRespon>() {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
@@ -91,7 +91,7 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getRut(nik, params)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getRut(nik, params)
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
@@ -114,7 +114,7 @@ public class RutPresenter {
 
     void onGetProfile(String nik) {
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).getProfilePetani(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , "token").build()).build().create(NetworkService.class).getProfilePetani(nik)
                 .enqueue(new Callback<ProfileResponse>() {
                     @Override
                     public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
@@ -146,7 +146,7 @@ public class RutPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getPoktan(desa)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getPoktan(desa)
                 .enqueue(new Callback<PoktanResponse>() {
                     @Override
                     public void onResponse(retrofit2.Call<PoktanResponse> call, Response<PoktanResponse> CommonRespon) {
@@ -182,7 +182,7 @@ public class RutPresenter {
 //        System.out.println(body);
 
         System.out.println(params);
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();

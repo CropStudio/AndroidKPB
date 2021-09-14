@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:hint="Masukkan No Rekening Anda"
             android:paddingLeft="15dp"
+            android:id="@+id/norek"
             android:paddingRight="15dp"
             app:boxStrokeColor="@color/color_default_blue"
             app:hintTextColor="@color/color_default_black"

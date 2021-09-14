@@ -1,11 +1,20 @@
 package com.app.kpb2.network;
 
+import com.app.kpb2.features.cart.model.BankTfResponse;
 import com.app.kpb2.features.cart.model.Cart;
 import com.app.kpb2.common.CommonResponse;
+import com.app.kpb2.features.cart.model.CartResponse;
+import com.app.kpb2.features.cart.model.Checkout;
+import com.app.kpb2.features.cart.model.ListKiosResponse;
+import com.app.kpb2.features.cart.model.PenyuluResponse;
+import com.app.kpb2.features.cart.model.VaBNI_Response;
 import com.app.kpb2.features.data_produksi.model.DataProduksi;
 import com.app.kpb2.features.data_produksi.model.DataProduksiResponse;
 import com.app.kpb2.features.e_commerce.model.RutResponse;
 import com.app.kpb2.features.e_commerce.model.Saldo;
+import com.app.kpb2.features.pasar_bebas.model.PasarBebasResponse;
+import com.app.kpb2.features.pasar_bebas.transaksi.model.DetailTransaksiResponse;
+import com.app.kpb2.features.pasar_bebas.transaksi.model.TransaksiPasarBebasResponse;
 import com.app.kpb2.features.petani.dokter_hewan.model.DokterHewanResponse;
 import com.app.kpb2.features.petani.noRekening.model.BalanceResponse;
 import com.app.kpb2.features.petani.profile.komoditas.model.KomoditasResponse;
@@ -26,6 +35,7 @@ import com.app.kpb2.features.users.login.model.LoginResponse;
 
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -46,21 +56,35 @@ public interface NetworkService {
     Call<LoginResponse> signin();
 
     @FormUrlEncoded
-    @POST("cart/create")
-    Call<RutResponse> createCart(@FieldMap Map<String, Object> params);
+    @POST("keranjang/input")
+    Call<CommonRespon> createCart(@FieldMap Map<String, Object> params);
 
-    @FormUrlEncoded
-    @POST("transaksi")
-    Call<CommonResponse> checkout(@FieldMap Map<String, Object> data);
+    @POST("transaction/non-tunai")
+    Call<CommonRespon> checkout(@Body List<Checkout> checkout);
 
-    @GET("barang")
-    Call<RutResponse> showProduct();
+    @POST("transaction/non-tunai-bni-va")
+    Call<VaBNI_Response> checkoutVA_BNI(@Body List<Checkout> checkout);
+
+    @POST("transaction//tunai-abal-abal")
+    Call<BankTfResponse> checkoutBank_tf(@Body List<Checkout> checkout);
+
+    @GET("barang/get-data-barang")
+    Call<PasarBebasResponse> showProduct();
+
+    @GET("keranjang/get-data/{idUser}")
+    Call<CartResponse> getCart(@Path("idUser") String idUser);
 
     @GET("getbalance/{norek}")
     Call<BalanceResponse> getBalance(@Path("norek") String norek);
 
-    @GET("cart/{nik}")
-    Call<Cart> getCart(@Path("nik") String nik);
+    @GET("getkiospetani/{nik}")
+    Call<ListKiosResponse> getListKios(@Path("nik") String nik);
+
+    @GET("get-kios-by-id-poktan/{idPoktan}")
+    Call<PenyuluResponse> getPenyuluh(@Path("idPoktan") Number idPoktan);
+
+//    @GET("cart/{nik}")
+//    Call<Cart> getCart(@Path("nik") String nik);
 
     @GET("profile/{nik}")
     Call<ProfileResponse> getProfilePetani(@Path("nik") String nik);
@@ -149,6 +173,18 @@ public interface NetworkService {
 
     @GET("transaksipetanibynik/{nik}")
     Call<TransaksiResponse> getTransaksi(@Path("nik") String nik);
+
+    @GET("transaction/get-transaksi/{id}/false")
+    Call<TransaksiPasarBebasResponse> getTransaksiPasarBebas(@Path("id") String id);
+
+    @GET("transaction/get-transaksi-detail/{id}")
+    Call<DetailTransaksiResponse> getDetailTransaksi(@Path("id") String id);
+
+    @GET("transaction/get-transaksi-detail-by-idpemesan/{id}/{idpemesan}")
+    Call<DetailTransaksiResponse> getDetailTransaksi(@Path("id") String id , @Path("idpemesan") String idpemesan);
+
+    @GET("transaction/update-status-bni")
+    Call<TransaksiPasarBebasResponse> beforeRequest();
 
     @POST("users/signupandcreate")
     Call<CommonRespon> daftarPetani(@Body RegistModel registModel);

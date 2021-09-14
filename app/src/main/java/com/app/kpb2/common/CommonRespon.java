@@ -15,8 +15,23 @@ public class CommonRespon {
     @SerializedName("status")
     private Boolean mStatus;
 
+    @SerializedName("code")
+    private int code;
+
+    @SerializedName("midtrans")
+    public midtrans midtrans;
+
     @SerializedName("result")
     private List<BarangTidakAda> value;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
 
     public List<BarangTidakAda> getValue() {
         return value;
@@ -50,5 +65,36 @@ public class CommonRespon {
         this.mStatus = mStatus;
     }
 
+    public CommonRespon.midtrans getMidtrans() {
+        return midtrans;
+    }
+
+    public void setMidtrans(CommonRespon.midtrans midtrans) {
+        this.midtrans = midtrans;
+    }
+
+    public class midtrans {
+        @SerializedName("token")
+        private String token;
+
+        @SerializedName("redirect_url")
+        private String redirect_url;
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getRedirect_url() {
+            return redirect_url;
+        }
+
+        public void setRedirect_url(String redirect_url) {
+            this.redirect_url = redirect_url;
+        }
+    }
 
 }

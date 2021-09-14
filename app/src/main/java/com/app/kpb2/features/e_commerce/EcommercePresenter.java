@@ -33,38 +33,38 @@ public class EcommercePresenter {
         restService = RestService.getRetrofitInstance();
     }
 
-    void showProduct(String nik, String token) {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
-            Request original = chain.request();
-            Request request = original.newBuilder()
-                    .header("x-access-token", token)
-                    .header("username", nik)
-                    .method(original.method(), original.body())
-                    .build();
-
-            return chain.proceed(request);
-        }).build();
-        view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).showProduct()
-                .enqueue(new Callback<RutResponse>() {
-                    @Override
-                    public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
-                        view.hideLoadingIndicator();
-                        //Log.d("Messg", String.valueOf(CommonRespon.body()));
-                        if (response.body().getSuccess())
-                            view.onDataReady(response.body());
-                        else
-                            view.onRequestFailed();
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<RutResponse> call, Throwable t) {
-                        view.hideLoadingIndicator();
-                        view.onNetworkError(t.getLocalizedMessage());
-                    }
-                });
-    }
+//    void showProduct(String nik, String token) {
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+//            Request original = chain.request();
+//            Request request = original.newBuilder()
+//                    .header("x-access-token", token)
+//                    .header("username", nik)
+//                    .method(original.method(), original.body())
+//                    .build();
+//
+//            return chain.proceed(request);
+//        }).build();
+//        view.showLoadingIndicator();
+//        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).showProduct()
+//                .enqueue(new Callback<RutResponse>() {
+//                    @Override
+//                    public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
+//                        view.hideLoadingIndicator();
+//                        //Log.d("Messg", String.valueOf(CommonRespon.body()));
+//                        if (response.body().getSuccess())
+//                            view.onDataReady(response.body());
+//                        else
+//                            view.onRequestFailed();
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<RutResponse> call, Throwable t) {
+//                        view.hideLoadingIndicator();
+//                        view.onNetworkError(t.getLocalizedMessage());
+//                    }
+//                });
+//    }
 
     void getSaldo(String nik, String token) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
@@ -99,43 +99,43 @@ public class EcommercePresenter {
                 });
     }
 
-    void createCart(String nik, Item rut, ImageView img,String token) {
-        //Log.d("namaitem",rut.getNamaItem());
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
-            Request original = chain.request();
-            Request request = original.newBuilder()
-                    .header("x-access-token", token)
-                    .header("username", nik)
-                    .method(original.method(), original.body())
-                    .build();
-
-            return chain.proceed(request);
-        }).build();
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("nik", nik);
-        params.put("id", rut.get_id());
-        params.put("namaBarang", rut.getNamaItem());
-        params.put("harga", rut.getHarga());
-        params.put("foto", rut.getFoto());
-        view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createCart(params).enqueue(new Callback<RutResponse>() {
-            @Override
-            public void onResponse(retrofit2.Call<RutResponse> call, Response<RutResponse> response) {
-                view.hideLoadingIndicator();
-                Log.i("MESSAGE", "" + response.body());
-                if (response.body().getSuccess()) {
-                    view.onAddTocartSuccess(response.body(), img);
-                }else{
-                    view.onRequestFailed();
-                }
-            }
-
-            @Override
-            public void onFailure(retrofit2.Call<RutResponse> call, Throwable t) {
-                view.hideLoadingIndicator();
-                view.onNetworkError(t.getLocalizedMessage());
-            }
-        });
-    }
+//    void createCart(String nik, Item rut, ImageView img,String token) {
+//        //Log.d("namaitem",rut.getNamaItem());
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
+//            Request original = chain.request();
+//            Request request = original.newBuilder()
+//                    .header("x-access-token", token)
+//                    .header("username", nik)
+//                    .method(original.method(), original.body())
+//                    .build();
+//
+//            return chain.proceed(request);
+//        }).build();
+//        HashMap<String, Object> params = new HashMap<>();
+//        params.put("nik", nik);
+//        params.put("id", rut.get_id());
+//        params.put("namaBarang", rut.getNamaItem());
+//        params.put("harga", rut.getHarga());
+//        params.put("foto", rut.getFoto());
+//        view.showLoadingIndicator();
+//        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createCart(params).enqueue(new Callback<RutResponse>() {
+//            @Override
+//            public void onResponse(retrofit2.Call<RutResponse> call, Response<RutResponse> response) {
+//                view.hideLoadingIndicator();
+//                Log.i("MESSAGE", "" + response.body());
+//                if (response.body().getSuccess()) {
+//                    view.onAddTocartSuccess(response.body(), img);
+//                }else{
+//                    view.onRequestFailed();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(retrofit2.Call<RutResponse> call, Throwable t) {
+//                view.hideLoadingIndicator();
+//                view.onNetworkError(t.getLocalizedMessage());
+//            }
+//        });
+//    }
 
 }

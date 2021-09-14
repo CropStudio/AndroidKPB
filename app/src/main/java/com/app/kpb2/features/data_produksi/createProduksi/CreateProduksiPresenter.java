@@ -51,7 +51,7 @@ public class CreateProduksiPresenter {
 //        System.out.println(body);
 
 //        System.out.println(params);
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createProduksi(model).enqueue(new Callback<CommonRespon>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).createProduksi(model).enqueue(new Callback<CommonRespon>() {
             @Override
             public void onResponse(Call<CommonRespon> call, Response<CommonRespon> response) {
                 view.hideLoadingIndicator();

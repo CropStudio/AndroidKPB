@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.app.kpb2.R;
 import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.LinkedHashMapAdapter;
+import com.app.kpb2.features.cart.CartActivity;
 import com.app.kpb2.features.petani.noRekening.model.Kios;
 import com.app.kpb2.features.petani.profile.Profile;
 import com.app.kpb2.features.petani.profile.model.DataMt;
@@ -32,6 +33,7 @@ import com.app.kpb2.server.App;
 import com.app.kpb2.session.Prefs;
 import com.app.kpb2.ui.SweetDialogs;
 import com.app.kpb2.ui.TopSnakbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -64,10 +66,12 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     RadioButton r3;
     @BindView(R.id.r4)
     RadioButton r4;
+    @BindView(R.id.norek)
+    TextInputLayout norek;
     RekeningPresenter presenter;
     SweetAlertDialog sweetAlertDialog;
     private LoginResponse mProfile;
-    private String nik, nama, alamat, token, Bank, idAset, idDesa, idKec, idKab , noRek , namaKios , namaBank;
+    private String nik, nama, alamat, token, Bank, idAset, idDesa, idKec, idKab, noRek, namaKios, namaBank;
     private Number idKios;
     List<DataMt> dataMt;
     ArrayList<String> spinnerKios = new ArrayList<>();
@@ -75,8 +79,8 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     private LinkedHashMap<String, String> kios;
     @BindView(R.id.toolbar_default_in)
     Toolbar mToolbar;
-    Bundle bundle ;
-    String className ;
+    Bundle bundle;
+    String className;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,18 +88,8 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
         setContentView(R.layout.activity_rekening);
         ButterKnife.bind(this);
         presenter = new RekeningPresenter(this);
-        Intent intent = this.getIntent();
-        bundle = intent.getExtras();
-        if(bundle!=null) {
-            className = getIntent().getExtras().getString("className");
-            if(className.equals("RutActivity")){
-                dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
-                idAset = getIntent().getExtras().getString("_id");
-            }
-        }
-
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Rekening");
+
         mToolbar.setTitleTextColor(getResources().getColor(R.color.color_default_blue));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back_left));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,6 +97,22 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
+        Intent intent = this.getIntent();
+        bundle = intent.getExtras();
+        if (bundle != null) {
+            className = getIntent().getExtras().getString("className");
+            if (className.equals("RutActivity")) {
+                dataMt = (List<DataMt>) getIntent().getExtras().getSerializable("data");
+                idAset = getIntent().getExtras().getString("_id");
+                getSupportActionBar().setTitle("Rekening");
+            } else if (className.equals("CartActivity")) {
+                getSupportActionBar().setTitle("Kios");
+                norek.setVisibility(View.GONE);
+                mRadioGroupBank.setVisibility(View.GONE);
+            }
+        }
+
 
         this.initViews();
     }
@@ -126,16 +136,16 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
                 ? mProfile.getResult().getProfile().getArea().getCity_code() : mProfile.getResult().getProfile().getArea().getCity_code();
         noRek = (mProfile.getResult().getProfile().getNomorRekening().contains(" "))
                 ? mProfile.getResult().getProfile().getNomorRekening() : mProfile.getResult().getProfile().getNomorRekening();
-        namaBank =  mProfile.getResult().getProfile().getBank();
-        if(!noRek.equals("")) {
+        namaBank = mProfile.getResult().getProfile().getBank();
+        if (!noRek.equals("")) {
             mNorek.setText(noRek);
-            if(namaBank.equals("Bank BNI")){
+            if (namaBank.equals("Bank BNI")) {
                 r1.setChecked(true);
-            }else if(namaBank.equals("Bank MANDIRI")){
+            } else if (namaBank.equals("Bank MANDIRI")) {
                 r2.setChecked(true);
-            }else if(namaBank.equals("Bank BRI")){
+            } else if (namaBank.equals("Bank BRI")) {
                 r3.setChecked(true);
-            }else if(namaBank.equals("Bank LAMPUNG")){
+            } else if (namaBank.equals("Bank LAMPUNG")) {
                 r4.setChecked(true);
             }
 
@@ -180,12 +190,14 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     @Override
     public void onCreateRekeningSuksess(LoginResponse profile, String noRek) {
 //        profile.getResult().getProfile().setNamaKios(namaKios);
-        Log.d("ProfileRekening" , new Gson().toJson(profile));
+        Log.d("ProfileRekening", new Gson().toJson(profile));
         presenter.storeProfile(profile);
         SweetDialogs.commonSuccessWithIntent(this, "Data Berhasil Tersimpan", string -> {
-            if(bundle!=null)
-                if(className.equals("RutActivity"))
+            if (bundle != null)
+                if (className.equals("RutActivity"))
                     this.goToRut();
+                else if (className.equals("CartActivity"))
+                    this.goToCart();
                 else
                     this.goToTransaksiNonTunai();
             else
@@ -196,7 +208,7 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
 
     @Override
     public void onRequestFailed(String rm, String rc) {
-        if(rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
+        if (rc.equals(Prefs.DEFAULT_INVALID_TOKEN))
             SweetDialogs.commonInvalidToken(this, "Gagal Memuat Permintaan",
                     rm);
     }
@@ -241,12 +253,21 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     }
 
     @Override
+    public void goToCart() {
+        Intent i = new Intent(this, CartActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            if(bundle!=null)
-                if(className.equals("RutActivity"))
+            if (bundle != null)
+                if (className.equals("RutActivity"))
                     this.goToRut();
+                else if (className.equals("CartActivity"))
+                    this.goToCart();
                 else
                     this.goToTransaksiNonTunai();
             else
@@ -259,7 +280,15 @@ public class Rekening extends AppCompatActivity implements IRekeningView, Adapte
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        this.goToRut();
+        if (bundle != null)
+            if (className.equals("RutActivity"))
+                this.goToRut();
+            else if (className.equals("CartActivity"))
+                this.goToCart();
+            else
+                this.goToTransaksiNonTunai();
+        else
+            this.goToProfile();
     }
 
     @Override

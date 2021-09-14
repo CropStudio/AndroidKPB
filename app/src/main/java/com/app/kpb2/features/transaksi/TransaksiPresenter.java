@@ -39,7 +39,7 @@ public class TransaksiPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getTransaksi(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getTransaksi(nik)
                 .enqueue(new Callback<TransaksiResponse>() {
                     @Override
                     public void onResponse(Call<TransaksiResponse> call, Response<TransaksiResponse> response) {

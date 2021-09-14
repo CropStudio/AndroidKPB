@@ -51,7 +51,7 @@ public class KomoditasPresenter {
 //        System.out.println(body);
 
         System.out.println(params);
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).addKomoditas(nik,params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).addKomoditas(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
@@ -82,7 +82,7 @@ public class KomoditasPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).deleteKomoditas(nik,_id).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).deleteKomoditas(nik,_id).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
@@ -114,7 +114,7 @@ public class KomoditasPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getAllKomoditas().enqueue(new Callback<KomoditasResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getAllKomoditas().enqueue(new Callback<KomoditasResponse>() {
             @Override
             public void onResponse(Call<KomoditasResponse> call, retrofit2.Response<KomoditasResponse> response) {
                 view.hideLoadingIndicator();

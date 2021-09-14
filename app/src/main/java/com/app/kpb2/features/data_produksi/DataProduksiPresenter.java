@@ -48,7 +48,7 @@ public class DataProduksiPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getDataProduksi(nik).enqueue(new Callback<DataProduksiResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getDataProduksi(nik).enqueue(new Callback<DataProduksiResponse>() {
             @Override
             public void onResponse(Call<DataProduksiResponse> call, Response<DataProduksiResponse> response) {
                 view.hideLoadingIndicator();
@@ -86,7 +86,7 @@ public class DataProduksiPresenter {
 //        System.out.println(body);
 
 //        System.out.println(params);
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).deleteDataProduksi(_id).enqueue(new Callback<CommonRespon>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).deleteDataProduksi(_id).enqueue(new Callback<CommonRespon>() {
             @Override
             public void onResponse(Call<CommonRespon> call, Response<CommonRespon> response) {
                 view.hideLoadingIndicator();

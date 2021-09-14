@@ -57,7 +57,7 @@ public class DashboardPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getBalance(noRek)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getBalance(noRek)
                 .enqueue(new Callback<BalanceResponse>() {
                     @Override
                     public void onResponse(Call<BalanceResponse> call, Response<BalanceResponse> response) {

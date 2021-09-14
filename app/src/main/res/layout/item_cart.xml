@@ -30,6 +30,7 @@
             android:layout_gravity="center_vertical" />
 
         <ImageView
+            android:padding="8dp"
             android:id="@+id/icon_image"
             android:layout_width="80dp"
             android:layout_height="80dp"

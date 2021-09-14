@@ -39,7 +39,7 @@ public class AutpPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getAutp(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getAutp(nik)
                 .enqueue(new Callback<AutpResponse>() {
                     @Override
                     public void onResponse(Call<AutpResponse> call, Response<AutpResponse> response) {

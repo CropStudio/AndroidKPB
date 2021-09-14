@@ -36,7 +36,7 @@ public class CreateAsetPresenter {
     public void getSpinner(String id, String key) {
         if (key.equals("subsektor")) {
             view.showLoadingIndicator();
-            restService.create(NetworkService.class).getSubsektor()
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getSubsektor()
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
@@ -54,7 +54,7 @@ public class CreateAsetPresenter {
                     });
         } else if (key.equals("komoditas")) {
             view.showLoadingIndicator();
-            restService.create(NetworkService.class).getKomoditas(id)
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getKomoditas(id)
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
@@ -86,7 +86,7 @@ public class CreateAsetPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateAset(nik, aset).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).updateAset(nik, aset).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();

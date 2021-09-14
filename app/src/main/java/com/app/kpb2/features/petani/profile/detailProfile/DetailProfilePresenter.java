@@ -20,7 +20,7 @@ public class DetailProfilePresenter {
 
     void onGetProfile(String nik) {
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).getProfilePetani(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , "token").build()).build().create(NetworkService.class).getProfilePetani(nik)
                 .enqueue(new Callback<ProfileResponse>() {
                     @Override
                     public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {

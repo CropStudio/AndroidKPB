@@ -45,7 +45,7 @@ public class KeuanganPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getAllRut(params)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getAllRut(params)
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {

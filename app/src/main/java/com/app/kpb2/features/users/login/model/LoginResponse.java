@@ -26,7 +26,9 @@ public class LoginResponse {
     public String getRm() { return mRm; }
 
     public void setRm(String rm) { mRm = rm; }
+
     public Boolean getSuccess() { return mStatus; }
+
     public void  setSuccess(Boolean success) { mStatus = success; }
 
 

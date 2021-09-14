@@ -5,6 +5,10 @@ import com.app.kpb2.features.petani.profile.model.profile;
 import com.google.gson.annotations.SerializedName;
 
 public class Users {
+
+    @SerializedName("_id")
+    private String _id;
+
     @SerializedName("nik")
     private String nik;
 
@@ -41,7 +45,13 @@ public class Users {
     @SerializedName("profile")
     private profile profile;
 
+    public String get_id() {
+        return _id;
+    }
 
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public com.app.kpb2.features.petani.profile.model.profile getProfile() {
         return profile;

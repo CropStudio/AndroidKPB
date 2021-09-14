@@ -28,4 +28,6 @@ public interface IRekeningView {
     void goToProfile();
 
     void goToTransaksiNonTunai();
+
+    void goToCart();
 }

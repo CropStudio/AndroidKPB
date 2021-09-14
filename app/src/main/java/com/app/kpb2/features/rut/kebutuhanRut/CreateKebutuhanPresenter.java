@@ -26,7 +26,7 @@ public class CreateKebutuhanPresenter {
 
     public void getSpinner(String id, String key) {
         if (key.equals("subsektor")) {
-            restService.create(NetworkService.class).getSubsektor()
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getSubsektor()
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
@@ -44,7 +44,7 @@ public class CreateKebutuhanPresenter {
                     });
         } else if (key.equals("komoditas")) {
             view.showLoadingIndicator();
-            restService.create(NetworkService.class).getKomoditas(id)
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getKomoditas(id)
                     .enqueue(new Callback<AreaResponse>() {
                         @Override
                         public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {

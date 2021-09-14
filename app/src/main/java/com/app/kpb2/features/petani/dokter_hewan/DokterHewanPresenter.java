@@ -44,7 +44,7 @@ public class DokterHewanPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getDataDokterHewan(idKab)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getDataDokterHewan(idKab)
                 .enqueue(new Callback<DokterHewanResponse>() {
                     @Override
                     public void onResponse(Call<DokterHewanResponse> call, Response<DokterHewanResponse> response) {

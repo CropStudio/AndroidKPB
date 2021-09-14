@@ -46,7 +46,7 @@ public class CreateMtPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).createMt(_id, nik, params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).createMt(_id, nik, params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
@@ -67,7 +67,7 @@ public class CreateMtPresenter {
     public void getDistincKomoditas(String subsektor) {
         view.showLoadingIndicator();
 //        Log.d("idsub", idSub);
-        restService.create(NetworkService.class).getDistincKomoditas(subsektor)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getDistincKomoditas(subsektor)
                 .enqueue(new Callback<DistincKomoditas>() {
                     @Override
                     public void onResponse(Call<DistincKomoditas> call, Response<DistincKomoditas> response) {

@@ -28,7 +28,7 @@ public class RegistPetaniPresenter {
 
     void daftarPetani(RegistModel registModel) {
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).daftarPetani(registModel)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).daftarPetani(registModel)
                 .enqueue(new Callback<CommonRespon>() {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> response) {

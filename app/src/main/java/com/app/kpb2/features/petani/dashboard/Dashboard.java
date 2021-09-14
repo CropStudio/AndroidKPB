@@ -39,6 +39,7 @@ import com.app.kpb2.Utils.GsonHelper;
 import com.app.kpb2.Utils.Utils;
 import com.app.kpb2.features.data_produksi.DataProduksiActivity;
 import com.app.kpb2.features.e_commerce.EcommerceActivity;
+import com.app.kpb2.features.pasar_bebas.PasarBebasActivity;
 import com.app.kpb2.features.pasar_tani.PasarTaniActivity;
 import com.app.kpb2.features.petani.KartuPetani;
 import com.app.kpb2.features.petani.dokter_hewan.DokterHewanActivity;
@@ -114,6 +115,8 @@ public class Dashboard extends Fragment implements IDashboardView {
     CardView cardDokterHewan;
     @BindView(R.id.mCardTransaksiNonTunai)
     CardView mCardTransaksiNonTunai;
+    @BindView(R.id.mCardPasarBebas)
+    CardView mCardPasarBebas;
 
     @BindView(R.id.mSaldo)
     TextView mSaldo;
@@ -333,7 +336,7 @@ public class Dashboard extends Fragment implements IDashboardView {
 //        Toast.makeText(getActivity(), "yang lama", Toast.LENGTH_SHORT).show();
 
 //        presenter.getSaldo();
-//        this.forceUpdate();
+        this.forceUpdate();
 //        presenter.cekAppVersion(App.getApplication().getString(R.string.app_id));
 
     }
@@ -389,7 +392,7 @@ public class Dashboard extends Fragment implements IDashboardView {
     @Override
     public void onStart() {
         super.onStart();
-//        this.forceUpdate();
+        this.forceUpdate();
     }
 
     private void forceUpdate() {
@@ -568,32 +571,32 @@ public class Dashboard extends Fragment implements IDashboardView {
     @Override
     public void onResume() {
         super.onResume();
-//        appUpdateManager
-//                .getAppUpdateInfo()
-//                .addOnSuccessListener(
-//                        appUpdateInfo -> {
-//                            if (appUpdateInfo.updateAvailability()
-//                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-//                                // If an in-app update is already running, resume the update.
-//                                try {
-//                                    appUpdateManager.startUpdateFlowForResult(
-//                                            appUpdateInfo,
-//                                            IMMEDIATE,
-//                                            (IntentSenderForResultStarter) this,
-//                                            MY_REQUEST_CODE);
-//                                } catch (IntentSender.SendIntentException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
+        appUpdateManager
+                .getAppUpdateInfo()
+                .addOnSuccessListener(
+                        appUpdateInfo -> {
+                            if (appUpdateInfo.updateAvailability()
+                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                                // If an in-app update is already running, resume the update.
+                                try {
+                                    appUpdateManager.startUpdateFlowForResult(
+                                            appUpdateInfo,
+                                            IMMEDIATE,
+                                            (IntentSenderForResultStarter) this,
+                                            MY_REQUEST_CODE);
+                                } catch (IntentSender.SendIntentException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        if (appUpdateManager != null) {
-//            appUpdateManager.unregisterListener(installStateUpdatedListener);
-//        }
+        if (appUpdateManager != null) {
+            appUpdateManager.unregisterListener(installStateUpdatedListener);
+        }
     }
 
     @Override
@@ -691,6 +694,15 @@ public class Dashboard extends Fragment implements IDashboardView {
         Intent i = new Intent(getActivity(), PasarOnlineNasionalTernak.class);
         startActivity(i);
         getActivity().finish();
+    }
+
+
+    @OnClick(R.id.mCardPasarBebas)
+    void pasarBebas() {
+        Intent i = new Intent(getActivity(), PasarBebasActivity.class);
+        startActivity(i);
+        getActivity().finish();
+//        Toast.makeText(getActivity(), "Maaf menu ini masih dalam pengembangan !", Toast.LENGTH_SHORT).show();
     }
 
 //    @OnClick(R.id.cardKatam)

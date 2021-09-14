@@ -12,6 +12,8 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.app.kpb2.network.HttpsTrustManager;
+import com.app.kpb2.network.RestService;
 import com.app.kpb2.ui.SweetDialogs;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
@@ -188,6 +190,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
 
     public void cekPetani(String nikPetani) {
         String tag_string_req = "req_login";
+        HttpsTrustManager.allowAllSSL();
         this.showLoadingIndicator();
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 Config_URL.cekPetani + nikPetani, new Response.Listener<String>() {

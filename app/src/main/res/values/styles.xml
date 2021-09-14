@@ -72,7 +72,13 @@
     <style name="Nganu">
         <item name="colorAccent">@color/c_white</item> <!-- Whatever color you want-->
     </style>
-
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowEnterAnimation">@anim/fromsmall</item>
+        <item name="android:windowExitAnimation">@anim/closedialog</item>
+        <!-- ...other stuff here... -->
+    </style>
     <style name="HeaderBar">
         <item name="android:background">@color/c_white</item>
     </style>

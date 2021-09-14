@@ -47,7 +47,7 @@ public class RekeningPresenter {
         view.showLoadingIndicator();
 //        System.out.println(body);
 
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).updateProfile(nik,params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
                 view.hideLoadingIndicator();
@@ -72,7 +72,7 @@ public class RekeningPresenter {
         params.put("id_kecamtan", idKecamatan);
         params.put("id_kabupaten", idKabupaten);
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).getKiosByArea(params)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient("nik" , "token").build()).build().create(NetworkService.class).getKiosByArea(params)
                 .enqueue(new Callback<KiosResponse>() {
                     @Override
                     public void onResponse(Call<KiosResponse> call, Response<KiosResponse> response) {

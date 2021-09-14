@@ -53,7 +53,7 @@ public class TransaksiNonTunaiPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).getTransaksiNonTunai(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).getTransaksiNonTunai(nik)
                 .enqueue(new Callback<RutResponse>() {
                     @Override
                     public void onResponse(Call<RutResponse> call, Response<RutResponse> response) {
@@ -89,7 +89,7 @@ public class TransaksiNonTunaiPresenter {
             return chain.proceed(request);
         }).build();
         view.showLoadingIndicator();
-        restService.newBuilder().client(okHttpClient).build().create(NetworkService.class).transaksiNonTunai(rut)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , token).build()).build().create(NetworkService.class).transaksiNonTunai(rut)
                 .enqueue(new Callback<CommonRespon>() {
                     @Override
                     public void onResponse(retrofit2.Call<CommonRespon> call, Response<CommonRespon> CommonRespon) {
@@ -113,7 +113,7 @@ public class TransaksiNonTunaiPresenter {
 
     void onGetProfile(String nik) {
         view.showLoadingIndicator();
-        restService.create(NetworkService.class).getProfilePetani(nik)
+        restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik , "token").build()).build().create(NetworkService.class).getProfilePetani(nik)
                 .enqueue(new Callback<ProfileResponse>() {
                     @Override
                     public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
