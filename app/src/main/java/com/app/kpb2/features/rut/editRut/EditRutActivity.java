@@ -30,7 +30,7 @@ import im.delight.android.webview.AdvancedWebView;
 public class EditRutActivity extends AppCompatActivity implements AdvancedWebView.Listener , IEditRutView {
 
     List<DataMt> dataMt ;
-    String BASE_URL = "http://prelaunch.kartupetaniberjaya.com/#/rut/";
+    String BASE_URL = "https://prelaunch.kartupetaniberjaya.com/#/rut/";
 //    String BASE_URL = "http://192.168.100.6:8080/#/rut/";
     private AdvancedWebView mWebView;
     SweetAlertDialog sweetAlertDialog;
