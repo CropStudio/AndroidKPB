@@ -123,6 +123,17 @@ public class Result implements Serializable  {
     @SerializedName("noRek")
     private String noRek;
 
+    @SerializedName("idPoktan")
+    private String idPoktan;
+
+    public String getIdPoktan() {
+        return idPoktan;
+    }
+
+    public void setIdPoktan(String idPoktan) {
+        this.idPoktan = idPoktan;
+    }
+
     public Boolean getVerifiedKur() {
         return verifiedKur;
     }

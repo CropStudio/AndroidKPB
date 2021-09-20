@@ -78,7 +78,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
     TransaksiNonTunaiPresenter presenter;
     Boolean LayoutStat = false;
     private String nik, token, nomorrekening, namaBank, idKab;
-    Number idKios;
+    Number idKios , idPoktan;
     View dialogView;
     AlertDialog.Builder dialog;
     private ArrayList<String> listBank = new ArrayList<>();
@@ -116,6 +116,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
 //            idKios = Integer.parseInt(String.valueOf(mProfile.getResult().getProfile().getIdKios())) ;
         }
         idKab = mProfile.getResult().getProfile().getArea().getCity_code();
+        idPoktan = mProfile.getResult().getProfile().getId_poktan();
         this.initView();
 
 
@@ -249,6 +250,7 @@ public class TransaksiNonTunaiActivity extends AppCompatActivity implements ITra
             rut.setBank(namaBank);
             rut.setNamaTransaksi(rut.getKomoditas() + "/" + rut.getMt());
             rut.setIdKabupaten(idKab);
+            rut.setIdPoktan(String.valueOf(idPoktan));
             SweetDialogs.confirmDialog(this, "Apakah Anda Yakin ?", "dengan mensetujui RUT berarti anda melakukan transaksi pembelian saprotan dengan mendebit saldo rekening anda pastikan saldo anda cukup  .", "Berhasil memuat permintaan .", confirm -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     SweetDialogs.confirmDialog(this, "Total yang harus di bayar", Utils.convertRupiah(String.valueOf(rut.getSubTotalKebutuhanSaprotan())), "Berhasil memuat permintaan", confirms -> {
