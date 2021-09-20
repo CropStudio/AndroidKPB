@@ -96,8 +96,8 @@ public class CartPresenter {
         view.showLoadingIndicator();
         Log.d("Channelnya", data.get(0).getChannel());
         if (data.get(0).getChannel().startsWith("VA BNI")) {
-            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
-                //        resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
+            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
                 @Override
                 public void onResponse(Call<VaBNI_Response> call, retrofit2.Response<VaBNI_Response> response) {
                     view.hideLoadingIndicator();
@@ -116,8 +116,8 @@ public class CartPresenter {
                 }
             });
         } else if (data.get(0).getChannel().equals("Transfer")) {
-            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
-                //        resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
+            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
                 @Override
                 public void onResponse(Call<BankTfResponse> call, retrofit2.Response<BankTfResponse> response) {
                     view.hideLoadingIndicator();
@@ -139,8 +139,8 @@ public class CartPresenter {
             });
         } else {
 
-            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
-                //        resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
                 @Override
                 public void onResponse(Call<CommonRespon> call, retrofit2.Response<CommonRespon> response) {
                     view.hideLoadingIndicator();
@@ -188,30 +188,30 @@ public class CartPresenter {
 
     }
 
-        void getIdPenyuluh(String nik ,String token , Number idPoktan) {
-            view.showLoadingIndicator();
-            restServiceKios.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).getPenyuluh(idPoktan)
-                    .enqueue(new Callback<PenyuluResponse>() {
-                        @Override
-                        public void onResponse(Call<PenyuluResponse> call, Response<PenyuluResponse> response) {
-                            view.hideLoadingIndicator();
-                            Log.d("Messg", "" + response.body().getResult());
-                            if (response.body() != null) {
-                                if (response.body().getStatus())
-                                    view.onDataPenyuluh(response.body().getResult());
-                                else
-                                    view.onRequestFailed(response.body().getRc(), response.body().getRm());
-                            } else
-                                view.onNetworkError(response.message());
+    void getIdPenyuluh(String nik, String token, Number idPoktan) {
+        view.showLoadingIndicator();
+        restServiceKios.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).getPenyuluh(idPoktan)
+                .enqueue(new Callback<PenyuluResponse>() {
+                    @Override
+                    public void onResponse(Call<PenyuluResponse> call, Response<PenyuluResponse> response) {
+                        view.hideLoadingIndicator();
+                        Log.d("Messg", "" + response.body().getResult());
+                        if (response.body() != null) {
+                            if (response.body().getStatus())
+                                view.onDataPenyuluh(response.body().getResult());
+                            else
+                                view.onRequestFailed(response.body().getRc(), response.body().getRm());
+                        } else
+                            view.onNetworkError(response.message());
 
-                        }
+                    }
 
-                        @Override
-                        public void onFailure(Call<PenyuluResponse> call, Throwable t) {
-                            view.hideLoadingIndicator();
-                            view.onNetworkError(t.getLocalizedMessage());
-                        }
-                    });
+                    @Override
+                    public void onFailure(Call<PenyuluResponse> call, Throwable t) {
+                        view.hideLoadingIndicator();
+                        view.onNetworkError(t.getLocalizedMessage());
+                    }
+                });
     }
 
 
