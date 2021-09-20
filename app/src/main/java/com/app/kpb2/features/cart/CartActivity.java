@@ -168,7 +168,6 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
                 ? mProfile.getResult().getProfile().getNama() : mProfile.getResult().getProfile().getNama();
         idKios = mProfile.getResult().getProfile().getIdKios();
         idPoktan = mProfile.getResult().getProfile().getId_poktan();
-        idPoktan = mProfile.getResult().getProfile().getId_poktan();
         area = mProfile.getResult().getProfile().getArea();
         if (idKios != null && Integer.parseInt(String.valueOf(idKios)) != 0) {
 
@@ -310,6 +309,7 @@ public class CartActivity extends AppCompatActivity implements ICartView, CartAd
                 checkouts.setIdUnique(String.valueOf(randomDigit));
             }
             checkouts.setNama(nama);
+            checkouts.setIdPoktan(String.valueOf(idPoktan));
             checkouts.setFeeBita(item.getItem().getFeeBita());
             checkouts.setFeeKios(item.getItem().getFeeKios());
             checkouts.setFeePenyuluh(item.getItem().getFeePenyuluh());

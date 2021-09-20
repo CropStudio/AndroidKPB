@@ -96,8 +96,8 @@ public class CartPresenter {
         view.showLoadingIndicator();
         Log.d("Channelnya", data.get(0).getChannel());
         if (data.get(0).getChannel().startsWith("VA BNI")) {
-//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
-            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
+//            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutVA_BNI(data).enqueue(new Callback<VaBNI_Response>() {
                 @Override
                 public void onResponse(Call<VaBNI_Response> call, retrofit2.Response<VaBNI_Response> response) {
                     view.hideLoadingIndicator();
@@ -116,8 +116,8 @@ public class CartPresenter {
                 }
             });
         } else if (data.get(0).getChannel().equals("Transfer")) {
-//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
-            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
+//            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkoutBank_tf(data).enqueue(new Callback<BankTfResponse>() {
                 @Override
                 public void onResponse(Call<BankTfResponse> call, retrofit2.Response<BankTfResponse> response) {
                     view.hideLoadingIndicator();
@@ -139,8 +139,8 @@ public class CartPresenter {
             });
         } else {
 
-//            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
-            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+            restService.newBuilder().client(RestService.getUnsafeOkHttpClient(nik, token).build()).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
+//            resetServiceDevelop.newBuilder().client(okHttpClient).build().create(NetworkService.class).checkout(data).enqueue(new Callback<CommonRespon>() {
                 @Override
                 public void onResponse(Call<CommonRespon> call, retrofit2.Response<CommonRespon> response) {
                     view.hideLoadingIndicator();

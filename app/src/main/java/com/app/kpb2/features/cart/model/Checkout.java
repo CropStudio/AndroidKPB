@@ -14,6 +14,9 @@ public class    Checkout {
     @SerializedName("idUser")
     private String idUser;
 
+    @SerializedName("idPoktan")
+    private String idPoktan;
+
     @SerializedName("idUnique")
     private String idUnique;
 
@@ -97,6 +100,14 @@ public class    Checkout {
 
     @SerializedName("area")
     private profile.Area area;
+
+    public String getIdPoktan() {
+        return idPoktan;
+    }
+
+    public void setIdPoktan(String idPoktan) {
+        this.idPoktan = idPoktan;
+    }
 
     public long getTotalFeePenyuluh() {
         return totalFeePenyuluh;
